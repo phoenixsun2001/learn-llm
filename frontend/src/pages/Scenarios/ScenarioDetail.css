@@ -1,0 +1,412 @@
+/* ============================================
+   ScenarioDetail - Scenario Detail Page Styles
+   ============================================ */
+
+/* ---------- Page Container ---------- */
+.scenario-detail-page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-lg);
+}
+
+/* ---------- Breadcrumb ---------- */
+.scenario-detail-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xl);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.scenario-detail-breadcrumb-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.scenario-detail-breadcrumb-link:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+.scenario-detail-breadcrumb-sep {
+  color: var(--text-tertiary);
+  user-select: none;
+}
+
+.scenario-detail-breadcrumb-current {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* ---------- Header ---------- */
+.scenario-detail-header {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.scenario-detail-title {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+/* ---------- Goal Quote ---------- */
+.scenario-detail-goal {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  background-color: var(--accent-light);
+  border-left: 4px solid var(--accent-color);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.scenario-detail-goal-label {
+  font-size: var(--font-size-lg);
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.scenario-detail-goal-text {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  color: var(--text-primary);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* ---------- Description ---------- */
+.scenario-detail-desc {
+  font-size: var(--font-size-md);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ---------- Section Titles ---------- */
+.scenario-detail-section-title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 2px solid var(--border-color);
+}
+
+/* ---------- Workflow Visualization ---------- */
+.scenario-detail-workflow {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.scenario-detail-workflow-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.scenario-detail-workflow-pill {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-md);
+  background-color: var(--accent-light);
+  color: var(--accent-text);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.scenario-detail-workflow-arrow {
+  width: 20px;
+  height: 20px;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+/* ---------- Recommended Tools ---------- */
+.scenario-detail-tools {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.scenario-detail-tools-grid {
+  display: flex;
+  gap: var(--spacing-md);
+  overflow-x: auto;
+  padding-bottom: var(--spacing-xs);
+}
+
+.scenario-detail-tool-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 260px;
+  max-width: 320px;
+  flex: 0 0 auto;
+  padding: var(--spacing-lg);
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.scenario-detail-tool-card:hover {
+  border-color: var(--accent-color);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.scenario-detail-tool-name {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.scenario-detail-tool-desc {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: var(--spacing-md);
+  flex: 1;
+}
+
+.scenario-detail-tool-link-label {
+  font-size: var(--font-size-sm);
+  color: var(--accent-color);
+  font-weight: 500;
+}
+
+.scenario-detail-tool-card:hover .scenario-detail-tool-link-label {
+  color: var(--accent-hover);
+}
+
+/* ---------- Tutorial Chain ---------- */
+.scenario-detail-tutorials {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.scenario-detail-tutorial-chain {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.scenario-detail-tutorial-step {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+
+/* Marker column: number + connector line */
+.scenario-detail-tutorial-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 36px;
+}
+
+.scenario-detail-tutorial-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  color: var(--text-inverse);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.scenario-detail-tutorial-connector {
+  width: 2px;
+  flex: 1;
+  min-height: 20px;
+  background-color: var(--border-color);
+  margin: var(--spacing-xs) 0;
+}
+
+/* Content column */
+.scenario-detail-tutorial-content {
+  flex: 1;
+  padding-bottom: var(--spacing-lg);
+}
+
+.scenario-detail-tutorial-step:last-child .scenario-detail-tutorial-content {
+  padding-bottom: 0;
+}
+
+.scenario-detail-tutorial-title {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  display: block;
+  margin-bottom: var(--spacing-xs);
+}
+
+.scenario-detail-tutorial-title:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+.scenario-detail-tutorial-desc {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.scenario-detail-tutorial-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.scenario-detail-tutorial-time {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+}
+
+.scenario-detail-tutorial-time-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* ---------- Difficulty Badges ---------- */
+.scenario-detail-difficulty-badge {
+  display: inline-block;
+  padding: 2px var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+}
+
+.scenario-detail-difficulty-beginner {
+  background-color: var(--success-light);
+  color: var(--success-color);
+}
+
+.scenario-detail-difficulty-intermediate {
+  background-color: var(--warning-light);
+  color: var(--warning-text);
+}
+
+.scenario-detail-difficulty-advanced {
+  background-color: var(--error-light);
+  color: var(--error-color);
+}
+
+/* ---------- Empty States ---------- */
+.scenario-detail-empty-text {
+  font-size: var(--font-size-base);
+  color: var(--text-tertiary);
+  text-align: center;
+  padding: var(--spacing-xl) 0;
+  margin: 0;
+}
+
+/* ---------- Error State ---------- */
+.scenario-detail-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--spacing-2xl) var(--spacing-lg);
+  min-height: 300px;
+}
+
+.scenario-detail-error-icon {
+  font-size: 48px;
+  margin-bottom: var(--spacing-md);
+}
+
+.scenario-detail-error h2 {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.scenario-detail-error p {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-lg);
+  max-width: 400px;
+}
+
+.scenario-detail-error-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background-color: var(--accent-color);
+  color: var(--text-inverse) !important;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.scenario-detail-error-link:hover {
+  background-color: var(--accent-hover);
+  text-decoration: none;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .scenario-detail-page {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+
+  .scenario-detail-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .scenario-detail-goal {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .scenario-detail-goal-text {
+    font-size: var(--font-size-md);
+  }
+
+  .scenario-detail-tools-grid {
+    flex-direction: column;
+    overflow-x: visible;
+  }
+
+  .scenario-detail-tool-card {
+    min-width: unset;
+    max-width: unset;
+  }
+
+  .scenario-detail-workflow-flow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+  }
+
+  .scenario-detail-workflow-arrow {
+    transform: rotate(90deg);
+    align-self: center;
+  }
+
+  .scenario-detail-tutorial-step {
+    gap: var(--spacing-md);
+  }
+}
