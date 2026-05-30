@@ -68,6 +68,13 @@ def generate_summary(title: str, text: str, max_input_chars: int = None, max_out
     # Clean and truncate input
     # Strip HTML tags for the prompt
     clean_text = re.sub(r'<[^>]+>', '', text)
+    # Strip Markdown image syntax: ![alt](url)
+    clean_text = re.sub(r'!\[.*?\]\(.*?\)', '', clean_text)
+    # Strip Markdown link syntax, keep link text: [text](url) → text
+    clean_text = re.sub(r'\[([^\]]*)\]\([^)]*\)', r'\1', clean_text)
+    # Strip common Markdown formatting chars
+    clean_text = re.sub(r'[*_~`#>|]', '', clean_text)
+    # Collapse whitespace
     clean_text = re.sub(r'\s+', ' ', clean_text).strip()
 
     if len(clean_text) > max_input_chars:

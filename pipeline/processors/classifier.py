@@ -125,34 +125,127 @@ def classify_and_rate(item: Dict) -> Dict:
 
 
 def _keyword_fallback(title: str, text: str) -> Dict:
-    """Simple keyword-based classification fallback."""
+    """Simple keyword-based classification fallback with expanded keyword sets."""
     combined = (title + ' ' + text).lower()
 
-    # Category detection
-    if any(kw in combined for kw in ['transformer', '注意力', 'rhlf', '训练', '架构', 'token']):
-        category = 'principle'
-    elif any(kw in combined for kw in ['claude code', 'codex', 'trae', 'cursor', 'copilot', '编码助手', 'cli', 'skills']):
+    # Category detection (ordered by specificity)
+    # Check harness first (most specific tool names)
+    if any(kw in combined for kw in [
+        'claude code', 'codex', 'trae', 'cursor', 'copilot', 'cline',
+        '编码助手', 'cli 工具', 'claude-cli', 'skills', 'hooks',
+        'hermas', 'aide', 'windsurf', 'continue dev', 'tabnine',
+        'code interpreter', 'coding agent',
+    ]):
         category = 'harness'
-    elif any(kw in combined for kw in ['gpt', 'claude', 'gemini', 'deepseek', 'qwen', 'llama', '模型对比', '选型']):
-        category = 'model'
-    elif any(kw in combined for kw in ['dify', 'coze', 'n8n', '工作流', '编排', '低代码']):
+        # Detect subcategory
+        if 'claude code' in combined or 'claude-cli' in combined:
+            subcategory = 'claude-code'
+        elif 'codex' in combined:
+            subcategory = 'codex'
+        elif 'trae' in combined:
+            subcategory = 'trae'
+        elif 'cursor' in combined:
+            subcategory = 'cursor'
+        elif 'skills' in combined or 'hooks' in combined:
+            subcategory = 'claude-code'
+        else:
+            subcategory = ''
+
+    elif any(kw in combined for kw in [
+        'dify', 'coze', 'n8n', '工作流', '编排', '低代码', 'automation',
+        'node-red', 'zapier', 'make.com', 'temporal', 'airflow',
+        'bot 开发', 'flow', 'workflow', 'pipeline',
+    ]):
         category = 'workflow'
-    elif any(kw in combined for kw in ['langchain', 'langgraph', 'rag', 'mcp', '向量', 'embedding']):
+        if 'dify' in combined:
+            subcategory = 'dify'
+        elif 'coze' in combined:
+            subcategory = 'coze'
+        elif 'n8n' in combined:
+            subcategory = 'n8n'
+        else:
+            subcategory = ''
+
+    elif any(kw in combined for kw in [
+        'langchain', 'langgraph', 'rag', 'mcp', '向量', 'embedding',
+        'llamaindex', 'chroma', 'pinecone', 'weaviate', 'pgvector',
+        '向量数据库', '检索增强', 'function calling', 'tool use',
+        'mcp server', 'mcp client', 'cli 开发', 'sdk', 'agent 框架',
+        'crewai', 'autogen', 'semantic kernel', 'prompt flow',
+        'model context protocol',
+    ]):
         category = 'development'
+        if 'langchain' in combined or 'langgraph' in combined:
+            subcategory = 'langchain'
+        elif 'rag' in combined or '检索增强' in combined:
+            subcategory = 'rag'
+        elif 'mcp' in combined or 'model context protocol' in combined:
+            subcategory = 'mcp'
+        elif 'agent' in combined or 'crewai' in combined or 'autogen' in combined:
+            subcategory = 'agent'
+        else:
+            subcategory = ''
+
+    elif any(kw in combined for kw in [
+        'transformer', '注意力', 'rhlf', '训练', '架构', 'token',
+        'pretraining', 'fine-tuning', '微调', 'lora', 'qlora',
+        '推理优化', '量化', '蒸馏', 'kv cache', 'position encoding',
+        '自注意力', 'multi-head', 'cross-attention', 'decoder',
+        'encoder', '损失函数', '激活函数', 'normalization',
+        '深度', '神经网络', '反向传播', '梯度',
+    ]):
+        category = 'principle'
+        subcategory = ''
+
+    elif any(kw in combined for kw in [
+        'gpt-5', 'gpt-4', 'gpt-4o', 'claude 4', 'claude 5', 'claude opus',
+        'claude sonnet', 'claude haiku', 'gemini', 'deepseek',
+        'qwen', 'llama', 'mistral', 'mixtral', 'yi', 'baichuan',
+        '模型对比', '选型', 'benchmark', 'mmmu', 'gsm8k',
+        '开源模型', '闭源模型', '部署', 'ollama', 'vllm',
+        'api 调用', 'token 计费', '成本分析', '模型能力',
+        '多模态', '视觉理解', '语音', '视频理解',
+        'openai', 'anthropic', 'google ai', 'meta ai',
+    ]):
+        category = 'model'
+        if 'claude' in combined:
+            subcategory = 'claude'
+        elif 'gpt' in combined or 'openai' in combined:
+            subcategory = 'openai'
+        elif 'deepseek' in combined:
+            subcategory = 'deepseek'
+        elif '多模态' in combined or '视觉' in combined:
+            subcategory = 'multimodal'
+        elif '部署' in combined or 'ollama' in combined or 'vllm' in combined:
+            subcategory = 'deployment'
+        else:
+            subcategory = ''
+
     else:
         category = 'practice'
+        subcategory = ''
 
-    # Difficulty detection
-    if any(kw in combined for kw in ['入门', '新手', '第一个', '安装', '配置', '快速上手', '初探']):
+    # Difficulty detection (expanded)
+    if any(kw in combined for kw in [
+        '入门', '新手', '第一个', '安装', '配置', '快速上手',
+        '初探', '概览', '简介', '什么是', '了解', '基础',
+        'getting started', 'introduction', 'quickstart', 'tutorial',
+        'hello world', '五分钟', '10分钟', '15分钟',
+    ]):
         difficulty = 'beginner'
-    elif any(kw in combined for kw in ['进阶', '优化', '调优', '深入', '原理', '架构']):
+    elif any(kw in combined for kw in [
+        '进阶', '优化', '调优', '深入', '原理', '架构',
+        '高级', '精通', '底层', '源码', '核心', '深度',
+        '生产', '大规模', '性能', 'advanced', 'deep dive',
+        'internals', 'under the hood',
+    ]):
         difficulty = 'advanced'
     else:
         difficulty = 'intermediate'
 
     return {
         'category': category,
-        'subcategory': '',
+        'subcategory': subcategory,
         'difficulty': difficulty,
         'confidence': 0.3,  # Low confidence for keyword-based
     }

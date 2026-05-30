@@ -8,6 +8,29 @@ from typing import Dict, Optional
 
 from config import config
 
+# Standard 6 categories from the learning platform taxonomy
+VALID_CATEGORIES = {
+    'principle', 'model', 'harness', 'workflow', 'development', 'practice'
+}
+
+CATEGORY_LABELS = {
+    'principle': '技术原理',
+    'model': '模型产品',
+    'harness': 'Harness工具',
+    'workflow': 'Workflow工具',
+    'development': '开发框架',
+    'practice': '最佳实践',
+}
+
+
+def _validate_category(category: str) -> str:
+    """Validate and normalize category. Falls back to 'practice' if invalid."""
+    if not category or category.lower() not in VALID_CATEGORIES:
+        if category:
+            logger.warning(f"Unknown category '{category}', falling back to 'practice'")
+        return 'practice'
+    return category.lower()
+
 logger = logging.getLogger(__name__)
 
 # Counter for generating material IDs
@@ -52,7 +75,7 @@ def write_material(item: Dict, output_dir: str = None) -> Optional[str]:
         output_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), output_dir)
 
     material_id = _generate_id()
-    category = item.get('category', 'uncategorized')
+    category = _validate_category(item.get('category', ''))
     subcategory = item.get('subcategory', '')
     title = item.get('title', 'Untitled')
 

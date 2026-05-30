@@ -1,13 +1,58 @@
-"""RSS feed fetcher for content aggregation."""
+"""RSS feed fetcher for content aggregation with source health monitoring."""
 import logging
 from datetime import datetime
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Tuple
 
 import feedparser
 
 from config import config
 
 logger = logging.getLogger(__name__)
+
+# Source health tracking (in-memory, resets on restart)
+_source_health: Dict[str, Dict] = {}
+
+
+def _update_health(name: str, success: bool, error_msg: str = None) -> None:
+    """Update health tracking for a source."""
+    if name not in _source_health:
+        _source_health[name] = {'success_count': 0, 'error_count': 0, 'last_error': None, 'last_success': None}
+
+    if success:
+        _source_health[name]['success_count'] += 1
+        _source_health[name]['last_success'] = datetime.now().isoformat()
+    else:
+        _source_health[name]['error_count'] += 1
+        _source_health[name]['last_error'] = error_msg or 'Unknown error'
+
+
+def get_sources_health() -> Dict[str, Dict]:
+    """
+    Get health status for all tracked RSS sources.
+
+    Returns:
+        Dict of source_name → health_info with keys:
+        success_count, error_count, last_error, last_success, status
+        status is one of: 'healthy', 'degraded', 'failing'
+    """
+    result = {}
+    for name, health in _source_health.items():
+        total = health['success_count'] + health['error_count']
+        if total == 0:
+            status = 'unknown'
+        elif health['error_count'] >= 3 and health['success_count'] == 0:
+            status = 'failing'
+        elif health['error_count'] > health['success_count']:
+            status = 'degraded'
+        else:
+            status = 'healthy'
+
+        result[name] = {
+            **health,
+            'status': status,
+            'total_attempts': total,
+        }
+    return result
 
 
 def fetch_rss_feed(url: str, name: str, max_items: int = None) -> List[Dict]:
@@ -30,10 +75,13 @@ def fetch_rss_feed(url: str, name: str, max_items: int = None) -> List[Dict]:
         feed = feedparser.parse(url)
     except Exception as e:
         logger.warning(f"Failed to fetch RSS feed '{name}' ({url}): {e}")
+        _update_health(name, False, str(e))
         return []
 
     if feed.bozo and not feed.entries:
-        logger.warning(f"Malformed RSS feed '{name}' ({url}): {feed.bozo_exception}")
+        error_msg = str(feed.bozo_exception) if feed.bozo_exception else 'Malformed XML'
+        logger.warning(f"Malformed RSS feed '{name}' ({url}): {error_msg}")
+        _update_health(name, False, error_msg)
         return []
 
     items = []
@@ -64,6 +112,7 @@ def fetch_rss_feed(url: str, name: str, max_items: int = None) -> List[Dict]:
         })
 
     logger.info(f"Fetched {len(items)} items from RSS feed '{name}'")
+    _update_health(name, True)
     return items
 
 

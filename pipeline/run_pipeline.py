@@ -64,13 +64,17 @@ def run_full_pipeline(source_name=None):
 
     # Step 3: Summarize
     logger.info("Step 3/5: Generating summaries...")
-    for item in unique:
+    for i, item in enumerate(unique, 1):
         text = item.get('raw_html', '') or item.get('summary', '')
+        title = item.get('title', '')[:50]
+        logger.info(f"  [{i}/{len(unique)}] Summarizing: {title}")
         item['ai_summary'] = generate_summary(item.get('title', ''), text)
 
     # Step 4: Classify
     logger.info("Step 4/5: Classifying content...")
-    for item in unique:
+    for i, item in enumerate(unique, 1):
+        title = item.get('title', '')[:50]
+        logger.info(f"  [{i}/{len(unique)}] Classifying: {title}")
         result = classify_and_rate(item)
         item['category'] = result['category']
         item['subcategory'] = result.get('subcategory', '')
@@ -80,12 +84,13 @@ def run_full_pipeline(source_name=None):
     # Step 5: Write output
     logger.info("Step 5/5: Writing output...")
     count = 0
-    for item in unique:
+    for i, item in enumerate(unique, 1):
         material_id = write_material(item)
         if material_id:
             count += 1
-
-    logger.info(f"Wrote {count} new materials")
+            logger.info(f"  [{i}/{len(unique)}] Written: {material_id}")
+        else:
+            logger.info(f"  [{i}/{len(unique)}] Skipped (duplicate)")
 
     # Update search index
     added = update_search_index()
