@@ -1,0 +1,421 @@
+/* ============================================
+   ToolDetail – Tool detail page
+   ============================================ */
+
+/* ---------- Page wrapper ---------- */
+.tool-detail-page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-2xl);
+}
+
+/* ---------- Breadcrumb ---------- */
+.tool-detail-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) 0;
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-sm);
+  flex-wrap: wrap;
+}
+
+.tool-detail-breadcrumb-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.tool-detail-breadcrumb-link:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+.tool-detail-breadcrumb-sep {
+  color: var(--text-tertiary);
+  user-select: none;
+  font-size: var(--font-size-sm);
+  line-height: 1;
+}
+
+.tool-detail-breadcrumb-current {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* ---------- Header ---------- */
+.tool-detail-header {
+  margin-bottom: var(--spacing-2xl);
+  padding-bottom: var(--spacing-xl);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tool-detail-header-top {
+  margin-bottom: var(--spacing-md);
+}
+
+.tool-detail-category-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 12px;
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  border-radius: var(--radius-full);
+  background-color: var(--accent-light);
+  color: var(--accent-text);
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.tool-detail-name {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-md);
+  line-height: 1.3;
+}
+
+.tool-detail-desc {
+  font-size: var(--font-size-md);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0 0 var(--spacing-md);
+}
+
+.tool-detail-url {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.tool-detail-url:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+.tool-detail-url-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.tool-detail-url-external {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+/* ---------- Wizard Section ---------- */
+.tool-detail-wizard {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.tool-detail-wizard-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-sm);
+}
+
+.tool-detail-wizard-desc {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0 0 var(--spacing-xl);
+}
+
+/* ---------- Steps List ---------- */
+.tool-detail-steps {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background-color: var(--bg-primary);
+  overflow: hidden;
+}
+
+.tool-detail-step {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.15s ease;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tool-detail-step:last-child {
+  border-bottom: none;
+}
+
+.tool-detail-step:hover {
+  background-color: var(--bg-secondary);
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ---------- Step Number Circle ---------- */
+.tool-detail-step-number {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  color: var(--text-inverse);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* ---------- Step Body ---------- */
+.tool-detail-step-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.tool-detail-step-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-sm);
+  margin-bottom: 4px;
+}
+
+.tool-detail-step-label {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.tool-detail-step-title {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.tool-detail-step-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.tool-detail-step-tutorial {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.tool-detail-step-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+}
+
+.tool-detail-step-time-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* ---------- Step Arrow ---------- */
+.tool-detail-step-arrow {
+  width: 20px;
+  height: 20px;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.tool-detail-step:hover .tool-detail-step-arrow {
+  color: var(--accent-color);
+  transform: translateX(3px);
+}
+
+/* ---------- Empty Wizard State ---------- */
+.tool-detail-steps-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2xl) var(--spacing-md);
+  text-align: center;
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-lg);
+  background-color: var(--bg-secondary);
+}
+
+.tool-detail-steps-empty-icon {
+  font-size: 40px;
+  line-height: 1;
+  margin-bottom: var(--spacing-md);
+}
+
+.tool-detail-steps-empty-text {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  margin: 0 0 var(--spacing-lg);
+}
+
+.tool-detail-steps-empty-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 20px;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--accent-color);
+  background-color: var(--accent-light);
+  border: 1px solid var(--accent-color);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.tool-detail-steps-empty-link:hover {
+  background-color: var(--accent-color);
+  color: var(--text-inverse);
+  text-decoration: none;
+}
+
+/* ---------- Related Section ---------- */
+.tool-detail-related {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  text-align: center;
+}
+
+.tool-detail-related-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-sm);
+}
+
+.tool-detail-related-desc {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin: 0 0 var(--spacing-md);
+}
+
+.tool-detail-related-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.tool-detail-related-link:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+/* ---------- Error State ---------- */
+.tool-detail-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--spacing-2xl) var(--spacing-md);
+  min-height: 300px;
+}
+
+.tool-detail-error-icon {
+  font-size: 48px;
+  line-height: 1;
+  margin-bottom: var(--spacing-md);
+}
+
+.tool-detail-error h2 {
+  font-size: var(--font-size-xl);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-sm);
+}
+
+.tool-detail-error p {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  margin: 0 0 var(--spacing-lg);
+}
+
+.tool-detail-error-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 20px;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--accent-color);
+  background-color: var(--accent-light);
+  border: 1px solid var(--accent-color);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.tool-detail-error-link:hover {
+  background-color: var(--accent-color);
+  color: var(--text-inverse);
+  text-decoration: none;
+}
+
+/* ============================================
+   Responsive: ≤ 768px
+   ============================================ */
+
+@media (max-width: 768px) {
+  .tool-detail-page {
+    padding: var(--spacing-md);
+  }
+
+  .tool-detail-breadcrumb {
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-sm) 0;
+  }
+
+  .tool-detail-name {
+    font-size: var(--font-size-2xl);
+  }
+
+  .tool-detail-step {
+    padding: var(--spacing-md);
+    gap: var(--spacing-sm);
+  }
+
+  .tool-detail-step-number {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    font-size: var(--font-size-xs);
+  }
+
+  .tool-detail-step-title {
+    font-size: var(--font-size-base);
+  }
+
+  .tool-detail-step-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .tool-detail-step-arrow {
+    display: none;
+  }
+}
