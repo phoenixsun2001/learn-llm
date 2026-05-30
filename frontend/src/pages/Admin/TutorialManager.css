@@ -1,0 +1,19 @@
+/* ============================================
+   TutorialManager – Tutorial admin page
+   ============================================ */
+
+.admin-tutorial-manager {
+  /* inherits .admin-content padding */
+}
+
+.admin-table-cell-title {
+  font-weight: 500;
+  color: var(--accent-color);
+}
+
+.admin-filter-count {
+  font-size: var(--font-size-sm);
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  margin-left: auto;
+}

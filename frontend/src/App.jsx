@@ -1,7 +1,8 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
+import AdminGuard from './components/AdminGuard';
 import Home from './pages/Home/Home';
 import TutorialList from './pages/Tutorials/TutorialList';
 import TutorialDetail from './pages/Tutorials/TutorialDetail';
@@ -12,26 +13,45 @@ import PathwayDetail from './pages/Pathways/PathwayDetail';
 import ScenarioList from './pages/Scenarios/ScenarioList';
 import ScenarioDetail from './pages/Scenarios/ScenarioDetail';
 import SearchResults from './pages/Search/SearchResults';
+import AdminLayout from './pages/Admin/AdminLayout';
+import TutorialManager from './pages/Admin/TutorialManager';
+import PathwayManager from './pages/Admin/PathwayManager';
+import MaterialsBrowser from './pages/Admin/MaterialsBrowser';
 
 const App = () => {
   return (
     <div className="app">
-      <Navbar />
-      <main className="main-content">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/tutorials" element={<TutorialList />} />
-          <Route path="/tutorials/:slug" element={<TutorialDetail />} />
-          <Route path="/tools" element={<ToolList />} />
-          <Route path="/tools/:slug" element={<ToolDetail />} />
-          <Route path="/pathways" element={<PathwayList />} />
-          <Route path="/pathways/:slug" element={<PathwayDetail />} />
-          <Route path="/scenarios" element={<ScenarioList />} />
-          <Route path="/scenarios/:slug" element={<ScenarioDetail />} />
-          <Route path="/search" element={<SearchResults />} />
-        </Routes>
-      </main>
-      <Footer />
+      <Routes>
+        {/* Admin routes — standalone layout, no public Navbar/Footer */}
+        <Route path="/admin" element={<AdminGuard><AdminLayout /></AdminGuard>}>
+          <Route index element={<Navigate to="/admin/tutorials" replace />} />
+          <Route path="tutorials" element={<TutorialManager />} />
+          <Route path="pathways" element={<PathwayManager />} />
+          <Route path="materials" element={<MaterialsBrowser />} />
+        </Route>
+
+        {/* Public routes */}
+        <Route path="*" element={
+          <>
+            <Navbar />
+            <main className="main-content">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/tutorials" element={<TutorialList />} />
+                <Route path="/tutorials/:slug" element={<TutorialDetail />} />
+                <Route path="/tools" element={<ToolList />} />
+                <Route path="/tools/:slug" element={<ToolDetail />} />
+                <Route path="/pathways" element={<PathwayList />} />
+                <Route path="/pathways/:slug" element={<PathwayDetail />} />
+                <Route path="/scenarios" element={<ScenarioList />} />
+                <Route path="/scenarios/:slug" element={<ScenarioDetail />} />
+                <Route path="/search" element={<SearchResults />} />
+              </Routes>
+            </main>
+            <Footer />
+          </>
+        } />
+      </Routes>
     </div>
   );
 };

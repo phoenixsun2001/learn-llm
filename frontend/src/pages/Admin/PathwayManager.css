@@ -1,0 +1,92 @@
+/* ============================================
+   PathwayManager – Pathway admin page
+   ============================================ */
+
+/* ---------- Pathway Card List ---------- */
+.admin-pathway-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.admin-pathway-card {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* ---------- Card Header ---------- */
+.admin-pathway-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.admin-pathway-card-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-pathway-card-icon {
+  font-size: 28px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.admin-pathway-card-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 4px;
+}
+
+.admin-pathway-card-desc {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.admin-pathway-card-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex-shrink: 0;
+}
+
+.admin-pathway-card-step-count {
+  font-size: var(--font-size-sm);
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+
+/* ---------- Steps Section ---------- */
+.admin-pathway-steps-section {
+  padding: var(--spacing-md) var(--spacing-lg) var(--spacing-lg);
+  border-top: 1px solid var(--border-color);
+  background-color: var(--bg-secondary);
+}
+
+.admin-pathway-steps-title {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 0 0 var(--spacing-md);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.admin-pathway-steps-empty {
+  font-size: var(--font-size-sm);
+  color: var(--text-tertiary);
+  text-align: center;
+  padding: var(--spacing-lg) 0;
+  margin: 0;
+}
