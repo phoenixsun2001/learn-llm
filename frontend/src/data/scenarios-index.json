@@ -1,0 +1,22 @@
+[
+  {
+    "id": "scn-code-review",
+    "slug": "ai-code-review",
+    "title": "使用 AI 进行代码审查",
+    "description": "自动化代码审查流程，提升代码质量和团队协作效率。",
+    "goal": "我想自动化代码审查",
+    "tools": ["claude-code"],
+    "tutorials": ["claude-code-daily"],
+    "workflow": "开发者提交 PR → Claude Code 自动审查 → 生成 Review 意见 → 开发者修改"
+  },
+  {
+    "id": "scn-doc-generation",
+    "slug": "doc-auto-generation",
+    "title": "构建文档自动生成流水线",
+    "description": "利用 AI 工具自动生成和维护项目文档，保持文档与代码同步。",
+    "goal": "我想自动生成项目文档",
+    "tools": ["claude-code"],
+    "tutorials": ["claude-code-daily", "claude-code-hooks"],
+    "workflow": "代码提交 → 触发 Hooks → AI 分析变更 → 更新对应文档"
+  }
+]

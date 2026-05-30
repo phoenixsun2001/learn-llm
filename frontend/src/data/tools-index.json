@@ -1,0 +1,79 @@
+[
+  {
+    "id": "tool-claude-code",
+    "slug": "claude-code",
+    "name": "Claude Code",
+    "description": "Anthropic 官方 CLI 编码助手，在终端中直接与 Claude 协作，支持代码生成、审查、重构等全流程。",
+    "category": "harness",
+    "officialUrl": "https://docs.anthropic.com/en/docs/claude-code/overview",
+    "wizardSteps": [
+      {"step": 1, "title": "环境准备", "tutorialSlug": "claude-code-install"},
+      {"step": 2, "title": "安装配置", "tutorialSlug": "claude-code-install"},
+      {"step": 3, "title": "第一个用例", "tutorialSlug": "claude-code-first-use"},
+      {"step": 4, "title": "核心功能", "tutorialSlug": "claude-code-daily"},
+      {"step": 5, "title": "最佳实践", "tutorialSlug": "claude-code-hooks"},
+      {"step": 6, "title": "进阶技巧", "tutorialSlug": "claude-code-hooks"}
+    ],
+    "tags": ["CLI", "编码助手", "Anthropic"]
+  },
+  {
+    "id": "tool-codex",
+    "slug": "codex",
+    "name": "Codex",
+    "description": "OpenAI 推出的 CLI 编码助手，在终端中提供 AI 辅助编程能力。",
+    "category": "harness",
+    "officialUrl": "https://github.com/openai/codex",
+    "wizardSteps": [],
+    "tags": ["CLI", "编码助手", "OpenAI"]
+  },
+  {
+    "id": "tool-trae",
+    "slug": "trae",
+    "name": "Trae",
+    "description": "新一代 AI 编码助手，提供智能代码补全和项目管理功能。",
+    "category": "harness",
+    "officialUrl": "",
+    "wizardSteps": [],
+    "tags": ["IDE", "编码助手"]
+  },
+  {
+    "id": "tool-dify",
+    "slug": "dify",
+    "name": "Dify",
+    "description": "开源 LLM 应用开发平台，可视化编排 AI 工作流，支持 RAG、Agent、模型管理等。",
+    "category": "workflow",
+    "officialUrl": "https://dify.ai",
+    "wizardSteps": [],
+    "tags": ["工作流", "RAG", "低代码"]
+  },
+  {
+    "id": "tool-coze",
+    "slug": "coze",
+    "name": "Coze",
+    "description": "字节跳动推出的 AI Bot 开发平台，支持可视化编排和工作流设计。",
+    "category": "workflow",
+    "officialUrl": "https://www.coze.com",
+    "wizardSteps": [],
+    "tags": ["Bot", "工作流", "低代码"]
+  },
+  {
+    "id": "tool-n8n",
+    "slug": "n8n",
+    "name": "n8n",
+    "description": "开源的工作流自动化平台，可集成 AI 能力构建复杂的自动化流程。",
+    "category": "workflow",
+    "officialUrl": "https://n8n.io",
+    "wizardSteps": [],
+    "tags": ["自动化", "工作流", "开源"]
+  },
+  {
+    "id": "tool-langchain",
+    "slug": "langchain",
+    "name": "LangChain",
+    "description": "最流行的 LLM 应用开发框架，提供链式调用、Agent、工具集成等核心能力。",
+    "category": "development",
+    "officialUrl": "https://www.langchain.com",
+    "wizardSteps": [],
+    "tags": ["框架", "Agent", "Python/JS"]
+  }
+]
