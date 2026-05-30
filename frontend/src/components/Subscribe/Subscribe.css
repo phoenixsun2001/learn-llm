@@ -1,0 +1,97 @@
+/* ============================================ Subscribe – Email subscription form ============================================ */
+
+.subscribe {
+  max-width: 300px;
+}
+
+.subscribe-title {
+  margin: 0 0 var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+}
+
+.subscribe-desc {
+  margin: 0 0 var(--spacing-md);
+  font-size: var(--font-size-sm);
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* ---------- Form ---------- */
+.subscribe-form {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.subscribe-input {
+  flex: 1;
+  min-width: 0;
+  padding: var(--spacing-sm) 10px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  outline: none;
+  transition: border-color 0.15s ease;
+  font-family: var(--font-family);
+}
+
+.subscribe-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.subscribe-input:focus {
+  border-color: var(--accent-color);
+}
+
+.subscribe-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--accent-light);
+}
+
+.subscribe-btn {
+  flex-shrink: 0;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  border-radius: var(--radius-sm);
+  background-color: var(--accent-color);
+  color: var(--text-inverse);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  outline: none;
+}
+
+.subscribe-btn:hover {
+  background-color: var(--accent-hover);
+}
+
+.subscribe-btn:focus-visible {
+  box-shadow: 0 0 0 2px var(--accent-light);
+}
+
+/* ---------- Success state ---------- */
+.subscribe-success {
+  padding: var(--spacing-sm) 10px;
+  background-color: var(--success-light);
+  border: 1px solid var(--success-color);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  color: var(--success-color);
+  line-height: 1.5;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .subscribe {
+    max-width: none;
+  }
+
+  .subscribe-form {
+    flex-direction: column;
+  }
+}

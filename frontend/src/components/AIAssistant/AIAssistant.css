@@ -1,0 +1,180 @@
+/* ============================================
+   AIAssistant – Floating chatbot widget
+   ============================================ */
+
+/* ---------- FAB button ---------- */
+.ai-assistant-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  border: none;
+  background-color: var(--accent-color);
+  color: var(--text-inverse);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  outline: none;
+}
+
+.ai-assistant-fab:hover {
+  background-color: var(--accent-hover);
+  transform: scale(1.05);
+}
+
+.ai-assistant-fab:focus-visible {
+  box-shadow: 0 0 0 3px var(--accent-light), var(--shadow-lg);
+}
+
+/* ---------- Panel ---------- */
+.ai-assistant-panel {
+  position: fixed;
+  bottom: 96px;
+  right: 24px;
+  width: 340px;
+  height: 480px;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: ai-assistant-slide-up 0.25s ease-out;
+}
+
+@keyframes ai-assistant-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ---------- Header ---------- */
+.ai-assistant-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--accent-color);
+  color: var(--text-inverse);
+}
+
+.ai-assistant-header-title {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+}
+
+.ai-assistant-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  border: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: var(--text-inverse);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  outline: none;
+}
+
+.ai-assistant-close-btn:hover {
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+.ai-assistant-close-btn:focus-visible {
+  box-shadow: 0 0 0 2px var(--text-inverse);
+}
+
+/* ---------- Body ---------- */
+.ai-assistant-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-md);
+  font-size: var(--font-size-sm);
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.ai-assistant-intro {
+  margin: 0 0 var(--spacing-md);
+  color: var(--text-primary);
+}
+
+.ai-assistant-label {
+  margin: 0 0 var(--spacing-sm);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.ai-assistant-topics {
+  margin: 0 0 var(--spacing-md);
+  padding-left: var(--spacing-lg);
+}
+
+.ai-assistant-topics li {
+  margin-bottom: var(--spacing-xs);
+}
+
+.ai-assistant-note {
+  margin: 0 0 var(--spacing-md);
+  padding: var(--spacing-sm);
+  background-color: var(--warning-light);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  color: var(--warning-text);
+  line-height: 1.5;
+}
+
+/* External link */
+.ai-assistant-external-link {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--accent-color);
+  color: var(--text-inverse);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.ai-assistant-external-link:hover {
+  background-color: var(--accent-hover);
+  color: var(--text-inverse);
+  text-decoration: none;
+}
+
+/* ---------- Responsive: full-width on mobile ---------- */
+@media (max-width: 768px) {
+  .ai-assistant-fab {
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .ai-assistant-panel {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 65vh;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+}

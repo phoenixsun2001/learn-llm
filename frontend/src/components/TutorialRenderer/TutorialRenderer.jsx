@@ -36,6 +36,42 @@ const CopyButton = ({ code }) => {
 };
 
 /* ================================================================
+   SandboxButton – opens code in StackBlitz for online execution
+   Only renders for JS/TS/HTML/CSS language blocks
+   ================================================================ */
+const SANDBOX_LANGUAGES = new Set(['javascript', 'js', 'jsx', 'typescript', 'ts', 'tsx', 'html', 'css']);
+
+const SandboxButton = ({ code, language }) => {
+  if (!SANDBOX_LANGUAGES.has(language)) return null;
+
+  const handleOpenSandbox = useCallback(() => {
+    /* Map language to file extension for StackBlitz */
+    const extMap = {
+      javascript: 'js', js: 'js', jsx: 'jsx',
+      typescript: 'ts', ts: 'ts', tsx: 'tsx',
+      html: 'html', css: 'css',
+    };
+    const ext = extMap[language] || language;
+    const encoded = encodeURIComponent(code);
+    window.open(
+      `https://stackblitz.com/edit/vitejs-vite-new?file=index.${ext}&code=${encoded}`,
+      '_blank'
+    );
+  }, [code, language]);
+
+  return (
+    <button
+      className="code-block-sandbox-btn"
+      onClick={handleOpenSandbox}
+      aria-label="在 StackBlitz 中在线运行代码"
+      title="在 StackBlitz 中打开"
+    >
+      ▶ 在线运行
+    </button>
+  );
+};
+
+/* ================================================================
    TutorialRenderer – main tutorial content rendering engine
    ================================================================ */
 
@@ -157,7 +193,10 @@ const TutorialRenderer = ({ tutorial, content, loading }) => {
           <div className="code-block-wrapper">
             <div className="code-block-header">
               <span className="code-block-lang">{match[1]}</span>
-              <CopyButton code={codeString} />
+              <div className="code-block-header-actions">
+                <SandboxButton code={codeString} language={match[1]} />
+                <CopyButton code={codeString} />
+              </div>
             </div>
             <SyntaxHighlighter
               style={oneDark}
@@ -179,7 +218,9 @@ const TutorialRenderer = ({ tutorial, content, loading }) => {
           <div className="code-block-wrapper">
             <div className="code-block-header">
               <span className="code-block-lang">code</span>
-              <CopyButton code={codeString} />
+              <div className="code-block-header-actions">
+                <CopyButton code={codeString} />
+              </div>
             </div>
             <pre>
               <code {...props}>{children}</code>

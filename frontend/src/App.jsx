@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import AdminGuard from './components/AdminGuard';
+import AIAssistant from './components/AIAssistant/AIAssistant';
 import Home from './pages/Home/Home';
 import TutorialList from './pages/Tutorials/TutorialList';
 import TutorialDetail from './pages/Tutorials/TutorialDetail';
@@ -17,11 +18,14 @@ import AdminLayout from './pages/Admin/AdminLayout';
 import TutorialManager from './pages/Admin/TutorialManager';
 import PathwayManager from './pages/Admin/PathwayManager';
 import MaterialsBrowser from './pages/Admin/MaterialsBrowser';
+import ErrorBoundary from './components/ErrorBoundary';
+import NotFound from './pages/NotFound';
 
 const App = () => {
   return (
-    <div className="app">
-      <Routes>
+    <ErrorBoundary>
+      <div className="app">
+        <Routes>
         {/* Admin routes — standalone layout, no public Navbar/Footer */}
         <Route path="/admin" element={<AdminGuard><AdminLayout /></AdminGuard>}>
           <Route index element={<Navigate to="/admin/tutorials" replace />} />
@@ -31,7 +35,7 @@ const App = () => {
         </Route>
 
         {/* Public routes */}
-        <Route path="*" element={
+        <Route element={
           <>
             <Navbar />
             <main className="main-content">
@@ -46,13 +50,16 @@ const App = () => {
                 <Route path="/scenarios" element={<ScenarioList />} />
                 <Route path="/scenarios/:slug" element={<ScenarioDetail />} />
                 <Route path="/search" element={<SearchResults />} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
             <Footer />
+            <AIAssistant />
           </>
         } />
       </Routes>
     </div>
+    </ErrorBoundary>
   );
 };
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Footer.css';
+import Subscribe from '../Subscribe/Subscribe';
 
 const LEARN_LINKS = [
   { to: '/pathways',  label: '学习路径' },
@@ -91,6 +92,10 @@ const Footer = () => {
                 );
               })}
             </ul>
+          </div>
+
+          <div className="footer-column">
+            <Subscribe />
           </div>
         </div>
       </div>
