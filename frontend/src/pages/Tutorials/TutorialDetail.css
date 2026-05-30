@@ -1,0 +1,105 @@
+/* ============================================
+   TutorialDetail – Tutorial detail page
+   ============================================ */
+
+/* ---------- Page wrapper ---------- */
+.tutorial-detail-page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-2xl);
+}
+
+/* ---------- Breadcrumb ---------- */
+.tutorial-detail-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) 0;
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-sm);
+  flex-wrap: wrap;
+}
+
+.tutorial-detail-breadcrumb-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.tutorial-detail-breadcrumb-link:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+.tutorial-detail-breadcrumb-sep {
+  color: var(--text-tertiary);
+  user-select: none;
+  font-size: var(--font-size-sm);
+  line-height: 1;
+}
+
+.tutorial-detail-breadcrumb-current {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* ---------- Error State ---------- */
+.tutorial-detail-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--spacing-2xl) var(--spacing-md);
+  min-height: 300px;
+}
+
+.tutorial-detail-error-icon {
+  font-size: 48px;
+  line-height: 1;
+  margin-bottom: var(--spacing-md);
+}
+
+.tutorial-detail-error h2 {
+  font-size: var(--font-size-xl);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-sm);
+}
+
+.tutorial-detail-error p {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  margin: 0 0 var(--spacing-lg);
+}
+
+.tutorial-detail-error-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 20px;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--accent-color);
+  background-color: var(--accent-light);
+  border: 1px solid var(--accent-color);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.tutorial-detail-error-link:hover {
+  background-color: var(--accent-color);
+  color: var(--text-inverse);
+  text-decoration: none;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .tutorial-detail-page {
+    padding: var(--spacing-md);
+  }
+
+  .tutorial-detail-breadcrumb {
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-sm) 0;
+  }
+}
