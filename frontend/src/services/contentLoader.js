@@ -7,6 +7,10 @@ export function getTutorialBySlug(slug) {
   return tutorialsIndex.find((t) => t.slug === slug) || null;
 }
 
+export function getTutorialById(id) {
+  return tutorialsIndex.find((t) => t.id === id) || null;
+}
+
 export function getAllTutorials(filters = {}) {
   let result = [...tutorialsIndex];
   if (filters.category) result = result.filter((t) => t.category === filters.category);

@@ -8,6 +8,7 @@ import TutorialDetail from './pages/Tutorials/TutorialDetail';
 import ToolList from './pages/Tools/ToolList';
 import ToolDetail from './pages/Tools/ToolDetail';
 import PathwayList from './pages/Pathways/PathwayList';
+import PathwayDetail from './pages/Pathways/PathwayDetail';
 import ScenarioList from './pages/Scenarios/ScenarioList';
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/tools" element={<ToolList />} />
           <Route path="/tools/:slug" element={<ToolDetail />} />
           <Route path="/pathways" element={<PathwayList />} />
+          <Route path="/pathways/:slug" element={<PathwayDetail />} />
           <Route path="/scenarios" element={<ScenarioList />} />
         </Routes>
       </main>
