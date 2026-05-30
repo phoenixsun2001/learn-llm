@@ -1,5 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
+import AuthModal from '../Auth/AuthModal';
 import './Navbar.css';
 
 const NAV_LINKS = [
@@ -12,7 +14,9 @@ const NAV_LINKS = [
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [showAuthModal, setShowAuthModal] = useState(false);
   const navigate = useNavigate();
+  const { user, hasSupabase } = useAuth();
 
   const toggleMenu = useCallback(() => {
     setMenuOpen((prev) => !prev);
@@ -104,6 +108,40 @@ const Navbar = () => {
           </button>
         </form>
 
+        {/* Auth section — only shown when Supabase is configured */}
+        {hasSupabase && (
+          <div className="navbar-auth">
+            {user ? (
+              <button
+                className="navbar-auth-avatar"
+                onClick={() => setShowAuthModal((prev) => !prev)}
+                aria-label="用户菜单"
+                aria-expanded={showAuthModal}
+              >
+                {user.user_metadata?.avatar_url ? (
+                  <img
+                    src={user.user_metadata.avatar_url}
+                    alt=""
+                    className="navbar-auth-avatar-img"
+                  />
+                ) : (
+                  <span className="navbar-auth-avatar-fallback">
+                    {(user.user_metadata?.full_name || user.user_metadata?.user_name || 'U')[0].toUpperCase()}
+                  </span>
+                )}
+              </button>
+            ) : (
+              <button
+                className="navbar-auth-login"
+                onClick={() => setShowAuthModal(true)}
+                aria-label="登录"
+              >
+                登录
+              </button>
+            )}
+          </div>
+        )}
+
         {/* Mobile hamburger toggle */}
         <button
           className={`navbar-toggle${menuOpen ? ' navbar-toggle--open' : ''}`}
@@ -116,6 +154,12 @@ const Navbar = () => {
           <span className="navbar-toggle-bar" />
         </button>
       </div>
+
+      {/* Auth modal */}
+      <AuthModal
+        show={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+      />
     </header>
   );
 };

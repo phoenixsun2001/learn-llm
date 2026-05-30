@@ -168,6 +168,77 @@
   background-color: var(--bg-tertiary);
 }
 
+/* ---------- Auth section ---------- */
+.navbar-auth {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Login button */
+.navbar-auth-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  padding: 0 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background-color: transparent;
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.navbar-auth-login:hover {
+  background-color: var(--bg-tertiary);
+  border-color: var(--accent-color);
+  color: var(--accent-text);
+}
+
+/* Avatar button (authenticated) */
+.navbar-auth-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: var(--radius-full);
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.navbar-auth-avatar:hover {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color) 12%, transparent);
+}
+
+.navbar-auth-avatar-img {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+}
+
+.navbar-auth-avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background-color: var(--accent-light);
+  color: var(--accent-text);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+}
+
 /* ---------- Mobile hamburger toggle ---------- */
 .navbar-toggle {
   display: none;          /* hidden on desktop */
@@ -265,5 +336,27 @@
 
   .navbar-search-input:focus {
     width: 100%;
+  }
+
+  /* Auth section on mobile */
+  .navbar-auth {
+    margin-left: 0;
+  }
+
+  .navbar-auth-login {
+    height: 30px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+
+  .navbar-auth-avatar {
+    width: 30px;
+    height: 30px;
+  }
+
+  .navbar-auth-avatar-img,
+  .navbar-auth-avatar-fallback {
+    width: 24px;
+    height: 24px;
   }
 }

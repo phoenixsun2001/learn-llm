@@ -1,0 +1,159 @@
+/* ============================================
+   AuthModal — Login / User info dropdown
+   ============================================ */
+
+/* ---------- Overlay ---------- */
+.auth-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding-top: calc(var(--navbar-height) + 8px);
+  padding-right: var(--spacing-lg);
+  background-color: rgba(0, 0, 0, 0.3);
+  animation: auth-fade-in 0.15s ease;
+}
+
+@keyframes auth-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ---------- Modal card ---------- */
+.auth-modal {
+  width: 100%;
+  max-width: 320px;
+  padding: var(--spacing-lg);
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  animation: auth-slide-in 0.15s ease;
+}
+
+@keyframes auth-slide-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Title & description (unauthenticated) ---------- */
+.auth-title {
+  margin: 0 0 var(--spacing-xs);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.auth-desc {
+  margin: 0 0 var(--spacing-md);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ---------- User info (authenticated) ---------- */
+.auth-user-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.auth-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.auth-user-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.auth-username {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.auth-email {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- Admin badge ---------- */
+.auth-admin-badge {
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: 2px;
+  padding: 1px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent-text);
+  background-color: var(--accent-light);
+  border-radius: var(--radius-full);
+}
+
+/* ---------- Buttons ---------- */
+.auth-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  width: 100%;
+  padding: 10px var(--spacing-md);
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.15s ease, background-color 0.15s ease;
+}
+
+.auth-btn:hover {
+  opacity: 0.9;
+}
+
+/* GitHub login button */
+.auth-btn-github {
+  background-color: #24292e;
+  color: #ffffff;
+}
+
+.auth-btn-github:hover {
+  background-color: #1b1f23;
+}
+
+/* Sign-out button */
+.auth-btn-signout {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.auth-btn-signout:hover {
+  background-color: var(--border-color);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .auth-modal-overlay {
+    justify-content: center;
+    padding: calc(var(--navbar-height) + 12px) var(--spacing-md) 0;
+  }
+
+  .auth-modal {
+    max-width: 100%;
+  }
+}
