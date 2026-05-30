@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}审核队列 - Learn-LLM Admin{% endblock %}
+{% block page_title %}审核队列 <span class="count-badge">{{ items|length }}</span>{% endblock %}
+
+{% block head_extra %}
+<style>
+    .preview-toggle { cursor: pointer; color: var(--accent-color); font-size: 13px; }
+    .preview-toggle:hover { text-decoration: underline; }
+    .preview-content { display: none; margin-top: 8px; padding: 12px; background: var(--bg-secondary); border-radius: 6px; font-size: 13px; max-height: 300px; overflow-y: auto; }
+    .preview-content.open { display: block; }
+    .preview-tabs { display: flex; gap: 4px; margin-bottom: 8px; }
+    .preview-tab { padding: 4px 10px; border: 1px solid var(--border-color); border-radius: 4px; background: #fff; font-size: 12px; cursor: pointer; }
+    .preview-tab.active { background: var(--accent-color); color: #fff; border-color: var(--accent-color); }
+    .preview-pane { display: none; }
+    .preview-pane.active { display: block; }
+    .action-cell { display: flex; gap: 6px; white-space: nowrap; }
+    .btn-sm { padding: 4px 10px; font-size: 12px; border-radius: 4px; border: 1px solid transparent; cursor: pointer; text-decoration: none; display: inline-block; }
+    .btn-approve { background: #16a34a; color: #fff; }
+    .btn-approve:hover { background: #15803d; }
+    .btn-reject { background: #dc2626; color: #fff; }
+    .btn-reject:hover { background: #b91c1c; }
+    .btn-edit { background: #f0f2f5; color: #334155; border-color: #e2e8f0; }
+    .btn-edit:hover { background: #e2e8f0; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">待审核项目</h3>
+        <span>{{ items|length }} 项等待审核</span>
+    </div>
+
+    {% if items %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width:5%;">#</th>
+                <th style="width:30%;">标题</th>
+                <th style="width:10%;">来源</th>
+                <th style="width:12%;">AI 分类</th>
+                <th style="width:10%;">难度</th>
+                <th style="width:13%;">日期</th>
+                <th style="width:20%;">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td class="cell-title">
+                    {{ item.title }}
+                    <br>
+                    <span class="preview-toggle" onclick="togglePreview({{ item.id }})">&#9660; 展开预览</span>
+                </td>
+                <td><span class="badge badge-source">{{ item.source_type }}</span></td>
+                <td><span class="badge badge-category">{{ item.ai_category or '未分类' }}</span></td>
+                <td><span class="badge badge-difficulty">{{ item.ai_difficulty or 'beginner' }}</span></td>
+                <td class="cell-date">{{ item.created_at[:16]|replace("T", " ") if item.created_at else '-' }}</td>
+                <td class="action-cell">
+                    <form method="POST" action="/admin/review/{{ item.id }}/approve" style="display:inline;">
+                        <button type="submit" class="btn-sm btn-approve" aria-label="批准">&check; 批准</button>
+                    </form>
+                    <form method="POST" action="/admin/review/{{ item.id }}/reject" style="display:inline;"
+                          onsubmit="return confirm('确定拒绝此项目？')">
+                        <button type="submit" class="btn-sm btn-reject" aria-label="拒绝">&times; 拒绝</button>
+                    </form>
+                    <a href="/admin/review/{{ item.id }}/edit" class="btn-sm btn-edit" aria-label="编辑">编辑</a>
+                </td>
+            </tr>
+            <!-- Inline preview row -->
+            <tr id="preview-{{ item.id }}" style="display:none;">
+                <td colspan="7">
+                    <div class="preview-content open">
+                        <div class="preview-tabs">
+                            <button class="preview-tab active" onclick="switchTab({{ item.id }}, 'summary')">AI 摘要</button>
+                            <button class="preview-tab" onclick="switchTab({{ item.id }}, 'raw')">原始内容</button>
+                        </div>
+                        <div id="preview-{{ item.id }}-summary" class="preview-pane active">
+                            {{ item.ai_summary or '（无 AI 摘要）' }}
+                        </div>
+                        <div id="preview-{{ item.id }}-raw" class="preview-pane">
+                            <pre style="white-space:pre-wrap;font-family:inherit;">{{ item.raw_content or '（无原始内容）' }}</pre>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="empty-state">
+        <p>所有项目已审核完毕！</p>
+        <a href="/admin/sources" class="btn btn-primary">去抓取新内容</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function togglePreview(id) {
+    var row = document.getElementById('preview-' + id);
+    row.style.display = row.style.display === 'none' ? 'table-row' : 'none';
+}
+function switchTab(id, tab) {
+    // Update tab active states
+    var tabs = document.querySelectorAll('#preview-' + id + ' .preview-tab');
+    tabs.forEach(function(t) { t.classList.remove('active'); });
+    event.target.classList.add('active');
+
+    // Show/hide panes
+    document.getElementById('preview-' + id + '-summary').classList.remove('active');
+    document.getElementById('preview-' + id + '-raw').classList.remove('active');
+    document.getElementById('preview-' + id + '-' + tab).classList.add('active');
+}
+</script>
+{% endblock %}

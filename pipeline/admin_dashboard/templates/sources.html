@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}源管理 - Learn-LLM Admin{% endblock %}
+{% block page_title %}源管理{% endblock %}
+
+{% block content %}
+<!-- Add Source Form -->
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">添加新源</h3>
+    </div>
+    <form method="POST" action="/admin/sources" class="filter-form">
+        <div class="filter-row">
+            <div class="form-group" style="flex:2;">
+                <label for="sname">源名称</label>
+                <input type="text" id="sname" name="name" placeholder="例如: anthropic_blog" required>
+            </div>
+            <div class="form-group" style="flex:3;">
+                <label for="surl">RSS URL</label>
+                <input type="url" id="surl" name="url" placeholder="https://example.com/rss.xml" required>
+            </div>
+            <div class="form-group" style="flex:1;">
+                <label for="scat">分类</label>
+                <select id="scat" name="category">
+                    <option value="general">general</option>
+                    <option value="llm">llm</option>
+                    <option value="tutorials">tutorials</option>
+                    <option value="research">research</option>
+                    <option value="tools">tools</option>
+                </select>
+            </div>
+            <div class="form-group" style="align-self:flex-end;">
+                <button type="submit" class="btn btn-primary">添加源</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% if flash_msg %}
+<div class="alert {% if flash_error %}alert-error{% else %}alert-success{% endif %}" style="margin-top:12px;">
+    {{ flash_msg }}
+</div>
+{% endif %}
+
+<!-- Sources Table -->
+<div class="card" style="margin-top: 20px;">
+    <div class="card-header">
+        <h3 class="card-title">已配置源 ({{ sources|length }})</h3>
+    </div>
+
+    {% if sources %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width:20%;">名称</th>
+                <th style="width:35%;">URL</th>
+                <th style="width:10%;">分类</th>
+                <th style="width:8%;">状态</th>
+                <th style="width:12%;">最近抓取</th>
+                <th style="width:15%;">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for src in sources %}
+            <tr>
+                <td><strong>{{ src.name }}</strong></td>
+                <td class="cell-title">{{ src.url }}</td>
+                <td><span class="badge badge-category">{{ src.category }}</span></td>
+                <td>
+                    <span class="badge {% if src.enabled %}badge-status-published{% else %}badge-status-archived{% endif %}">
+                        {% if src.enabled %}启用{% else %}禁用{% endif %}
+                    </span>
+                </td>
+                <td class="cell-date">
+                    {% if src.last_fetched_at %}
+                        {{ src.last_fetched_at[:16]|replace("T", " ") }}
+                    {% elif src.error_count > 0 %}
+                        <span style="color:var(--error-color);">{{ src.error_count }} 次错误</span>
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td class="action-cell">
+                    <!-- Toggle -->
+                    <form method="POST" action="/admin/sources/{{ src.id }}/toggle" style="display:inline;">
+                        <input type="hidden" name="enabled" value="{{ '0' if src.enabled else '1' }}">
+                        <button type="submit" class="btn-sm btn-sm-toggle" aria-label="切换状态">
+                            {% if src.enabled %}禁用{% else %}启用{% endif %}
+                        </button>
+                    </form>
+                    <!-- Manual Fetch -->
+                    <form method="POST" action="/admin/sources/{{ src.id }}/fetch" style="display:inline;">
+                        <button type="submit" class="btn-sm btn-edit" aria-label="手动抓取">抓取</button>
+                    </form>
+                    <!-- Delete -->
+                    <form method="POST" action="/admin/sources/{{ src.id }}/delete" style="display:inline;"
+                          onsubmit="return confirm('确定删除此源？')">
+                        <button type="submit" class="btn-sm btn-reject" aria-label="删除">删除</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="empty-state">
+        <p>暂无配置的 RSS 源。</p>
+        <p>使用上方的表单添加新的 RSS 订阅源。</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

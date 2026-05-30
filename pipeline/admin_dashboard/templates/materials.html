@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}素材库 - Learn-LLM Admin{% endblock %}
+{% block page_title %}素材库 <span class="count-badge">{{ items|length }}</span>{% endblock %}
+
+{% block content %}
+<!-- Filters -->
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">筛选条件</h3>
+        <a href="/admin/materials/new" class="btn btn-primary btn-sm">+ 创建素材</a>
+    </div>
+    <form method="GET" action="/admin/materials" class="filter-form">
+        <div class="filter-row">
+            <div class="form-group" style="flex:2;">
+                <label for="search">搜索</label>
+                <input type="text" id="search" name="search" placeholder="标题或内容关键词..."
+                       value="{{ current_search }}">
+            </div>
+            <div class="form-group" style="flex:1;">
+                <label for="category">分类</label>
+                <select id="category" name="category">
+                    <option value="">全部</option>
+                    {% for c in categories %}
+                    <option value="{{ c }}" {% if current_category == c %}selected{% endif %}>{{ c }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group" style="flex:1;">
+                <label for="difficulty">难度</label>
+                <select id="difficulty" name="difficulty">
+                    <option value="">全部</option>
+                    {% for d in difficulties %}
+                    <option value="{{ d }}" {% if current_difficulty == d %}selected{% endif %}>{{ d }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group" style="align-self:flex-end;">
+                <button type="submit" class="btn btn-primary">筛选</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Materials Table -->
+<div class="card" style="margin-top: 20px;">
+    {% if items %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width:30%;">标题</th>
+                <th style="width:12%;">分类</th>
+                <th style="width:10%;">难度</th>
+                <th style="width:12%;">标签</th>
+                <th style="width:10%;">状态</th>
+                <th style="width:13%;">创建时间</th>
+                <th style="width:13%;">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td class="cell-title">
+                    <a href="/admin/materials/{{ item.material_id or item.id }}">{{ item.title }}</a>
+                </td>
+                <td><span class="badge badge-category">{{ item.category }}</span></td>
+                <td><span class="badge badge-difficulty">{{ item.difficulty }}</span></td>
+                <td>
+                    {% if item.tags %}
+                        {% for tag in item.tags[:3] %}
+                        <span class="badge badge-tag">{{ tag }}</span>
+                        {% endfor %}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td><span class="badge badge-status-{{ item.status }}">{{ item.status }}</span></td>
+                <td class="cell-date">{{ item.created_at[:16]|replace("T", " ") if item.created_at else '-' }}</td>
+                <td class="action-cell">
+                    <a href="/admin/materials/{{ item.material_id or item.id }}" class="btn-sm btn-edit" aria-label="编辑">编辑</a>
+                    <form method="POST" action="/admin/materials/{{ item.material_id or item.id }}/delete"
+                          style="display:inline;" onsubmit="return confirm('确定归档此素材？')">
+                        <button type="submit" class="btn-sm btn-reject" aria-label="归档">归档</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="empty-state">
+        <p>暂无素材。</p>
+        <a href="/admin/review" class="btn btn-primary">从审核队列批准素材</a>
+        <a href="/admin/materials/new" class="btn btn-secondary">手动创建素材</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

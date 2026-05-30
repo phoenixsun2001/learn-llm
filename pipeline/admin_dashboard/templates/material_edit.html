@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if item_type == 'new' %}创建素材{% elif item_type == 'review' %}编辑审阅项{% else %}编辑素材{% endif %}
+ - Learn-LLM Admin
+{% endblock %}
+
+{% block page_title %}
+{% if item_type == 'new' %}创建素材{% elif item_type == 'review' %}编辑审阅项 #{{ item.id }}{% else %}编辑素材: {{ item.title }}{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">内容编辑器</h3>
+        {% if item_type == 'material' %}
+        <span class="badge badge-source">{{ item.material_id }}</span>
+        {% endif %}
+    </div>
+
+    <form method="POST"
+          action="{% if item_type == 'new' %}/admin/materials/new{% elif item_type == 'review' %}/admin/review/{{ item.id }}/update{% else %}/admin/materials/{{ item.material_id or item.id }}/update{% endif %}"
+          class="edit-form">
+
+        <!-- Title -->
+        <div class="form-group">
+            <label for="title">标题</label>
+            <input type="text" id="title" name="title" value="{{ item.title if item else '' }}" required>
+        </div>
+
+        <!-- Source URL -->
+        <div class="form-group">
+            <label for="source_url">来源 URL</label>
+            <input type="url" id="source_url" name="source_url" value="{{ item.source_url if item else '' }}">
+        </div>
+
+        <!-- Category -->
+        <div class="form-row">
+            <div class="form-group" style="flex:1;">
+                <label for="category">分类</label>
+                {% if item_type == 'review' %}
+                <select id="category" name="category">
+                    {% set cats = ['llm_basics', 'prompt_engineering', 'rag', 'agents', 'tools', 'deployment', 'tutorials', 'research', 'uncategorized'] %}
+                    {% for c in cats %}
+                    <option value="{{ c }}" {% if item and item.ai_category == c %}selected{% endif %}>{{ c }}</option>
+                    {% endfor %}
+                </select>
+                {% else %}
+                <select id="category" name="category">
+                    {% set cats = categories if categories else ['llm_basics', 'prompt_engineering', 'rag', 'agents', 'tools', 'deployment', 'tutorials', 'research', 'uncategorized'] %}
+                    {% for c in cats %}
+                    <option value="{{ c }}" {% if item and item.category == c %}selected{% endif %}>{{ c }}</option>
+                    {% endfor %}
+                </select>
+                {% endif %}
+            </div>
+
+            <div class="form-group" style="flex:1;">
+                <label for="difficulty">难度</label>
+                <select id="difficulty" name="difficulty">
+                    {% set diffs = difficulty_options if difficulty_options else ['beginner', 'intermediate', 'advanced'] %}
+                    {% for d in diffs %}
+                    <option value="{{ d }}" {% if item and (item.difficulty == d or item.ai_difficulty == d) %}selected{% endif %}>{{ d }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <!-- Tags (only for materials) -->
+        {% if item_type != 'review' %}
+        <div class="form-group">
+            <label for="tags">标签 (JSON 数组格式)</label>
+            <input type="text" id="tags" name="tags"
+                   value="{{ item.tags|tojson if item and item.tags else '[]' }}">
+        </div>
+        {% endif %}
+
+        <!-- AI Summary (for review items) -->
+        {% if item_type == 'review' %}
+        <div class="form-group">
+            <label for="ai_summary">AI 摘要</label>
+            <textarea id="ai_summary" name="ai_summary" rows="4">{{ item.ai_summary or '' }}</textarea>
+        </div>
+        {% endif %}
+
+        <!-- Content -->
+        <div class="form-group">
+            <label for="content">
+                {% if item_type == 'review' %}原始内容{% else %}内容 (Markdown / HTML){% endif %}
+            </label>
+            <textarea id="content" name="content" rows="20"
+                      class="content-editor"
+                      placeholder="输入内容...">{% if item_type == 'review' %}{{ item.raw_content or '' }}{% else %}{{ item.content or '' }}{% endif %}</textarea>
+        </div>
+
+        <!-- Status (for materials only) -->
+        {% if item_type != 'review' %}
+        <div class="form-group">
+            <label for="status">状态</label>
+            <select id="status" name="status">
+                <option value="draft" {% if item and item.status == 'draft' %}selected{% endif %}>草稿</option>
+                <option value="published" {% if item and item.status == 'published' %}selected{% endif %}>已发布</option>
+                <option value="archived" {% if item and item.status == 'archived' %}selected{% endif %}>已归档</option>
+            </select>
+        </div>
+        {% endif %}
+
+        <!-- Actions -->
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                {% if item_type == 'new' %}创建素材{% else %}保存修改{% endif %}
+            </button>
+            {% if item_type == 'material' and item and item.status == 'draft' %}
+            <button type="submit" formaction="/admin/materials/{{ item.material_id or item.id }}/update" class="btn btn-success"
+                    onclick="this.form.elements.namedItem('status').value='published'">
+                保存并发布
+            </button>
+            {% endif %}
+            {% if item_type == 'review' %}
+            <a href="/admin/review" class="btn btn-secondary">返回队列</a>
+            {% else %}
+            <a href="/admin/materials" class="btn btn-secondary">取消</a>
+            {% endif %}
+        </div>
+    </form>
+</div>
+{% endblock %}

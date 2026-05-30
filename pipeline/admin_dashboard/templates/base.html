@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Learn-LLM Admin{% endblock %}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    {% block head_extra %}{% endblock %}
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2 class="sidebar-title">Learn-LLM Admin</h2>
+            <span class="sidebar-version">v0.1.0</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="/admin" class="nav-item {% if section == 'dashboard' %}active{% endif %}">
+                <span class="nav-icon">&#9632;</span>
+                <span>仪表盘</span>
+            </a>
+            <a href="/admin/review" class="nav-item {% if section == 'review' %}active{% endif %}">
+                <span class="nav-icon">&#9638;</span>
+                <span>审核队列</span>
+                {% if pending_count is defined and pending_count > 0 %}
+                <span class="nav-badge">{{ pending_count }}</span>
+                {% endif %}
+            </a>
+            <a href="/admin/materials" class="nav-item {% if section == 'materials' %}active{% endif %}">
+                <span class="nav-icon">&#9776;</span>
+                <span>素材库</span>
+            </a>
+            <a href="/admin/sources" class="nav-item {% if section == 'sources' %}active{% endif %}">
+                <span class="nav-icon">&#9733;</span>
+                <span>源管理</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="/admin/logout" class="nav-item">
+                <span class="nav-icon">&#8592;</span>
+                <span>退出登录</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {% block header %}
+        <header class="page-header">
+            <h1>{% block page_title %}{% endblock %}</h1>
+        </header>
+        {% endblock %}
+
+        {% if error is defined and error %}
+        <div class="alert alert-error">{{ error }}</div>
+        {% endif %}
+
+        {% if success is defined and success %}
+        <div class="alert alert-success">{{ success }}</div>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

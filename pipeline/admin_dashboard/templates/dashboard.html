@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}仪表盘 - Learn-LLM Admin{% endblock %}
+{% block page_title %}仪表盘{% endblock %}
+
+{% block content %}
+<!-- Stat Cards -->
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-card-header">
+            <span class="stat-label">待审核</span>
+            <span class="stat-icon stat-icon-warning">&#9638;</span>
+        </div>
+        <div class="stat-value">{{ pending_count if pending_count is defined else 0 }}</div>
+        <div class="stat-desc">待处理的审阅项</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-card-header">
+            <span class="stat-label">素材总数</span>
+            <span class="stat-icon stat-icon-primary">&#9776;</span>
+        </div>
+        <div class="stat-value">{{ material_count if material_count is defined else 0 }}</div>
+        <div class="stat-desc">已发布和草稿</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-card-header">
+            <span class="stat-label">活跃源</span>
+            <span class="stat-icon stat-icon-success">&#9733;</span>
+        </div>
+        <div class="stat-value">{{ active_source_count if active_source_count is defined else 0 }} / {{ source_count if source_count is defined else 0 }}</div>
+        <div class="stat-desc">活跃 / 总计 RSS 源</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-card-header">
+            <span class="stat-label">最近抓取</span>
+            <span class="stat-icon stat-icon-info">&#8986;</span>
+        </div>
+        <div class="stat-value" style="font-size:18px;">
+            {% if last_fetch is defined and last_fetch %}
+                {{ last_fetch[:16]|replace("T", " ") }}
+            {% else %}
+                暂无
+            {% endif %}
+        </div>
+        <div class="stat-desc">最近一次数据抓取</div>
+    </div>
+</div>
+
+<!-- Recent Pending Items -->
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">最近待审阅项</h3>
+        <a href="/admin/review" class="link-primary">查看全部 &rarr;</a>
+    </div>
+
+    {% if recent_items is defined and recent_items %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>标题</th>
+                <th>来源</th>
+                <th>AI 分类</th>
+                <th>难度</th>
+                <th>创建时间</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in recent_items %}
+            <tr>
+                <td class="cell-title">{{ item.title }}</td>
+                <td><span class="badge badge-source">{{ item.source_type }}</span></td>
+                <td><span class="badge badge-category">{{ item.ai_category or '未分类' }}</span></td>
+                <td><span class="badge badge-difficulty">{{ item.ai_difficulty or 'beginner' }}</span></td>
+                <td class="cell-date">{{ item.created_at[:16]|replace("T", " ") if item.created_at else '-' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="empty-state">
+        <p>暂无待审阅项。</p>
+        <p>去 <a href="/admin/sources">源管理</a> 抓取新内容。</p>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Quick Actions -->
+<div class="card" style="margin-top: 20px;">
+    <div class="card-header">
+        <h3 class="card-title">快捷操作</h3>
+    </div>
+    <div class="quick-actions">
+        <a href="/admin/sources" class="btn btn-primary">管理数据源</a>
+        <a href="/admin/review" class="btn btn-primary">进入审核队列</a>
+        <a href="/admin/materials" class="btn btn-secondary">浏览素材库</a>
+        <a href="/admin/materials/new" class="btn btn-secondary">创建新素材</a>
+    </div>
+</div>
+{% endblock %}
