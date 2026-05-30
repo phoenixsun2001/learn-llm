@@ -2,6 +2,7 @@ import tutorialsIndex from '../data/tutorials-index.json';
 import toolsIndex from '../data/tools-index.json';
 import pathwaysIndex from '../data/pathways-index.json';
 import scenariosIndex from '../data/scenarios-index.json';
+import searchIndex from '../data/search-index.json';
 
 export function getTutorialBySlug(slug) {
   return tutorialsIndex.find((t) => t.slug === slug) || null;
@@ -60,3 +61,17 @@ export function getScenarioBySlug(slug) {
 }
 
 export function getAllScenarios() { return scenariosIndex; }
+
+/**
+ * 全局搜索：在教程、工具、场景中按标题和关键词搜索
+ * @param {string} query - 搜索关键词
+ * @returns {Array} 匹配的结果列表
+ */
+export function searchAll(query) {
+  if (!query || query.trim().length < 1) return [];
+  const q = query.toLowerCase().trim();
+  return searchIndex.filter((item) =>
+    item.title.toLowerCase().includes(q) ||
+    item.keywords.some((kw) => kw.toLowerCase().includes(q))
+  );
+}

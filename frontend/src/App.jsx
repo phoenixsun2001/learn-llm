@@ -11,6 +11,7 @@ import PathwayList from './pages/Pathways/PathwayList';
 import PathwayDetail from './pages/Pathways/PathwayDetail';
 import ScenarioList from './pages/Scenarios/ScenarioList';
 import ScenarioDetail from './pages/Scenarios/ScenarioDetail';
+import SearchResults from './pages/Search/SearchResults';
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/pathways/:slug" element={<PathwayDetail />} />
           <Route path="/scenarios" element={<ScenarioList />} />
           <Route path="/scenarios/:slug" element={<ScenarioDetail />} />
+          <Route path="/search" element={<SearchResults />} />
         </Routes>
       </main>
       <Footer />

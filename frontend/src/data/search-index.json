@@ -1,0 +1,16 @@
+[
+  {"type":"tutorial","slug":"claude-code-intro","title":"Claude Code 入门指南","keywords":["claude","code","入门","指南","CLI","harness"],"category":"harness","difficulty":"beginner"},
+  {"type":"tutorial","slug":"claude-code-install","title":"Claude Code 安装与配置","keywords":["安装","配置","API","Key","环境","claude","code","harness"],"category":"harness","difficulty":"beginner"},
+  {"type":"tutorial","slug":"claude-code-first-use","title":"Claude Code 第一个项目","keywords":["claude","code","项目","实战","开发","harness"],"category":"harness","difficulty":"beginner"},
+  {"type":"tutorial","slug":"claude-code-daily","title":"Claude Code 日常工作流","keywords":["claude","code","工作流","日常","审查","重构","调试","harness"],"category":"harness","difficulty":"intermediate"},
+  {"type":"tutorial","slug":"claude-code-hooks","title":"Claude Code Hooks 实战","keywords":["claude","code","hooks","自动化","lint","格式化","测试","harness"],"category":"harness","difficulty":"intermediate"},
+  {"type":"tool","slug":"claude-code","title":"Claude Code","keywords":["CLI","编码","助手","Anthropic","harness"],"category":"harness"},
+  {"type":"tool","slug":"codex","title":"Codex","keywords":["CLI","编码","助手","OpenAI","harness"],"category":"harness"},
+  {"type":"tool","slug":"trae","title":"Trae","keywords":["IDE","编码","助手","harness"],"category":"harness"},
+  {"type":"tool","slug":"dify","title":"Dify","keywords":["工作流","RAG","低代码","LLM","平台","workflow"],"category":"workflow"},
+  {"type":"tool","slug":"coze","title":"Coze","keywords":["Bot","工作流","低代码","字节","workflow"],"category":"workflow"},
+  {"type":"tool","slug":"n8n","title":"n8n","keywords":["自动化","工作流","开源","workflow"],"category":"workflow"},
+  {"type":"tool","slug":"langchain","title":"LangChain","keywords":["框架","Agent","Python","JS","LLM","development"],"category":"development"},
+  {"type":"scenario","slug":"ai-code-review","title":"使用 AI 进行代码审查","keywords":["代码审查","review","自动化","PR","quality"],"category":"harness"},
+  {"type":"scenario","slug":"doc-auto-generation","title":"构建文档自动生成流水线","keywords":["文档","自动生成","hooks","自动化","doc"],"category":"harness"}
+]
