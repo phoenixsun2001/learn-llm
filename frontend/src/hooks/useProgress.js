@@ -1,26 +1,49 @@
-import { useState, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { useAuth } from './useAuth';
+import {
+  loadLocalProgress,
+  saveLocalProgress,
+  loadCloudProgress,
+  saveCloudProgress,
+  clearCloudProgress,
+  mergeProgress,
+} from '../services/progressService';
 
 const PROGRESS_KEY = 'learn-ai-progress';
 
-function loadProgress() {
-  try {
-    const stored = localStorage.getItem(PROGRESS_KEY);
-    return stored ? JSON.parse(stored) : {};
-  } catch {
-    return {};
-  }
-}
-
-function saveProgress(progress) {
-  try {
-    localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
-  } catch {
-    // localStorage unavailable or full - fail silently
-  }
-}
-
 export function useProgress() {
-  const [progress, setProgress] = useState(loadProgress);
+  const { user } = useAuth();
+  const [progress, setProgress] = useState(loadLocalProgress);
+  // Track whether a cloud sync operation is in flight
+  const [syncing, setSyncing] = useState(false);
+
+  // On mount (or when user changes): load cloud progress and merge into local
+  useEffect(() => {
+    let cancelled = false;
+
+    async function syncFromCloud() {
+      if (!user?.id) return;
+      setSyncing(true);
+      const cloud = await loadCloudProgress(user.id);
+      if (cancelled) return;
+      if (cloud) {
+        setProgress((prev) => {
+          const merged = mergeProgress(prev, cloud);
+          // Persist merged result back to localStorage so offline reads
+          // always have the latest merged state
+          saveLocalProgress(merged);
+          return merged;
+        });
+      }
+      setSyncing(false);
+    }
+
+    syncFromCloud();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [user?.id]);
 
   const markTutorialComplete = useCallback((tutorialSlug) => {
     setProgress((prev) => {
@@ -29,13 +52,18 @@ export function useProgress() {
         [tutorialSlug]: {
           completed: true,
           completedAt: new Date().toISOString(),
+          chapters: prev[tutorialSlug]?.chapters || {},
           ...prev[tutorialSlug],
         },
       };
-      saveProgress(next);
+      saveLocalProgress(next);
+      // Sync to cloud in background (fire-and-forget — no need to block UI)
+      if (user?.id) {
+        saveCloudProgress(user.id, tutorialSlug, next[tutorialSlug]);
+      }
       return next;
     });
-  }, []);
+  }, [user?.id]);
 
   const markChapterComplete = useCallback((tutorialSlug, chapterIndex) => {
     setProgress((prev) => {
@@ -53,10 +81,14 @@ export function useProgress() {
           },
         },
       };
-      saveProgress(next);
+      saveLocalProgress(next);
+      // Sync to cloud in background
+      if (user?.id) {
+        saveCloudProgress(user.id, tutorialSlug, next[tutorialSlug]);
+      }
       return next;
     });
-  }, []);
+  }, [user?.id]);
 
   const getTutorialProgress = useCallback(
     (tutorialSlug) => progress[tutorialSlug] || { completed: false, chapters: {} },
@@ -80,10 +112,15 @@ export function useProgress() {
     } catch {
       // fail silently
     }
-  }, []);
+    // Clear cloud data in background
+    if (user?.id) {
+      clearCloudProgress(user.id);
+    }
+  }, [user?.id]);
 
   return {
     progress,
+    syncing,
     markTutorialComplete,
     markChapterComplete,
     getTutorialProgress,
