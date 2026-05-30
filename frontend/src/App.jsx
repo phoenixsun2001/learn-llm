@@ -35,7 +35,7 @@ const App = () => {
         </Route>
 
         {/* Public routes */}
-        <Route element={
+        <Route path="*" element={
           <>
             <Navbar />
             <main className="main-content">
