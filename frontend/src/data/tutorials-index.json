@@ -9,7 +9,9 @@
     "difficulty": "beginner",
     "estimatedTime": 15,
     "tags": ["claude-code", "入门"],
+    "keywords": ["claude", "code", "入门", "指南", "CLI", "harness"],
     "prerequisites": [],
+    "featured": true,
     "file": "/content/tutorials/harness/claude-code-intro.md"
   },
   {
@@ -22,7 +24,9 @@
     "difficulty": "beginner",
     "estimatedTime": 20,
     "tags": ["claude-code", "安装"],
+    "keywords": ["安装", "配置", "API", "Key", "环境", "claude", "code", "harness"],
     "prerequisites": ["claude-code-intro"],
+    "featured": true,
     "file": "/content/tutorials/harness/claude-code-install.md"
   },
   {
@@ -35,7 +39,9 @@
     "difficulty": "beginner",
     "estimatedTime": 30,
     "tags": ["claude-code", "实践"],
+    "keywords": ["claude", "code", "项目", "实战", "开发", "harness"],
     "prerequisites": ["claude-code-install"],
+    "featured": true,
     "file": "/content/tutorials/harness/claude-code-first-use.md"
   },
   {
@@ -48,6 +54,7 @@
     "difficulty": "intermediate",
     "estimatedTime": 25,
     "tags": ["claude-code", "工作流"],
+    "keywords": ["claude", "code", "工作流", "日常", "审查", "重构", "调试", "harness"],
     "prerequisites": ["claude-code-first-use"],
     "file": "/content/tutorials/harness/claude-code-daily.md"
   },
@@ -61,6 +68,7 @@
     "difficulty": "intermediate",
     "estimatedTime": 30,
     "tags": ["claude-code", "hooks", "进阶"],
+    "keywords": ["claude", "code", "hooks", "自动化", "lint", "格式化", "测试", "harness"],
     "prerequisites": ["claude-code-daily"],
     "file": "/content/tutorials/harness/claude-code-hooks.md"
   }

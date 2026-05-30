@@ -174,6 +174,68 @@
 }
 
 /* ============================================
+   Pathway Preview Section (2-column grid)
+   ============================================ */
+
+.home-pathway-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.home-pathway-card {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-primary);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-pathway-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.home-pathway-icon {
+  font-size: 28px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.home-pathway-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.home-pathway-title {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-xs);
+}
+
+.home-pathway-meta {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.home-pathway-arrow {
+  font-size: var(--font-size-lg);
+  color: var(--accent-color);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+/* ============================================
    Featured Tutorials Section
    ============================================ */
 
@@ -246,9 +308,14 @@
   background-color: var(--success-light);
 }
 
-.home-difficulty-basic {
+.home-difficulty-intermediate {
   color: var(--warning-color);
   background-color: var(--warning-light);
+}
+
+.home-difficulty-advanced {
+  color: var(--error-color);
+  background-color: var(--error-light);
 }
 
 /* Tutorial card title */
@@ -258,6 +325,66 @@
   color: var(--text-primary);
   margin: 0;
   line-height: 1.5;
+}
+
+/* ============================================
+   Hot Tools Section
+   ============================================ */
+
+.home-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.home-tool-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-lg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-primary);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-tool-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.home-tool-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.home-tool-name {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.home-tool-desc {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0 0 var(--spacing-md);
+  flex: 1;
+}
+
+.home-tool-action {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--accent-color);
+  align-self: flex-start;
 }
 
 /* ---------- View all link ---------- */
@@ -300,7 +427,9 @@
   }
 
   .home-entry-grid,
-  .home-tutorial-grid {
+  .home-tutorial-grid,
+  .home-pathway-grid,
+  .home-tools-grid {
     grid-template-columns: 1fr;
   }
 
