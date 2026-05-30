@@ -1,0 +1,330 @@
+/* ============================================
+   TutorialRenderer – Content Renderer
+   ============================================ */
+
+.tutorial-renderer {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: var(--spacing-lg) var(--spacing-md);
+}
+
+/* ---------- Loading ---------- */
+.tutorial-renderer-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2xl) 0;
+  color: var(--text-secondary);
+  gap: var(--spacing-md);
+}
+
+.tutorial-renderer-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--bg-tertiary);
+  border-top-color: var(--accent-color);
+  border-radius: var(--radius-full);
+  animation: tutorial-spinner-rotate 0.7s linear infinite;
+}
+
+@keyframes tutorial-spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- Error ---------- */
+.tutorial-renderer-error {
+  text-align: center;
+  padding: var(--spacing-2xl) var(--spacing-md);
+  color: var(--text-secondary);
+}
+
+.tutorial-renderer-error-icon {
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--spacing-md);
+  display: block;
+}
+
+.tutorial-renderer-error h2 {
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-primary);
+}
+
+/* ---------- Header ---------- */
+.tutorial-renderer-header {
+  padding-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tutorial-renderer-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+/* Badge base */
+.tutorial-renderer-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+/* Category badge */
+.tutorial-renderer-badge--category {
+  background-color: var(--accent-light);
+  color: var(--accent-color);
+}
+
+/* Difficulty badge */
+.tutorial-renderer-badge--beginner {
+  background-color: var(--success-light);
+  color: var(--success-color);
+}
+
+.tutorial-renderer-badge--intermediate {
+  background-color: var(--warning-light);
+  color: var(--warning-text);
+}
+
+.tutorial-renderer-badge--advanced {
+  background-color: var(--error-light);
+  color: var(--error-color);
+}
+
+/* Estimated time */
+.tutorial-renderer-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+}
+
+.tutorial-renderer-time-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* Title */
+.tutorial-renderer-title {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.3;
+}
+
+/* Description */
+.tutorial-renderer-description {
+  font-size: var(--font-size-md);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ---------- Content Area ---------- */
+.tutorial-renderer-content {
+  padding: var(--spacing-md) 0;
+}
+
+/* Override h2 inside content for step tracking anchors */
+.tutorial-renderer-content h2 {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  margin: var(--spacing-xl) 0 var(--spacing-md);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--border-color);
+  color: var(--text-primary);
+  scroll-margin-top: calc(var(--navbar-height) + var(--spacing-md));
+}
+
+.tutorial-renderer-content h3 {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  margin: var(--spacing-lg) 0 var(--spacing-sm);
+  color: var(--text-primary);
+}
+
+.tutorial-renderer-content h4 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin: var(--spacing-md) 0 var(--spacing-sm);
+  color: var(--text-primary);
+}
+
+/* Inline code already styled globally */
+
+/* ---------- Code Block Wrapper ---------- */
+.code-block-wrapper {
+  margin: var(--spacing-lg) 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: var(--bg-code);
+  border: 1px solid var(--border-color);
+}
+
+.code-block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-xs) var(--spacing-md);
+  background-color: var(--code-header-bg);
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+}
+
+.code-block-lang {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  text-transform: lowercase;
+  color: var(--text-inverse);
+  opacity: 0.8;
+}
+
+.code-block-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-inverse);
+  font-size: 11px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  outline: none;
+}
+
+.code-block-copy-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.code-block-copy-btn:focus-visible {
+  box-shadow: 0 0 0 2px var(--accent-color);
+}
+
+.code-block-copy-btn--copied {
+  color: var(--success-color);
+  border-color: var(--success-color);
+}
+
+/* Syntax highlighter inside code-block-wrapper — remove its own margin & radius */
+.code-block-wrapper pre {
+  margin: 0;
+  border-radius: 0;
+  background-color: transparent;
+  padding: var(--spacing-md);
+}
+
+.code-block-wrapper code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+}
+
+/* ---------- Table Wrapper ---------- */
+.table-wrapper {
+  overflow-x: auto;
+  margin: var(--spacing-lg) 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+  margin: 0;
+}
+
+.table-wrapper th {
+  background-color: var(--bg-tertiary);
+  font-weight: 600;
+  text-align: left;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--border-color);
+}
+
+.table-wrapper td {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--border-color);
+}
+
+.table-wrapper tr:nth-child(even) td {
+  background-color: var(--bg-secondary);
+}
+
+/* ---------- Related / Prerequisites ---------- */
+.tutorial-renderer-related {
+  margin-top: var(--spacing-2xl);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.tutorial-renderer-related h3 {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-sm);
+}
+
+.tutorial-renderer-related-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.tutorial-renderer-related-item {
+  display: inline-flex;
+}
+
+.tutorial-renderer-related-link {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.tutorial-renderer-related-link:hover {
+  border-color: var(--accent-color);
+  background-color: var(--accent-light);
+  text-decoration: none;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .tutorial-renderer {
+    padding: var(--spacing-md);
+  }
+
+  .tutorial-renderer-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .tutorial-renderer-content h2 {
+    font-size: var(--font-size-xl);
+  }
+}

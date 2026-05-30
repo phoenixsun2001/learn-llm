@@ -1,0 +1,130 @@
+.step-progress {
+  padding: 0;
+  margin: var(--spacing-lg) 0;
+  width: 100%;
+}
+
+/* ---------- Progress Bar ---------- */
+.step-progress-bar {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  background-color: var(--bg-tertiary);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--spacing-md);
+  overflow: hidden;
+}
+
+.step-progress-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: var(--accent-color);
+  border-radius: var(--radius-full);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------- Dots ---------- */
+.step-progress-dots {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.step-dot-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--border-color);
+  background-color: var(--bg-primary);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease,
+    box-shadow 0.2s ease;
+  padding: 0;
+  flex-shrink: 0;
+  outline: none;
+}
+
+.step-dot-btn:hover {
+  border-color: var(--accent-color);
+}
+
+.step-dot-btn:focus-visible {
+  box-shadow: 0 0 0 2px var(--bg-primary), 0 0 0 4px var(--accent-color);
+}
+
+/* Current step */
+.step-dot-btn--current {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+
+.step-dot-btn--current:hover {
+  border-color: var(--accent-hover);
+}
+
+/* Completed step */
+.step-dot-btn--completed {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+  color: var(--text-inverse);
+}
+
+.step-dot-btn--completed:hover {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+  opacity: 0.85;
+}
+
+/* ---------- Step Labels (optional row below dots) ---------- */
+.step-progress-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: var(--spacing-xs);
+}
+
+.step-label {
+  width: 28px;
+  text-align: center;
+  font-size: 10px;
+  color: var(--text-tertiary);
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+
+.step-label--current {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.step-label--completed {
+  color: var(--success-color);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .step-progress {
+    margin: var(--spacing-md) 0;
+  }
+
+  .step-dot-btn {
+    width: 24px;
+    height: 24px;
+    font-size: 11px;
+  }
+
+  .step-label {
+    width: 24px;
+    font-size: 9px;
+  }
+}
