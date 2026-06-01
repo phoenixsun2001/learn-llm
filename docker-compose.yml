@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   # ============================================
   # Frontend: React SPA served by nginx
@@ -8,6 +6,9 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
+        - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
     container_name: learn-llm-frontend
     ports:
       - "80:80"
