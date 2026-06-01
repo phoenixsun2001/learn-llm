@@ -1,0 +1,116 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - generic [ref=e3]:
+      - heading "Learn-LLM Admin" [level=2] [ref=e4]
+      - generic [ref=e5]: v0.1.0
+    - navigation [ref=e6]:
+      - link "■ 仪表盘" [ref=e7] [cursor=pointer]:
+        - /url: /admin
+        - generic [ref=e8]: ■
+        - generic [ref=e9]: 仪表盘
+      - link "▦ 审核队列" [ref=e10] [cursor=pointer]:
+        - /url: /admin/review
+        - generic [ref=e11]: ▦
+        - generic [ref=e12]: 审核队列
+      - link "☰ 素材库" [ref=e13] [cursor=pointer]:
+        - /url: /admin/materials
+        - generic [ref=e14]: ☰
+        - generic [ref=e15]: 素材库
+      - link "★ 源管理" [ref=e16] [cursor=pointer]:
+        - /url: /admin/sources
+        - generic [ref=e17]: ★
+        - generic [ref=e18]: 源管理
+    - link "← 退出登录" [ref=e20] [cursor=pointer]:
+      - /url: /admin/logout
+      - generic [ref=e21]: ←
+      - generic [ref=e22]: 退出登录
+  - main [ref=e23]:
+    - heading "素材库 3" [level=1] [ref=e25]:
+      - text: 素材库
+      - generic [ref=e26]: "3"
+    - generic [ref=e27]:
+      - generic [ref=e28]:
+        - heading "筛选条件" [level=3] [ref=e29]
+        - link "+ 创建素材" [ref=e30] [cursor=pointer]:
+          - /url: /admin/materials/new
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - generic [ref=e34]: 搜索
+          - textbox "搜索" [ref=e35]:
+            - /placeholder: 标题或内容关键词...
+        - generic [ref=e36]:
+          - generic [ref=e37]: 分类
+          - combobox "分类" [ref=e38]:
+            - option "全部" [selected]
+            - option "rag"
+            - option "tools"
+            - option "tutorials"
+        - generic [ref=e39]:
+          - generic [ref=e40]: 难度
+          - combobox "难度" [ref=e41]:
+            - option "全部" [selected]
+            - option "advanced"
+            - option "beginner"
+        - button "筛选" [ref=e43] [cursor=pointer]
+    - table [ref=e45]:
+      - rowgroup [ref=e46]:
+        - row "标题 分类 难度 标签 状态 创建时间 操作" [ref=e47]:
+          - columnheader "标题" [ref=e48]
+          - columnheader "分类" [ref=e49]
+          - columnheader "难度" [ref=e50]
+          - columnheader "标签" [ref=e51]
+          - columnheader "状态" [ref=e52]
+          - columnheader "创建时间" [ref=e53]
+          - columnheader "操作" [ref=e54]
+      - rowgroup [ref=e55]:
+        - row "Getting Started with Dify tools beginner - draft 2026-05-31 02:34 编辑 归档" [ref=e56]:
+          - cell "Getting Started with Dify" [ref=e57]:
+            - link "Getting Started with Dify" [ref=e58] [cursor=pointer]:
+              - /url: /admin/materials/mat-2026-003
+          - cell "tools" [ref=e59]:
+            - generic [ref=e60]: tools
+          - cell "beginner" [ref=e61]:
+            - generic [ref=e62]: beginner
+          - cell "-" [ref=e63]
+          - cell "draft" [ref=e64]:
+            - generic [ref=e65]: draft
+          - cell "2026-05-31 02:34" [ref=e66]
+          - cell "编辑 归档" [ref=e67]:
+            - link "编辑" [ref=e68] [cursor=pointer]:
+              - /url: /admin/materials/mat-2026-003
+            - button "归档" [ref=e70] [cursor=pointer]
+        - row "RAG Best Practices 2026 rag advanced - draft 2026-05-30 14:21 编辑 归档" [ref=e71]:
+          - cell "RAG Best Practices 2026" [ref=e72]:
+            - link "RAG Best Practices 2026" [ref=e73] [cursor=pointer]:
+              - /url: /admin/materials/mat-2026-002
+          - cell "rag" [ref=e74]:
+            - generic [ref=e75]: rag
+          - cell "advanced" [ref=e76]:
+            - generic [ref=e77]: advanced
+          - cell "-" [ref=e78]
+          - cell "draft" [ref=e79]:
+            - generic [ref=e80]: draft
+          - cell "2026-05-30 14:21" [ref=e81]
+          - cell "编辑 归档" [ref=e82]:
+            - link "编辑" [ref=e83] [cursor=pointer]:
+              - /url: /admin/materials/mat-2026-002
+            - button "归档" [ref=e85] [cursor=pointer]
+        - row "Python for ML tutorials beginner python ml basics published 2026-05-30 14:21 编辑 归档" [ref=e86]:
+          - cell "Python for ML" [ref=e87]:
+            - link "Python for ML" [ref=e88] [cursor=pointer]:
+              - /url: /admin/materials/mat-2026-001
+          - cell "tutorials" [ref=e89]:
+            - generic [ref=e90]: tutorials
+          - cell "beginner" [ref=e91]:
+            - generic [ref=e92]: beginner
+          - cell "python ml basics" [ref=e93]:
+            - generic [ref=e94]: python
+            - generic [ref=e95]: ml
+            - generic [ref=e96]: basics
+          - cell "published" [ref=e97]:
+            - generic [ref=e98]: published
+          - cell "2026-05-30 14:21" [ref=e99]
+          - cell "编辑 归档" [ref=e100]:
+            - link "编辑" [ref=e101] [cursor=pointer]:
+              - /url: /admin/materials/mat-2026-001
+            - button "归档" [ref=e103] [cursor=pointer]

@@ -1,0 +1,386 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - generic [ref=e3]:
+      - heading "Learn-LLM Admin" [level=2] [ref=e4]
+      - generic [ref=e5]: v0.1.0
+    - navigation [ref=e6]:
+      - link "■ 仪表盘" [ref=e7] [cursor=pointer]:
+        - /url: /admin
+        - generic [ref=e8]: ■
+        - generic [ref=e9]: 仪表盘
+      - link "▦ 审核队列 20" [ref=e10] [cursor=pointer]:
+        - /url: /admin/review
+        - generic [ref=e11]: ▦
+        - generic [ref=e12]: 审核队列
+        - generic [ref=e13]: "20"
+      - link "☰ 素材库" [ref=e14] [cursor=pointer]:
+        - /url: /admin/materials
+        - generic [ref=e15]: ☰
+        - generic [ref=e16]: 素材库
+      - link "★ 源管理" [ref=e17] [cursor=pointer]:
+        - /url: /admin/sources
+        - generic [ref=e18]: ★
+        - generic [ref=e19]: 源管理
+    - link "← 退出登录" [ref=e21] [cursor=pointer]:
+      - /url: /admin/logout
+      - generic [ref=e22]: ←
+      - generic [ref=e23]: 退出登录
+  - main [ref=e24]:
+    - heading "审核队列 20" [level=1] [ref=e26]:
+      - text: 审核队列
+      - generic [ref=e27]: "20"
+    - generic [ref=e28]:
+      - generic [ref=e29]:
+        - heading "待审核项目" [level=3] [ref=e30]
+        - generic [ref=e31]: 20 项等待审核
+      - table [ref=e32]:
+        - rowgroup [ref=e33]:
+          - row "# 标题 来源 AI 分类 难度 日期 操作" [ref=e34]:
+            - columnheader "#" [ref=e35]
+            - columnheader "标题" [ref=e36]
+            - columnheader "来源" [ref=e37]
+            - columnheader "AI 分类" [ref=e38]
+            - columnheader "难度" [ref=e39]
+            - columnheader "日期" [ref=e40]
+            - columnheader "操作" [ref=e41]
+        - rowgroup [ref=e42]:
+          - row "4 Boston Children’s uses AI to unlock new diagnoses ▼ 展开预览 rss general beginner 2026-05-31 02:35 批准 拒绝 编辑" [ref=e43]:
+            - cell "4" [ref=e44]
+            - cell "Boston Children’s uses AI to unlock new diagnoses ▼ 展开预览" [ref=e45]:
+              - text: Boston Children’s uses AI to unlock new diagnoses
+              - text: ▼ 展开预览
+            - cell "rss" [ref=e46]:
+              - generic [ref=e47]: rss
+            - cell "general" [ref=e48]:
+              - generic [ref=e49]: general
+            - cell "beginner" [ref=e50]:
+              - generic [ref=e51]: beginner
+            - cell "2026-05-31 02:35" [ref=e52]
+            - cell "批准 拒绝 编辑" [ref=e53]:
+              - button "批准" [ref=e55] [cursor=pointer]: ✓ 批准
+              - button "拒绝" [ref=e57] [cursor=pointer]: × 拒绝
+              - link "编辑" [ref=e58] [cursor=pointer]:
+                - /url: /admin/review/4/edit
+          - row "5 How Braintrust turns customer requests into code with Codex ▼ 展开预览 rss general beginner 2026-05-31 02:35 批准 拒绝 编辑" [ref=e59]:
+            - cell "5" [ref=e60]
+            - cell "How Braintrust turns customer requests into code with Codex ▼ 展开预览" [ref=e61]:
+              - text: How Braintrust turns customer requests into code with Codex
+              - text: ▼ 展开预览
+            - cell "rss" [ref=e62]:
+              - generic [ref=e63]: rss
+            - cell "general" [ref=e64]:
+              - generic [ref=e65]: general
+            - cell "beginner" [ref=e66]:
+              - generic [ref=e67]: beginner
+            - cell "2026-05-31 02:35" [ref=e68]
+            - cell "批准 拒绝 编辑" [ref=e69]:
+              - button "批准" [ref=e71] [cursor=pointer]: ✓ 批准
+              - button "拒绝" [ref=e73] [cursor=pointer]: × 拒绝
+              - link "编辑" [ref=e74] [cursor=pointer]:
+                - /url: /admin/review/5/edit
+          - row "6 Strengthening societal resilience with Rosalind Biodefense ▼ 展开预览 rss general beginner 2026-05-31 02:35 批准 拒绝 编辑" [ref=e75]:
+            - cell "6" [ref=e76]
+            - cell "Strengthening societal resilience with Rosalind Biodefense ▼ 展开预览" [ref=e77]:
+              - text: Strengthening societal resilience with Rosalind Biodefense
+              - text: ▼ 展开预览
+            - cell "rss" [ref=e78]:
+              - generic [ref=e79]: rss
+            - cell "general" [ref=e80]:
+              - generic [ref=e81]: general
+            - cell "beginner" [ref=e82]:
+              - generic [ref=e83]: beginner
+            - cell "2026-05-31 02:35" [ref=e84]
+            - cell "批准 拒绝 编辑" [ref=e85]:
+              - button "批准" [ref=e87] [cursor=pointer]: ✓ 批准
+              - button "拒绝" [ref=e89] [cursor=pointer]: × 拒绝
+              - link "编辑" [ref=e90] [cursor=pointer]:
+                - /url: /admin/review/6/edit
+          - row "7 A shared playbook for trustworthy third party evaluations ▼ 展开预览 rss general beginner 2026-05-31 02:35 批准 拒绝 编辑" [ref=e91]:
+            - cell "7" [ref=e92]
+            - cell "A shared playbook for trustworthy third party evaluations ▼ 展开预览" [ref=e93]:
+              - text: A shared playbook for trustworthy third party evaluations
+              - text: ▼ 展开预览
+            - cell "rss" [ref=e94]:
+              - generic [ref=e95]: rss
+            - cell "general" [ref=e96]:
+              - generic [ref=e97]: general
+            - cell "beginner" [ref=e98]:
+              - generic [ref=e99]: beginner
+            - cell "2026-05-31 02:35" [ref=e100]
+            - cell "批准 拒绝 编辑" [ref=e101]:
+              - button "批准" [ref=e103] [cursor=pointer]: ✓ 批准
+              - button "拒绝" [ref=e105] [cursor=pointer]: × 拒绝
+              - link "编辑" [ref=e106] [cursor=pointer]:
+                - /url: /admin/review/7/edit
+          - row "8 How Endava builds an agentic organization with Codex ▼ 展开预览 rss general beginner 2026-05-31 02:35 批准 拒绝 编辑" [ref=e107]:
+            - cell "8" [ref=e108]
+            - cell "How Endava builds an agentic organization with Codex ▼ 展开预览" [ref=e109]:
+              - text: How Endava builds an agentic organization with Codex
+              - text: ▼ 展开预览
+            - cell "rss" [ref=e110]:
+              - generic [ref=e111]: rss
+            - cell "general" [ref=e112]:
+              - generic [ref=e113]: general
+            - cell "beginner" [ref=e114]:
+              - generic [ref=e115]: beginner
+            - cell "2026-05-31 02:35" [ref=e116]
+            - cell "批准 拒绝 编辑" [ref=e117]:
+              - button "批准" [ref=e119] [cursor=pointer]: ✓ 批准
+              - button "拒绝" [ref=e121] [cursor=pointer]: × 拒绝
+              - link "编辑" [ref=e122] [cursor=pointer]:
+                - /url: /admin/review/8/edit
+          - row "9 OpenAI’s Frontier Governance Framework ▼ 展开预览 rss general beginner 2026-05-31 02:35 批准 拒绝 编辑" [ref=e123]:
+            - cell "9" [ref=e124]
+            - cell "OpenAI’s Frontier Governance Framework ▼ 展开预览" [ref=e125]:
+              - text: OpenAI’s Frontier Governance Framework
+              - text: ▼ 展开预览
+            - cell "rss" [ref=e126]:
+              - generic [ref=e127]: rss
+            - cell "general" [ref=e128]:
+              - generic [ref=e129]: general
+            - cell "beginner" [ref=e130]:
+              - generic [ref=e131]: beginner
+            - cell "2026-05-31 02:35" [ref=e132]
+            - cell "批准 拒绝 编辑" [ref=e133]:
+              - button "批准" [ref=e135] [cursor=pointer]: ✓ 批准
+              - button "拒绝" [ref=e137] [cursor=pointer]: × 拒绝
+              - link "编辑" [ref=e138] [cursor=pointer]:
+                - /url: /admin/review/9/edit
+          - row "10 MUFG aims to become AI-native with OpenAI ▼ 展开预览 rss general beginner 2026-05-31 02:35 批准 拒绝 编辑" [ref=e139]:
+            - cell "10" [ref=e140]
+            - cell "MUFG aims to become AI-native with OpenAI ▼ 展开预览" [ref=e141]:
+              - text: MUFG aims to become AI-native with OpenAI
+              - text: ▼ 展开预览
+            - cell "rss" [ref=e142]:
+              - generic [ref=e143]: rss
+            - cell "general" [ref=e144]:
+              - generic [ref=e145]: general
+            - cell "beginner" [ref=e146]:
+              - generic [ref=e147]: beginner
+            - cell "2026-05-31 02:35" [ref=e148]
+            - cell "批准 拒绝 编辑" [ref=e149]:
+              - button "批准" [ref=e151] [cursor=pointer]: ✓ 批准
+              - button "拒绝" [ref=e153] [cursor=pointer]: × 拒绝
+              - link "编辑" [ref=e154] [cursor=pointer]:
+                - /url: /admin/review/10/edit
+          - row "11 Cisco and OpenAI redefine enterprise engineering with Codex ▼ 展开预览 rss general beginner 2026-05-31 02:35 批准 拒绝 编辑" [ref=e155]:
+            - cell "11" [ref=e156]
+            - cell "Cisco and OpenAI redefine enterprise engineering with Codex ▼ 展开预览" [ref=e157]:
+              - text: Cisco and OpenAI redefine enterprise engineering with Codex
+              - text: ▼ 展开预览
+            - cell "rss" [ref=e158]:
+              - generic [ref=e159]: rss
+            - cell "general" [ref=e160]:
+              - generic [ref=e161]: general
+            - cell "beginner" [ref=e162]:
+              - generic [ref=e163]: beginner
+            - cell "2026-05-31 02:35" [ref=e164]
+            - cell "批准 拒绝 编辑" [ref=e165]:
+              - button "批准" [ref=e167] [cursor=pointer]: ✓ 批准
+              - button "拒绝" [ref=e169] [cursor=pointer]: × 拒绝
+              - link "编辑" [ref=e170] [cursor=pointer]:
+                - /url: /admin/review/11/edit
+          - row "12 Building self-improving tax agents with Codex ▼ 展开预览 rss general beginner 2026-05-31 02:35 批准 拒绝 编辑" [ref=e171]:
+            - cell "12" [ref=e172]
+            - cell "Building self-improving tax agents with Codex ▼ 展开预览" [ref=e173]:
+              - text: Building self-improving tax agents with Codex
+              - text: ▼ 展开预览
+            - cell "rss" [ref=e174]:
+              - generic [ref=e175]: rss
+            - cell "general" [ref=e176]:
+              - generic [ref=e177]: general
+            - cell "beginner" [ref=e178]:
+              - generic [ref=e179]: beginner
+            - cell "2026-05-31 02:35" [ref=e180]
+            - cell "批准 拒绝 编辑" [ref=e181]:
+              - button "批准" [ref=e183] [cursor=pointer]: ✓ 批准
+              - button "拒绝" [ref=e185] [cursor=pointer]: × 拒绝
+              - link "编辑" [ref=e186] [cursor=pointer]:
+                - /url: /admin/review/12/edit
+          - row "13 Election information and safeguards in 2026 ▼ 展开预览 rss general beginner 2026-05-31 02:35 批准 拒绝 编辑" [ref=e187]:
+            - cell "13" [ref=e188]
+            - cell "Election information and safeguards in 2026 ▼ 展开预览" [ref=e189]:
+              - text: Election information and safeguards in 2026
+              - text: ▼ 展开预览
+            - cell "rss" [ref=e190]:
+              - generic [ref=e191]: rss
+            - cell "general" [ref=e192]:
+              - generic [ref=e193]: general
+            - cell "beginner" [ref=e194]:
+              - generic [ref=e195]: beginner
+            - cell "2026-05-31 02:35" [ref=e196]
+            - cell "批准 拒绝 编辑" [ref=e197]:
+              - button "批准" [ref=e199] [cursor=pointer]: ✓ 批准
+              - button "拒绝" [ref=e201] [cursor=pointer]: × 拒绝
+              - link "编辑" [ref=e202] [cursor=pointer]:
+                - /url: /admin/review/13/edit
+          - row "14 Warp’s big bet on building open source with GPT-5.5 ▼ 展开预览 rss general beginner 2026-05-31 02:35 批准 拒绝 编辑" [ref=e203]:
+            - cell "14" [ref=e204]
+            - cell "Warp’s big bet on building open source with GPT-5.5 ▼ 展开预览" [ref=e205]:
+              - text: Warp’s big bet on building open source with GPT-5.5
+              - text: ▼ 展开预览
+            - cell "rss" [ref=e206]:
+              - generic [ref=e207]: rss
+            - cell "general" [ref=e208]:
+              - generic [ref=e209]: general
+            - cell "beginner" [ref=e210]:
+              - generic [ref=e211]: beginner
+            - cell "2026-05-31 02:35" [ref=e212]
+            - cell "批准 拒绝 编辑" [ref=e213]:
+              - button "批准" [ref=e215] [cursor=pointer]: ✓ 批准
+              - button "拒绝" [ref=e217] [cursor=pointer]: × 拒绝
+              - link "编辑" [ref=e218] [cursor=pointer]:
+                - /url: /admin/review/14/edit
+          - row "15 OpenAI, Grupo Folha and Grupo UOL announce strategic content partnership ▼ 展开预览 rss general beginner 2026-05-31 02:35 批准 拒绝 编辑" [ref=e219]:
+            - cell "15" [ref=e220]
+            - cell "OpenAI, Grupo Folha and Grupo UOL announce strategic content partnership ▼ 展开预览" [ref=e221]:
+              - text: OpenAI, Grupo Folha and Grupo UOL announce strategic content partnership
+              - text: ▼ 展开预览
+            - cell "rss" [ref=e222]:
+              - generic [ref=e223]: rss
+            - cell "general" [ref=e224]:
+              - generic [ref=e225]: general
+            - cell "beginner" [ref=e226]:
+              - generic [ref=e227]: beginner
+            - cell "2026-05-31 02:35" [ref=e228]
+            - cell "批准 拒绝 编辑" [ref=e229]:
+              - button "批准" [ref=e231] [cursor=pointer]: ✓ 批准
+              - button "拒绝" [ref=e233] [cursor=pointer]: × 拒绝
+              - link "编辑" [ref=e234] [cursor=pointer]:
+                - /url: /admin/review/15/edit
+          - row "16 OpenAI named a Leader in enterprise coding agents by Gartner ▼ 展开预览 rss general beginner 2026-05-31 02:35 批准 拒绝 编辑" [ref=e235]:
+            - cell "16" [ref=e236]
+            - cell "OpenAI named a Leader in enterprise coding agents by Gartner ▼ 展开预览" [ref=e237]:
+              - text: OpenAI named a Leader in enterprise coding agents by Gartner
+              - text: ▼ 展开预览
+            - cell "rss" [ref=e238]:
+              - generic [ref=e239]: rss
+            - cell "general" [ref=e240]:
+              - generic [ref=e241]: general
+            - cell "beginner" [ref=e242]:
+              - generic [ref=e243]: beginner
+            - cell "2026-05-31 02:35" [ref=e244]
+            - cell "批准 拒绝 编辑" [ref=e245]:
+              - button "批准" [ref=e247] [cursor=pointer]: ✓ 批准
+              - button "拒绝" [ref=e249] [cursor=pointer]: × 拒绝
+              - link "编辑" [ref=e250] [cursor=pointer]:
+                - /url: /admin/review/16/edit
+          - row "17 How Virgin Atlantic ships faster with Codex ▼ 展开预览 rss general beginner 2026-05-31 02:35 批准 拒绝 编辑" [ref=e251]:
+            - cell "17" [ref=e252]
+            - cell "How Virgin Atlantic ships faster with Codex ▼ 展开预览" [ref=e253]:
+              - text: How Virgin Atlantic ships faster with Codex
+              - text: ▼ 展开预览
+            - cell "rss" [ref=e254]:
+              - generic [ref=e255]: rss
+            - cell "general" [ref=e256]:
+              - generic [ref=e257]: general
+            - cell "beginner" [ref=e258]:
+              - generic [ref=e259]: beginner
+            - cell "2026-05-31 02:35" [ref=e260]
+            - cell "批准 拒绝 编辑" [ref=e261]:
+              - button "批准" [ref=e263] [cursor=pointer]: ✓ 批准
+              - button "拒绝" [ref=e265] [cursor=pointer]: × 拒绝
+              - link "编辑" [ref=e266] [cursor=pointer]:
+                - /url: /admin/review/17/edit
+          - row "18 AdventHealth advances whole-person care with OpenAI ▼ 展开预览 rss general beginner 2026-05-31 02:35 批准 拒绝 编辑" [ref=e267]:
+            - cell "18" [ref=e268]
+            - cell "AdventHealth advances whole-person care with OpenAI ▼ 展开预览" [ref=e269]:
+              - text: AdventHealth advances whole-person care with OpenAI
+              - text: ▼ 展开预览
+            - cell "rss" [ref=e270]:
+              - generic [ref=e271]: rss
+            - cell "general" [ref=e272]:
+              - generic [ref=e273]: general
+            - cell "beginner" [ref=e274]:
+              - generic [ref=e275]: beginner
+            - cell "2026-05-31 02:35" [ref=e276]
+            - cell "批准 拒绝 编辑" [ref=e277]:
+              - button "批准" [ref=e279] [cursor=pointer]: ✓ 批准
+              - button "拒绝" [ref=e281] [cursor=pointer]: × 拒绝
+              - link "编辑" [ref=e282] [cursor=pointer]:
+                - /url: /admin/review/18/edit
+          - row "19 An OpenAI model has disproved a central conjecture in discrete geometry ▼ 展开预览 rss general beginner 2026-05-31 02:35 批准 拒绝 编辑" [ref=e283]:
+            - cell "19" [ref=e284]
+            - cell "An OpenAI model has disproved a central conjecture in discrete geometry ▼ 展开预览" [ref=e285]:
+              - text: An OpenAI model has disproved a central conjecture in discrete geometry
+              - text: ▼ 展开预览
+            - cell "rss" [ref=e286]:
+              - generic [ref=e287]: rss
+            - cell "general" [ref=e288]:
+              - generic [ref=e289]: general
+            - cell "beginner" [ref=e290]:
+              - generic [ref=e291]: beginner
+            - cell "2026-05-31 02:35" [ref=e292]
+            - cell "批准 拒绝 编辑" [ref=e293]:
+              - button "批准" [ref=e295] [cursor=pointer]: ✓ 批准
+              - button "拒绝" [ref=e297] [cursor=pointer]: × 拒绝
+              - link "编辑" [ref=e298] [cursor=pointer]:
+                - /url: /admin/review/19/edit
+          - row "20 The next phase of OpenAI’s Education for Countries ▼ 展开预览 rss general beginner 2026-05-31 02:35 批准 拒绝 编辑" [ref=e299]:
+            - cell "20" [ref=e300]
+            - cell "The next phase of OpenAI’s Education for Countries ▼ 展开预览" [ref=e301]:
+              - text: The next phase of OpenAI’s Education for Countries
+              - text: ▼ 展开预览
+            - cell "rss" [ref=e302]:
+              - generic [ref=e303]: rss
+            - cell "general" [ref=e304]:
+              - generic [ref=e305]: general
+            - cell "beginner" [ref=e306]:
+              - generic [ref=e307]: beginner
+            - cell "2026-05-31 02:35" [ref=e308]
+            - cell "批准 拒绝 编辑" [ref=e309]:
+              - button "批准" [ref=e311] [cursor=pointer]: ✓ 批准
+              - button "拒绝" [ref=e313] [cursor=pointer]: × 拒绝
+              - link "编辑" [ref=e314] [cursor=pointer]:
+                - /url: /admin/review/20/edit
+          - row "21 How Ramp engineers accelerate code review with Codex ▼ 展开预览 rss general beginner 2026-05-31 02:35 批准 拒绝 编辑" [ref=e315]:
+            - cell "21" [ref=e316]
+            - cell "How Ramp engineers accelerate code review with Codex ▼ 展开预览" [ref=e317]:
+              - text: How Ramp engineers accelerate code review with Codex
+              - text: ▼ 展开预览
+            - cell "rss" [ref=e318]:
+              - generic [ref=e319]: rss
+            - cell "general" [ref=e320]:
+              - generic [ref=e321]: general
+            - cell "beginner" [ref=e322]:
+              - generic [ref=e323]: beginner
+            - cell "2026-05-31 02:35" [ref=e324]
+            - cell "批准 拒绝 编辑" [ref=e325]:
+              - button "批准" [ref=e327] [cursor=pointer]: ✓ 批准
+              - button "拒绝" [ref=e329] [cursor=pointer]: × 拒绝
+              - link "编辑" [ref=e330] [cursor=pointer]:
+                - /url: /admin/review/21/edit
+          - row "22 Introducing OpenAI for Singapore ▼ 展开预览 rss general beginner 2026-05-31 02:35 批准 拒绝 编辑" [ref=e331]:
+            - cell "22" [ref=e332]
+            - cell "Introducing OpenAI for Singapore ▼ 展开预览" [ref=e333]:
+              - text: Introducing OpenAI for Singapore
+              - text: ▼ 展开预览
+            - cell "rss" [ref=e334]:
+              - generic [ref=e335]: rss
+            - cell "general" [ref=e336]:
+              - generic [ref=e337]: general
+            - cell "beginner" [ref=e338]:
+              - generic [ref=e339]: beginner
+            - cell "2026-05-31 02:35" [ref=e340]
+            - cell "批准 拒绝 编辑" [ref=e341]:
+              - button "批准" [ref=e343] [cursor=pointer]: ✓ 批准
+              - button "拒绝" [ref=e345] [cursor=pointer]: × 拒绝
+              - link "编辑" [ref=e346] [cursor=pointer]:
+                - /url: /admin/review/22/edit
+          - row "23 Advancing content provenance for a safer, more transparent AI ecosystem ▼ 展开预览 rss general beginner 2026-05-31 02:35 批准 拒绝 编辑" [ref=e347]:
+            - cell "23" [ref=e348]
+            - cell "Advancing content provenance for a safer, more transparent AI ecosystem ▼ 展开预览" [ref=e349]:
+              - text: Advancing content provenance for a safer, more transparent AI ecosystem
+              - text: ▼ 展开预览
+            - cell "rss" [ref=e350]:
+              - generic [ref=e351]: rss
+            - cell "general" [ref=e352]:
+              - generic [ref=e353]: general
+            - cell "beginner" [ref=e354]:
+              - generic [ref=e355]: beginner
+            - cell "2026-05-31 02:35" [ref=e356]
+            - cell "批准 拒绝 编辑" [ref=e357]:
+              - button "批准" [ref=e359] [cursor=pointer]: ✓ 批准
+              - button "拒绝" [ref=e361] [cursor=pointer]: × 拒绝
+              - link "编辑" [ref=e362] [cursor=pointer]:
+                - /url: /admin/review/23/edit

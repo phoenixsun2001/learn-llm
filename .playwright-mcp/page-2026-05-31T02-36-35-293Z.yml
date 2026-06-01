@@ -1,0 +1,169 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - generic [ref=e3]:
+      - heading "Learn-LLM Admin" [level=2] [ref=e4]
+      - generic [ref=e5]: v0.1.0
+    - navigation [ref=e6]:
+      - link "■ 仪表盘" [ref=e7] [cursor=pointer]:
+        - /url: /admin
+        - generic [ref=e8]: ■
+        - generic [ref=e9]: 仪表盘
+      - link "▦ 审核队列 20" [ref=e10] [cursor=pointer]:
+        - /url: /admin/review
+        - generic [ref=e11]: ▦
+        - generic [ref=e12]: 审核队列
+        - generic [ref=e13]: "20"
+      - link "☰ 素材库" [ref=e14] [cursor=pointer]:
+        - /url: /admin/materials
+        - generic [ref=e15]: ☰
+        - generic [ref=e16]: 素材库
+      - link "★ 源管理" [ref=e17] [cursor=pointer]:
+        - /url: /admin/sources
+        - generic [ref=e18]: ★
+        - generic [ref=e19]: 源管理
+    - link "← 退出登录" [ref=e21] [cursor=pointer]:
+      - /url: /admin/logout
+      - generic [ref=e22]: ←
+      - generic [ref=e23]: 退出登录
+  - main [ref=e24]:
+    - heading "仪表盘" [level=1] [ref=e26]
+    - generic [ref=e27]:
+      - generic [ref=e28]:
+        - generic [ref=e29]:
+          - generic [ref=e30]: 待审核
+          - generic [ref=e31]: ▦
+        - generic [ref=e32]: "20"
+        - generic [ref=e33]: 待处理的审阅项
+      - generic [ref=e34]:
+        - generic [ref=e35]:
+          - generic [ref=e36]: 素材总数
+          - generic [ref=e37]: ☰
+        - generic [ref=e38]: "3"
+        - generic [ref=e39]: 已发布和草稿
+      - generic [ref=e40]:
+        - generic [ref=e41]:
+          - generic [ref=e42]: 活跃源
+          - generic [ref=e43]: ★
+        - generic [ref=e44]: 4 / 4
+        - generic [ref=e45]: 活跃 / 总计 RSS 源
+      - generic [ref=e46]:
+        - generic [ref=e47]:
+          - generic [ref=e48]: 最近抓取
+          - generic [ref=e49]: ⌚
+        - generic [ref=e50]: 2026-05-31 02:35
+        - generic [ref=e51]: 最近一次数据抓取
+    - generic [ref=e52]:
+      - generic [ref=e53]:
+        - heading "最近待审阅项" [level=3] [ref=e54]
+        - link "查看全部 →" [ref=e55] [cursor=pointer]:
+          - /url: /admin/review
+      - table [ref=e56]:
+        - rowgroup [ref=e57]:
+          - row "标题 来源 AI 分类 难度 创建时间" [ref=e58]:
+            - columnheader "标题" [ref=e59]
+            - columnheader "来源" [ref=e60]
+            - columnheader "AI 分类" [ref=e61]
+            - columnheader "难度" [ref=e62]
+            - columnheader "创建时间" [ref=e63]
+        - rowgroup [ref=e64]:
+          - row "Boston Children’s uses AI to unlock new diagnoses rss general beginner 2026-05-31 02:35" [ref=e65]:
+            - cell "Boston Children’s uses AI to unlock new diagnoses" [ref=e66]
+            - cell "rss" [ref=e67]:
+              - generic [ref=e68]: rss
+            - cell "general" [ref=e69]:
+              - generic [ref=e70]: general
+            - cell "beginner" [ref=e71]:
+              - generic [ref=e72]: beginner
+            - cell "2026-05-31 02:35" [ref=e73]
+          - row "How Braintrust turns customer requests into code with Codex rss general beginner 2026-05-31 02:35" [ref=e74]:
+            - cell "How Braintrust turns customer requests into code with Codex" [ref=e75]
+            - cell "rss" [ref=e76]:
+              - generic [ref=e77]: rss
+            - cell "general" [ref=e78]:
+              - generic [ref=e79]: general
+            - cell "beginner" [ref=e80]:
+              - generic [ref=e81]: beginner
+            - cell "2026-05-31 02:35" [ref=e82]
+          - row "Strengthening societal resilience with Rosalind Biodefense rss general beginner 2026-05-31 02:35" [ref=e83]:
+            - cell "Strengthening societal resilience with Rosalind Biodefense" [ref=e84]
+            - cell "rss" [ref=e85]:
+              - generic [ref=e86]: rss
+            - cell "general" [ref=e87]:
+              - generic [ref=e88]: general
+            - cell "beginner" [ref=e89]:
+              - generic [ref=e90]: beginner
+            - cell "2026-05-31 02:35" [ref=e91]
+          - row "A shared playbook for trustworthy third party evaluations rss general beginner 2026-05-31 02:35" [ref=e92]:
+            - cell "A shared playbook for trustworthy third party evaluations" [ref=e93]
+            - cell "rss" [ref=e94]:
+              - generic [ref=e95]: rss
+            - cell "general" [ref=e96]:
+              - generic [ref=e97]: general
+            - cell "beginner" [ref=e98]:
+              - generic [ref=e99]: beginner
+            - cell "2026-05-31 02:35" [ref=e100]
+          - row "How Endava builds an agentic organization with Codex rss general beginner 2026-05-31 02:35" [ref=e101]:
+            - cell "How Endava builds an agentic organization with Codex" [ref=e102]
+            - cell "rss" [ref=e103]:
+              - generic [ref=e104]: rss
+            - cell "general" [ref=e105]:
+              - generic [ref=e106]: general
+            - cell "beginner" [ref=e107]:
+              - generic [ref=e108]: beginner
+            - cell "2026-05-31 02:35" [ref=e109]
+          - row "OpenAI’s Frontier Governance Framework rss general beginner 2026-05-31 02:35" [ref=e110]:
+            - cell "OpenAI’s Frontier Governance Framework" [ref=e111]
+            - cell "rss" [ref=e112]:
+              - generic [ref=e113]: rss
+            - cell "general" [ref=e114]:
+              - generic [ref=e115]: general
+            - cell "beginner" [ref=e116]:
+              - generic [ref=e117]: beginner
+            - cell "2026-05-31 02:35" [ref=e118]
+          - row "MUFG aims to become AI-native with OpenAI rss general beginner 2026-05-31 02:35" [ref=e119]:
+            - cell "MUFG aims to become AI-native with OpenAI" [ref=e120]
+            - cell "rss" [ref=e121]:
+              - generic [ref=e122]: rss
+            - cell "general" [ref=e123]:
+              - generic [ref=e124]: general
+            - cell "beginner" [ref=e125]:
+              - generic [ref=e126]: beginner
+            - cell "2026-05-31 02:35" [ref=e127]
+          - row "Cisco and OpenAI redefine enterprise engineering with Codex rss general beginner 2026-05-31 02:35" [ref=e128]:
+            - cell "Cisco and OpenAI redefine enterprise engineering with Codex" [ref=e129]
+            - cell "rss" [ref=e130]:
+              - generic [ref=e131]: rss
+            - cell "general" [ref=e132]:
+              - generic [ref=e133]: general
+            - cell "beginner" [ref=e134]:
+              - generic [ref=e135]: beginner
+            - cell "2026-05-31 02:35" [ref=e136]
+          - row "Building self-improving tax agents with Codex rss general beginner 2026-05-31 02:35" [ref=e137]:
+            - cell "Building self-improving tax agents with Codex" [ref=e138]
+            - cell "rss" [ref=e139]:
+              - generic [ref=e140]: rss
+            - cell "general" [ref=e141]:
+              - generic [ref=e142]: general
+            - cell "beginner" [ref=e143]:
+              - generic [ref=e144]: beginner
+            - cell "2026-05-31 02:35" [ref=e145]
+          - row "Election information and safeguards in 2026 rss general beginner 2026-05-31 02:35" [ref=e146]:
+            - cell "Election information and safeguards in 2026" [ref=e147]
+            - cell "rss" [ref=e148]:
+              - generic [ref=e149]: rss
+            - cell "general" [ref=e150]:
+              - generic [ref=e151]: general
+            - cell "beginner" [ref=e152]:
+              - generic [ref=e153]: beginner
+            - cell "2026-05-31 02:35" [ref=e154]
+    - generic [ref=e155]:
+      - heading "快捷操作" [level=3] [ref=e157]
+      - generic [ref=e158]:
+        - link "管理数据源" [ref=e159] [cursor=pointer]:
+          - /url: /admin/sources
+        - link "进入审核队列" [ref=e160] [cursor=pointer]:
+          - /url: /admin/review
+        - link "浏览素材库" [ref=e161] [cursor=pointer]:
+          - /url: /admin/materials
+        - link "创建新素材" [ref=e162] [cursor=pointer]:
+          - /url: /admin/materials/new

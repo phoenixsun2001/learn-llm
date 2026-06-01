@@ -1,0 +1,63 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - generic [ref=e3]:
+      - heading "Learn-LLM Admin" [level=2] [ref=e4]
+      - generic [ref=e5]: v0.1.0
+    - navigation [ref=e6]:
+      - link "■ 仪表盘" [ref=e7] [cursor=pointer]:
+        - /url: /admin
+        - generic [ref=e8]: ■
+        - generic [ref=e9]: 仪表盘
+      - link "▦ 审核队列 1" [ref=e10] [cursor=pointer]:
+        - /url: /admin/review
+        - generic [ref=e11]: ▦
+        - generic [ref=e12]: 审核队列
+        - generic [ref=e13]: "1"
+      - link "☰ 素材库" [ref=e14] [cursor=pointer]:
+        - /url: /admin/materials
+        - generic [ref=e15]: ☰
+        - generic [ref=e16]: 素材库
+      - link "★ 源管理" [ref=e17] [cursor=pointer]:
+        - /url: /admin/sources
+        - generic [ref=e18]: ★
+        - generic [ref=e19]: 源管理
+    - link "← 退出登录" [ref=e21] [cursor=pointer]:
+      - /url: /admin/logout
+      - generic [ref=e22]: ←
+      - generic [ref=e23]: 退出登录
+  - main [ref=e24]:
+    - heading "审核队列 1" [level=1] [ref=e26]:
+      - text: 审核队列
+      - generic [ref=e27]: "1"
+    - generic [ref=e28]:
+      - generic [ref=e29]:
+        - heading "待审核项目" [level=3] [ref=e30]
+        - generic [ref=e31]: 1 项等待审核
+      - table [ref=e32]:
+        - rowgroup [ref=e33]:
+          - row "# 标题 来源 AI 分类 难度 日期 操作" [ref=e34]:
+            - columnheader "#" [ref=e35]
+            - columnheader "标题" [ref=e36]
+            - columnheader "来源" [ref=e37]
+            - columnheader "AI 分类" [ref=e38]
+            - columnheader "难度" [ref=e39]
+            - columnheader "日期" [ref=e40]
+            - columnheader "操作" [ref=e41]
+        - rowgroup [ref=e42]:
+          - row "3 Getting Started with Dify ▼ 展开预览 web tools beginner 2026-05-30 14:21 批准 拒绝 编辑" [ref=e43]:
+            - cell "3" [ref=e44]
+            - cell "Getting Started with Dify ▼ 展开预览" [ref=e45]:
+              - text: Getting Started with Dify
+              - text: ▼ 展开预览
+            - cell "web" [ref=e46]:
+              - generic [ref=e47]: web
+            - cell "tools" [ref=e48]:
+              - generic [ref=e49]: tools
+            - cell "beginner" [ref=e50]:
+              - generic [ref=e51]: beginner
+            - cell "2026-05-30 14:21" [ref=e52]
+            - cell "批准 拒绝 编辑" [ref=e53]:
+              - button "批准" [ref=e55] [cursor=pointer]: ✓ 批准
+              - button "拒绝" [ref=e57] [cursor=pointer]: × 拒绝
+              - link "编辑" [ref=e58] [cursor=pointer]:
+                - /url: /admin/review/3/edit

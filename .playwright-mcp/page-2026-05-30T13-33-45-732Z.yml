@@ -1,0 +1,163 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "返回首页" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: 🧠
+        - generic [ref=e8]: Learn AI
+      - navigation "主导航" [ref=e9]:
+        - link "学习路径" [ref=e10] [cursor=pointer]:
+          - /url: /pathways
+          - generic [ref=e11]: 🗺️
+          - generic [ref=e12]: 学习路径
+        - link "场景检索" [ref=e13] [cursor=pointer]:
+          - /url: /scenarios
+          - generic [ref=e14]: 🎯
+          - generic [ref=e15]: 场景检索
+        - link "工具向导" [ref=e16] [cursor=pointer]:
+          - /url: /tools
+          - generic [ref=e17]: 🛠️
+          - generic [ref=e18]: 工具向导
+        - link "教程库" [ref=e19] [cursor=pointer]:
+          - /url: /tutorials
+          - generic [ref=e20]: 📖
+          - generic [ref=e21]: 教程库
+      - search [ref=e22]:
+        - searchbox "搜索关键词" [ref=e23]
+        - button "执行搜索" [ref=e24] [cursor=pointer]:
+          - img [ref=e25]
+  - main [ref=e27]:
+    - generic [ref=e28]:
+      - generic [ref=e29]:
+        - heading "教程库" [level=1] [ref=e30]
+        - paragraph [ref=e31]: 系统化学习 AI 开发工具与实践。从基础概念到高级实战，按照分类和难度找到适合你的教程。
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - img
+          - textbox "搜索教程" [ref=e34]:
+            - /placeholder: 搜索教程...
+        - group "按分类筛选" [ref=e35]:
+          - button "分类：全部" [pressed] [ref=e36] [cursor=pointer]: 全部
+          - button "分类：模型基础" [ref=e37] [cursor=pointer]: 模型基础
+          - button "分类：Harness 工具" [ref=e38] [cursor=pointer]: Harness 工具
+          - button "分类：Workflow 工具" [ref=e39] [cursor=pointer]: Workflow 工具
+          - button "分类：开发框架" [ref=e40] [cursor=pointer]: 开发框架
+          - button "分类：最佳实践" [ref=e41] [cursor=pointer]: 最佳实践
+        - group "按难度筛选" [ref=e42]:
+          - button "难度：全部难度" [pressed] [ref=e43] [cursor=pointer]: 全部难度
+          - button "难度：入门" [ref=e44] [cursor=pointer]: 入门
+          - button "难度：进阶" [ref=e45] [cursor=pointer]: 进阶
+          - button "难度：精通" [ref=e46] [cursor=pointer]: 精通
+      - paragraph [ref=e47]: 5 篇教程
+      - generic [ref=e48]:
+        - link "Harness 工具 入门 Claude Code 入门指南 了解 Claude Code 的核心概念、工作原理和基本用法，为后续深入学习打下基础。 15 分钟 claude-code 入门" [ref=e49] [cursor=pointer]:
+          - /url: /tutorials/claude-code-intro
+          - generic [ref=e50]:
+            - generic [ref=e51]: Harness 工具
+            - generic [ref=e52]: 入门
+          - heading "Claude Code 入门指南" [level=3] [ref=e53]
+          - paragraph [ref=e54]: 了解 Claude Code 的核心概念、工作原理和基本用法，为后续深入学习打下基础。
+          - generic [ref=e55]:
+            - generic [ref=e56]:
+              - img [ref=e57]
+              - text: 15 分钟
+            - generic [ref=e60]:
+              - generic [ref=e61]: claude-code
+              - generic [ref=e62]: 入门
+        - link "Harness 工具 入门 Claude Code 安装与配置 手把手教你安装 Claude Code CLI，配置 API Key，完成首次运行。 20 分钟 claude-code 安装" [ref=e63] [cursor=pointer]:
+          - /url: /tutorials/claude-code-install
+          - generic [ref=e64]:
+            - generic [ref=e65]: Harness 工具
+            - generic [ref=e66]: 入门
+          - heading "Claude Code 安装与配置" [level=3] [ref=e67]
+          - paragraph [ref=e68]: 手把手教你安装 Claude Code CLI，配置 API Key，完成首次运行。
+          - generic [ref=e69]:
+            - generic [ref=e70]:
+              - img [ref=e71]
+              - text: 20 分钟
+            - generic [ref=e74]:
+              - generic [ref=e75]: claude-code
+              - generic [ref=e76]: 安装
+        - link "Harness 工具 入门 Claude Code 第一个项目 使用 Claude Code 完成第一个实际项目：从需求描述到代码生成，体验完整的 AI 辅助开发流程。 30 分钟 claude-code 实践" [ref=e77] [cursor=pointer]:
+          - /url: /tutorials/claude-code-first-use
+          - generic [ref=e78]:
+            - generic [ref=e79]: Harness 工具
+            - generic [ref=e80]: 入门
+          - heading "Claude Code 第一个项目" [level=3] [ref=e81]
+          - paragraph [ref=e82]: 使用 Claude Code 完成第一个实际项目：从需求描述到代码生成，体验完整的 AI 辅助开发流程。
+          - generic [ref=e83]:
+            - generic [ref=e84]:
+              - img [ref=e85]
+              - text: 30 分钟
+            - generic [ref=e88]:
+              - generic [ref=e89]: claude-code
+              - generic [ref=e90]: 实践
+        - link "Harness 工具 进阶 Claude Code 日常工作流 掌握 Claude Code 的日常使用技巧：代码审查、重构、调试、文档生成等高频场景。 25 分钟 claude-code 工作流" [ref=e91] [cursor=pointer]:
+          - /url: /tutorials/claude-code-daily
+          - generic [ref=e92]:
+            - generic [ref=e93]: Harness 工具
+            - generic [ref=e94]: 进阶
+          - heading "Claude Code 日常工作流" [level=3] [ref=e95]
+          - paragraph [ref=e96]: 掌握 Claude Code 的日常使用技巧：代码审查、重构、调试、文档生成等高频场景。
+          - generic [ref=e97]:
+            - generic [ref=e98]:
+              - img [ref=e99]
+              - text: 25 分钟
+            - generic [ref=e102]:
+              - generic [ref=e103]: claude-code
+              - generic [ref=e104]: 工作流
+        - link "Harness 工具 进阶 Claude Code Hooks 实战 深入学习 Claude Code 的 Hooks 机制，自动化你的开发工作流。 30 分钟 claude-code hooks 进阶" [ref=e105] [cursor=pointer]:
+          - /url: /tutorials/claude-code-hooks
+          - generic [ref=e106]:
+            - generic [ref=e107]: Harness 工具
+            - generic [ref=e108]: 进阶
+          - heading "Claude Code Hooks 实战" [level=3] [ref=e109]
+          - paragraph [ref=e110]: 深入学习 Claude Code 的 Hooks 机制，自动化你的开发工作流。
+          - generic [ref=e111]:
+            - generic [ref=e112]:
+              - img [ref=e113]
+              - text: 30 分钟
+            - generic [ref=e116]:
+              - generic [ref=e117]: claude-code
+              - generic [ref=e118]: hooks
+              - generic [ref=e119]: 进阶
+  - contentinfo [ref=e120]:
+    - generic [ref=e121]:
+      - generic [ref=e122]:
+        - link "返回首页" [ref=e123] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e124]: 🧠
+          - generic [ref=e125]: Learn AI
+        - paragraph [ref=e126]: 从零掌握大语言模型 — 系统化教程、实战场景、工具向导，一条通往 AI 前沿的学习路径。
+      - generic [ref=e127]:
+        - generic [ref=e128]:
+          - heading "学习" [level=4] [ref=e129]
+          - list [ref=e130]:
+            - listitem [ref=e131]:
+              - link "学习路径" [ref=e132] [cursor=pointer]:
+                - /url: /pathways
+            - listitem [ref=e133]:
+              - link "教程库" [ref=e134] [cursor=pointer]:
+                - /url: /tutorials
+            - listitem [ref=e135]:
+              - link "场景检索" [ref=e136] [cursor=pointer]:
+                - /url: /scenarios
+        - generic [ref=e137]:
+          - heading "工具" [level=4] [ref=e138]
+          - list [ref=e139]:
+            - listitem [ref=e140]:
+              - link "Claude Code" [ref=e141] [cursor=pointer]:
+                - /url: https://www.anthropic.com/claude-code
+            - listitem [ref=e142]:
+              - link "Dify" [ref=e143] [cursor=pointer]:
+                - /url: https://dify.ai
+        - generic [ref=e144]:
+          - heading "关于" [level=4] [ref=e145]
+          - list [ref=e146]:
+            - listitem [ref=e147]:
+              - link "关于我们" [ref=e148] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e149]:
+              - link "贡献指南" [ref=e150] [cursor=pointer]:
+                - /url: /about
+    - paragraph [ref=e152]: © 2026 Learn AI. 基于社区贡献构建。

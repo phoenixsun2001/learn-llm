@@ -1,0 +1,4 @@
+- generic [ref=e5]:
+  - generic [ref=e6]: ⚠
+  - heading "管理后台不可用" [level=2] [ref=e7]
+  - paragraph [ref=e8]: 管理后台需要配置 Supabase 才能使用。请参考项目文档完成 Supabase 配置后重试。

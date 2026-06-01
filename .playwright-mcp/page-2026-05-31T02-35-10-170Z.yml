@@ -1,0 +1,112 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - generic [ref=e3]:
+      - heading "Learn-LLM Admin" [level=2] [ref=e4]
+      - generic [ref=e5]: v0.1.0
+    - navigation [ref=e6]:
+      - link "■ 仪表盘" [ref=e7] [cursor=pointer]:
+        - /url: /admin
+        - generic [ref=e8]: ■
+        - generic [ref=e9]: 仪表盘
+      - link "▦ 审核队列" [ref=e10] [cursor=pointer]:
+        - /url: /admin/review
+        - generic [ref=e11]: ▦
+        - generic [ref=e12]: 审核队列
+      - link "☰ 素材库" [ref=e13] [cursor=pointer]:
+        - /url: /admin/materials
+        - generic [ref=e14]: ☰
+        - generic [ref=e15]: 素材库
+      - link "★ 源管理" [ref=e16] [cursor=pointer]:
+        - /url: /admin/sources
+        - generic [ref=e17]: ★
+        - generic [ref=e18]: 源管理
+    - link "← 退出登录" [ref=e20] [cursor=pointer]:
+      - /url: /admin/logout
+      - generic [ref=e21]: ←
+      - generic [ref=e22]: 退出登录
+  - main [ref=e23]:
+    - heading "源管理" [level=1] [ref=e25]
+    - generic [ref=e26]:
+      - heading "添加新源" [level=3] [ref=e28]
+      - generic [ref=e30]:
+        - generic [ref=e31]:
+          - generic [ref=e32]: 源名称
+          - textbox "源名称" [ref=e33]:
+            - /placeholder: "例如: anthropic_blog"
+        - generic [ref=e34]:
+          - generic [ref=e35]: RSS URL
+          - textbox "RSS URL" [ref=e36]:
+            - /placeholder: https://example.com/rss.xml
+        - generic [ref=e37]:
+          - generic [ref=e38]: 分类
+          - combobox "分类" [ref=e39]:
+            - option "general" [selected]
+            - option "llm"
+            - option "tutorials"
+            - option "research"
+            - option "tools"
+        - button "添加源" [ref=e41] [cursor=pointer]
+    - generic [ref=e42]:
+      - heading "已配置源 (4)" [level=3] [ref=e44]
+      - table [ref=e45]:
+        - rowgroup [ref=e46]:
+          - row "名称 URL 分类 状态 最近抓取 操作" [ref=e47]:
+            - columnheader "名称" [ref=e48]
+            - columnheader "URL" [ref=e49]
+            - columnheader "分类" [ref=e50]
+            - columnheader "状态" [ref=e51]
+            - columnheader "最近抓取" [ref=e52]
+            - columnheader "操作" [ref=e53]
+        - rowgroup [ref=e54]:
+          - row "anthropic_blog https://www.anthropic.com/blog/rss.xml general 启用 - 切换状态 手动抓取 删除" [ref=e55]:
+            - cell "anthropic_blog" [ref=e56]:
+              - strong [ref=e57]: anthropic_blog
+            - cell "https://www.anthropic.com/blog/rss.xml" [ref=e58]
+            - cell "general" [ref=e59]:
+              - generic [ref=e60]: general
+            - cell "启用" [ref=e61]:
+              - generic [ref=e62]: 启用
+            - cell "-" [ref=e63]
+            - cell "切换状态 手动抓取 删除" [ref=e64]:
+              - button "切换状态" [ref=e66] [cursor=pointer]: 禁用
+              - button "手动抓取" [ref=e68] [cursor=pointer]: 抓取
+              - button "删除" [ref=e70] [cursor=pointer]
+          - row "dify_blog https://dify.ai/blog/rss general 启用 - 切换状态 手动抓取 删除" [ref=e71]:
+            - cell "dify_blog" [ref=e72]:
+              - strong [ref=e73]: dify_blog
+            - cell "https://dify.ai/blog/rss" [ref=e74]
+            - cell "general" [ref=e75]:
+              - generic [ref=e76]: general
+            - cell "启用" [ref=e77]:
+              - generic [ref=e78]: 启用
+            - cell "-" [ref=e79]
+            - cell "切换状态 手动抓取 删除" [ref=e80]:
+              - button "切换状态" [ref=e82] [cursor=pointer]: 禁用
+              - button "手动抓取" [ref=e84] [cursor=pointer]: 抓取
+              - button "删除" [ref=e86] [cursor=pointer]
+          - row "langchain_blog https://blog.langchain.dev/rss/ general 启用 - 切换状态 手动抓取 删除" [ref=e87]:
+            - cell "langchain_blog" [ref=e88]:
+              - strong [ref=e89]: langchain_blog
+            - cell "https://blog.langchain.dev/rss/" [ref=e90]
+            - cell "general" [ref=e91]:
+              - generic [ref=e92]: general
+            - cell "启用" [ref=e93]:
+              - generic [ref=e94]: 启用
+            - cell "-" [ref=e95]
+            - cell "切换状态 手动抓取 删除" [ref=e96]:
+              - button "切换状态" [ref=e98] [cursor=pointer]: 禁用
+              - button "手动抓取" [ref=e100] [cursor=pointer]: 抓取
+              - button "删除" [ref=e102] [cursor=pointer]
+          - row "openai_blog https://openai.com/blog/rss.xml general 启用 - 切换状态 手动抓取 删除" [ref=e103]:
+            - cell "openai_blog" [ref=e104]:
+              - strong [ref=e105]: openai_blog
+            - cell "https://openai.com/blog/rss.xml" [ref=e106]
+            - cell "general" [ref=e107]:
+              - generic [ref=e108]: general
+            - cell "启用" [ref=e109]:
+              - generic [ref=e110]: 启用
+            - cell "-" [ref=e111]
+            - cell "切换状态 手动抓取 删除" [ref=e112]:
+              - button "切换状态" [ref=e114] [cursor=pointer]: 禁用
+              - button "手动抓取" [ref=e116] [cursor=pointer]: 抓取
+              - button "删除" [ref=e118] [cursor=pointer]

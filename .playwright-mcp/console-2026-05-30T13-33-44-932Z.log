@@ -1,0 +1,23 @@
+[     634ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5173/node_modules/.vite/deps/chunk-NUMECXU6.js?v=9772ba96:21550
+[     780ms] [WARNING] ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition. @ http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=9772ba96:4426
+[     780ms] [WARNING] ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath. @ http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=9772ba96:4426
+[  138123ms] [WARNING] No routes matched location "/pathways/beginner"  @ http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=9772ba96:208
+[  138124ms] [WARNING] No routes matched location "/pathways/beginner"  @ http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=9772ba96:208
+[  604509ms] [ERROR] SyntaxError: Identifier 'searchIndex' has already been declared @ http://localhost:5173/@vite/client:173
+[  604509ms] [ERROR] [hmr] Failed to reload /src/pages/Pathways/PathwayList.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:175
+[  604509ms] [ERROR] SyntaxError: Identifier 'searchIndex' has already been declared @ http://localhost:5173/@vite/client:173
+[  604509ms] [ERROR] [hmr] Failed to reload /src/pages/Tools/ToolList.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:175
+[  604509ms] [ERROR] SyntaxError: Identifier 'searchIndex' has already been declared @ http://localhost:5173/@vite/client:173
+[  604509ms] [ERROR] [hmr] Failed to reload /src/pages/Tutorials/TutorialDetail.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:175
+[  604509ms] [ERROR] SyntaxError: Identifier 'searchIndex' has already been declared @ http://localhost:5173/@vite/client:173
+[  604509ms] [ERROR] [hmr] Failed to reload /src/pages/Tutorials/TutorialList.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:175
+[  604509ms] [ERROR] SyntaxError: Identifier 'searchIndex' has already been declared @ http://localhost:5173/@vite/client:173
+[  604509ms] [ERROR] [hmr] Failed to reload /src/pages/Scenarios/ScenarioList.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:175
+[  604510ms] [ERROR] SyntaxError: Identifier 'searchIndex' has already been declared @ http://localhost:5173/@vite/client:173
+[  604510ms] [ERROR] [hmr] Failed to reload /src/pages/Tools/ToolDetail.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:175
+[  604511ms] [ERROR] SyntaxError: Identifier 'searchIndex' has already been declared @ http://localhost:5173/@vite/client:173
+[  604511ms] [ERROR] [hmr] Failed to reload /src/components/TutorialRenderer/TutorialRenderer.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:175
+[  604511ms] [ERROR] SyntaxError: Identifier 'searchIndex' has already been declared @ http://localhost:5173/@vite/client:173
+[  604511ms] [ERROR] [hmr] Failed to reload /src/pages/Pathways/PathwayDetail.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:175
+[  604511ms] [ERROR] SyntaxError: Identifier 'searchIndex' has already been declared @ http://localhost:5173/@vite/client:173
+[  604511ms] [ERROR] [hmr] Failed to reload /src/pages/Scenarios/ScenarioDetail.jsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:175

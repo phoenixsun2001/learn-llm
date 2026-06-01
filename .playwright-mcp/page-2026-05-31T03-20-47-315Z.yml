@@ -1,0 +1,42 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - banner [ref=e6]:
+      - generic [ref=e7]:
+        - link "Supabase" [ref=e9] [cursor=pointer]:
+          - /url: /dashboard/org/wbfhwyjjapcdqsruslec
+          - img "Supabase" [ref=e10]
+        - generic [ref=e11]:
+          - generic [ref=e13] [cursor=pointer]: Feedback
+          - generic [ref=e14]:
+            - button "Search..." [ref=e15]:
+              - generic [ref=e16]:
+                - img [ref=e17]
+                - paragraph [ref=e20]: Search...
+              - generic [ref=e22]: Ctrl K
+            - button "Help" [ref=e23] [cursor=pointer]:
+              - generic [ref=e24]:
+                - img [ref=e25]
+                - generic [ref=e28]: Help
+            - button "Advisor Center" [ref=e30] [cursor=pointer]:
+              - generic [ref=e31]:
+                - img [ref=e32]
+                - generic [ref=e34]: Advisor Center
+          - button [ref=e35] [cursor=pointer]:
+            - img [ref=e38]
+    - generic [ref=e40]:
+      - button "Sidebar control" [ref=e48] [cursor=pointer]:
+        - img [ref=e50]
+      - generic [ref=e57]:
+        - generic [ref=e61]:
+          - heading "Integrations" [level=4] [ref=e63]
+          - generic [ref=e64]:
+            - menu "Sidebar" [disabled] [ref=e66]:
+              - list [ref=e67]:
+                - generic [ref=e69]: Explore
+            - menu "Sidebar" [disabled] [ref=e75]:
+              - list [ref=e76]:
+                - generic [ref=e78]: Installed
+        - separator [disabled] [ref=e83]:
+          - img [ref=e85]
+        - main [ref=e94]
+  - alert [ref=e95]

@@ -1,0 +1,88 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - generic [ref=e3]:
+      - heading "Learn-LLM Admin" [level=2] [ref=e4]
+      - generic [ref=e5]: v0.1.0
+    - navigation [ref=e6]:
+      - link "■ 仪表盘" [ref=e7] [cursor=pointer]:
+        - /url: /admin
+        - generic [ref=e8]: ■
+        - generic [ref=e9]: 仪表盘
+      - link "▦ 审核队列 1" [ref=e10] [cursor=pointer]:
+        - /url: /admin/review
+        - generic [ref=e11]: ▦
+        - generic [ref=e12]: 审核队列
+        - generic [ref=e13]: "1"
+      - link "☰ 素材库" [ref=e14] [cursor=pointer]:
+        - /url: /admin/materials
+        - generic [ref=e15]: ☰
+        - generic [ref=e16]: 素材库
+      - link "★ 源管理" [ref=e17] [cursor=pointer]:
+        - /url: /admin/sources
+        - generic [ref=e18]: ★
+        - generic [ref=e19]: 源管理
+    - link "← 退出登录" [ref=e21] [cursor=pointer]:
+      - /url: /admin/logout
+      - generic [ref=e22]: ←
+      - generic [ref=e23]: 退出登录
+  - main [ref=e24]:
+    - heading "仪表盘" [level=1] [ref=e26]
+    - generic [ref=e27]:
+      - generic [ref=e28]:
+        - generic [ref=e29]:
+          - generic [ref=e30]: 待审核
+          - generic [ref=e31]: ▦
+        - generic [ref=e32]: "1"
+        - generic [ref=e33]: 待处理的审阅项
+      - generic [ref=e34]:
+        - generic [ref=e35]:
+          - generic [ref=e36]: 素材总数
+          - generic [ref=e37]: ☰
+        - generic [ref=e38]: "2"
+        - generic [ref=e39]: 已发布和草稿
+      - generic [ref=e40]:
+        - generic [ref=e41]:
+          - generic [ref=e42]: 活跃源
+          - generic [ref=e43]: ★
+        - generic [ref=e44]: 4 / 4
+        - generic [ref=e45]: 活跃 / 总计 RSS 源
+      - generic [ref=e46]:
+        - generic [ref=e47]:
+          - generic [ref=e48]: 最近抓取
+          - generic [ref=e49]: ⌚
+        - generic [ref=e50]: 暂无
+        - generic [ref=e51]: 最近一次数据抓取
+    - generic [ref=e52]:
+      - generic [ref=e53]:
+        - heading "最近待审阅项" [level=3] [ref=e54]
+        - link "查看全部 →" [ref=e55] [cursor=pointer]:
+          - /url: /admin/review
+      - table [ref=e56]:
+        - rowgroup [ref=e57]:
+          - row "标题 来源 AI 分类 难度 创建时间" [ref=e58]:
+            - columnheader "标题" [ref=e59]
+            - columnheader "来源" [ref=e60]
+            - columnheader "AI 分类" [ref=e61]
+            - columnheader "难度" [ref=e62]
+            - columnheader "创建时间" [ref=e63]
+        - rowgroup [ref=e64]:
+          - row "Getting Started with Dify web tools beginner 2026-05-30 14:21" [ref=e65]:
+            - cell "Getting Started with Dify" [ref=e66]
+            - cell "web" [ref=e67]:
+              - generic [ref=e68]: web
+            - cell "tools" [ref=e69]:
+              - generic [ref=e70]: tools
+            - cell "beginner" [ref=e71]:
+              - generic [ref=e72]: beginner
+            - cell "2026-05-30 14:21" [ref=e73]
+    - generic [ref=e74]:
+      - heading "快捷操作" [level=3] [ref=e76]
+      - generic [ref=e77]:
+        - link "管理数据源" [ref=e78] [cursor=pointer]:
+          - /url: /admin/sources
+        - link "进入审核队列" [ref=e79] [cursor=pointer]:
+          - /url: /admin/review
+        - link "浏览素材库" [ref=e80] [cursor=pointer]:
+          - /url: /admin/materials
+        - link "创建新素材" [ref=e81] [cursor=pointer]:
+          - /url: /admin/materials/new

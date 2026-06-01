@@ -1,0 +1,115 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "返回首页" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: 🧠
+        - generic [ref=e8]: Learn AI
+      - navigation "主导航" [ref=e9]:
+        - link "学习路径" [ref=e10] [cursor=pointer]:
+          - /url: /pathways
+          - generic [ref=e11]: 🗺️
+          - generic [ref=e12]: 学习路径
+        - link "场景检索" [ref=e13] [cursor=pointer]:
+          - /url: /scenarios
+          - generic [ref=e14]: 🎯
+          - generic [ref=e15]: 场景检索
+        - link "工具向导" [ref=e16] [cursor=pointer]:
+          - /url: /tools
+          - generic [ref=e17]: 🛠️
+          - generic [ref=e18]: 工具向导
+        - link "教程库" [ref=e19] [cursor=pointer]:
+          - /url: /tutorials
+          - generic [ref=e20]: 📖
+          - generic [ref=e21]: 教程库
+      - search [ref=e22]:
+        - searchbox "搜索关键词" [ref=e23]
+        - button "执行搜索" [ref=e24] [cursor=pointer]:
+          - img [ref=e25]
+  - main [ref=e27]:
+    - generic [ref=e28]:
+      - navigation "面包屑导航" [ref=e29]:
+        - link "首页" [ref=e30] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e31]: ›
+        - link "场景检索" [ref=e32] [cursor=pointer]:
+          - /url: /scenarios
+        - generic [ref=e33]: ›
+        - generic [ref=e34]: 使用 AI 进行代码审查
+      - generic [ref=e35]:
+        - heading "使用 AI 进行代码审查" [level=1] [ref=e36]
+        - generic [ref=e37]:
+          - generic [ref=e38]: 🎯
+          - paragraph [ref=e39]: 我想自动化代码审查
+        - paragraph [ref=e40]: 自动化代码审查流程，提升代码质量和团队协作效率。
+      - region "流程可视化" [ref=e41]:
+        - heading "执行流程" [level=2] [ref=e42]
+        - generic [ref=e43]:
+          - generic [ref=e44]: 开发者提交 PR
+          - img [ref=e45]
+          - generic [ref=e47]: Claude Code 自动审查
+          - img [ref=e48]
+          - generic [ref=e50]: 生成 Review 意见
+          - img [ref=e51]
+          - generic [ref=e53]: 开发者修改
+      - region "推荐工具" [ref=e54]:
+        - heading "推荐工具" [level=2] [ref=e55]
+        - link "Claude Code Anthropic 官方 CLI 编码助手，在终端中直接与 Claude 协作，支持代码生成、审查、重构等全流程。 查看工具 →" [ref=e57] [cursor=pointer]:
+          - /url: /tools/claude-code
+          - heading "Claude Code" [level=3] [ref=e58]
+          - paragraph [ref=e59]: Anthropic 官方 CLI 编码助手，在终端中直接与 Claude 协作，支持代码生成、审查、重构等全流程。
+          - generic [ref=e60]: 查看工具 →
+      - region "学习路径" [ref=e61]:
+        - heading "学习路径" [level=2] [ref=e62]
+        - list [ref=e63]:
+          - listitem [ref=e64]:
+            - generic [ref=e66]: "1"
+            - generic [ref=e67]:
+              - link "Claude Code 日常工作流" [ref=e68] [cursor=pointer]:
+                - /url: /tutorials/claude-code-daily
+              - paragraph [ref=e69]: 掌握 Claude Code 的日常使用技巧：代码审查、重构、调试、文档生成等高频场景。
+              - generic [ref=e70]:
+                - generic [ref=e71]:
+                  - img [ref=e72]
+                  - text: 25 分钟
+                - generic [ref=e75]: 进阶
+  - contentinfo [ref=e76]:
+    - generic [ref=e77]:
+      - generic [ref=e78]:
+        - link "返回首页" [ref=e79] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e80]: 🧠
+          - generic [ref=e81]: Learn AI
+        - paragraph [ref=e82]: 从零掌握大语言模型 — 系统化教程、实战场景、工具向导，一条通往 AI 前沿的学习路径。
+      - generic [ref=e83]:
+        - generic [ref=e84]:
+          - heading "学习" [level=4] [ref=e85]
+          - list [ref=e86]:
+            - listitem [ref=e87]:
+              - link "学习路径" [ref=e88] [cursor=pointer]:
+                - /url: /pathways
+            - listitem [ref=e89]:
+              - link "教程库" [ref=e90] [cursor=pointer]:
+                - /url: /tutorials
+            - listitem [ref=e91]:
+              - link "场景检索" [ref=e92] [cursor=pointer]:
+                - /url: /scenarios
+        - generic [ref=e93]:
+          - heading "工具" [level=4] [ref=e94]
+          - list [ref=e95]:
+            - listitem [ref=e96]:
+              - link "Claude Code" [ref=e97] [cursor=pointer]:
+                - /url: https://www.anthropic.com/claude-code
+            - listitem [ref=e98]:
+              - link "Dify" [ref=e99] [cursor=pointer]:
+                - /url: https://dify.ai
+        - generic [ref=e100]:
+          - heading "关于" [level=4] [ref=e101]
+          - list [ref=e102]:
+            - listitem [ref=e103]:
+              - link "关于我们" [ref=e104] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e105]:
+              - link "贡献指南" [ref=e106] [cursor=pointer]:
+                - /url: /about
+    - paragraph [ref=e108]: © 2026 Learn AI. 基于社区贡献构建。

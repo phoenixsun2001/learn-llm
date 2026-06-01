@@ -1,0 +1,54 @@
+[    2213ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5230/node_modules/.vite/deps/chunk-NUMECXU6.js?v=e6183703:21550
+[    2513ms] [WARNING] ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition. @ http://localhost:5230/node_modules/.vite/deps/react-router-dom.js?v=e6183703:4426
+[    2513ms] [WARNING] ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath. @ http://localhost:5230/node_modules/.vite/deps/react-router-dom.js?v=e6183703:4426
+[78505146ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5230/node_modules/.vite/deps/chunk-NUMECXU6.js?v=e6183703:21550
+[78505400ms] [WARNING] ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition. @ http://localhost:5230/node_modules/.vite/deps/react-router-dom.js?v=e6183703:4426
+[78505401ms] [WARNING] ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath. @ http://localhost:5230/node_modules/.vite/deps/react-router-dom.js?v=e6183703:4426
+[78574425ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5230/node_modules/.vite/deps/chunk-NUMECXU6.js?v=e6183703:21550
+[78574567ms] [WARNING] ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition. @ http://localhost:5230/node_modules/.vite/deps/react-router-dom.js?v=e6183703:4426
+[78574567ms] [WARNING] ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath. @ http://localhost:5230/node_modules/.vite/deps/react-router-dom.js?v=e6183703:4426
+[78609877ms] [ERROR] Warning: validateDOMNesting(...): %s cannot appear as a descendant of <%s>.%s <div> p 
+    at div
+    at div
+    at div
+    at code (http://localhost:5230/src/components/TutorialRenderer/TutorialRenderer.jsx:206:12)
+    at p
+    at blockquote
+    at Markdown (http://localhost:5230/node_modules/.vite/deps/react-markdown.js?v=e6183703:7105:21)
+    at div
+    at article
+    at TutorialRenderer (http://localhost:5230/src/components/TutorialRenderer/TutorialRenderer.jsx:101:29)
+    at div
+    at TutorialDetail (http://localhost:5230/src/pages/Tutorials/TutorialDetail.jsx:25:20)
+    at RenderedRoute (http://localhost:5230/node_modules/.vite/deps/react-router-dom.js?v=e6183703:4122:5)
+    at Routes (http://localhost:5230/node_modules/.vite/deps/react-router-dom.js?v=e6183703:4592:5)
+    at main
+    at RenderedRoute (http://localhost:5230/node_modules/.vite/deps/react-router-dom.js?v=e6183703:4122:5)
+    at Routes (http://localhost:5230/node_modules/.vite/deps/react-router-dom.js?v=e6183703:4592:5)
+    at div
+    at ErrorBoundary (http://localhost:5230/src/components/ErrorBoundary.jsx:7:5)
+    at App
+    at Router (http://localhost:5230/node_modules/.vite/deps/react-router-dom.js?v=e6183703:4535:15)
+    at BrowserRouter (http://localhost:5230/node_modules/.vite/deps/react-router-dom.js?v=e6183703:5273:5) @ http://localhost:5230/node_modules/.vite/deps/chunk-NUMECXU6.js?v=e6183703:520
+[78609878ms] [ERROR] Warning: validateDOMNesting(...): %s cannot appear as a descendant of <%s>.%s <pre> p 
+    at pre
+    at div
+    at code (http://localhost:5230/src/components/TutorialRenderer/TutorialRenderer.jsx:206:12)
+    at p
+    at blockquote
+    at Markdown (http://localhost:5230/node_modules/.vite/deps/react-markdown.js?v=e6183703:7105:21)
+    at div
+    at article
+    at TutorialRenderer (http://localhost:5230/src/components/TutorialRenderer/TutorialRenderer.jsx:101:29)
+    at div
+    at TutorialDetail (http://localhost:5230/src/pages/Tutorials/TutorialDetail.jsx:25:20)
+    at RenderedRoute (http://localhost:5230/node_modules/.vite/deps/react-router-dom.js?v=e6183703:4122:5)
+    at Routes (http://localhost:5230/node_modules/.vite/deps/react-router-dom.js?v=e6183703:4592:5)
+    at main
+    at RenderedRoute (http://localhost:5230/node_modules/.vite/deps/react-router-dom.js?v=e6183703:4122:5)
+    at Routes (http://localhost:5230/node_modules/.vite/deps/react-router-dom.js?v=e6183703:4592:5)
+    at div
+    at ErrorBoundary (http://localhost:5230/src/components/ErrorBoundary.jsx:7:5)
+    at App
+    at Router (http://localhost:5230/node_modules/.vite/deps/react-router-dom.js?v=e6183703:4535:15)
+    at BrowserRouter (http://localhost:5230/node_modules/.vite/deps/react-router-dom.js?v=e6183703:5273:5) @ http://localhost:5230/node_modules/.vite/deps/chunk-NUMECXU6.js?v=e6183703:520

@@ -1,0 +1,144 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner "Global Navigation Menu" [ref=e8]:
+      - generic [ref=e9]:
+        - generic [ref=e10]:
+          - button "Open menu" [ref=e12] [cursor=pointer]:
+            - img [ref=e13]
+          - link "Homepage (g then d)" [ref=e15] [cursor=pointer]:
+            - /url: /
+            - img [ref=e16]
+        - generic [ref=e18]:
+          - navigation "Breadcrumbs" [ref=e19]:
+            - list [ref=e20]:
+              - listitem [ref=e21]:
+                - link "Settings" [ref=e22] [cursor=pointer]:
+                  - /url: /settings/profile
+                  - generic [ref=e23]: Settings
+              - listitem [ref=e24]:
+                - link "Developer Settings" [ref=e25] [cursor=pointer]:
+                  - /url: /settings/apps
+                  - generic [ref=e26]: Developer Settings
+          - button "Search or jump to…" [ref=e29] [cursor=pointer]:
+            - generic [ref=e30]:
+              - generic:
+                - img
+              - generic [ref=e31]:
+                - generic:
+                  - text: Type
+                  - generic: /
+                  - text: to search
+        - generic [ref=e32]:
+          - generic [ref=e33]:
+            - generic [ref=e36]:
+              - link "Chat with Copilot" [ref=e38] [cursor=pointer]:
+                - /url: /copilot
+                - img [ref=e39]
+              - button "Open Copilot…" [ref=e43] [cursor=pointer]:
+                - generic:
+                  - img
+            - button "Create new..." [ref=e45] [cursor=pointer]:
+              - generic [ref=e46]:
+                - generic:
+                  - img
+              - generic:
+                - img
+            - generic [ref=e47]:
+              - link "All issues (g then i)" [ref=e48] [cursor=pointer]:
+                - /url: /issues
+                - img [ref=e49]
+              - link "All pull requests (g then p)" [ref=e52] [cursor=pointer]:
+                - /url: /pulls
+                - img [ref=e53]
+              - link "All repositories" [ref=e55] [cursor=pointer]:
+                - /url: /repos
+                - img [ref=e56]
+          - link "You have no unread notifications (g then n)" [ref=e58] [cursor=pointer]:
+            - /url: /notifications
+            - img [ref=e59]
+          - button "Open user navigation menu" [ref=e62] [cursor=pointer]:
+            - img "User avatar" [ref=e63]
+  - main [ref=e66]:
+    - generic [ref=e69]:
+      - heading "Register a new OAuth app" [level=2] [ref=e71]
+      - form "Register a new OAuth app" [ref=e72]:
+        - generic [ref=e73]:
+          - term [ref=e74]: Application name*
+          - definition [ref=e75]:
+            - textbox "Application name*" [active] [ref=e76]
+            - paragraph [ref=e77]: Something users will recognize and trust.
+        - generic [ref=e78]:
+          - term [ref=e79]: Homepage URL*
+          - definition [ref=e80]:
+            - textbox "Homepage URL*" [ref=e81]
+            - paragraph [ref=e82]: The full URL to your application homepage.
+        - generic [ref=e83]:
+          - term [ref=e84]: Application description
+          - definition [ref=e85]:
+            - textbox "Application description" [ref=e86]:
+              - /placeholder: Application description is optional
+            - paragraph [ref=e87]: This is displayed to all users of your application.
+        - generic [ref=e88]:
+          - term [ref=e89]: Authorization callback URL*
+          - definition [ref=e90]:
+            - textbox "Authorization callback URL*" [ref=e91]
+            - paragraph [ref=e92]:
+              - text: Your application’s callback URL. Read our
+              - link "OAuth documentation" [ref=e93] [cursor=pointer]:
+                - /url: https://docs.github.com/v3/oauth/
+              - text: for more information.
+        - generic [ref=e94]:
+          - term [ref=e95]:
+            - generic [ref=e96]:
+              - checkbox [ref=e97]
+              - text: Enable Device Flow
+          - definition [ref=e98]:
+            - paragraph [ref=e99]: Allow this OAuth App to authorize users via the Device Flow.
+            - paragraph [ref=e100]:
+              - text: Read the
+              - link "Device Flow documentation" [ref=e101] [cursor=pointer]:
+                - /url: https://docs.github.com/apps/building-oauth-apps/authorizing-oauth-apps#device-flow
+              - text: for more information.
+        - separator [ref=e102]
+        - paragraph [ref=e103]:
+          - button "Register application" [ref=e104] [cursor=pointer]
+          - link "Cancel" [ref=e105] [cursor=pointer]:
+            - /url: /settings/developers
+  - contentinfo [ref=e106]:
+    - heading "Footer" [level=2] [ref=e107]
+    - generic [ref=e108]:
+      - generic [ref=e109]:
+        - link "GitHub Homepage" [ref=e110] [cursor=pointer]:
+          - /url: https://github.com
+          - img [ref=e111]
+        - generic [ref=e113]: © 2026 GitHub, Inc.
+      - navigation "Footer" [ref=e114]:
+        - heading "Footer navigation" [level=3] [ref=e115]
+        - list "Footer navigation" [ref=e116]:
+          - listitem [ref=e117]:
+            - link "Terms" [ref=e118] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+          - listitem [ref=e119]:
+            - link "Privacy" [ref=e120] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+          - listitem [ref=e121]:
+            - link "Security" [ref=e122] [cursor=pointer]:
+              - /url: https://github.com/security
+          - listitem [ref=e123]:
+            - link "Status" [ref=e124] [cursor=pointer]:
+              - /url: https://www.githubstatus.com/
+          - listitem [ref=e125]:
+            - link "Community" [ref=e126] [cursor=pointer]:
+              - /url: https://github.community/
+          - listitem [ref=e127]:
+            - link "Docs" [ref=e128] [cursor=pointer]:
+              - /url: https://docs.github.com/
+          - listitem [ref=e129]:
+            - link "Contact" [ref=e130] [cursor=pointer]:
+              - /url: https://support.github.com?tags=dotcom-footer
+          - listitem [ref=e131]:
+            - button "Manage cookies" [ref=e133] [cursor=pointer]
+          - listitem [ref=e134]:
+            - button "Do not share my personal information" [ref=e136] [cursor=pointer]

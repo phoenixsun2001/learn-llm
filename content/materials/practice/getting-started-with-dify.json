@@ -1,0 +1,21 @@
+{
+  "id": "mat-2026-001",
+  "title": "Getting Started with Dify",
+  "source": {
+    "type": "web",
+    "url": "https://example.com/dify",
+    "name": "web",
+    "author": "",
+    "published_at": ""
+  },
+  "ai_processed": {
+    "summary": "Dify intro tutorial",
+    "category": "practice",
+    "subcategory": "",
+    "difficulty": "beginner",
+    "tags": [],
+    "quality_score": null
+  },
+  "review_status": "pending",
+  "created_at": "2026-05-31T10:34:25.166391"
+}

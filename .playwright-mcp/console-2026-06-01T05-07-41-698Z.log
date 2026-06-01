@@ -1,0 +1,38 @@
+[    2198ms] [ERROR] Access to fetch at 'http://localhost:8400/admin' from origin 'http://localhost' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost/admin/materials:0
+[    2198ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8400/admin:0
+[    3874ms] [ERROR] Access to fetch at 'http://localhost:8400/admin' from origin 'http://localhost' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost/admin/materials:0
+[    3874ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8400/admin:0
+[    6817ms] [ERROR] Access to fetch at 'http://localhost:8400/admin' from origin 'http://localhost' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost/admin/materials:0
+[    6817ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8400/admin:0
+[    7276ms] [ERROR] Access to fetch at 'http://localhost:8400/admin' from origin 'http://localhost' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost/admin/materials:0
+[    7276ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8400/admin:0
+[    7990ms] [ERROR] Access to fetch at 'http://localhost:8400/admin' from origin 'http://localhost' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost/admin/materials:0
+[    7990ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8400/admin:0
+[   47910ms] [ERROR] Access to fetch at 'http://localhost:8400/admin' from origin 'http://localhost' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost/admin/materials:0
+[   47910ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8400/admin:0
+[   49139ms] [ERROR] Access to fetch at 'http://localhost:8400/admin' from origin 'http://localhost' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost/admin/materials:0
+[   49139ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8400/admin:0
+[   49652ms] [ERROR] Access to fetch at 'http://localhost:8400/admin' from origin 'http://localhost' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost/admin/materials:0
+[   49652ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8400/admin:0
+[   50065ms] [ERROR] Access to fetch at 'http://localhost:8400/admin' from origin 'http://localhost' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost/admin/materials:0
+[   50065ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8400/admin:0
+[   50513ms] [ERROR] Access to fetch at 'http://localhost:8400/admin' from origin 'http://localhost' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost/admin/materials:0
+[   50513ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8400/admin:0
+[   55362ms] [ERROR] Access to fetch at 'http://localhost:8400/admin' from origin 'http://localhost' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost/admin/materials:0
+[   55362ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8400/admin:0
+[   57432ms] [ERROR] Access to fetch at 'http://localhost:8400/admin' from origin 'http://localhost' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost/admin/materials:0
+[   57432ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8400/admin:0
+[   58275ms] [ERROR] Access to fetch at 'http://localhost:8400/admin' from origin 'http://localhost' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost/admin/materials:0
+[   58276ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8400/admin:0
+[   58741ms] [ERROR] Access to fetch at 'http://localhost:8400/admin' from origin 'http://localhost' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost/admin/materials:0
+[   58741ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8400/admin:0
+[   58909ms] [ERROR] Access to fetch at 'http://localhost:8400/admin' from origin 'http://localhost' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost/admin/materials:0
+[   58909ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8400/admin:0
+[   59073ms] [ERROR] Access to fetch at 'http://localhost:8400/admin' from origin 'http://localhost' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost/admin/materials:0
+[   59074ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8400/admin:0
+[   59234ms] [ERROR] Access to fetch at 'http://localhost:8400/admin' from origin 'http://localhost' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost/admin/materials:0
+[   59234ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8400/admin:0
+[   59400ms] [ERROR] Access to fetch at 'http://localhost:8400/admin' from origin 'http://localhost' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost/admin/materials:0
+[   59400ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8400/admin:0
+[   59553ms] [ERROR] Access to fetch at 'http://localhost:8400/admin' from origin 'http://localhost' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost/admin/materials:0
+[   59553ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8400/admin:0

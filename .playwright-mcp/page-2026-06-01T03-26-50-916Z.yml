@@ -1,0 +1,10 @@
+- generic [ref=e2]:
+  - heading "Learn-LLM Admin" [level=1] [ref=e3]
+  - paragraph [ref=e4]: 请输入管理员 Token 登录
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e7]: Admin Token
+      - textbox "Admin Token" [active] [ref=e8]:
+        - /placeholder: 输入访问令牌...
+        - text: learn-llm-admin
+    - button "登录" [ref=e9] [cursor=pointer]

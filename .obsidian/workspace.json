@@ -1,0 +1,223 @@
+{
+  "main": {
+    "id": "db3fff6c758ef80d",
+    "type": "split",
+    "children": [
+      {
+        "id": "f244102d69be45a2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "53945c22f180c278",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "README"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "696eda82994a5bd6",
+    "type": "split",
+    "children": [
+      {
+        "id": "3e11a65fed8f10e4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "db4a2d01b6c0edb7",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "4f048d64ba4a38ad",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "217a45f3a7616ce0",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "648eaf98b90b127e",
+    "type": "split",
+    "children": [
+      {
+        "id": "7ed58eaa2a24bcac",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1cba5758ff65d7ed",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "README.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "README 的反向链接列表"
+            }
+          },
+          {
+            "id": "22a22b8ca0099145",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "README.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "README 的出链列表"
+            }
+          },
+          {
+            "id": "3a160948f13617be",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "0025c8b13d627827",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "531a9c990701af87",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "README.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "README 的大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false
+    }
+  },
+  "active": "53945c22f180c278",
+  "lastOpenFiles": [
+    "pipeline/data/admin.db-shm",
+    "pipeline/data/admin.db-wal",
+    "frontend/dist/assets/index-CJRnxymo.css",
+    "frontend/dist/assets/index-BYAyM3ca.js",
+    "frontend/dist/assets",
+    "frontend/dist/content/tutorials/harness/claude-code-intro.md",
+    "frontend/dist/content/tutorials/harness/claude-code-install.md",
+    "frontend/dist/content/tutorials/harness/claude-code-hooks.md",
+    "frontend/dist/content/tutorials/harness/claude-code-first-use.md",
+    "frontend/dist/content/tutorials/harness/claude-code-daily.md",
+    "frontend/dist/content/tutorials/harness",
+    "frontend/dist/content/tutorials",
+    "frontend/dist/favicon.svg",
+    "frontend/dist/index.html",
+    "frontend/dist/content",
+    "frontend/dist",
+    "frontend/vite.config.js.timestamp-1780297140253-45ab4fb3d5d44.mjs",
+    "docs/superpowers/plans/2026-05-31-material-import-wizard.md",
+    "CONTRIBUTING.md",
+    "README.md",
+    "frontend/build/content/tutorials/harness/claude-code-intro.md",
+    "frontend/build/content/tutorials/harness/claude-code-install.md",
+    "frontend/build/content/tutorials/harness/claude-code-hooks.md",
+    "frontend/build/content/tutorials/harness/claude-code-first-use.md",
+    "frontend/build/content/tutorials/harness/claude-code-daily.md",
+    "docs/superpowers/specs/2026-05-30-improvement-backlog.md",
+    "docs/superpowers/specs/2026-05-30-ai-learning-platform-design.md",
+    "docs/superpowers/plans/2026-05-30-phase-5-polish.md",
+    "docs/superpowers/plans/2026-05-30-phase-4-user-system.md",
+    "docs/superpowers/plans/2026-05-30-phase-3-content-pipeline.md",
+    "docs/superpowers/plans/2026-05-30-phase-2-three-entries.md",
+    "docs/superpowers/plans/2026-05-30-phase-1-mvp-implementation.md",
+    "content/materials/practice/a-shared-playbook-for-trustworthy-third-party-evaluations.md",
+    "content/materials/llm_basics/understanding-transformer-architecture.md"
+  ]
+}

@@ -1,0 +1,113 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "返回首页" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: 🧠
+        - generic [ref=e8]: Learn AI
+      - navigation "主导航" [ref=e9]:
+        - link "学习路径" [ref=e10] [cursor=pointer]:
+          - /url: /pathways
+          - generic [ref=e11]: 🗺️
+          - generic [ref=e12]: 学习路径
+        - link "场景检索" [ref=e13] [cursor=pointer]:
+          - /url: /scenarios
+          - generic [ref=e14]: 🎯
+          - generic [ref=e15]: 场景检索
+        - link "工具向导" [ref=e16] [cursor=pointer]:
+          - /url: /tools
+          - generic [ref=e17]: 🛠️
+          - generic [ref=e18]: 工具向导
+        - link "教程库" [ref=e19] [cursor=pointer]:
+          - /url: /tutorials
+          - generic [ref=e20]: 📖
+          - generic [ref=e21]: 教程库
+      - search [ref=e22]:
+        - searchbox "搜索关键词" [ref=e23]
+        - button "执行搜索" [ref=e24] [cursor=pointer]:
+          - img [ref=e25]
+  - main [ref=e27]:
+    - generic [ref=e28]:
+      - navigation "面包屑导航" [ref=e29]:
+        - link "首页" [ref=e30] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e31]: /
+        - link "学习路径" [ref=e32] [cursor=pointer]:
+          - /url: /pathways
+        - generic [ref=e33]: /
+        - generic [ref=e34]: 🌱 AI 入门之路
+      - generic [ref=e35]:
+        - generic [ref=e36]: 🌱
+        - heading "🌱 AI 入门之路" [level=1] [ref=e37]
+        - paragraph [ref=e38]: 面向 AI 初学者，从基础概念到第一个 AI 工具实战。
+        - generic [ref=e39]:
+          - generic [ref=e40]: 入门
+          - generic [ref=e41]: 3 个教程
+      - region "总体进度" [ref=e42]:
+        - generic [ref=e43]:
+          - generic [ref=e44]: 学习进度：0/3 完成
+          - generic [ref=e45]: 0%
+        - progressbar [ref=e46]
+      - region "教程步骤" [ref=e47]:
+        - list [ref=e48]:
+          - listitem [ref=e49]:
+            - generic [ref=e51]: "1"
+            - generic [ref=e52]:
+              - link "Claude Code 入门指南" [ref=e53] [cursor=pointer]:
+                - /url: /tutorials/claude-code-intro
+              - paragraph [ref=e54]: 了解 Claude Code 的核心概念、工作原理和基本用法，为后续深入学习打下基础。
+              - generic [ref=e56]: ⏱ 15 分钟
+          - listitem [ref=e57]:
+            - generic [ref=e59]: "2"
+            - generic [ref=e60]:
+              - link "Claude Code 安装与配置" [ref=e61] [cursor=pointer]:
+                - /url: /tutorials/claude-code-install
+              - paragraph [ref=e62]: 手把手教你安装 Claude Code CLI，配置 API Key，完成首次运行。
+              - generic [ref=e64]: ⏱ 20 分钟
+          - listitem [ref=e65]:
+            - generic [ref=e67]: "3"
+            - generic [ref=e68]:
+              - link "Claude Code 第一个项目" [ref=e69] [cursor=pointer]:
+                - /url: /tutorials/claude-code-first-use
+              - paragraph [ref=e70]: 使用 Claude Code 完成第一个实际项目：从需求描述到代码生成，体验完整的 AI 辅助开发流程。
+              - generic [ref=e72]: ⏱ 30 分钟
+  - contentinfo [ref=e73]:
+    - generic [ref=e74]:
+      - generic [ref=e75]:
+        - link "返回首页" [ref=e76] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e77]: 🧠
+          - generic [ref=e78]: Learn AI
+        - paragraph [ref=e79]: 从零掌握大语言模型 — 系统化教程、实战场景、工具向导，一条通往 AI 前沿的学习路径。
+      - generic [ref=e80]:
+        - generic [ref=e81]:
+          - heading "学习" [level=4] [ref=e82]
+          - list [ref=e83]:
+            - listitem [ref=e84]:
+              - link "学习路径" [ref=e85] [cursor=pointer]:
+                - /url: /pathways
+            - listitem [ref=e86]:
+              - link "教程库" [ref=e87] [cursor=pointer]:
+                - /url: /tutorials
+            - listitem [ref=e88]:
+              - link "场景检索" [ref=e89] [cursor=pointer]:
+                - /url: /scenarios
+        - generic [ref=e90]:
+          - heading "工具" [level=4] [ref=e91]
+          - list [ref=e92]:
+            - listitem [ref=e93]:
+              - link "Claude Code" [ref=e94] [cursor=pointer]:
+                - /url: https://www.anthropic.com/claude-code
+            - listitem [ref=e95]:
+              - link "Dify" [ref=e96] [cursor=pointer]:
+                - /url: https://dify.ai
+        - generic [ref=e97]:
+          - heading "关于" [level=4] [ref=e98]
+          - list [ref=e99]:
+            - listitem [ref=e100]:
+              - link "关于我们" [ref=e101] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e102]:
+              - link "贡献指南" [ref=e103] [cursor=pointer]:
+                - /url: /about
+    - paragraph [ref=e105]: © 2026 Learn AI. 基于社区贡献构建。
