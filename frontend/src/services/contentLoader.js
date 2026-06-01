@@ -4,16 +4,41 @@ import pathwaysIndex from '../data/pathways-index.json';
 import scenariosIndex from '../data/scenarios-index.json';
 import searchIndex from '../data/search-index.json';
 
+// Runtime store for dynamically imported tutorials (persisted to localStorage)
+const IMPORTED_KEY = 'learn-llm-imported-tutorials'
+
+function loadImported() {
+  try {
+    const stored = localStorage.getItem(IMPORTED_KEY)
+    return stored ? JSON.parse(stored) : []
+  } catch { return [] }
+}
+
+function saveImported(tutorials) {
+  try { localStorage.setItem(IMPORTED_KEY, JSON.stringify(tutorials)) } catch {}
+}
+
+let _importedTutorials = loadImported()
+
+export function addImportedTutorials(newTutorials) {
+  _importedTutorials = [..._importedTutorials, ...newTutorials]
+  saveImported(_importedTutorials)
+}
+
 export function getTutorialBySlug(slug) {
-  return tutorialsIndex.find((t) => t.slug === slug) || null;
+  return tutorialsIndex.find((t) => t.slug === slug)
+    || _importedTutorials.find((t) => t.slug === slug)
+    || null;
 }
 
 export function getTutorialById(id) {
-  return tutorialsIndex.find((t) => t.id === id) || null;
+  return tutorialsIndex.find((t) => t.id === id)
+    || _importedTutorials.find((t) => t.id === id)
+    || null;
 }
 
 export function getAllTutorials(filters = {}) {
-  let result = [...tutorialsIndex];
+  let result = [...tutorialsIndex, ..._importedTutorials];
   if (filters.category) result = result.filter((t) => t.category === filters.category);
   if (filters.difficulty) result = result.filter((t) => t.difficulty === filters.difficulty);
   if (filters.subcategory) result = result.filter((t) => t.subcategory === filters.subcategory);

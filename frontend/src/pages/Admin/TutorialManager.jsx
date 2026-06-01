@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react'
-import { getAllTutorials } from '../../services/contentLoader'
+import { getAllTutorials, addImportedTutorials } from '../../services/contentLoader'
 import { createMaterial } from '../../services/pipelineApi'
 import { CATEGORY_LABELS, DIFFICULTY_LABELS } from '../../utils/constants'
 import ImportWizard from './ImportWizard'
@@ -32,12 +32,8 @@ const STATUS_BADGE_CLASS = {
 }
 
 const TutorialManager = () => {
-  const staticTutorials = useMemo(() => getAllTutorials(), [])
-  const [customTutorials, setCustomTutorials] = useState([])
-  const allTutorials = useMemo(
-    () => [...staticTutorials, ...customTutorials],
-    [staticTutorials, customTutorials]
-  )
+  const [refreshKey, setRefreshKey] = useState(0)
+  const allTutorials = useMemo(() => getAllTutorials(), [refreshKey])
 
   /* Local state for simulated statuses and search/filter */
   const [statuses, setStatuses] = useState(() => {
@@ -233,7 +229,8 @@ const TutorialManager = () => {
       }
     }
     if (newTutorials.length > 0) {
-      setCustomTutorials(prev => [...prev, ...newTutorials])
+      addImportedTutorials(newTutorials)
+      setRefreshKey(k => k + 1)
     }
     setShowImportWizard(false)
     alert(`成功创建 ${created}/${editedMaterials.length} 个教程`)
