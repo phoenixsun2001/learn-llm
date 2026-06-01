@@ -5,7 +5,6 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Build-time environment variables (Vite bakes these in)
 ARG VITE_SUPABASE_URL
 ARG VITE_SUPABASE_ANON_KEY
 ARG VITE_ADMIN_TOKEN
@@ -13,12 +12,12 @@ ENV VITE_ADMIN_TOKEN=${VITE_ADMIN_TOKEN}
 ENV VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
 ENV VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
 
-# Install dependencies
 COPY package.json package-lock.json ./
 RUN npm ci --production=false
 
-# Build with env vars
 COPY . .
+# Clear any stale Vite cache and rebuild
+RUN rm -rf node_modules/.vite dist .vite
 RUN npm run build
 
 # ============================================
