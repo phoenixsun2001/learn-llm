@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  # ============================================
+  # Frontend: React SPA served by nginx
+  # ============================================
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: learn-llm-frontend
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    networks:
+      - learn-llm
+
+  # ============================================
+  # Backend: Pipeline Admin Dashboard (FastAPI)
+  # ============================================
+  backend:
+    build:
+      context: ./pipeline
+      dockerfile: Dockerfile
+    container_name: learn-llm-backend
+    ports:
+      - "8400:8400"
+    restart: unless-stopped
+    volumes:
+      - ./content:/app/content
+      - ./pipeline/data:/app/data
+    environment:
+      - ADMIN_TOKEN=${ADMIN_TOKEN:-learn-llm-admin}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://localhost:11434}
+      - PIPELINE_OUTPUT_DIR=/app/content/materials/
+    networks:
+      - learn-llm
+
+networks:
+  learn-llm:
+    driver: bridge
