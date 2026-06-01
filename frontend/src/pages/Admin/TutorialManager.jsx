@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react'
 import { getAllTutorials } from '../../services/contentLoader'
 import { createMaterial } from '../../services/pipelineApi'
 import { CATEGORY_LABELS, DIFFICULTY_LABELS } from '../../utils/constants'
+import ImportWizard from './ImportWizard'
 import './TutorialManager.css'
 
 /* Artificial status: in a real app this comes from a database.
@@ -57,6 +58,8 @@ const TutorialManager = () => {
     title: '', description: '', category: 'practice', difficulty: 'beginner',
     content: '', tags: '',
   })
+
+  const [showImportWizard, setShowImportWizard] = useState(false)
 
   /* Derived: filtered + sorted list */
   const filtered = useMemo(() => {
@@ -187,7 +190,28 @@ const TutorialManager = () => {
   }
 
   const handleImport = () => {
-    window.open('http://localhost:8400/admin/materials', '_blank')
+    setShowImportWizard(true)
+  }
+
+  const handleImportComplete = async ({ editedMaterials, assignments }) => {
+    let created = 0
+    for (const mat of editedMaterials) {
+      try {
+        await createMaterial({
+          title: mat.editedTitle,
+          content: mat.content || '',
+          category: mat.editedCategory,
+          difficulty: mat.editedDifficulty,
+          tags: Array.isArray(mat.editedTags) ? mat.editedTags : [],
+        })
+        created++
+      } catch (err) {
+        console.error('Failed to create tutorial:', mat.editedTitle, err)
+      }
+    }
+    setShowImportWizard(false)
+    alert(`成功创建 ${created}/${editedMaterials.length} 个教程`)
+    window.location.reload()
   }
 
   /* Distinct categories for filter dropdown */
@@ -507,6 +531,14 @@ const TutorialManager = () => {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Import Wizard */}
+      {showImportWizard && (
+        <ImportWizard
+          onClose={() => setShowImportWizard(false)}
+          onComplete={handleImportComplete}
+        />
       )}
     </div>
   )
