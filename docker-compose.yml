@@ -9,6 +9,7 @@ services:
       args:
         - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
         - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
+        - VITE_ADMIN_TOKEN=${VITE_ADMIN_TOKEN:-learn-llm-admin}
     container_name: learn-llm-frontend
     ports:
       - "80:80"

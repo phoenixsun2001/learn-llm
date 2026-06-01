@@ -33,13 +33,7 @@ logger = logging.getLogger(__name__)
 app = FastAPI(title="Learn-LLM Admin", version="0.1.0")
 
 # Allow cross-origin requests from frontend (port 80) to backend (port 8400)
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost", "http://localhost:80", "http://127.0.0.1"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# CORS added after AuthMiddleware below
 
 # --------------- Static Files ---------------
 import os as _os
@@ -65,7 +59,7 @@ class AuthMiddleware(BaseHTTPMiddleware):
 
         # All other /admin routes require auth
         if path.startswith("/admin"):
-            token = request.cookies.get("admin_token")
+            token = request.cookies.get("admin_token") or request.headers.get("X-Admin-Token")
             if token != config.admin_token:
                 if request.method == "GET":
                     return RedirectResponse("/admin/login", status_code=302)
@@ -75,6 +69,15 @@ class AuthMiddleware(BaseHTTPMiddleware):
 
 
 app.add_middleware(AuthMiddleware)
+
+# CORS must be added AFTER AuthMiddleware so it processes requests first (outer layer)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost", "http://localhost:80", "http://127.0.0.1"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 # --------------- Login Routes ---------------

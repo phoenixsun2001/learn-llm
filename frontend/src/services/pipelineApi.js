@@ -3,10 +3,12 @@
  * Communicates with the FastAPI backend at localhost:8400
  */
 
-const API_BASE = 'http://localhost:8400/admin'
+// Same-origin via nginx proxy (avoids CORS)
+const API_BASE = '/api/admin'
 
 // Simple token-based auth (same as admin dashboard)
-let authToken = null
+const ADMIN_TOKEN = import.meta.env.VITE_ADMIN_TOKEN || null
+let authToken = ADMIN_TOKEN
 
 export function setAuthToken(token) {
   authToken = token
@@ -108,56 +110,32 @@ export async function rejectItem(id) {
 export async function fetchMaterials(filters = {}) {
   const params = new URLSearchParams()
   if (filters.category) params.set('category', filters.category)
-  if (filters.status) params.set('status', filters.status)
   if (filters.search) params.set('search', filters.search)
-
   const query = params.toString()
-  const url = `${API_BASE}/materials${query ? '?' + query : ''}`
-  const resp = await fetch(url, { credentials: 'include' })
+  const resp = await fetch(API_BASE + '/materials' + (query ? '?' + query : ''), { credentials: 'include' })
   if (!resp.ok) throw new Error('Failed to fetch materials')
   const html = await resp.text()
 
-  // Parse materials from HTML table
+  // Parse HTML using DOMParser (more reliable than regex)
+  const parser = new DOMParser()
+  const doc = parser.parseFromString(html, 'text/html')
+  const rows = doc.querySelectorAll('tbody tr')
   const items = []
-  const rowRegex = /<tr[^>]*>.*?<td[^>]*>(.*?)<\/td>\s*<td[^>]*>(.*?)<\/td>\s*<td[^>]*>(.*?)<\/td>\s*<td[^>]*>(.*?)<\/td>\s*<td[^>]*>(.*?)<\/td>\s*<td[^>]*>(.*?)<\/td>\s*<\/tr>/g
-  let match
-  while ((match = rowRegex.exec(html)) !== null) {
-    const titleCell = match[1].replace(/<[^>]+>/g, '').trim()
-    if (!titleCell || titleCell === '标题') continue
+  rows.forEach(row => {
+    const cells = row.querySelectorAll('td')
+    if (cells.length < 5) return
+    const titleLink = cells[0].querySelector('a')
+    const title = titleLink ? titleLink.textContent.trim() : cells[0].textContent.trim()
+    if (!title || title === '标题') return
     items.push({
-      title: titleCell,
-      category: match[2].replace(/<[^>]+>/g, '').trim(),
-      difficulty: match[3].replace(/<[^>]+>/g, '').trim(),
-      tags: match[4].replace(/<[^>]+>/g, '').trim(),
-      status: match[5].replace(/<[^>]+>/g, '').trim(),
-      date: match[6].replace(/<[^>]+>/g, '').trim(),
+      title,
+      category: cells[1].textContent.trim(),
+      difficulty: cells[2].textContent.trim(),
+      tags: cells[3].textContent.trim().replace(/\s+/g, ' ') || '-',
+      status: cells[4].textContent.trim(),
+      date: cells[5] ? cells[5].textContent.trim() : '',
     })
-  }
-  return items
-}
-
-// ============================================
-// RSS Sources
-// ============================================
-export async function fetchSources() {
-  const resp = await fetch(`${API_BASE}/sources`, { credentials: 'include' })
-  if (!resp.ok) throw new Error('Failed to fetch sources')
-  const html = await resp.text()
-
-  const items = []
-  const rowRegex = /<tr[^>]*>.*?<td[^>]*>(.*?)<\/td>\s*<td[^>]*>(.*?)<\/td>\s*<td[^>]*>(.*?)<\/td>\s*<td[^>]*>(.*?)<\/td>\s*<td[^>]*>(.*?)<\/td>\s*<td[^>]*>(.*?)<\/td>\s*<\/tr>/g
-  let match
-  while ((match = rowRegex.exec(html)) !== null) {
-    const nameCell = match[1].replace(/<[^>]+>/g, '').trim()
-    if (!nameCell || nameCell === '名称') continue
-    items.push({
-      name: nameCell,
-      url: match[2].replace(/<[^>]+>/g, '').trim(),
-      category: match[3].replace(/<[^>]+>/g, '').trim(),
-      status: match[4].replace(/<[^>]+>/g, '').trim(),
-      lastFetch: match[5].replace(/<[^>]+>/g, '').trim(),
-    })
-  }
+  })
   return items
 }
 
