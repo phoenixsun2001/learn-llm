@@ -1,16 +1,30 @@
 import React, { useState, useMemo } from 'react'
-import { getAllTutorials, addImportedTutorials } from '../../services/contentLoader'
+import { getAllTutorials } from '../../services/contentLoader'
 import { createMaterial } from '../../services/pipelineApi'
 import { CATEGORY_LABELS, DIFFICULTY_LABELS } from '../../utils/constants'
 import ImportWizard from './ImportWizard'
 import './TutorialManager.css'
 
 /* Artificial status: in a real app this comes from a database.
-   For MVP, we simulate status management in local state. */
+   For MVP, we persist simulated statuses in localStorage so changes
+   survive page refresh. */
+const STORED_STATUS_KEY = 'learn-llm-tutorial-statuses'
+
 const SIMULATED_STATUSES = {
   'tut-claude-code-intro': 'published',
   'tut-claude-code-install': 'published',
   'tut-claude-code-first-use': 'draft',
+}
+
+function loadStatuses() {
+  try {
+    const stored = localStorage.getItem(STORED_STATUS_KEY)
+    return stored ? JSON.parse(stored) : {}
+  } catch { return {} }
+}
+
+function saveStatuses(statusMap) {
+  try { localStorage.setItem(STORED_STATUS_KEY, JSON.stringify(statusMap)) } catch {}
 }
 
 const STATUS_LABELS = {
@@ -32,14 +46,19 @@ const STATUS_BADGE_CLASS = {
 }
 
 const TutorialManager = () => {
-  const [refreshKey, setRefreshKey] = useState(0)
-  const allTutorials = useMemo(() => getAllTutorials(), [refreshKey])
+  const staticTutorials = useMemo(() => getAllTutorials(), [])
+  const [customTutorials, setCustomTutorials] = useState([])
+  const allTutorials = useMemo(
+    () => [...staticTutorials, ...customTutorials],
+    [staticTutorials, customTutorials]
+  )
 
-  /* Local state for simulated statuses and search/filter */
+  /* Local state for simulated statuses (persisted to localStorage) and search/filter */
   const [statuses, setStatuses] = useState(() => {
+    const stored = loadStatuses()
     const map = {}
     allTutorials.forEach((t) => {
-      map[t.id] = SIMULATED_STATUSES[t.id] || 'draft'
+      map[t.id] = stored[t.id] || SIMULATED_STATUSES[t.id] || 'draft'
     })
     return map
   })
@@ -130,19 +149,24 @@ const TutorialManager = () => {
   }
 
   const handleCycleStatus = (id) => {
-    setStatuses((prev) => ({
-      ...prev,
-      [id]: STATUS_CYCLE[prev[id]] || 'draft',
-    }))
+    setStatuses((prev) => {
+      const next = {
+        ...prev,
+        [id]: STATUS_CYCLE[prev[id]] || 'draft',
+      }
+      saveStatuses(next)
+      return next
+    })
   }
 
   const handleDelete = (id) => {
     const tutorial = allTutorials.find((t) => t.id === id)
     if (window.confirm(`确定删除教程「${tutorial?.title || id}」？`)) {
-      // MVP: remove from local state only
+      // Remove from local state and localStorage
       setStatuses((prev) => {
         const next = { ...prev }
         delete next[id]
+        saveStatuses(next)
         return next
       })
     }
@@ -229,8 +253,14 @@ const TutorialManager = () => {
       }
     }
     if (newTutorials.length > 0) {
-      addImportedTutorials(newTutorials)
-      setRefreshKey(k => k + 1)
+      setCustomTutorials(prev => [...prev, ...newTutorials])
+      // Initialize imported tutorial statuses in localStorage
+      setStatuses((prev) => {
+        const next = { ...prev }
+        newTutorials.forEach((t) => { next[t.id] = 'draft' })
+        saveStatuses(next)
+        return next
+      })
     }
     setShowImportWizard(false)
     alert(`成功创建 ${created}/${editedMaterials.length} 个教程`)
