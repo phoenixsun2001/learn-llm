@@ -27,9 +27,9 @@ const TutorialList = () => {
   const [activeCategory, setActiveCategory] = useState(null);
   const [activeDifficulty, setActiveDifficulty] = useState(null);
 
-  /* Derive filtered list via useMemo */
+  /* Derive filtered list via useMemo — only published tutorials on public page */
   const tutorials = useMemo(() => {
-    const filters = {};
+    const filters = { status: 'published' };
     if (activeCategory) filters.category = activeCategory;
     if (activeDifficulty) filters.difficulty = activeDifficulty;
     if (search.trim()) filters.search = search.trim();

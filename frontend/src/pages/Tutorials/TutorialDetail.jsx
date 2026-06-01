@@ -20,7 +20,7 @@ const TutorialDetail = () => {
       setError(false);
       setContent(null);
 
-      const meta = getTutorialBySlug(slug);
+      const meta = getTutorialBySlug(slug, { status: 'published' });
       if (!meta) {
         if (!cancelled) {
           setError(true);

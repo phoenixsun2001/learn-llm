@@ -6,6 +6,7 @@ import searchIndex from '../data/search-index.json';
 
 // Runtime store for dynamically imported tutorials (persisted to localStorage)
 const IMPORTED_KEY = 'learn-llm-imported-tutorials'
+const STATUS_KEY = 'learn-llm-tutorial-statuses'
 
 function loadImported() {
   try {
@@ -18,6 +19,14 @@ function saveImported(tutorials) {
   try { localStorage.setItem(IMPORTED_KEY, JSON.stringify(tutorials)) } catch {}
 }
 
+/** Load per-tutorial statuses set by TutorialManager (admin UI) */
+function loadStatuses() {
+  try {
+    const stored = localStorage.getItem(STATUS_KEY)
+    return stored ? JSON.parse(stored) : {}
+  } catch { return {} }
+}
+
 let _importedTutorials = loadImported()
 
 export function addImportedTutorials(newTutorials) {
@@ -25,23 +34,40 @@ export function addImportedTutorials(newTutorials) {
   saveImported(_importedTutorials)
 }
 
-export function getTutorialBySlug(slug) {
-  return tutorialsIndex.find((t) => t.slug === slug)
+export function getTutorialBySlug(slug, filters = {}) {
+  const statuses = loadStatuses()
+  let result = tutorialsIndex.find((t) => t.slug === slug)
     || _importedTutorials.find((t) => t.slug === slug)
     || null;
+  if (!result) return null;
+  result = { ...result, status: statuses[result.id] || result.status || 'published' };
+  if (filters.status && result.status !== filters.status) return null;
+  return result;
 }
 
-export function getTutorialById(id) {
-  return tutorialsIndex.find((t) => t.id === id)
+export function getTutorialById(id, filters = {}) {
+  const statuses = loadStatuses()
+  let result = tutorialsIndex.find((t) => t.id === id)
     || _importedTutorials.find((t) => t.id === id)
     || null;
+  if (!result) return null;
+  result = { ...result, status: statuses[result.id] || result.status || 'published' };
+  if (filters.status && result.status !== filters.status) return null;
+  return result;
 }
 
 export function getAllTutorials(filters = {}) {
-  let result = [...tutorialsIndex, ..._importedTutorials];
+  const statuses = loadStatuses()
+  // Merge status from localStorage; static tutorials default to 'published'
+  let result = [...tutorialsIndex, ..._importedTutorials].map((t) => ({
+    ...t,
+    status: statuses[t.id] || t.status || 'published',
+  }))
+
   if (filters.category) result = result.filter((t) => t.category === filters.category);
   if (filters.difficulty) result = result.filter((t) => t.difficulty === filters.difficulty);
   if (filters.subcategory) result = result.filter((t) => t.subcategory === filters.subcategory);
+  if (filters.status) result = result.filter((t) => t.status === filters.status);
   if (filters.search) {
     const q = filters.search.toLowerCase();
     result = result.filter((t) =>
