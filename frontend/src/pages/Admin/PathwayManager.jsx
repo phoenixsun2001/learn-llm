@@ -123,9 +123,46 @@ const PathwayManager = () => {
     return new Set(pw.steps.map((s) => s.tutorialId))
   }
 
+  /* Create modal state */
+  const [showCreateModal, setShowCreateModal] = useState(false)
+  const [createMessage, setCreateMessage] = useState(null)
+  const [createPathwayForm, setCreatePathwayForm] = useState({
+    title: '', description: '', level: 'beginner', icon: '📚',
+  })
+
   /* New pathway */
   const handleNewPathway = () => {
-    window.open("http://localhost:8400/admin/materials", "_blank")
+    setCreateMessage(null)
+    setCreatePathwayForm({ title: '', description: '', level: 'beginner', icon: '📚' })
+    setShowCreateModal(true)
+  }
+
+  const handleCreatePathwaySubmit = () => {
+    if (!createPathwayForm.title.trim()) {
+      setCreateMessage({ type: 'error', text: '请填写路径标题。' })
+      return
+    }
+    const newId = 'path-' + Date.now()
+    const newPathway = {
+      id: newId,
+      title: createPathwayForm.title.trim(),
+      description: createPathwayForm.description.trim(),
+      level: createPathwayForm.level,
+      icon: createPathwayForm.icon.trim() || '📚',
+      slug: createPathwayForm.title.trim().toLowerCase().replace(/\s+/g, '-'),
+      steps: [],
+    }
+    setPathways((prev) => [...prev, newPathway])
+    setCreateMessage({ type: 'success', text: '路径创建成功！' })
+    setTimeout(() => {
+      setShowCreateModal(false)
+      setCreateMessage(null)
+    }, 1200)
+  }
+
+  const handleCancelCreatePathway = () => {
+    setShowCreateModal(false)
+    setCreateMessage(null)
   }
 
   return (
@@ -310,6 +347,89 @@ const PathwayManager = () => {
               </div>
             )
           })}
+        </div>
+      )}
+
+      {/* Create Modal */}
+      {showCreateModal && (
+        <div className="admin-modal-overlay" onClick={handleCancelCreatePathway}>
+          <div className="admin-modal" onClick={(e) => e.stopPropagation()} role="dialog" aria-label="新建学习路径">
+            <h2 className="admin-modal-title">新建学习路径</h2>
+
+            {createMessage && (
+              <div className={`admin-form-message ${createMessage.type === 'success' ? 'admin-form-message--success' : 'admin-form-message--error'}`}>
+                {createMessage.text}
+              </div>
+            )}
+
+            <div className="admin-form-group">
+              <label className="admin-form-label">标题 *</label>
+              <input
+                type="text"
+                className="admin-form-input"
+                value={createPathwayForm.title}
+                onChange={(e) => setCreatePathwayForm((f) => ({ ...f, title: e.target.value }))}
+                placeholder="路径标题"
+                aria-label="路径标题"
+              />
+            </div>
+
+            <div className="admin-form-group">
+              <label className="admin-form-label">描述</label>
+              <textarea
+                className="admin-form-textarea"
+                value={createPathwayForm.description}
+                onChange={(e) => setCreatePathwayForm((f) => ({ ...f, description: e.target.value }))}
+                placeholder="路径描述"
+                aria-label="路径描述"
+                rows={2}
+              />
+            </div>
+
+            <div className="admin-form-group">
+              <label className="admin-form-label">级别</label>
+              <select
+                className="admin-form-select"
+                value={createPathwayForm.level}
+                onChange={(e) => setCreatePathwayForm((f) => ({ ...f, level: e.target.value }))}
+                aria-label="路径级别"
+              >
+                <option value="beginner">入门</option>
+                <option value="intermediate">进阶</option>
+                <option value="advanced">精通</option>
+                <option value="expert">专家</option>
+              </select>
+            </div>
+
+            <div className="admin-form-group">
+              <label className="admin-form-label">图标 (Emoji)</label>
+              <input
+                type="text"
+                className="admin-form-input"
+                value={createPathwayForm.icon}
+                onChange={(e) => setCreatePathwayForm((f) => ({ ...f, icon: e.target.value }))}
+                placeholder="📚"
+                aria-label="路径图标"
+              />
+            </div>
+
+            <div className="admin-form-actions">
+              <button
+                className="admin-btn admin-btn--secondary"
+                onClick={handleCancelCreatePathway}
+                aria-label="取消创建"
+              >
+                取消
+              </button>
+              <button
+                className="admin-btn admin-btn--primary"
+                onClick={handleCreatePathwaySubmit}
+                aria-label="创建路径"
+              >
+                创建
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

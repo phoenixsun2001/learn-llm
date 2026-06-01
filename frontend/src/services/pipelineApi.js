@@ -150,6 +150,23 @@ export async function triggerFetch(sourceName) {
   return match ? parseInt(match[1]) : 0
 }
 
+export async function createMaterial(data) {
+  const formData = new FormData()
+  formData.append('title', data.title || '')
+  formData.append('content', data.content || '')
+  formData.append('category', data.category || 'practice')
+  formData.append('difficulty', data.difficulty || 'beginner')
+  formData.append('tags', JSON.stringify(data.tags || []))
+
+  const resp = await fetch(API_BASE + '/materials/new', {
+    method: 'POST',
+    body: formData,
+    credentials: 'include',
+  })
+  if (!resp.ok) throw new Error('Failed to create material')
+  return true
+}
+
 export async function checkPipelineHealth() {
   try {
     const resp = await fetch(`${API_BASE}`, {

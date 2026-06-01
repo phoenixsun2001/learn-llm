@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import { getAllTutorials } from '../../services/contentLoader'
+import { createMaterial } from '../../services/pipelineApi'
 import { CATEGORY_LABELS, DIFFICULTY_LABELS } from '../../utils/constants'
 import './TutorialManager.css'
 
@@ -47,6 +48,15 @@ const TutorialManager = () => {
   const [expandedId, setExpandedId] = useState(null)
   const [sortKey, setSortKey] = useState('title')
   const [sortDir, setSortDir] = useState('asc')
+
+  /* Create modal state */
+  const [showCreateModal, setShowCreateModal] = useState(false)
+  const [createLoading, setCreateLoading] = useState(false)
+  const [createMessage, setCreateMessage] = useState(null)
+  const [createForm, setCreateForm] = useState({
+    title: '', description: '', category: 'practice', difficulty: 'beginner',
+    content: '', tags: '',
+  })
 
   /* Derived: filtered + sorted list */
   const filtered = useMemo(() => {
@@ -139,7 +149,41 @@ const TutorialManager = () => {
   }
 
   const handleNewTutorial = () => {
-    window.open("http://localhost:8400/admin/materials", "_blank")
+    setCreateMessage(null)
+    setCreateForm({ title: '', description: '', category: 'practice', difficulty: 'beginner', content: '', tags: '' })
+    setShowCreateModal(true)
+  }
+
+  const handleCreateSubmit = async () => {
+    if (!createForm.title.trim() || !createForm.content.trim()) {
+      setCreateMessage({ type: 'error', text: '请填写标题和内容。' })
+      return
+    }
+    setCreateLoading(true)
+    setCreateMessage(null)
+    try {
+      await createMaterial({
+        title: createForm.title.trim(),
+        content: createForm.content.trim(),
+        category: createForm.category,
+        difficulty: createForm.difficulty,
+        tags: createForm.tags.split(',').map(t => t.trim()).filter(Boolean),
+      })
+      setCreateMessage({ type: 'success', text: '教程创建成功！' })
+      setTimeout(() => {
+        setShowCreateModal(false)
+        setCreateMessage(null)
+      }, 1200)
+    } catch (err) {
+      setCreateMessage({ type: 'error', text: `创建失败: ${err.message}` })
+    } finally {
+      setCreateLoading(false)
+    }
+  }
+
+  const handleCancelCreate = () => {
+    setShowCreateModal(false)
+    setCreateMessage(null)
   }
 
   const handleImport = () => {
@@ -352,6 +396,115 @@ const TutorialManager = () => {
         <div className="admin-table-wrapper">
           <div className="admin-table-empty">
             <p className="admin-table-empty-text">没有找到匹配的教程。</p>
+          </div>
+        </div>
+      )}
+
+      {/* Create Modal */}
+      {showCreateModal && (
+        <div className="admin-modal-overlay" onClick={handleCancelCreate}>
+          <div className="admin-modal" onClick={(e) => e.stopPropagation()} role="dialog" aria-label="新建教程">
+            <h2 className="admin-modal-title">新建教程</h2>
+
+            {createMessage && (
+              <div className={`admin-form-message ${createMessage.type === 'success' ? 'admin-form-message--success' : 'admin-form-message--error'}`}>
+                {createMessage.text}
+              </div>
+            )}
+
+            <div className="admin-form-group">
+              <label className="admin-form-label">标题 *</label>
+              <input
+                type="text"
+                className="admin-form-input"
+                value={createForm.title}
+                onChange={(e) => setCreateForm((f) => ({ ...f, title: e.target.value }))}
+                placeholder="教程标题"
+                aria-label="教程标题"
+              />
+            </div>
+
+            <div className="admin-form-group">
+              <label className="admin-form-label">描述</label>
+              <textarea
+                className="admin-form-textarea"
+                value={createForm.description}
+                onChange={(e) => setCreateForm((f) => ({ ...f, description: e.target.value }))}
+                placeholder="简短描述"
+                aria-label="教程描述"
+                rows={2}
+              />
+            </div>
+
+            <div className="admin-form-group">
+              <label className="admin-form-label">分类</label>
+              <select
+                className="admin-form-select"
+                value={createForm.category}
+                onChange={(e) => setCreateForm((f) => ({ ...f, category: e.target.value }))}
+                aria-label="教程分类"
+              >
+                {Object.entries(CATEGORY_LABELS).map(([k, v]) => (
+                  <option key={k} value={k}>{v}</option>
+                ))}
+              </select>
+            </div>
+
+            <div className="admin-form-group">
+              <label className="admin-form-label">难度</label>
+              <select
+                className="admin-form-select"
+                value={createForm.difficulty}
+                onChange={(e) => setCreateForm((f) => ({ ...f, difficulty: e.target.value }))}
+                aria-label="教程难度"
+              >
+                {Object.entries(DIFFICULTY_LABELS).map(([k, v]) => (
+                  <option key={k} value={k}>{v}</option>
+                ))}
+              </select>
+            </div>
+
+            <div className="admin-form-group">
+              <label className="admin-form-label">内容 (Markdown) *</label>
+              <textarea
+                className="admin-form-textarea"
+                value={createForm.content}
+                onChange={(e) => setCreateForm((f) => ({ ...f, content: e.target.value }))}
+                placeholder="Markdown 内容..."
+                aria-label="教程内容"
+              />
+            </div>
+
+            <div className="admin-form-group">
+              <label className="admin-form-label">标签（逗号分隔）</label>
+              <input
+                type="text"
+                className="admin-form-input"
+                value={createForm.tags}
+                onChange={(e) => setCreateForm((f) => ({ ...f, tags: e.target.value }))}
+                placeholder="例如: claude, ai, tool"
+                aria-label="教程标签"
+              />
+            </div>
+
+            <div className="admin-form-actions">
+              <button
+                className="admin-btn admin-btn--secondary"
+                onClick={handleCancelCreate}
+                disabled={createLoading}
+                aria-label="取消创建"
+              >
+                取消
+              </button>
+              <button
+                className="admin-btn admin-btn--primary"
+                onClick={handleCreateSubmit}
+                disabled={createLoading}
+                aria-label="创建教程"
+              >
+                {createLoading ? '创建中...' : '创建'}
+              </button>
+            </div>
           </div>
         </div>
       )}
