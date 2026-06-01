@@ -143,7 +143,7 @@ const TutorialManager = () => {
   }
 
   const handleImport = () => {
-    window.alert('素材库导入功能需要连接 pipeline 管理后台。\n\n请启动：cd pipeline && python -m admin_dashboard.main\n然后访问 http://localhost:8400')
+    window.open('http://localhost:8400/admin/materials', '_blank')
   }
 
   /* Distinct categories for filter dropdown */
