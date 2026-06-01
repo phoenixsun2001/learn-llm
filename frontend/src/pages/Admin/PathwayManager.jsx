@@ -125,7 +125,7 @@ const PathwayManager = () => {
 
   /* New pathway */
   const handleNewPathway = () => {
-    window.alert('新建路径功能需要在 GitHub 仓库中编辑 content/data/pathways-index.json。\n\n路径格式请参考现有路径定义。')
+    window.open("http://localhost:8400/admin/materials", "_blank")
   }
 
   return (

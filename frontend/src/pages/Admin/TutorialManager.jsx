@@ -139,7 +139,7 @@ const TutorialManager = () => {
   }
 
   const handleNewTutorial = () => {
-    window.alert('新建教程功能需要在 GitHub 仓库中创建新的 Markdown 文件。\n\n请参考：content/tutorials/ 目录下的现有教程格式。')
+    window.open("http://localhost:8400/admin/materials", "_blank")
   }
 
   const handleImport = () => {
