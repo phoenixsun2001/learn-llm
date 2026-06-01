@@ -32,7 +32,12 @@ const STATUS_BADGE_CLASS = {
 }
 
 const TutorialManager = () => {
-  const allTutorials = useMemo(() => getAllTutorials(), [])
+  const staticTutorials = useMemo(() => getAllTutorials(), [])
+  const [customTutorials, setCustomTutorials] = useState([])
+  const allTutorials = useMemo(
+    () => [...staticTutorials, ...customTutorials],
+    [staticTutorials, customTutorials]
+  )
 
   /* Local state for simulated statuses and search/filter */
   const [statuses, setStatuses] = useState(() => {
@@ -195,6 +200,7 @@ const TutorialManager = () => {
 
   const handleImportComplete = async ({ editedMaterials, assignments }) => {
     let created = 0
+    const newTutorials = []
     for (const mat of editedMaterials) {
       try {
         await createMaterial({
@@ -204,14 +210,33 @@ const TutorialManager = () => {
           difficulty: mat.editedDifficulty,
           tags: Array.isArray(mat.editedTags) ? mat.editedTags : [],
         })
+        const slug = mat.editedTitle.toLowerCase()
+          .replace(/[^a-z0-9一-鿿]+/g, '-')
+          .replace(/^-|-$/g, '')
+          .substring(0, 80)
+        newTutorials.push({
+          id: 'tut-custom-' + Date.now() + '-' + created,
+          slug: slug || ('imported-' + Date.now()),
+          title: mat.editedTitle,
+          description: mat.editedCategory + ' / ' + mat.editedDifficulty,
+          category: mat.editedCategory,
+          subcategory: '',
+          difficulty: mat.editedDifficulty,
+          estimatedTime: mat.estimatedTime || 25,
+          tags: Array.isArray(mat.editedTags) ? mat.editedTags : [],
+          prerequisites: [],
+          file: '/content/tutorials/' + mat.editedCategory + '/' + slug + '.md',
+        })
         created++
       } catch (err) {
         console.error('Failed to create tutorial:', mat.editedTitle, err)
       }
     }
+    if (newTutorials.length > 0) {
+      setCustomTutorials(prev => [...prev, ...newTutorials])
+    }
     setShowImportWizard(false)
     alert(`成功创建 ${created}/${editedMaterials.length} 个教程`)
-    window.location.reload()
   }
 
   /* Distinct categories for filter dropdown */
