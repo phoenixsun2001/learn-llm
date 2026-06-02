@@ -700,7 +700,8 @@ const TutorialManager = () => {
       {/* Edit Modal */}
       {editingTutorial && (
         <div className="admin-modal-overlay" onClick={() => setEditingTutorial(null)}>
-          <div className="admin-modal" style={{maxWidth: '96vw', width: editSize.w + 'px', maxHeight: '96vh', height: editSize.h + 'px'}} onClick={(e) => e.stopPropagation()} role="dialog" aria-label="编辑教程">
+          <div className="admin-modal" style={{maxWidth:'96vw',width:editSize.w+'px',maxHeight:'96vh',height:editSize.h+'px',position:'relative'}} onClick={(e) => e.stopPropagation()} role="dialog" aria-label="编辑教程">
+            <div onMouseDown={handleResizeStart} style={{position:'absolute',bottom:0,right:0,width:16,height:16,cursor:'se-resize',borderRight:'2px solid var(--text-tertiary)',borderBottom:'2px solid var(--text-tertiary)'}} title="拖拽调整窗口大小" />
             <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom: 16}}>
               <h2 className="admin-modal-title" style={{margin:0}}>编辑教程</h2>
               <button onClick={() => setEditingTutorial(null)} style={{background:'none',border:'none',fontSize:20,cursor:'pointer',color:'var(--text-secondary)'}}>✕</button>
@@ -761,18 +762,7 @@ const TutorialManager = () => {
               )}
             </div>
 
-            <div className="admin-form-actions" style={{marginTop:16, position:'relative'}}>
-            {/* Resize handle */}
-            <div
-              onMouseDown={handleResizeStart}
-              style={{
-                position:'absolute', bottom:0, right:0,
-                width:16, height:16, cursor:'se-resize',
-                borderRight:'2px solid var(--text-tertiary)',
-                borderBottom:'2px solid var(--text-tertiary)',
-              }}
-              title="拖拽调整窗口大小"
-            />
+            <div className="admin-form-actions" style={{marginTop:16}}>
               <button className="admin-btn admin-btn--secondary" onClick={() => setEditingTutorial(null)}>取消</button>
               <button className="admin-btn admin-btn--primary" onClick={handleSaveEdit} disabled={editSaving}>
                 {editSaving ? '保存中...' : '保存'}
