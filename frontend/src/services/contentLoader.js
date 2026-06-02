@@ -3,6 +3,7 @@ import toolsIndex from '../data/tools-index.json';
 import pathwaysIndex from '../data/pathways-index.json';
 import scenariosIndex from '../data/scenarios-index.json';
 import skillsIndex from '../data/skills-index.json';
+import skillsPackagesIndex from '../data/skills-packages-index.json';
 import searchIndex from '../data/search-index.json';
 
 // Runtime store for dynamically imported tutorials (persisted to localStorage)
@@ -145,9 +146,21 @@ export function getSkillBySlug(slug) {
   return skillsIndex.find((s) => s.slug === slug) || null;
 }
 
-export function getAllSkills(category) {
-  if (category) return skillsIndex.filter((s) => s.category === category);
-  return skillsIndex;
+export function getAllSkills(filters = {}) {
+  let result = skillsIndex;
+  if (filters.category) result = result.filter((s) => s.category === filters.category);
+  if (filters.package) result = result.filter((s) => s.package === filters.package);
+  return result;
+}
+
+/** Get a skill package by slug */
+export function getSkillPackage(slug) {
+  return skillsPackagesIndex.find((p) => p.slug === slug) || null;
+}
+
+/** Get all skill packages */
+export function getAllSkillPackages() {
+  return skillsPackagesIndex;
 }
 
 /**

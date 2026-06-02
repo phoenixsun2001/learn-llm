@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getSkillBySlug, getAllSkills } from '../../services/contentLoader';
+import { getSkillBySlug, getSkillPackage } from '../../services/contentLoader';
 import { SKILL_CATEGORY_LABELS, SKILL_USAGE_LABELS, DIFFICULTY_LABELS } from '../../utils/constants';
 import './SkillDetail.css';
 
@@ -12,8 +12,9 @@ const SKILL_WORKFLOW_STEPS = [
 ];
 
 const SkillDetail = () => {
-  const { slug } = useParams();
+  const { package: pkgSlug, slug } = useParams();
   const skill = getSkillBySlug(slug);
+  const pkg = getSkillPackage(pkgSlug);
 
   /* ---------- Skill Not Found ---------- */
   if (!skill) {
@@ -47,6 +48,8 @@ const SkillDetail = () => {
         <Link to="/" className="skill-detail-breadcrumb-link">首页</Link>
         <span className="skill-detail-breadcrumb-sep" aria-hidden="true">&rsaquo;</span>
         <Link to="/skills" className="skill-detail-breadcrumb-link">技能库</Link>
+        <span className="skill-detail-breadcrumb-sep" aria-hidden="true">&rsaquo;</span>
+        <Link to={`/skills/${pkgSlug}`} className="skill-detail-breadcrumb-link">{pkg ? pkg.name : pkgSlug}</Link>
         <span className="skill-detail-breadcrumb-sep" aria-hidden="true">&rsaquo;</span>
         <span className="skill-detail-breadcrumb-current">{skill.name}</span>
       </nav>
@@ -153,7 +156,7 @@ const SkillDetail = () => {
             {relatedSkills.map(rs => (
               <Link
                 key={rs.slug}
-                to={`/skills/${rs.slug}`}
+                to={`/skills/${pkgSlug}/${rs.slug}`}
                 className="skill-detail-related-card"
               >
                 <span className="skill-detail-related-card-layer">L{rs.layer}</span>
@@ -174,7 +177,7 @@ const SkillDetail = () => {
         <p className="skill-detail-more-desc">
           探索所有 14 个 Skills，了解完整的 Superpowers 工程化工作流。
         </p>
-        <Link to="/skills" className="skill-detail-more-link">
+        <Link to={`/skills/${pkgSlug}`} className="skill-detail-more-link">
           浏览全部技能 &rarr;
         </Link>
       </section>

@@ -222,24 +222,305 @@
     "category": "rag",
     "difficulty": "advanced"
   },
-  {"type":"tutorial","slug":"cc-switch-guide","title":"CC Switch 统一管理工具指南","keywords":["cc","switch","管理工具","供应商","切换","代理","高可用","tauri","用量","token"],"category":"harness","difficulty":"beginner"},
-  {"type":"tool","slug":"cc-switch","title":"CC Switch","keywords":["管理工具","供应商切换","代理","开源","tauri","claude","codex","gemini"],"category":"harness"},
-  {"type":"tutorial","slug":"superpowers-engineering-guide","title":"AI 工程化编程全流程实战","keywords":["superpowers","工程化","TDD","workflow","codex","claude","流程","纪律","审查"],"category":"practice","difficulty":"intermediate"},
-  {"type":"scenario","slug":"engineering-workflow","title":"工程化编程全流程实战","keywords":["工程化","工作流","TDD","superpowers","流程","规范","codex"],"category":"practice"},
-  {"type":"tutorial","slug":"kilo-code-guide","title":"Kilo Code 开源 AI 编程代理指南","keywords":["kilo","code","开源","agent","IDE","自动补全","结对编程"],"category":"harness","difficulty":"beginner"},
-  {"type":"tool","slug":"kilo-code","title":"Kilo Code","keywords":["kilo","code","开源","agent","IDE","多平台","结对编程"],"category":"harness"},
-  {"type":"skill","slug":"using-superpowers","title":"Using Superpowers","keywords":["superpowers","入口","规则","调度","总开关","using"]},
-  {"type":"skill","slug":"brainstorming","title":"Brainstorming 头脑风暴","keywords":["brainstorming","头脑风暴","需求澄清","方案设计","spec","设计文档"]},
-  {"type":"skill","slug":"writing-plans","title":"Writing Plans 编写计划","keywords":["writing","plans","计划","任务","拆解","实施","步骤"]},
-  {"type":"skill","slug":"using-git-worktrees","title":"Using Git Worktrees 隔离工作区","keywords":["git","worktree","隔离","工作区","分支","环境"]},
-  {"type":"skill","slug":"subagent-driven-development","title":"Subagent-Driven Development 子智能体开发","keywords":["subagent","子智能体","审查","并行","隔离","review","两阶段"]},
-  {"type":"skill","slug":"executing-plans","title":"Executing Plans 按计划执行","keywords":["executing","plans","执行","计划","顺序","todo"]},
-  {"type":"skill","slug":"test-driven-development","title":"Test-Driven Development 测试驱动开发","keywords":["tdd","测试驱动","red","green","refactor","单元测试"]},
-  {"type":"skill","slug":"systematic-debugging","title":"Systematic Debugging 系统化调试","keywords":["debugging","调试","根因","修复","bug","系统化"]},
-  {"type":"skill","slug":"verification-before-completion","title":"Verification Before Completion 完成前验证","keywords":["verification","验证","完成","证据","exit","code","claim"]},
-  {"type":"skill","slug":"requesting-code-review","title":"Requesting Code Review 请求代码审查","keywords":["code","review","审查","reviewer","critical","质量"]},
-  {"type":"skill","slug":"receiving-code-review","title":"Receiving Code Review 接收代码审查","keywords":["receiving","review","接收","反馈","审查","判断","验证"]},
-  {"type":"skill","slug":"dispatching-parallel-agents","title":"Dispatching Parallel Agents 并行派发","keywords":["parallel","并行","dispatch","派发","agent","加速"]},
-  {"type":"skill","slug":"finishing-a-development-branch","title":"Finishing a Development Branch 收尾流程","keywords":["finishing","收尾","branch","分支","merge","PR","合并"]},
-  {"type":"skill","slug":"writing-skills","title":"Writing Skills 编写自定义技能","keywords":["writing","skills","编写","自定义","扩展","规范","沉淀"]}
+  {
+    "type": "tutorial",
+    "slug": "cc-switch-guide",
+    "title": "CC Switch 统一管理工具指南",
+    "keywords": [
+      "cc",
+      "switch",
+      "管理工具",
+      "供应商",
+      "切换",
+      "代理",
+      "高可用",
+      "tauri",
+      "用量",
+      "token"
+    ],
+    "category": "harness",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "tool",
+    "slug": "cc-switch",
+    "title": "CC Switch",
+    "keywords": [
+      "管理工具",
+      "供应商切换",
+      "代理",
+      "开源",
+      "tauri",
+      "claude",
+      "codex",
+      "gemini"
+    ],
+    "category": "harness"
+  },
+  {
+    "type": "tutorial",
+    "slug": "superpowers-engineering-guide",
+    "title": "AI 工程化编程全流程实战",
+    "keywords": [
+      "superpowers",
+      "工程化",
+      "TDD",
+      "workflow",
+      "codex",
+      "claude",
+      "流程",
+      "纪律",
+      "审查"
+    ],
+    "category": "practice",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "scenario",
+    "slug": "engineering-workflow",
+    "title": "工程化编程全流程实战",
+    "keywords": [
+      "工程化",
+      "工作流",
+      "TDD",
+      "superpowers",
+      "流程",
+      "规范",
+      "codex"
+    ],
+    "category": "practice"
+  },
+  {
+    "type": "tutorial",
+    "slug": "kilo-code-guide",
+    "title": "Kilo Code 开源 AI 编程代理指南",
+    "keywords": [
+      "kilo",
+      "code",
+      "开源",
+      "agent",
+      "IDE",
+      "自动补全",
+      "结对编程"
+    ],
+    "category": "harness",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "tool",
+    "slug": "kilo-code",
+    "title": "Kilo Code",
+    "keywords": [
+      "kilo",
+      "code",
+      "开源",
+      "agent",
+      "IDE",
+      "多平台",
+      "结对编程"
+    ],
+    "category": "harness"
+  },
+  {
+    "type": "skill",
+    "slug": "using-superpowers",
+    "title": "Using Superpowers",
+    "keywords": [
+      "superpowers",
+      "入口",
+      "规则",
+      "调度",
+      "总开关",
+      "using"
+    ],
+    "package": "superpowers"
+  },
+  {
+    "type": "skill",
+    "slug": "brainstorming",
+    "title": "Brainstorming 头脑风暴",
+    "keywords": [
+      "brainstorming",
+      "头脑风暴",
+      "需求澄清",
+      "方案设计",
+      "spec",
+      "设计文档"
+    ],
+    "package": "superpowers"
+  },
+  {
+    "type": "skill",
+    "slug": "writing-plans",
+    "title": "Writing Plans 编写计划",
+    "keywords": [
+      "writing",
+      "plans",
+      "计划",
+      "任务",
+      "拆解",
+      "实施",
+      "步骤"
+    ],
+    "package": "superpowers"
+  },
+  {
+    "type": "skill",
+    "slug": "using-git-worktrees",
+    "title": "Using Git Worktrees 隔离工作区",
+    "keywords": [
+      "git",
+      "worktree",
+      "隔离",
+      "工作区",
+      "分支",
+      "环境"
+    ],
+    "package": "superpowers"
+  },
+  {
+    "type": "skill",
+    "slug": "subagent-driven-development",
+    "title": "Subagent-Driven Development 子智能体开发",
+    "keywords": [
+      "subagent",
+      "子智能体",
+      "审查",
+      "并行",
+      "隔离",
+      "review",
+      "两阶段"
+    ],
+    "package": "superpowers"
+  },
+  {
+    "type": "skill",
+    "slug": "executing-plans",
+    "title": "Executing Plans 按计划执行",
+    "keywords": [
+      "executing",
+      "plans",
+      "执行",
+      "计划",
+      "顺序",
+      "todo"
+    ],
+    "package": "superpowers"
+  },
+  {
+    "type": "skill",
+    "slug": "test-driven-development",
+    "title": "Test-Driven Development 测试驱动开发",
+    "keywords": [
+      "tdd",
+      "测试驱动",
+      "red",
+      "green",
+      "refactor",
+      "单元测试"
+    ],
+    "package": "superpowers"
+  },
+  {
+    "type": "skill",
+    "slug": "systematic-debugging",
+    "title": "Systematic Debugging 系统化调试",
+    "keywords": [
+      "debugging",
+      "调试",
+      "根因",
+      "修复",
+      "bug",
+      "系统化"
+    ],
+    "package": "superpowers"
+  },
+  {
+    "type": "skill",
+    "slug": "verification-before-completion",
+    "title": "Verification Before Completion 完成前验证",
+    "keywords": [
+      "verification",
+      "验证",
+      "完成",
+      "证据",
+      "exit",
+      "code",
+      "claim"
+    ],
+    "package": "superpowers"
+  },
+  {
+    "type": "skill",
+    "slug": "requesting-code-review",
+    "title": "Requesting Code Review 请求代码审查",
+    "keywords": [
+      "code",
+      "review",
+      "审查",
+      "reviewer",
+      "critical",
+      "质量"
+    ],
+    "package": "superpowers"
+  },
+  {
+    "type": "skill",
+    "slug": "receiving-code-review",
+    "title": "Receiving Code Review 接收代码审查",
+    "keywords": [
+      "receiving",
+      "review",
+      "接收",
+      "反馈",
+      "审查",
+      "判断",
+      "验证"
+    ],
+    "package": "superpowers"
+  },
+  {
+    "type": "skill",
+    "slug": "dispatching-parallel-agents",
+    "title": "Dispatching Parallel Agents 并行派发",
+    "keywords": [
+      "parallel",
+      "并行",
+      "dispatch",
+      "派发",
+      "agent",
+      "加速"
+    ],
+    "package": "superpowers"
+  },
+  {
+    "type": "skill",
+    "slug": "finishing-a-development-branch",
+    "title": "Finishing a Development Branch 收尾流程",
+    "keywords": [
+      "finishing",
+      "收尾",
+      "branch",
+      "分支",
+      "merge",
+      "PR",
+      "合并"
+    ],
+    "package": "superpowers"
+  },
+  {
+    "type": "skill",
+    "slug": "writing-skills",
+    "title": "Writing Skills 编写自定义技能",
+    "keywords": [
+      "writing",
+      "skills",
+      "编写",
+      "自定义",
+      "扩展",
+      "规范",
+      "沉淀"
+    ],
+    "package": "superpowers"
+  }
 ]

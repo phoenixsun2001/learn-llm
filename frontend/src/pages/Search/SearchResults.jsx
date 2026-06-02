@@ -158,7 +158,7 @@ const SearchResults = () => {
                 {items.map((item) => (
                   <li key={`${item.type}-${item.slug}`} className="search-result-item">
                     <Link
-                      to={`${config.linkPrefix}/${item.slug}`}
+                      to={item.package ? `${config.linkPrefix}/${item.package}/${item.slug}` : `${config.linkPrefix}/${item.slug}`}
                       className="search-result-link"
                     >
                       <span className={`search-badge ${config.badgeClass}`}>

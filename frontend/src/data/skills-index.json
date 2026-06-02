@@ -7,11 +7,23 @@
     "category": "entry",
     "layer": 1,
     "difficulty": "beginner",
-    "tags": ["入口", "规则", "调度"],
-    "keywords": ["superpowers", "入口", "规则", "调度", "总开关", "using"],
+    "tags": [
+      "入口",
+      "规则",
+      "调度"
+    ],
+    "keywords": [
+      "superpowers",
+      "入口",
+      "规则",
+      "调度",
+      "总开关",
+      "using"
+    ],
     "usage": "required",
     "file": "/content/skills/using-superpowers.md",
-    "relatedSkills": []
+    "relatedSkills": [],
+    "package": "superpowers"
   },
   {
     "id": "skill-brainstorming",
@@ -21,11 +33,26 @@
     "category": "planning",
     "layer": 2,
     "difficulty": "beginner",
-    "tags": ["需求", "设计", "方案", "澄清"],
-    "keywords": ["brainstorming", "头脑风暴", "需求澄清", "方案设计", "spec", "设计文档"],
+    "tags": [
+      "需求",
+      "设计",
+      "方案",
+      "澄清"
+    ],
+    "keywords": [
+      "brainstorming",
+      "头脑风暴",
+      "需求澄清",
+      "方案设计",
+      "spec",
+      "设计文档"
+    ],
     "usage": "recommended",
     "file": "/content/skills/brainstorming.md",
-    "relatedSkills": ["writing-plans"]
+    "relatedSkills": [
+      "writing-plans"
+    ],
+    "package": "superpowers"
   },
   {
     "id": "skill-writing-plans",
@@ -35,11 +62,27 @@
     "category": "planning",
     "layer": 2,
     "difficulty": "intermediate",
-    "tags": ["计划", "任务拆解", "TDD"],
-    "keywords": ["writing", "plans", "计划", "任务", "拆解", "实施", "步骤"],
+    "tags": [
+      "计划",
+      "任务拆解",
+      "TDD"
+    ],
+    "keywords": [
+      "writing",
+      "plans",
+      "计划",
+      "任务",
+      "拆解",
+      "实施",
+      "步骤"
+    ],
     "usage": "recommended",
     "file": "/content/skills/writing-plans.md",
-    "relatedSkills": ["brainstorming", "subagent-driven-development"]
+    "relatedSkills": [
+      "brainstorming",
+      "subagent-driven-development"
+    ],
+    "package": "superpowers"
   },
   {
     "id": "skill-using-git-worktrees",
@@ -49,11 +92,26 @@
     "category": "planning",
     "layer": 2,
     "difficulty": "intermediate",
-    "tags": ["Git", "Worktree", "隔离", "环境"],
-    "keywords": ["git", "worktree", "隔离", "工作区", "分支", "环境"],
+    "tags": [
+      "Git",
+      "Worktree",
+      "隔离",
+      "环境"
+    ],
+    "keywords": [
+      "git",
+      "worktree",
+      "隔离",
+      "工作区",
+      "分支",
+      "环境"
+    ],
     "usage": "recommended",
     "file": "/content/skills/using-git-worktrees.md",
-    "relatedSkills": ["finishing-a-development-branch"]
+    "relatedSkills": [
+      "finishing-a-development-branch"
+    ],
+    "package": "superpowers"
   },
   {
     "id": "skill-subagent-driven-development",
@@ -63,11 +121,29 @@
     "category": "execution",
     "layer": 3,
     "difficulty": "advanced",
-    "tags": ["子智能体", "审查", "并行", "隔离"],
-    "keywords": ["subagent", "子智能体", "审查", "并行", "隔离", "review", "两阶段"],
+    "tags": [
+      "子智能体",
+      "审查",
+      "并行",
+      "隔离"
+    ],
+    "keywords": [
+      "subagent",
+      "子智能体",
+      "审查",
+      "并行",
+      "隔离",
+      "review",
+      "两阶段"
+    ],
     "usage": "recommended",
     "file": "/content/skills/subagent-driven-development.md",
-    "relatedSkills": ["writing-plans", "executing-plans", "requesting-code-review"]
+    "relatedSkills": [
+      "writing-plans",
+      "executing-plans",
+      "requesting-code-review"
+    ],
+    "package": "superpowers"
   },
   {
     "id": "skill-executing-plans",
@@ -77,11 +153,26 @@
     "category": "execution",
     "layer": 3,
     "difficulty": "beginner",
-    "tags": ["执行", "计划", "顺序"],
-    "keywords": ["executing", "plans", "执行", "计划", "顺序", "todo"],
+    "tags": [
+      "执行",
+      "计划",
+      "顺序"
+    ],
+    "keywords": [
+      "executing",
+      "plans",
+      "执行",
+      "计划",
+      "顺序",
+      "todo"
+    ],
     "usage": "optional",
     "file": "/content/skills/executing-plans.md",
-    "relatedSkills": ["subagent-driven-development", "finishing-a-development-branch"]
+    "relatedSkills": [
+      "subagent-driven-development",
+      "finishing-a-development-branch"
+    ],
+    "package": "superpowers"
   },
   {
     "id": "skill-test-driven-development",
@@ -91,11 +182,26 @@
     "category": "execution",
     "layer": 3,
     "difficulty": "advanced",
-    "tags": ["TDD", "测试", "重构"],
-    "keywords": ["tdd", "测试驱动", "red", "green", "refactor", "单元测试"],
+    "tags": [
+      "TDD",
+      "测试",
+      "重构"
+    ],
+    "keywords": [
+      "tdd",
+      "测试驱动",
+      "red",
+      "green",
+      "refactor",
+      "单元测试"
+    ],
     "usage": "recommended",
     "file": "/content/skills/test-driven-development.md",
-    "relatedSkills": ["subagent-driven-development", "verification-before-completion"]
+    "relatedSkills": [
+      "subagent-driven-development",
+      "verification-before-completion"
+    ],
+    "package": "superpowers"
   },
   {
     "id": "skill-systematic-debugging",
@@ -105,11 +211,25 @@
     "category": "finish",
     "layer": 4,
     "difficulty": "intermediate",
-    "tags": ["调试", "根因", "修复"],
-    "keywords": ["debugging", "调试", "根因", "修复", "bug", "系统化"],
+    "tags": [
+      "调试",
+      "根因",
+      "修复"
+    ],
+    "keywords": [
+      "debugging",
+      "调试",
+      "根因",
+      "修复",
+      "bug",
+      "系统化"
+    ],
     "usage": "recommended",
     "file": "/content/skills/systematic-debugging.md",
-    "relatedSkills": ["verification-before-completion"]
+    "relatedSkills": [
+      "verification-before-completion"
+    ],
+    "package": "superpowers"
   },
   {
     "id": "skill-verification-before-completion",
@@ -119,11 +239,27 @@
     "category": "finish",
     "layer": 4,
     "difficulty": "beginner",
-    "tags": ["验证", "完成", "证据"],
-    "keywords": ["verification", "验证", "完成", "证据", "exit", "code", "claim"],
+    "tags": [
+      "验证",
+      "完成",
+      "证据"
+    ],
+    "keywords": [
+      "verification",
+      "验证",
+      "完成",
+      "证据",
+      "exit",
+      "code",
+      "claim"
+    ],
     "usage": "required",
     "file": "/content/skills/verification-before-completion.md",
-    "relatedSkills": ["systematic-debugging", "finishing-a-development-branch"]
+    "relatedSkills": [
+      "systematic-debugging",
+      "finishing-a-development-branch"
+    ],
+    "package": "superpowers"
   },
   {
     "id": "skill-requesting-code-review",
@@ -133,11 +269,26 @@
     "category": "execution",
     "layer": 3,
     "difficulty": "intermediate",
-    "tags": ["审查", "Review", "质量"],
-    "keywords": ["code", "review", "审查", "reviewer", "critical", "质量"],
+    "tags": [
+      "审查",
+      "Review",
+      "质量"
+    ],
+    "keywords": [
+      "code",
+      "review",
+      "审查",
+      "reviewer",
+      "critical",
+      "质量"
+    ],
     "usage": "recommended",
     "file": "/content/skills/requesting-code-review.md",
-    "relatedSkills": ["receiving-code-review", "subagent-driven-development"]
+    "relatedSkills": [
+      "receiving-code-review",
+      "subagent-driven-development"
+    ],
+    "package": "superpowers"
   },
   {
     "id": "skill-receiving-code-review",
@@ -147,11 +298,26 @@
     "category": "execution",
     "layer": 3,
     "difficulty": "intermediate",
-    "tags": ["审查", "反馈", "判断"],
-    "keywords": ["receiving", "review", "接收", "反馈", "审查", "判断", "验证"],
+    "tags": [
+      "审查",
+      "反馈",
+      "判断"
+    ],
+    "keywords": [
+      "receiving",
+      "review",
+      "接收",
+      "反馈",
+      "审查",
+      "判断",
+      "验证"
+    ],
     "usage": "recommended",
     "file": "/content/skills/receiving-code-review.md",
-    "relatedSkills": ["requesting-code-review"]
+    "relatedSkills": [
+      "requesting-code-review"
+    ],
+    "package": "superpowers"
   },
   {
     "id": "skill-dispatching-parallel-agents",
@@ -161,11 +327,25 @@
     "category": "execution",
     "layer": 3,
     "difficulty": "advanced",
-    "tags": ["并行", "加速", "派发"],
-    "keywords": ["parallel", "并行", "dispatch", "派发", "agent", "加速"],
+    "tags": [
+      "并行",
+      "加速",
+      "派发"
+    ],
+    "keywords": [
+      "parallel",
+      "并行",
+      "dispatch",
+      "派发",
+      "agent",
+      "加速"
+    ],
     "usage": "optional",
     "file": "/content/skills/dispatching-parallel-agents.md",
-    "relatedSkills": ["subagent-driven-development"]
+    "relatedSkills": [
+      "subagent-driven-development"
+    ],
+    "package": "superpowers"
   },
   {
     "id": "skill-finishing-a-development-branch",
@@ -175,11 +355,28 @@
     "category": "finish",
     "layer": 4,
     "difficulty": "beginner",
-    "tags": ["收尾", "PR", "合并", "分支"],
-    "keywords": ["finishing", "收尾", "branch", "分支", "merge", "PR", "合并"],
+    "tags": [
+      "收尾",
+      "PR",
+      "合并",
+      "分支"
+    ],
+    "keywords": [
+      "finishing",
+      "收尾",
+      "branch",
+      "分支",
+      "merge",
+      "PR",
+      "合并"
+    ],
     "usage": "recommended",
     "file": "/content/skills/finishing-a-development-branch.md",
-    "relatedSkills": ["using-git-worktrees", "verification-before-completion"]
+    "relatedSkills": [
+      "using-git-worktrees",
+      "verification-before-completion"
+    ],
+    "package": "superpowers"
   },
   {
     "id": "skill-writing-skills",
@@ -189,10 +386,25 @@
     "category": "finish",
     "layer": 4,
     "difficulty": "advanced",
-    "tags": ["编写", "自定义", "扩展"],
-    "keywords": ["writing", "skills", "编写", "自定义", "扩展", "规范", "沉淀"],
+    "tags": [
+      "编写",
+      "自定义",
+      "扩展"
+    ],
+    "keywords": [
+      "writing",
+      "skills",
+      "编写",
+      "自定义",
+      "扩展",
+      "规范",
+      "沉淀"
+    ],
     "usage": "advanced",
     "file": "/content/skills/writing-skills.md",
-    "relatedSkills": ["test-driven-development"]
+    "relatedSkills": [
+      "test-driven-development"
+    ],
+    "package": "superpowers"
   }
 ]
