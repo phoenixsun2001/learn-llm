@@ -192,20 +192,21 @@ const TutorialManager = () => {
 
   const handleResizeStart = (e) => {
     e.preventDefault()
-    setResizing(true)
+    e.stopPropagation()
     const startX = e.clientX
     const startY = e.clientY
     const startW = editSize.w
     const startH = editSize.h
 
     const onMove = (ev) => {
-      setEditSize({
-        w: Math.max(500, startW + ev.clientX - startX),
-        h: Math.max(350, startH + ev.clientY - startY),
+      requestAnimationFrame(() => {
+        setEditSize({
+          w: Math.max(500, startW + ev.clientX - startX),
+          h: Math.max(350, startH + ev.clientY - startY),
+        })
       })
     }
     const onUp = () => {
-      setResizing(false)
       document.removeEventListener('mousemove', onMove)
       document.removeEventListener('mouseup', onUp)
       document.body.style.userSelect = ''
