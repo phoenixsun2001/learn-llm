@@ -767,15 +767,12 @@ const TutorialManager = () => {
               onMouseDown={handleResizeStart}
               style={{
                 position:'absolute', bottom:0, right:0,
-                width:20, height:20, cursor:'se-resize',
-                overflow:'hidden',
+                width:16, height:16, cursor:'se-resize',
+                borderRight:'2px solid var(--text-tertiary)',
+                borderBottom:'2px solid var(--text-tertiary)',
               }}
               title="拖拽调整窗口大小"
-            >
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="var(--text-tertiary)" style="position:absolute;bottom:-6px;right:-6px;opacity:0.5;">
-                <path d="M22 12l-10 10 2 2 10-10-2-2zM26 0L0 26h4L26 4V0z" />
-              </svg>
-            </div>
+            />
               <button className="admin-btn admin-btn--secondary" onClick={() => setEditingTutorial(null)}>取消</button>
               <button className="admin-btn admin-btn--primary" onClick={handleSaveEdit} disabled={editSaving}>
                 {editSaving ? '保存中...' : '保存'}
