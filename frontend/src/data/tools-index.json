@@ -20,17 +20,11 @@
     "id": "tool-codex",
     "slug": "codex",
     "name": "Codex",
-    "description": "OpenAI 官方桌面端 + CLI 编码助手，支持 Commands、Skills、MCP 集成和企业级部署。",
+    "description": "OpenAI 推出的 CLI 编码助手，在终端中提供 AI 辅助编程能力。",
     "category": "harness",
     "officialUrl": "https://github.com/openai/codex",
-    "wizardSteps": [
-      {"step": 1, "title": "核心概念", "tutorialSlug": "codex-intro"},
-      {"step": 2, "title": "安装登录", "tutorialSlug": "codex-install"},
-      {"step": 3, "title": "Commands", "tutorialSlug": "codex-commands"},
-      {"step": 4, "title": "Skills & MCP", "tutorialSlug": "codex-skills"},
-      {"step": 5, "title": "进阶实战", "tutorialSlug": "codex-advanced"}
-    ],
-    "tags": ["CLI", "编码助手", "OpenAI", "桌面端"]
+    "wizardSteps": [],
+    "tags": ["CLI", "编码助手", "OpenAI"]
   },
   {
     "id": "tool-trae",
@@ -81,5 +75,21 @@
     "officialUrl": "https://www.langchain.com",
     "wizardSteps": [],
     "tags": ["框架", "Agent", "Python/JS"]
+  },
+  {
+    "id": "tool-cc-switch",
+    "slug": "cc-switch",
+    "name": "CC Switch",
+    "description": "开源的 AI 编程 CLI 统一管理工具，支持 Claude Code、Codex、Gemini CLI 等，提供供应商切换、用量追踪、代理高可用等功能。",
+    "category": "harness",
+    "officialUrl": "https://ccswitch.io",
+    "wizardSteps": [
+      { "step": 1, "title": "了解 CC Switch", "tutorialSlug": "cc-switch-guide" },
+      { "step": 2, "title": "安装与配置", "tutorialSlug": "cc-switch-guide" },
+      { "step": 3, "title": "供应商管理", "tutorialSlug": "cc-switch-guide" },
+      { "step": 4, "title": "代理与高可用", "tutorialSlug": "cc-switch-guide" },
+      { "step": 5, "title": "最佳实践", "tutorialSlug": "cc-switch-guide" }
+    ],
+    "tags": ["管理工具", "供应商切换", "代理", "开源", "Tauri"]
   }
 ]

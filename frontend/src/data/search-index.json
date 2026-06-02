@@ -199,80 +199,6 @@
   },
   {
     "type": "tutorial",
-    "slug": "codex-intro",
-    "title": "Codex 核心概念与快速上手",
-    "keywords": [
-      "codex",
-      "openai",
-      "入门",
-      "指南",
-      "CLI",
-      "harness"
-    ],
-    "category": "harness",
-    "difficulty": "beginner"
-  },
-  {
-    "type": "tutorial",
-    "slug": "codex-install",
-    "title": "Codex 安装与认证完整指南",
-    "keywords": [
-      "codex",
-      "安装",
-      "配置",
-      "OpenAI",
-      "认证",
-      "harness"
-    ],
-    "category": "harness",
-    "difficulty": "beginner"
-  },
-  {
-    "type": "tutorial",
-    "slug": "codex-commands",
-    "title": "Codex Commands 与工作流入门",
-    "keywords": [
-      "codex",
-      "commands",
-      "命令",
-      "工作流",
-      "harness"
-    ],
-    "category": "harness",
-    "difficulty": "beginner"
-  },
-  {
-    "type": "tutorial",
-    "slug": "codex-skills",
-    "title": "Codex Skills 与 MCP 集成",
-    "keywords": [
-      "codex",
-      "skills",
-      "mcp",
-      "集成",
-      "github",
-      "harness"
-    ],
-    "category": "harness",
-    "difficulty": "intermediate"
-  },
-  {
-    "type": "tutorial",
-    "slug": "codex-advanced",
-    "title": "Codex 进阶：Subagents、Plugins 与企业实战",
-    "keywords": [
-      "codex",
-      "subagents",
-      "plugins",
-      "企业",
-      "对比",
-      "harness"
-    ],
-    "category": "harness",
-    "difficulty": "advanced"
-  },
-  {
-    "type": "tutorial",
     "slug": "understanding-transformer-architecture",
     "title": "Understanding Transformer Architecture",
     "keywords": [
@@ -295,5 +221,7 @@
     ],
     "category": "rag",
     "difficulty": "advanced"
-  }
+  },
+  {"type":"tutorial","slug":"cc-switch-guide","title":"CC Switch 统一管理工具指南","keywords":["cc","switch","管理工具","供应商","切换","代理","高可用","tauri","用量","token"],"category":"harness","difficulty":"beginner"},
+  {"type":"tool","slug":"cc-switch","title":"CC Switch","keywords":["管理工具","供应商切换","代理","开源","tauri","claude","codex","gemini"],"category":"harness"}
 ]
