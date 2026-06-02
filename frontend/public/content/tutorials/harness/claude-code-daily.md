@@ -1,3 +1,19 @@
+## 学习目标
+
+完成本章后，你将能够：
+
+- 在 6 个高频开发场景中高效使用 Claude Code
+- 使用内置和自定义 Slash Commands 加速日常操作
+- 管理多项目工作流和团队协作
+- 优化 Claude Code 的 API 使用成本
+
+## 学习路径
+
+| 路径 | 适用人群 | 预计时间 | 内容 |
+|------|----------|----------|------|
+| **快速通道** | 已有基础使用经验 | 15 分钟 | Slash Commands + 场景速查 + 成本优化 |
+| **完整路径** | 需要系统掌握工作流 | 30 分钟 | 全部场景深入 + 自定义命令 + 团队协作 |
+
 ## 工作流概览
 
 在日常开发中，Claude Code 可以融入以下六个高频场景，覆盖从写代码到发布的完整流程：
@@ -11,11 +27,77 @@
 | 测试编写 | 功能实现后 / TDD | 5-10 分钟 | 测试覆盖率快速提升 |
 | 依赖管理 | 版本升级 / 安全审计 | 2-5 分钟 | 安全处理 breaking changes |
 
-以下逐一展开每个场景的详细用法和实战命令。
+## Slash Commands 系统
+
+Claude Code 的 Commands 系统是日常工作流的核心入口。所有 Commands 以 `/` 开头，在对话中直接输入。
+
+### 内置 Commands 参考
+
+| Command | 功能 | 使用场景 |
+|---------|------|----------|
+| `/clear` | 清空当前对话上下文 | 开始全新任务前 |
+| `/compact` | 压缩上下文（保留关键信息） | 对话变长但任务未完成时 |
+| `/model` | 切换模型 (opus/sonnet/haiku) | 调整推理能力/成本 |
+| `/cost` | 查看当前会话 API 成本 | 关注预算时 |
+| `/review` | 审查当前代码变更 | PR 提交前 |
+| `/pr-comments` | 审查并输出 PR 评论格式 | 准备 PR Review |
+| `/doctor` | 诊断安装和配置问题 | 遇到异常行为时 |
+| `/help` | 显示所有可用命令 | 忘记命令时 |
+| `/status` | 显示当前会话状态 | 查看上下文窗口使用量 |
+| `/add-dir` | 添加工作目录到上下文 | 多项目工作流 |
+| `/init` | 初始化 .claude/ 项目配置 | 新项目设置 |
+| `/context` | 显示/编辑上下文 | 精细控制上下文内容 |
+
+### 创建自定义 Slash Commands
+
+在 `.claude/commands/` 目录下创建 Markdown 文件来定义自定义命令：
+
+**项目级命令** (`.claude/commands/the-command-name.md`)：
+
+```markdown
+<!-- .claude/commands/deploy-check.md -->
+
+This command runs a pre-deployment safety checklist:
+
+1. Run `npm test` and verify all tests pass
+2. Run `npm run build` and verify build succeeds
+3. Check for any uncommitted changes with `git status`
+4. Verify environment variables are correctly set in `.env.production`
+5. Output a deployment readiness summary with any warnings
+
+Do NOT proceed with deployment until all checks pass.
+```
+
+使用：在对话中输入 `/deploy-check`。
+
+**用户级命令** (`~/.claude/commands/`)：
+
+```bash
+mkdir -p ~/.claude/commands
+```
+
+用户级命令在所有项目中可用，适合个人偏好设置。
+
+### 自定义命令最佳实践
+
+1. **命名规范**：使用 kebab-case，动词在前，如 `deploy-check` 而非 `check-deploy`
+2. **单一职责**：每个命令做一件事
+3. **包含检查清单**：用编号列表列出检查步骤
+4. **明确前置条件**：说明命令执行前的必要状态
+5. **签入 Git**：项目级命令随项目一起版本管理
 
 ## 场景一：代码审查
 
 提交代码前，让 Claude Code 做一轮自动化审查。这是回报率最高的用法——几分钟就能发现人工 review 容易遗漏的问题。
+
+### 使用 /review 命令（推荐）
+
+```bash
+# 在 Claude Code 对话中直接输入
+/review
+
+# Claude 会分析当前工作区的变更并输出审查报告
+```
 
 ### 审查当前分支的变更
 
@@ -221,6 +303,46 @@ git diff --cached | claude -p "Generate a Conventional Commit message for these 
 请分析 package.json 中的依赖关系，找到冲突根源并给出解决方案。"
 ```
 
+## 会话管理与多项目工作流
+
+### 会话恢复
+
+```bash
+# 意外关闭终端后恢复上次会话
+claude --resume
+
+# 或从会话列表中选择
+claude --resume --list
+```
+
+### 多项目协作
+
+当你需要在多个项目之间切换时：
+
+```bash
+# 方式一：不同终端窗口，各自 cd 到不同项目
+# Terminal 1:
+cd ~/project-frontend && claude
+
+# Terminal 2:
+cd ~/project-backend && claude
+
+# 方式二：使用 /add-dir 在一个会话中添加多个工作目录
+/add-dir ~/project-backend
+```
+
+### 团队协作模式
+
+团队使用 Claude Code 的最佳实践：
+
+| 实践 | 说明 |
+|------|------|
+| **CLAUDE.md 签入 Git** | 整个团队共享技术栈和编码规范 |
+| **.claude/settings.json 签入** | 共享项目级权限和 Hooks 配置 |
+| **自定义 Commands 共享** | `.claude/commands/` 作为团队标准工作流 |
+| **审查报告模板** | 统一的 PR 审查清单嵌入 CLAUDE.md |
+| **新人 Onboarding** | 通过 CLAUDE.md 让新成员快速了解项目规范 |
+
 ## CLAUDE.md 设置指南
 
 `CLAUDE.md` 是你和 Claude Code 之间的"项目宪法"。一个精心编写的 CLAUDE.md 能大幅提升 Claude 的生成质量和一致性。
@@ -267,38 +389,6 @@ git diff --cached | claude -p "Generate a Conventional Commit message for these 
 2. **记录 Claude 常犯的错误**：如果你发现 Claude 反复犯同一类错误，把它写入 CLAUDE.md 的"禁止事项"。
 3. **团队共享**：CLAUDE.md 应该签入 Git，全团队共用和持续改进。
 
-## 会话管理
-
-### 恢复会话
-
-```bash
-# 意外关闭终端后恢复上次会话
-claude --resume
-
-# 或从会话列表中选择
-claude --resume --list
-```
-
-### 清理上下文
-
-```bash
-# 在对话中使用 /clear 清空上下文
-# 适用于：完成一个大阶段后、对话过长导致响应质量下降时
-/clear
-```
-
-### 管道模式（一次性提问）
-
-适合简单查询，不启动交互会话：
-
-```bash
-# 统计代码行数
-claude -p "统计 src/ 目录下所有 .js 文件的总行数"
-
-# 查找潜在问题
-claude -p "检查 src/ 下是否有未处理的 Promise rejections"
-```
-
 ## 键盘快捷键
 
 | 快捷键 | 功能 |
@@ -309,13 +399,7 @@ claude -p "检查 src/ 下是否有未处理的 Promise rejections"
 | `↑/↓` | 浏览历史输入 |
 | `Tab` | 自动补全文件路径 |
 | `Esc` | 取消当前输入 |
-
-### 多行输入
-
-```bash
-# 按 Shift+Enter 换行输入多行指令
-# 或使用 \ 在行末续行（bash 风格）
-```
+| `Shift+Enter` | 多行输入 |
 
 ## 成本优化策略
 
@@ -350,6 +434,12 @@ echo "分析这个错误" | claude -p "$(cat error.log)"
 
 # 使用 Haiku 处理格式化任务
 claude --model claude-haiku-3-5-20241022 -p "格式化这个 JSON 文件"
+
+# 使用 /compact 定期压缩上下文
+/compact
+
+# 使用 /cost 监控成本
+/cost
 ```
 
 ## 下一步

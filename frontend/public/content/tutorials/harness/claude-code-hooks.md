@@ -1,23 +1,45 @@
+## 学习目标
+
+完成本章后，你将能够：
+
+- 理解 Hooks 系统的完整生命周期和所有触发点
+- 配置 PreToolUse、PostToolUse、Stop 等核心 Hooks
+- 使用 Subagent Hooks 管理子 Agent 行为
+- 将 Hooks 与 Skills 工作流集成
+- 设计企业级 Hooks 部署和调试策略
+- 排查 Hooks 执行异常并优化性能
+
+## 学习路径
+
+| 路径 | 适用人群 | 预计时间 | 内容 |
+|------|----------|----------|------|
+| **快速通道** | 已有 Hooks 概念 | 15 分钟 | 生命周期速览 + 实战示例 + 调试 |
+| **完整路径** | 需要系统掌握 | 35 分钟 | 完整生命周期 + 企业部署 + 性能优化 |
+
 ## 什么是 Hooks
 
 Hooks 是 Claude Code 的事件钩子系统——概念上类似于 Git Hooks，但作用域更广。通过 Hooks，你可以在 Claude Code 执行过程的特定阶段自动触发自定义脚本，实现代码格式化、自动测试、安全检查、通知推送等自动化工作流。
 
 Hooks 的核心价值在于**将被动工具变为主动流程**。没有 Hooks，Claude Code 只是一个"你下指令、它执行"的工具。有了 Hooks，它变成了一个嵌入在你开发流程中的**自动化质量保障引擎**。
 
-## Hooks 架构与生命周期
+## Hooks 架构与完整生命周期
 
 Claude Code 支持的 Hooks 触发点覆盖了 Agent 执行的完整生命周期：
 
-| 触发点 | 触发时机 | 典型用途 | 返回值影响 |
-|--------|----------|----------|-----------|
-| `PreToolUse` | 工具被调用**之前** | 校验输入、阻止危险操作 | 返回非零可阻止操作 |
-| `PostToolUse` | 工具执行完成**之后** | 格式化输出、记录日志 | 不影响操作（已执行） |
-| `Notification` | Claude 发送通知时 | 转发通知到 Slack/钉钉 | 不影响主流程 |
-| `Stop` | 主 Agent 响应**结束**时 | 运行测试、生成报告 | 返回非零报错但不回滚 |
-| `SubagentStop` | 子 Agent **完成**任务时 | 汇总子任务结果 | 不影响主流程 |
-| `SessionStart` | 会话开始时 | 加载项目配置、检查环境 | 返回非零中断启动 |
+### 生命周期事件表
 
-### Hook 的执行顺序
+| 触发点 | 触发时机 | 可阻止 | 典型用途 | 性能要求 |
+|--------|----------|--------|----------|----------|
+| `SessionStart` | 会话开始时 | 是（返回非零中断启动） | 加载配置、检查环境、打印项目状态 | < 2s |
+| `PreToolUse` | 工具被调用**之前** | 是（返回非零阻止操作） | 校验输入、阻止危险操作、前置检查 | < 1s |
+| `PostToolUse` | 工具执行完成**之后** | 否（不影响操作） | 格式化输出、记录日志、触发通知 | < 3s |
+| `Notification` | Claude 发送通知时 | 否 | 转发通知到 Slack/钉钉 | < 1s |
+| `Stop` | 主 Agent 响应**结束**时 | 否 | 运行测试、生成报告、commit 建议 | < 60s |
+| `SubagentStop` | 子 Agent **完成**任务时 | 否 | 汇总子任务结果、验证子 Agent 输出 | < 10s |
+| `PreCompact` | 上下文压缩**之前** | 否 | 备份关键信息、记录压缩时间点 | < 1s |
+| `PreClear` | 清空上下文**之前** | 否 | 保存重要决策到 CLAUDE.md | < 1s |
+
+### Hook 执行顺序详解
 
 在一次典型的"Claude 编辑文件"操作中，Hooks 的触发顺序是：
 
@@ -31,6 +53,20 @@ PreToolUse  (Write/Edit 工具调用前 — 可以阻止)
 PostToolUse (Write/Edit 工具完成后 — 格式化、记录)
     ↓
 Stop        (Agent 本轮响应结束 — 运行测试)
+```
+
+对于涉及 Subagents 的复合操作：
+
+```
+SessionStart
+    ↓
+PreToolUse  (主 Agent 创建 Subagent 前)
+    ↓
+[Subagent 执行中...]
+    ↓
+SubagentStop  (每个 Subagent 完成时)
+    ↓
+Stop          (主 Agent 所有响应结束)
 ```
 
 ## Hooks 配置
@@ -68,6 +104,7 @@ Hooks 通过 JSON 文件配置，支持两个位置：
 | `tools` | 否 | 限定只对特定工具生效（如 ["Write", "Edit"]） |
 | `env` | 否 | 传递给命令的额外环境变量 |
 | `timeout` | 否 | 命令超时时间（毫秒），默认 30000 |
+| `condition` | 否 | 条件表达式，为真时才触发（如文件扩展名匹配） |
 
 ## 实战示例一：编辑后自动格式化代码
 
@@ -98,8 +135,6 @@ Hooks 通过 JSON 文件配置，支持两个位置：
   ]
 }
 ```
-
-> **注意**：`CLAUDE_TOOL_FILE_PATH` 是 Hook 执行时 Claude Code 注入的环境变量，指向被编辑的文件路径。
 
 ## 实战示例二：代码变更后自动运行测试
 
@@ -165,14 +200,23 @@ Hooks 通过 JSON 文件配置，支持两个位置：
 }
 ```
 
-**要点**：
+## 实战示例五：子 Agent 完成时验证输出
 
-- 仅在 Git 仓库中生效
-- 仅当有暂存文件时才触发
-- 使用 Haiku 模型节省成本（commit message 生成不需要 Opus）
-- 限制 diff 长度为 200 行以避免超长输入
+**场景**：当 Subagent 完成任务后，自动验证其输出是否符合质量标准。
 
-## 实战示例五：长时间任务完成后推送通知
+```json
+{
+  "hooks": [
+    {
+      "matcher": "SubagentStop",
+      "command": "bash -c 'echo \"[Subagent Hook] 子任务完成：${CLAUDE_SUBAGENT_NAME}，退出码：$?\" >> /tmp/claude-subagent.log; if [ -f \"${CLAUDE_TOOL_FILE_PATH}\" ]; then echo \"输出文件：${CLAUDE_TOOL_FILE_PATH}，大小：$(wc -c < ${CLAUDE_TOOL_FILE_PATH}) bytes\" >> /tmp/claude-subagent.log; fi'",
+      "timeout": 5000
+    }
+  ]
+}
+```
+
+## 实战示例六：长时间任务完成后推送通知
 
 **场景**：当 Claude 完成耗时较长的任务后，通过 Webhook 发送 Slack/钉钉/企业微信通知。
 
@@ -207,8 +251,6 @@ Hooks 通过 JSON 文件配置，支持两个位置：
   ]
 }
 ```
-
-> **安全提醒**：Webhook URL 应通过 `env` 字段或环境变量传入，不要直接硬编码在 hooks.json 中。
 
 ## 组合使用：完整质量门禁流水线
 
@@ -248,6 +290,24 @@ Write 后 → Prettier 格式化
 Stop   → 运行测试 → 输出结果
 ```
 
+## Hooks 与企业级 Skills 集成
+
+Hooks 可以与 Skills 系统协同工作，实现更复杂的自动化：
+
+```
+Skills 触发某个操作
+    ↓
+PreToolUse Hook 检查前置条件
+    ↓
+[操作执行]
+    ↓
+PostToolUse Hook 格式化/记录
+    ↓
+Stop Hook 运行完整验证
+    ↓
+SubagentStop Hook 汇总并行任务结果
+```
+
 ## 环境变量参考
 
 Hooks 脚本中可访问以下环境变量：
@@ -260,10 +320,10 @@ Hooks 脚本中可访问以下环境变量：
 | `CLAUDE_PROJECT_DIR` | 项目根目录路径 | `/home/user/project` |
 | `CLAUDE_MODEL` | 当前使用的模型名称 | `claude-sonnet-4-20250514` |
 | `CLAUDE_SESSION_ID` | 当前会话的唯一标识 | `abc123-def456` |
+| `CLAUDE_SUBAGENT_NAME` | 子 Agent 名称 (SubagentStop) | `code-reviewer` |
+| `CLAUDE_SUBAGENT_RESULT` | 子 Agent 结果摘要 (SubagentStop) | JSON 字符串 |
 
 ## 调试 Hooks
-
-Hooks 在后台执行，默认看不到输出。以下是调试方法：
 
 ### 1. 添加日志输出
 
@@ -284,6 +344,7 @@ Hooks 在后台执行，默认看不到输出。以下是调试方法：
 # 模拟 Hook 环境变量，手动测试
 export CLAUDE_TOOL_FILE_PATH="src/test.js"
 export CLAUDE_TOOL_NAME="Write"
+export CLAUDE_SUBAGENT_NAME="test-subagent"
 npx prettier --write "${CLAUDE_TOOL_FILE_PATH}"
 ```
 
@@ -292,16 +353,52 @@ npx prettier --write "${CLAUDE_TOOL_FILE_PATH}"
 ```bash
 # Hook 命令返回非零退出码时，Claude Code 的行为取决于 matcher 类型
 # PreToolUse: 非零 → 阻止操作
-# PostToolUse/Stop: 非零 → 记录警告但不回滚
+# PostToolUse/Stop/SubagentStop: 非零 → 记录警告但不回滚
+# SessionStart: 非零 → 中断会话启动
 ```
 
 ### 4. 逐步启用
 
-不要一次性启用所有 Hooks。逐个添加、测试、确认无误后，再添加下一个。
+不要一次性启用所有 Hooks。逐个添加、测试、确认无误后，再添加下一个：
 
-## 团队共享 Hooks
+```
+第一天：只加 PostToolUse 格式化 Hook
+第二天：加入 PreToolUse 安全检查 Hook
+第三天：加入 Stop 测试 Hook
+```
 
-### 签入版本控制
+## 性能优化
+
+Hooks 在同步执行，过慢的 Hook 会严重影响 Claude Code 的响应体验：
+
+| Hook 类型 | 推荐超时 | 说明 |
+|-----------|----------|------|
+| PreToolUse | 1-3s | 应该即时响应，否则影响每次工具调用 |
+| PostToolUse | 3-5s | 格式化和日志记录应快速完成 |
+| Stop | 30-60s | 可以运行较慢的任务，但不宜超过 1 分钟 |
+| SubagentStop | 5-10s | 子 Agent 验证应快速 |
+| SessionStart | 1-2s | 启动时不应有明显延迟 |
+
+### 性能建议
+
+1. **避免在 PreToolUse/PostToolUse 中运行测试**——把它们放到 Stop Hook
+2. **使用条件过滤**——只对特定文件类型触发 Hook，而非所有文件
+3. **缓存昂贵操作**——如 ESLint 配置，使用 `--cache` 标志
+4. **监控 Hook 耗时**——在日志中记录每个 Hook 的执行时间
+
+## 企业级 Hooks 部署
+
+### 分层配置策略
+
+```
+~/.claude/hooks.json         (用户级 — 个人通知偏好)
+    ↓
+项目/.claude/hooks.json       (项目级 — 质量门禁，签入 Git)
+    ↓
+项目/.claude/hooks.local.json (本地覆盖 — 不签入 Git，开发者自定义)
+```
+
+### 团队共享 Hooks
 
 项目级的 `.claude/hooks.json` 应签入 Git 仓库，确保团队所有成员使用相同的质量门禁。
 
@@ -331,14 +428,25 @@ echo '.env' >> .gitignore
 
 每个团队成员在本地设置 `TEAM_WEBHOOK_URL` 环境变量即可，不需要修改 hooks.json。
 
+## Hooks 故障排查
+
+| 症状 | 可能原因 | 排查步骤 |
+|------|----------|----------|
+| Hook 不触发 | matcher 名称错误、tools 过滤不匹配 | 检查 hooks.json 语法；查看 `/tmp/claude-hooks.log` |
+| Hook 触发但无效果 | 命令本身执行失败 | 手动模拟环境变量测试命令 |
+| Hook 导致 Claude 卡住 | 进程僵死或循环等待 | 设置合理 timeout；检查命令是否有交互式输入 |
+| PreToolUse 阻止了不该阻止的操作 | 正则匹配过于宽泛 | 收紧正则表达式；添加白名单条件 |
+| 多个 Hook 互相干扰 | 执行顺序不确定 | 合并相关 Hook；依赖独立脚本 |
+
 ## Hooks 最佳实践
 
 1. **保持 Hooks 短小快速**：每个 Hook 命令应在 5 秒内完成。如果 Hook 太慢，会严重影响 Claude Code 的响应体验。把耗时任务放到 `Stop` 触发点。
 2. **PreToolUse 谨慎阻塞**：在 `PreToolUse` 中返回非零会阻止 Claude 的操作。将这个能力保留给真正的阻断场景（如密钥扫描），不要用它来做格式化检查。
 3. **使用 bash -c 包装复杂命令**：对于多行或多命令的逻辑，用 `bash -c '...'` 包装，避免 Shell 解析问题。
 4. **正确转义 JSON**：JSON 字符串中的双引号和反斜杠需要转义。使用在线 JSON validator 验证 hooks.json 的格式。
-5. **超时设置要合理**：`Stop` Hooks 可以设置较长的超时（如 60s 用于测试），`PreToolUse/PostToolUse` 超时应尽量短（5-10s）。
+5. **超时设置要合理**：`Stop` Hooks 可以设置较长的超时（如 60s 用于测试），`PreToolUse/PostToolUse` 超时应尽量短（1-5s）。
 6. **记录 Hook 执行情况**：在生产使用中，让 Hooks 输出到日志文件，便于排查问题。
+7. **使用 hooks.local.json 隔离本地配置**：避免团队成员的个人偏好污染项目级配置。
 
 ## 进阶：自定义 Hook 脚本
 
@@ -394,7 +502,8 @@ echo "[Quality Gate] 检查完成"
 1. **实际项目练习**：在你的真实项目中持续使用 Claude Code，积累经验
 2. **自定义 Hooks**：根据团队需求编写专属的质量门禁 Hook
 3. **探索 CI/CD 集成**：将 Claude Code 的代码审查能力集成到 CI/CD 流水线中
-4. **关注官方更新**：Claude Code 在快速迭代中，持续关注 Anthropic 的官方文档和 Changelog
+4. **学习 Codex**：完成 Codex 学习路径，形成全面的 AI 编码工具认知
+5. **关注官方更新**：Claude Code 在快速迭代中，持续关注 Anthropic 的官方文档和 Changelog
 
 **最后的练习**：
 

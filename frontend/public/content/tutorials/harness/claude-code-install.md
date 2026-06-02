@@ -1,17 +1,62 @@
+## 学习目标
+
+完成本章后，你将能够：
+
+- 在 Windows、macOS 或 Linux 上完成 Claude Code 的安装
+- 正确配置 Anthropic API Key 并理解权限作用域
+- 验证安装完整性并通过首次运行检查
+- 排查 10 种以上常见安装和认证问题
+- 配置无头/服务器环境下的 Claude Code
+
+## 学习路径
+
+| 路径 | 适用人群 | 预计时间 | 内容 |
+|------|----------|----------|------|
+| **快速通道** | 熟悉 npm/Node.js 环境 | 10 分钟 | 安装 + API Key + 验证 |
+| **完整路径** | 需要各平台详细指引 | 25 分钟 | 全平台 + 故障排查 + 无头部署 |
+
 ## 环境准备
 
 在安装 Claude Code 之前，请确认你的系统满足以下要求：
 
-| 要求项 | 最低版本/配置 | 推荐配置 |
-|--------|--------------|----------|
-| **操作系统** | macOS 10.15+、Windows 10+ (WSL2)、Linux (Ubuntu 20.04+/CentOS 8+) | macOS 14+、Ubuntu 24.04+ |
-| **Node.js** | v18.0.0 及以上 | v20 LTS 或 v22 |
-| **npm** | v9.0.0 及以上（随 Node.js 附带） | 最新稳定版 |
-| **终端** | 支持 256 色的现代终端 | iTerm2、Windows Terminal、Warp、Kitty |
-| **网络** | 可访问 api.anthropic.com | 稳定的 HTTPS 连接 |
-| **磁盘空间** | 约 500MB（含依赖） | 1GB+ |
+| 要求项 | Windows | macOS | Linux |
+|--------|---------|-------|-------|
+| **操作系统** | Windows 10+ (推荐 WSL2) | macOS 12 Monterey+ | Ubuntu 20.04+ / Debian 11+ / CentOS 8+ |
+| **Node.js** | v18.0.0+ | v18.0.0+ | v18.0.0+ |
+| **npm** | v9.0.0+（随 Node.js 附带） | v9.0.0+ | v9.0.0+ |
+| **终端** | Windows Terminal（推荐）| iTerm2、Warp、Kitty | GNOME Terminal、Kitty |
+| **网络** | 可访问 api.anthropic.com | 同左 | 同左 |
+| **磁盘空间** | 约 500MB（含依赖） | 同左 | 同左 |
+| **Git** | 2.40+（用于项目协作） | 2.40+ | 2.40+ |
 
-> **Windows 用户注意**：强烈推荐使用 WSL2（Windows Subsystem for Linux）。虽然 Claude Code 在原生 Windows 终端中也可运行，但部分 Shell 命令的兼容性和性能表现不如 WSL2。如果你尚未安装 WSL2，请参考 Microsoft 官方文档完成安装后再继续。
+### Windows 与 WSL2
+
+**强烈推荐 Windows 用户使用 WSL2**。虽然 Claude Code 在原生 PowerShell/CMD 中也可运行，但 WSL2 提供更好的性能、完整的 Unix 工具链支持，以及更少的路径兼容性问题。
+
+```powershell
+# 在 PowerShell（管理员）中安装 WSL2
+wsl --install -d Ubuntu-24.04
+
+# 重启后进入 Ubuntu，然后按照 Linux 安装步骤操作
+```
+
+如果你必须在原生 Windows 上运行：
+
+```powershell
+# 使用 PowerShell 7+（非 Windows PowerShell 5）
+# 安装 Node.js 从 https://nodejs.org （选择 LTS 版本）
+# 使用 Windows Terminal 而非 cmd.exe
+```
+
+### macOS 注意事项
+
+- 确保 Xcode Command Line Tools 已安装：`xcode-select --install`
+- 如果使用 Homebrew 安装的 Node.js，注意全局 npm 包路径可能与系统 Node.js 不同
+
+### Linux 注意事项
+
+- 需要 `build-essential`（Ubuntu/Debian）或 `Development Tools`（CentOS/RHEL）用于编译原生模块
+- 某些最小化安装的 Linux 发行版可能需要额外安装 `python3` 和 `make`
 
 ## 安装步骤
 
@@ -65,15 +110,28 @@ which claude
 
 ### 3. 配置 API Key
 
-Claude Code 需要 Anthropic API Key 才能正常工作。如果你还没有 API Key，请先访问 [Anthropic Console](https://console.anthropic.com/) 注册账号并生成 Key。
+Claude Code 需要 Anthropic API Key 才能正常工作。
 
 #### 获取 API Key 的步骤：
 
 1. 访问 https://console.anthropic.com/
 2. 注册或登录你的 Anthropic 账号
-3. 进入 API Keys 页面
-4. 点击 "Create Key" 生成新的 API Key
+3. 进入 **API Keys** 页面
+4. 点击 **"Create Key"** 生成新的 API Key
 5. 复制 Key（格式为 `sk-ant-api03-xxxxxxxxxxxxx`），**请立即保存，离开页面后将无法再次查看**
+
+#### API Key 权限作用域
+
+创建 Key 时建议配置最小权限：
+
+| 设置项 | 推荐值 | 说明 |
+|--------|--------|------|
+| **Workspace** | 绑定到特定 Workspace | 限制 Key 的作用范围 |
+| **API Key Type** | User API Key | 用于个人开发，非生产应用 |
+| **Rate Limit** | 设置合理上限 | 防止意外超量使用 |
+| **Expiration** | 90 天或自定义 | Key 过期后需轮换 |
+
+> **安全提醒**：API Key 是访问 Anthropic 服务的凭证。不要将其硬编码在代码中、分享给他人、或提交到 Git 仓库。
 
 #### 配置环境变量：
 
@@ -184,6 +242,8 @@ ls -la ~/.claude/
 # 常见的配置文件
 # ~/.claude/settings.json  — 全局设置（模型、权限等）
 # ~/.claude/credentials    — API 凭证（自动生成）
+# ~/.claude/commands/      — 用户级自定义命令
+# ~/.claude/hooks.json     — 全局 Hooks 配置
 ```
 
 ### 模型选择策略
@@ -220,6 +280,34 @@ JetBrains IDE（IntelliJ、WebStorm、PyCharm 等）可通过插件市场安装 
 1. 打开 Settings → Plugins → Marketplace
 2. 搜索 "Claude Code"
 3. 安装并重启 IDE
+
+## 无头/服务器环境部署
+
+在 CI/CD 或远程服务器上使用 Claude Code：
+
+```bash
+# 1. 最小化安装
+npm install -g @anthropic-ai/claude-code
+
+# 2. 通过环境变量传递 API Key（无需交互）
+export ANTHROPIC_API_KEY="sk-ant-api03-..."
+
+# 3. 使用非交互模式
+claude -p "请审查本次 PR 变更" < diff.patch > review.md
+
+# 4. 在 CI/CD 脚本中使用
+# .github/workflows/claude-review.yml
+- name: Code Review
+  run: |
+    git diff origin/main...HEAD | claude -p "Review this diff for security issues" > review.md
+```
+
+无头环境的关键注意事项：
+
+- **无交互模式**：使用 `-p` 标志，不启动交互式 TUI
+- **环境变量优先**：API Key 通过环境变量传递，不依赖配置文件
+- **超时设置**：CI 环境建议设置命令超时（如 300 秒）
+- **输出重定向**：将结果写入文件而非终端输出
 
 ## 常见安装问题排查
 
@@ -269,6 +357,9 @@ curl -I https://api.anthropic.com
 # 第四步：如果使用代理，确认代理设置
 echo $HTTP_PROXY
 echo $HTTPS_PROXY
+
+# 第五步：检查 API Key 是否过期或被撤销
+# 登录 https://console.anthropic.com/ 检查 Key 状态
 ```
 
 ### 问题四：Node.js 版本不兼容
@@ -296,26 +387,41 @@ npm install -g @anthropic-ai/claude-code
 npm config delete registry
 ```
 
-## 验证安装是否完整
-
-运行以下命令完成最终验证：
+### 问题六：WSL2 无法访问 Windows 网络
 
 ```bash
-# 1. 确认 CLI 可执行
-claude --version
+# 在 WSL2 中测试网络连通性
+curl -I https://api.anthropic.com
 
-# 2. 确认 API Key 配置正确
-echo $ANTHROPIC_API_KEY
+# 如果失败，检查 WSL2 网络配置
+# 在 Windows PowerShell（管理员）中：
+wsl --shutdown
+# 重启 WSL2 后重试
 
-# 3. 测试一次性提问模式（无交互）
-echo "请用一句话介绍你自己" | claude -p
-
-# 4. 如果以上都成功，进入一个项目目录启动交互模式
-cd ~/my-project
-claude
+# 也可以尝试在 ~/.wslconfig 中设置：
+[wsl2]
+networkingMode=mirrored
 ```
 
-如果 4 步全部通过，恭喜——你的 Claude Code 安装配置已完全就绪。
+### 问题七：macOS Gatekeeper 阻止
+
+```bash
+# 如果通过 Homebrew 安装的 Node.js 遇到权限问题：
+sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
+```
+
+## 首次运行验证检查清单
+
+完成安装后，逐项验证：
+
+- [ ] `claude --version` 正常输出版本号
+- [ ] `echo $ANTHROPIC_API_KEY` 输出正确的 Key（以 `sk-ant-api03-` 开头）
+- [ ] `curl -I https://api.anthropic.com` 返回成功状态码
+- [ ] 在一个空目录中启动 `claude`，可以进入交互界面
+- [ ] 输入 "列出当前目录的文件结构"，Claude 正确响应
+- [ ] `echo "用一句话介绍你自己" | claude -p` 管道模式正常工作
+- [ ] `.env` 文件已加入 `.gitignore`（如使用 .env 方式）
+- [ ] Key 未出现在任何代码文件或 git 历史中
 
 ## 下一步
 
