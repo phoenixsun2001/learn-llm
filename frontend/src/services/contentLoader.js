@@ -7,6 +7,22 @@ import searchIndex from '../data/search-index.json';
 // Runtime store for dynamically imported tutorials (persisted to localStorage)
 const IMPORTED_KEY = 'learn-llm-imported-tutorials'
 const STATUS_KEY = 'learn-llm-tutorial-statuses'
+const EDITED_CONTENT_KEY = 'learn-llm-edited-content'
+
+function loadEditedContent() {
+  try { return JSON.parse(localStorage.getItem(EDITED_CONTENT_KEY) || '{}') } catch { return {} }
+}
+
+export function saveEditedContent(slug, content, metadata) {
+  const edited = loadEditedContent()
+  edited[slug] = { content, metadata, updatedAt: new Date().toISOString() }
+  try { localStorage.setItem(EDITED_CONTENT_KEY, JSON.stringify(edited)) } catch {}
+}
+
+export function getEditedContent(slug) {
+  const edited = loadEditedContent()
+  return edited[slug] || null
+}
 
 function loadImported() {
   try {
@@ -82,6 +98,14 @@ export function getAllTutorials(filters = {}) {
 export async function loadTutorialContent(slug) {
   const tutorial = getTutorialBySlug(slug);
   if (!tutorial) return null;
+
+  // Check for edited version in localStorage first
+  const edited = getEditedContent(slug);
+  if (edited && edited.content) {
+    return edited.content;
+  }
+
+  // Fall back to static file
   try {
     const response = await fetch(`/content/tutorials/${tutorial.subcategory}/${slug}.md`);
     if (!response.ok) throw new Error(`Failed to load: ${response.status}`);

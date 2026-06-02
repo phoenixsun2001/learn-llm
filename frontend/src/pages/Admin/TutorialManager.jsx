@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { getAllTutorials, addImportedTutorials } from '../../services/contentLoader'
+import { getAllTutorials, addImportedTutorials, saveEditedContent } from '../../services/contentLoader'
 import { createMaterial } from '../../services/pipelineApi'
 import { CATEGORY_LABELS, DIFFICULTY_LABELS } from '../../utils/constants'
 import ImportWizard from './ImportWizard'
@@ -202,9 +202,6 @@ const TutorialManager = () => {
 
   const handleSaveEdit = async () => {
     setEditSaving(true)
-    // Save to localStorage for persistence
-    const storedTutorials = JSON.parse(localStorage.getItem('learn-llm-imported-tutorials') || '[]')
-    const idx = storedTutorials.findIndex(t => t.id === editingTutorial.id)
     const updatedTutorial = {
       ...editingTutorial,
       title: editTitle,
@@ -215,10 +212,25 @@ const TutorialManager = () => {
       content: editContent,
       description: editContent.split('\n').find(l => l.trim() && !l.startsWith('#')) || editingTutorial.description,
     }
+
+    // Always save to localStorage (works for both static and imported tutorials)
+    const storedTutorials = JSON.parse(localStorage.getItem('learn-llm-imported-tutorials') || '[]')
+    const idx = storedTutorials.findIndex(t => t.id === editingTutorial.id)
     if (idx >= 0) {
       storedTutorials[idx] = updatedTutorial
-      localStorage.setItem('learn-llm-imported-tutorials', JSON.stringify(storedTutorials))
+    } else {
+      storedTutorials.push(updatedTutorial)
     }
+    localStorage.setItem('learn-llm-imported-tutorials', JSON.stringify(storedTutorials))
+
+    // Also save edited content separately (used by detail page)
+    saveEditedContent(editingTutorial.slug, editContent, {
+      title: editTitle,
+      category: editCategory,
+      difficulty: editDifficulty,
+      tags: editTags.split(',').map(t => t.trim()).filter(Boolean),
+      estimatedTime: editTime,
+    })
 
     // Also try to update via pipeline API if available
     try {
