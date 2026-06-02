@@ -7,6 +7,7 @@ const TYPE_CONFIG = {
   tutorial: { emoji: '📚', label: '教程', linkPrefix: '/tutorials', badgeClass: 'search-badge--tutorial' },
   tool: { emoji: '🔧', label: '工具', linkPrefix: '/tools', badgeClass: 'search-badge--tool' },
   scenario: { emoji: '🎯', label: '场景', linkPrefix: '/scenarios', badgeClass: 'search-badge--scenario' },
+  skill: { emoji: '🧩', label: '技能', linkPrefix: '/skills', badgeClass: 'search-badge--skill' },
 };
 
 const DIFFICULTY_LABELS = {
@@ -25,7 +26,7 @@ const SearchResults = () => {
   const results = useMemo(() => searchAll(query), [query]);
 
   const grouped = useMemo(() => {
-    const groups = { tutorial: [], tool: [], scenario: [] };
+    const groups = { tutorial: [], tool: [], scenario: [], skill: [] };
     results.forEach((item) => {
       if (groups[item.type]) groups[item.type].push(item);
     });

@@ -2,6 +2,7 @@ import tutorialsIndex from '../data/tutorials-index.json';
 import toolsIndex from '../data/tools-index.json';
 import pathwaysIndex from '../data/pathways-index.json';
 import scenariosIndex from '../data/scenarios-index.json';
+import skillsIndex from '../data/skills-index.json';
 import searchIndex from '../data/search-index.json';
 
 // Runtime store for dynamically imported tutorials (persisted to localStorage)
@@ -136,6 +137,18 @@ export function getScenarioBySlug(slug) {
 }
 
 export function getAllScenarios() { return scenariosIndex; }
+
+// ============================================
+// Skills Library
+// ============================================
+export function getSkillBySlug(slug) {
+  return skillsIndex.find((s) => s.slug === slug) || null;
+}
+
+export function getAllSkills(category) {
+  if (category) return skillsIndex.filter((s) => s.category === category);
+  return skillsIndex;
+}
 
 /**
  * 全局搜索：在教程、工具、场景中按标题和关键词搜索

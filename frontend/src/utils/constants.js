@@ -32,3 +32,26 @@ export const TOOL_CATEGORY_LABELS = {
   [TOOL_CATEGORIES.WORKFLOW]: 'Workflow 工具',
   [TOOL_CATEGORIES.DEV]: '开发框架',
 };
+
+// 技能库分类
+export const SKILL_CATEGORIES = {
+  ENTRY: 'entry',
+  PLANNING: 'planning',
+  EXECUTION: 'execution',
+  FINISH: 'finish',
+};
+
+export const SKILL_CATEGORY_LABELS = {
+  [SKILL_CATEGORIES.ENTRY]: '入口与规则',
+  [SKILL_CATEGORIES.PLANNING]: '需求到计划',
+  [SKILL_CATEGORIES.EXECUTION]: '执行与质控',
+  [SKILL_CATEGORIES.FINISH]: '调试验证收尾',
+};
+
+// 技能使用级别
+export const SKILL_USAGE_LABELS = {
+  required: '必须',
+  recommended: '推荐',
+  optional: '可选',
+  advanced: '高级',
+};

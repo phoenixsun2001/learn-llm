@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { to: '/pathways',  emoji: '🗺️', label: '学习路径' },
   { to: '/scenarios', emoji: '🎯', label: '场景检索' },
   { to: '/tools',     emoji: '🛠️', label: '工具向导' },
+  { to: '/skills',    emoji: '🧩', label: '技能库'   },
   { to: '/tutorials', emoji: '📖', label: '教程库'   },
 ];
 
