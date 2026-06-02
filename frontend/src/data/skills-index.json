@@ -406,5 +406,302 @@
       "test-driven-development"
     ],
     "package": "superpowers"
+  },
+  {
+    "id": "skill-openspec-overview",
+    "slug": "openspec-overview",
+    "name": "OpenSpec 概述与核心理念",
+    "description": "理解 OpenSpec 的设计哲学：Fluid not Rigid（灵活非僵化）、Iterative not Waterfall（迭代非瀑布）、Easy not Complex（轻量非繁重）、Brownfield-first（存量优先）。掌握 specs/（真相源）与 changes/（变更提案）双目录架构，以及 Delta Specs 的 ADDED/MODIFIED/REMOVED 三段式变更描述。",
+    "category": "entry",
+    "layer": 1,
+    "difficulty": "beginner",
+    "tags": [
+      "概述",
+      "哲学",
+      "架构"
+    ],
+    "keywords": [
+      "openspec",
+      "概述",
+      "哲学",
+      "fluid",
+      "iterative",
+      "brownfield",
+      "delta"
+    ],
+    "usage": "required",
+    "package": "openspec",
+    "file": "/content/skills/openspec-overview.md",
+    "relatedSkills": [
+      "opsx-propose"
+    ]
+  },
+  {
+    "id": "skill-opsx-propose",
+    "slug": "opsx-propose",
+    "name": "Propose 快速启动变更",
+    "description": "核心工作流入口——一条命令完成变更提案的全部规划产物。执行 /opsx:propose 后 AI 自动创建 proposal.md（意图与范围）、delta specs（增量需求）、design.md（技术方案）、tasks.md（实施清单）。适合需求明确的场景，是 OpenSpec 推荐的最高效启动方式。",
+    "category": "planning",
+    "layer": 2,
+    "difficulty": "beginner",
+    "tags": [
+      "启动",
+      "规划",
+      "快速路径"
+    ],
+    "keywords": [
+      "propose",
+      "启动",
+      "变更",
+      "proposal",
+      "快速",
+      "规划产物"
+    ],
+    "usage": "recommended",
+    "package": "openspec",
+    "file": "/content/skills/opsx-propose.md",
+    "relatedSkills": [
+      "openspec-overview",
+      "opsx-apply"
+    ]
+  },
+  {
+    "id": "skill-opsx-explore",
+    "slug": "opsx-explore",
+    "name": "Explore 探索式调研",
+    "description": "在提交变更前先做技术侦察。执行 /opsx:explore 后 AI 以自由对话方式分析代码库、比较方案、绘制架构图，帮你理清思路。不产生任何制品（Artifacts），但可以自然过渡到 /opsx:propose。适合需求模糊、方案待定、需要技术选型的场景。",
+    "category": "planning",
+    "layer": 2,
+    "difficulty": "beginner",
+    "tags": [
+      "探索",
+      "调研",
+      "分析"
+    ],
+    "keywords": [
+      "explore",
+      "探索",
+      "调研",
+      "分析",
+      "侦察",
+      "技术选型"
+    ],
+    "usage": "optional",
+    "package": "openspec",
+    "file": "/content/skills/opsx-explore.md",
+    "relatedSkills": [
+      "opsx-propose"
+    ]
+  },
+  {
+    "id": "skill-delta-specs",
+    "slug": "delta-specs",
+    "name": "Delta Specs 增量规格编写",
+    "description": "掌握 OpenSpec 的杀手级特性——用 ADDED/MODIFIED/REMOVED 三段式格式描述变更，而非重写整份规格。每条需求包含 MUST/SHALL/SHOULD 强度关键词和 Given/When/Then 场景。理解 Delta 如何合并到主 Specs 以及「行为契约」与「实现细节」的边界。",
+    "category": "planning",
+    "layer": 2,
+    "difficulty": "intermediate",
+    "tags": [
+      "Delta",
+      "Spec",
+      "需求",
+      "场景"
+    ],
+    "keywords": [
+      "delta",
+      "specs",
+      "需求",
+      "场景",
+      "given",
+      "when",
+      "then",
+      "added",
+      "modified",
+      "removed"
+    ],
+    "usage": "recommended",
+    "package": "openspec",
+    "file": "/content/skills/delta-specs.md",
+    "relatedSkills": [
+      "opsx-propose",
+      "design-and-tasks"
+    ]
+  },
+  {
+    "id": "skill-design-and-tasks",
+    "slug": "design-and-tasks",
+    "name": "Design 技术设计与 Tasks 任务拆解",
+    "description": "从 Spec 到可执行计划的桥梁。design.md 记录技术决策（Why 选这个方案、架构图、数据流、文件变更清单），tasks.md 拆解为可勾选的层级化任务（2-5 分钟粒度）。理解 Artifact 依赖链 proposal -> specs -> design -> tasks 以及「先设计还是先写 Spec」的灵活性。",
+    "category": "planning",
+    "layer": 2,
+    "difficulty": "intermediate",
+    "tags": [
+      "Design",
+      "Tasks",
+      "技术方案",
+      "拆解"
+    ],
+    "keywords": [
+      "design",
+      "tasks",
+      "技术方案",
+      "任务拆解",
+      "架构",
+      "决策"
+    ],
+    "usage": "recommended",
+    "package": "openspec",
+    "file": "/content/skills/design-and-tasks.md",
+    "relatedSkills": [
+      "delta-specs",
+      "opsx-apply"
+    ]
+  },
+  {
+    "id": "skill-opsx-apply",
+    "slug": "opsx-apply",
+    "name": "Apply 任务实现",
+    "description": "按 tasks.md 的检查清单逐项执行编码工作。AI 读取未完成任务、依次实现、自动勾选 checkbox。支持中断续做（重新执行 /opsx:apply 即可从上次断点继续）和并行变更（指定 change-name 切换工作流）。完成状态完全由 tasks.md 的 checkbox 追踪。",
+    "category": "execution",
+    "layer": 3,
+    "difficulty": "beginner",
+    "tags": [
+      "实现",
+      "编码",
+      "执行"
+    ],
+    "keywords": [
+      "apply",
+      "实现",
+      "编码",
+      "执行",
+      "任务",
+      "checkbox"
+    ],
+    "usage": "required",
+    "package": "openspec",
+    "file": "/content/skills/opsx-apply.md",
+    "relatedSkills": [
+      "opsx-propose",
+      "opsx-verify"
+    ]
+  },
+  {
+    "id": "skill-opsx-verify",
+    "slug": "opsx-verify",
+    "name": "Verify 完成前验证",
+    "description": "归档前的质量门禁——从三个维度验证实现与制品的一致性：Completeness（所有任务/需求/场景是否覆盖）、Correctness（实现是否符合 Spec 意图、边界是否处理）、Coherence（设计决策是否体现在代码中、命名是否一致）。输出 Critical/Warning/Suggestion 三级问题报告，不阻塞归档但建议先修复再合并。",
+    "category": "execution",
+    "layer": 3,
+    "difficulty": "intermediate",
+    "tags": [
+      "验证",
+      "质量",
+      "检查"
+    ],
+    "keywords": [
+      "verify",
+      "验证",
+      "质量",
+      "检查",
+      "completeness",
+      "correctness",
+      "coherence"
+    ],
+    "usage": "recommended",
+    "package": "openspec",
+    "file": "/content/skills/opsx-verify.md",
+    "relatedSkills": [
+      "opsx-apply",
+      "opsx-archive"
+    ]
+  },
+  {
+    "id": "skill-opsx-new-ff",
+    "slug": "opsx-new-ff",
+    "name": "New / Continue / FF 分步工作流",
+    "description": "扩展工作流三件套——适合需要逐步控制的场景。/opsx:new 创建变更骨架（仅 .openspec.yaml），/opsx:continue 按依赖图逐步生成下一个制品（每次一个），/opsx:ff 一键生成全部规划制品。理解 Schema 依赖图的驱动逻辑和「依赖是使能而非门禁」的设计理念。",
+    "category": "execution",
+    "layer": 3,
+    "difficulty": "advanced",
+    "tags": [
+      "分步",
+      "控制",
+      "扩展"
+    ],
+    "keywords": [
+      "new",
+      "continue",
+      "ff",
+      "fast-forward",
+      "分步",
+      "scaffold",
+      "依赖图"
+    ],
+    "usage": "optional",
+    "package": "openspec",
+    "file": "/content/skills/opsx-new-ff.md",
+    "relatedSkills": [
+      "opsx-propose",
+      "opsx-customize"
+    ]
+  },
+  {
+    "id": "skill-opsx-archive",
+    "slug": "opsx-archive",
+    "name": "Archive 归档与 Sync 同步",
+    "description": "变更完成后的标准化收尾。/opsx:archive 将 Delta Specs 合并到主 Specs 目录（ADDED->追加、MODIFIED->替换、REMOVED->删除），然后将变更文件夹移至 archive/ 保存完整审计记录。支持 /opsx:bulk-archive 批量归档多个变更并自动解决同一 Spec 文件的合并冲突。Sync 可提前单独执行以预览合并结果。",
+    "category": "finish",
+    "layer": 4,
+    "difficulty": "beginner",
+    "tags": [
+      "归档",
+      "同步",
+      "收尾"
+    ],
+    "keywords": [
+      "archive",
+      "归档",
+      "sync",
+      "同步",
+      "merge",
+      "bulk",
+      "审计"
+    ],
+    "usage": "required",
+    "package": "openspec",
+    "file": "/content/skills/opsx-archive.md",
+    "relatedSkills": [
+      "opsx-verify"
+    ]
+  },
+  {
+    "id": "skill-opsx-customize",
+    "slug": "opsx-customize",
+    "name": "Customize 自定义工作流",
+    "description": "通过 config.yaml 和自定义 Schema 让 OpenSpec 适配你的团队流程。config.yaml 注入项目上下文（技术栈、规范）和制品规则（如 Proposal 必须包含回滚方案）。fork 内置 Schema 后编辑 schema.yaml 定义自己的制品依赖图——加 Review 关卡、精简为 proposal->tasks 两件套、或引入 research 先导步骤。社区 Schema 生态（如 superpowers-bridge）可直接复用。",
+    "category": "finish",
+    "layer": 4,
+    "difficulty": "advanced",
+    "tags": [
+      "自定义",
+      "Schema",
+      "配置"
+    ],
+    "keywords": [
+      "customize",
+      "自定义",
+      "schema",
+      "config",
+      "配置",
+      "fork",
+      "社区"
+    ],
+    "usage": "advanced",
+    "package": "openspec",
+    "file": "/content/skills/opsx-customize.md",
+    "relatedSkills": [
+      "opsx-new-ff"
+    ]
   }
 ]

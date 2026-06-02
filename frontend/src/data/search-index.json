@@ -522,5 +522,154 @@
       "沉淀"
     ],
     "package": "superpowers"
+  },
+  {
+    "type": "skill",
+    "slug": "openspec-overview",
+    "title": "OpenSpec 概述与核心理念",
+    "keywords": [
+      "openspec",
+      "概述",
+      "哲学",
+      "fluid",
+      "iterative",
+      "brownfield",
+      "delta"
+    ],
+    "package": "openspec"
+  },
+  {
+    "type": "skill",
+    "slug": "opsx-propose",
+    "title": "Propose 快速启动变更",
+    "keywords": [
+      "propose",
+      "启动",
+      "变更",
+      "proposal",
+      "快速",
+      "规划产物"
+    ],
+    "package": "openspec"
+  },
+  {
+    "type": "skill",
+    "slug": "opsx-explore",
+    "title": "Explore 探索式调研",
+    "keywords": [
+      "explore",
+      "探索",
+      "调研",
+      "分析",
+      "侦察",
+      "技术选型"
+    ],
+    "package": "openspec"
+  },
+  {
+    "type": "skill",
+    "slug": "delta-specs",
+    "title": "Delta Specs 增量规格编写",
+    "keywords": [
+      "delta",
+      "specs",
+      "需求",
+      "场景",
+      "given",
+      "when",
+      "then",
+      "added",
+      "modified",
+      "removed"
+    ],
+    "package": "openspec"
+  },
+  {
+    "type": "skill",
+    "slug": "design-and-tasks",
+    "title": "Design 技术设计与 Tasks 任务拆解",
+    "keywords": [
+      "design",
+      "tasks",
+      "技术方案",
+      "任务拆解",
+      "架构",
+      "决策"
+    ],
+    "package": "openspec"
+  },
+  {
+    "type": "skill",
+    "slug": "opsx-apply",
+    "title": "Apply 任务实现",
+    "keywords": [
+      "apply",
+      "实现",
+      "编码",
+      "执行",
+      "任务",
+      "checkbox"
+    ],
+    "package": "openspec"
+  },
+  {
+    "type": "skill",
+    "slug": "opsx-verify",
+    "title": "Verify 完成前验证",
+    "keywords": [
+      "verify",
+      "验证",
+      "质量",
+      "检查",
+      "completeness",
+      "correctness",
+      "coherence"
+    ],
+    "package": "openspec"
+  },
+  {
+    "type": "skill",
+    "slug": "opsx-new-ff",
+    "title": "New / Continue / FF 分步工作流",
+    "keywords": [
+      "new",
+      "continue",
+      "ff",
+      "fast-forward",
+      "分步",
+      "scaffold",
+      "依赖图"
+    ],
+    "package": "openspec"
+  },
+  {
+    "type": "skill",
+    "slug": "opsx-archive",
+    "title": "Archive 归档与 Sync 同步",
+    "keywords": [
+      "archive",
+      "归档",
+      "sync",
+      "同步",
+      "merge",
+      "bulk",
+      "审计"
+    ],
+    "package": "openspec"
+  },
+  {
+    "type": "skill",
+    "slug": "opsx-customize",
+    "title": "Customize 自定义工作流",
+    "keywords": [
+      "customize",
+      "自定义",
+      "schema",
+      "config",
+      "配置",
+      "fork",
+      "社区"
+    ],
+    "package": "openspec"
   }
 ]

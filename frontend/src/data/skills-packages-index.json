@@ -8,7 +8,48 @@
     "sourceLabel": "obra/superpowers",
     "skillCount": 14,
     "layers": 4,
-    "tags": ["工程化", "TDD", "Code Review", "子智能体", "工作流"],
-    "keywords": ["superpowers", "工程化", "TDD", "review", "子智能体", "skills"]
+    "tags": [
+      "工程化",
+      "TDD",
+      "Code Review",
+      "子智能体",
+      "工作流"
+    ],
+    "keywords": [
+      "superpowers",
+      "工程化",
+      "TDD",
+      "review",
+      "子智能体",
+      "skills"
+    ]
+  },
+  {
+    "id": "pkg-openspec",
+    "slug": "openspec",
+    "name": "OpenSpec",
+    "description": "AI 编程的规范驱动开发框架。通过 Proposal -> Specs -> Design -> Tasks -> Implement 的标准化流程，让 AI 在编写代码前先与你「对齐需求」——用增量规格（Delta Specs）描述变更，用可验证的场景锁定预期行为，用归档机制沉淀系统知识。适合任何需要「先想清楚再写」的开发场景。",
+    "source": "https://github.com/Fission-AI/OpenSpec",
+    "sourceLabel": "Fission-AI/OpenSpec",
+    "skillCount": 10,
+    "layers": 4,
+    "tags": [
+      "规范驱动",
+      "Specs",
+      "Delta",
+      "归档",
+      "工作流",
+      "SDD"
+    ],
+    "keywords": [
+      "openspec",
+      "spec",
+      "delta",
+      "规范",
+      "归档",
+      "sdd",
+      "规格驱动",
+      "proposal"
+    ]
   }
 ]
