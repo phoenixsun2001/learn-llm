@@ -241,7 +241,12 @@
     "subcategory": "harness",
     "difficulty": "beginner",
     "estimatedTime": 25,
-    "tags": ["kilo-code", "开源", "Agent", "IDE"],
+    "tags": [
+      "kilo-code",
+      "开源",
+      "Agent",
+      "IDE"
+    ],
     "prerequisites": [],
     "file": "/content/tutorials/harness/kilo-code-guide.md",
     "featured": false
@@ -276,9 +281,57 @@
     "subcategory": "harness",
     "difficulty": "intermediate",
     "estimatedTime": 35,
-    "tags": ["superpowers", "工程化", "TDD", "codex", "claude-code"],
-    "prerequisites": ["codex-install", "claude-code-intro"],
+    "tags": [
+      "superpowers",
+      "工程化",
+      "TDD",
+      "codex",
+      "claude-code"
+    ],
+    "prerequisites": [
+      "codex-install",
+      "claude-code-intro"
+    ],
     "file": "/content/tutorials/harness/superpowers-engineering-guide.md",
     "featured": true
+  },
+  {
+    "id": "tut-ecc-guide",
+    "slug": "ecc-guide",
+    "title": "Everything Claude Code (ECC) 完全指南",
+    "description": "Anthropic 黑客松冠军项目——140K+ Stars 的完整 Claude Code 配置体系。包含 63 个 Agent、249 个 Skill、79 个命令的安装使用指南，以及持续学习、内存持久化、Token 优化、AgentShield 安全审计等核心能力详解。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "intermediate",
+    "estimatedTime": 25,
+    "tags": [
+      "ECC",
+      "Claude Code",
+      "配置",
+      "Agent",
+      "Skill",
+      "安全",
+      "插件"
+    ],
+    "keywords": [
+      "ecc",
+      "everything",
+      "claude",
+      "code",
+      "配置",
+      "agent",
+      "skill",
+      "hook",
+      "规则",
+      "agentshield",
+      "插件",
+      "安全"
+    ],
+    "prerequisites": [
+      "claude-code-intro",
+      "claude-code-install"
+    ],
+    "featured": true,
+    "file": "/content/tutorials/harness/ecc-guide.md"
   }
 ]

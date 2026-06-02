@@ -671,5 +671,39 @@
       "社区"
     ],
     "package": "openspec"
+  },
+  {
+    "type": "tutorial",
+    "slug": "ecc-guide",
+    "title": "Everything Claude Code (ECC) 完全指南",
+    "keywords": [
+      "ecc",
+      "everything",
+      "claude",
+      "code",
+      "配置",
+      "agent",
+      "skill",
+      "hook",
+      "agentshield",
+      "安全"
+    ],
+    "category": "harness",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tool",
+    "slug": "ecc",
+    "title": "ECC (Everything Claude Code)",
+    "keywords": [
+      "ecc",
+      "everything",
+      "claude",
+      "code",
+      "配置",
+      "agent",
+      "skill"
+    ],
+    "category": "harness"
   }
 ]

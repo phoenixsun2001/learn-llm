@@ -161,13 +161,39 @@
     "category": "harness",
     "officialUrl": "https://kilo.ai",
     "wizardSteps": [
-      { "step": 1, "title": "了解 Kilo Code", "tutorialSlug": "kilo-code-guide" },
-      { "step": 2, "title": "安装与配置", "tutorialSlug": "kilo-code-guide" },
-      { "step": 3, "title": "Agent 使用", "tutorialSlug": "kilo-code-guide" },
-      { "step": 4, "title": "核心功能", "tutorialSlug": "kilo-code-guide" },
-      { "step": 5, "title": "最佳实践", "tutorialSlug": "kilo-code-guide" }
+      {
+        "step": 1,
+        "title": "了解 Kilo Code",
+        "tutorialSlug": "kilo-code-guide"
+      },
+      {
+        "step": 2,
+        "title": "安装与配置",
+        "tutorialSlug": "kilo-code-guide"
+      },
+      {
+        "step": 3,
+        "title": "Agent 使用",
+        "tutorialSlug": "kilo-code-guide"
+      },
+      {
+        "step": 4,
+        "title": "核心功能",
+        "tutorialSlug": "kilo-code-guide"
+      },
+      {
+        "step": 5,
+        "title": "最佳实践",
+        "tutorialSlug": "kilo-code-guide"
+      }
     ],
-    "tags": ["开源", "IDE", "多平台", "Agent", "结对编程"]
+    "tags": [
+      "开源",
+      "IDE",
+      "多平台",
+      "Agent",
+      "结对编程"
+    ]
   },
   {
     "id": "tool-cc-switch",
@@ -209,6 +235,48 @@
       "代理",
       "开源",
       "Tauri"
+    ]
+  },
+  {
+    "id": "tool-ecc",
+    "slug": "ecc",
+    "name": "ECC (Everything Claude Code)",
+    "description": "Anthropic 黑客松冠军——140K+ Stars 的完整 Claude Code 配置体系，含 63 Agent、249 Skill、79 命令、持续学习与安全审计。",
+    "category": "harness",
+    "officialUrl": "https://github.com/affaan-m/ECC",
+    "wizardSteps": [
+      {
+        "step": 1,
+        "title": "了解 ECC",
+        "tutorialSlug": "ecc-guide"
+      },
+      {
+        "step": 2,
+        "title": "安装插件",
+        "tutorialSlug": "ecc-guide"
+      },
+      {
+        "step": 3,
+        "title": "配置 Rules",
+        "tutorialSlug": "ecc-guide"
+      },
+      {
+        "step": 4,
+        "title": "核心命令",
+        "tutorialSlug": "ecc-guide"
+      },
+      {
+        "step": 5,
+        "title": "AgentShield 安全",
+        "tutorialSlug": "ecc-guide"
+      }
+    ],
+    "tags": [
+      "Claude Code",
+      "配置",
+      "插件",
+      "Agent",
+      "安全"
     ]
   }
 ]
