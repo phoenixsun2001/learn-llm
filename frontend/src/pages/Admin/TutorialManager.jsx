@@ -1,9 +1,17 @@
 import React, { useState, useMemo } from 'react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import { getAllTutorials, addImportedTutorials } from '../../services/contentLoader'
 import { createMaterial } from '../../services/pipelineApi'
 import { CATEGORY_LABELS, DIFFICULTY_LABELS } from '../../utils/constants'
 import ImportWizard from './ImportWizard'
 import './TutorialManager.css'
+
+const MarkdownPreview = ({ content }) => (
+  <div className="markdown-preview">
+    <ReactMarkdown remarkPlugins={[remarkGfm]}>{content || ''}</ReactMarkdown>
+  </div>
+)
 
 /* Artificial status: in a real app this comes from a database.
    For MVP, we persist simulated statuses in localStorage so changes
@@ -77,6 +85,17 @@ const TutorialManager = () => {
   })
 
   const [showImportWizard, setShowImportWizard] = useState(false)
+
+  /* Edit modal state */
+  const [editingTutorial, setEditingTutorial] = useState(null)
+  const [editContent, setEditContent] = useState('')
+  const [editTitle, setEditTitle] = useState('')
+  const [editCategory, setEditCategory] = useState('')
+  const [editDifficulty, setEditDifficulty] = useState('')
+  const [editTags, setEditTags] = useState('')
+  const [editTime, setEditTime] = useState(25)
+  const [editSaving, setEditSaving] = useState(false)
+  const [editViewMode, setEditViewMode] = useState('split') // 'split' | 'edit' | 'preview'
 
   /* Derived: filtered + sorted list */
   const filtered = useMemo(() => {
@@ -167,6 +186,53 @@ const TutorialManager = () => {
         return next
       })
     }
+  }
+
+  const handleEditTutorial = (tutorial) => {
+    setEditingTutorial(tutorial)
+    setEditTitle(tutorial.title)
+    setEditCategory(tutorial.category)
+    setEditDifficulty(tutorial.difficulty)
+    setEditTags(Array.isArray(tutorial.tags) ? tutorial.tags.join(', ') : (tutorial.tags || ''))
+    setEditTime(tutorial.estimatedTime || 25)
+    // Load content if available, otherwise use placeholder
+    setEditContent(tutorial.content || '# ' + tutorial.title + '\n\n' + (tutorial.description || ''))
+    setEditViewMode('split')
+  }
+
+  const handleSaveEdit = async () => {
+    setEditSaving(true)
+    // Save to localStorage for persistence
+    const storedTutorials = JSON.parse(localStorage.getItem('learn-llm-imported-tutorials') || '[]')
+    const idx = storedTutorials.findIndex(t => t.id === editingTutorial.id)
+    const updatedTutorial = {
+      ...editingTutorial,
+      title: editTitle,
+      category: editCategory,
+      difficulty: editDifficulty,
+      tags: editTags.split(',').map(t => t.trim()).filter(Boolean),
+      estimatedTime: editTime,
+      content: editContent,
+      description: editContent.split('\n').find(l => l.trim() && !l.startsWith('#')) || editingTutorial.description,
+    }
+    if (idx >= 0) {
+      storedTutorials[idx] = updatedTutorial
+      localStorage.setItem('learn-llm-imported-tutorials', JSON.stringify(storedTutorials))
+    }
+
+    // Also try to update via pipeline API if available
+    try {
+      await fetch('/api/admin/materials/update', {
+        method: 'POST',
+        body: new URLSearchParams({ id: editingTutorial.id, title: editTitle, content: editContent, category: editCategory, difficulty: editDifficulty, tags: JSON.stringify(editTags.split(',').map(t => t.trim()).filter(Boolean)) }),
+      })
+    } catch {}
+
+    setEditingTutorial(null)
+    setEditSaving(false)
+    // Trigger list refresh
+    setRefreshKey(k => k + 1)
+    alert('教程已保存')
   }
 
   const handleToggleExpand = (id) => {
@@ -421,6 +487,13 @@ const TutorialManager = () => {
                           </a>
                           <button
                             className="admin-btn admin-btn--secondary admin-btn--sm"
+                            onClick={(e) => { e.stopPropagation(); handleEditTutorial(tutorial); }}
+                            aria-label={`编辑「${tutorial.title}」`}
+                          >
+                            编辑
+                          </button>
+                          <button
+                            className="admin-btn admin-btn--secondary admin-btn--sm"
                             onClick={() => handleCycleStatus(tutorial.id)}
                             aria-label={`切换「${tutorial.title}」状态，当前为${statusLabel}`}
                           >
@@ -577,6 +650,80 @@ const TutorialManager = () => {
                 aria-label="创建教程"
               >
                 {createLoading ? '创建中...' : '创建'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Modal */}
+      {editingTutorial && (
+        <div className="admin-modal-overlay" onClick={() => setEditingTutorial(null)}>
+          <div className="admin-modal" style={{maxWidth: '90vw', width: '1100px', maxHeight: '90vh'}} onClick={(e) => e.stopPropagation()} role="dialog" aria-label="编辑教程">
+            <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom: 16}}>
+              <h2 className="admin-modal-title" style={{margin:0}}>编辑教程</h2>
+              <button onClick={() => setEditingTutorial(null)} style={{background:'none',border:'none',fontSize:20,cursor:'pointer',color:'var(--text-secondary)'}}>✕</button>
+            </div>
+
+            {/* Metadata row */}
+            <div style={{display:'flex', gap:12, marginBottom:16, flexWrap:'wrap'}}>
+              <div className="admin-form-group" style={{flex:'1 1 300px'}}>
+                <label className="admin-form-label">标题</label>
+                <input className="admin-form-input" value={editTitle} onChange={e => setEditTitle(e.target.value)} />
+              </div>
+              <div className="admin-form-group" style={{width:150}}>
+                <label className="admin-form-label">分类</label>
+                <select className="admin-form-select" value={editCategory} onChange={e => setEditCategory(e.target.value)}>
+                  {[{v:'principle',l:'技术原理'},{v:'model',l:'模型产品'},{v:'harness',l:'Harness工具'},{v:'workflow',l:'Workflow工具'},{v:'development',l:'开发框架'},{v:'practice',l:'最佳实践'}].map(o => <option key={o.v} value={o.v}>{o.l}</option>)}
+                </select>
+              </div>
+              <div className="admin-form-group" style={{width:120}}>
+                <label className="admin-form-label">难度</label>
+                <select className="admin-form-select" value={editDifficulty} onChange={e => setEditDifficulty(e.target.value)}>
+                  {[{v:'beginner',l:'入门'},{v:'intermediate',l:'进阶'},{v:'advanced',l:'精通'}].map(o => <option key={o.v} value={o.v}>{o.l}</option>)}
+                </select>
+              </div>
+              <div className="admin-form-group" style={{width:100}}>
+                <label className="admin-form-label">时长(分)</label>
+                <input className="admin-form-input" type="number" value={editTime} onChange={e => setEditTime(parseInt(e.target.value)||0)} min={5} />
+              </div>
+              <div className="admin-form-group" style={{flex:'1 1 200px'}}>
+                <label className="admin-form-label">标签</label>
+                <input className="admin-form-input" value={editTags} onChange={e => setEditTags(e.target.value)} placeholder="逗号分隔" />
+              </div>
+            </div>
+
+            {/* View mode toggle */}
+            <div style={{display:'flex',gap:4,marginBottom:12}}>
+              {[{k:'edit',l:'编辑'},{k:'split',l:'分屏'},{k:'preview',l:'预览'}].map(m => (
+                <button key={m.k} onClick={() => setEditViewMode(m.k)}
+                  style={{padding:'4px 14px',border:`1px solid ${editViewMode===m.k?'var(--accent-color)':'var(--border-color)'}`,borderRadius:'var(--radius-sm)',background:editViewMode===m.k?'var(--accent-light)':'var(--bg-primary)',color:editViewMode===m.k?'var(--accent-text)':'var(--text-secondary)',cursor:'pointer',fontSize:13}}>
+                  {m.l}
+                </button>
+              ))}
+            </div>
+
+            {/* Editor + Preview */}
+            <div style={{display:'flex',gap:12,height:'50vh',minHeight:400}}>
+              {(editViewMode === 'edit' || editViewMode === 'split') && (
+                <textarea
+                  value={editContent}
+                  onChange={e => setEditContent(e.target.value)}
+                  style={{flex:1,padding:16,border:'1px solid var(--border-color)',borderRadius:'var(--radius-md)',fontFamily:'var(--font-mono)',fontSize:14,resize:'none',lineHeight:1.6}}
+                  placeholder="Markdown 内容..."
+                />
+              )}
+              {(editViewMode === 'preview' || editViewMode === 'split') && (
+                <div style={{flex:1,padding:16,border:'1px solid var(--border-color)',borderRadius:'var(--radius-md)',overflow:'auto',background:'var(--bg-secondary)'}}>
+                  <MarkdownPreview content={editContent} />
+                </div>
+              )}
+            </div>
+
+            <div className="admin-form-actions" style={{marginTop:16}}>
+              <button className="admin-btn admin-btn--secondary" onClick={() => setEditingTutorial(null)}>取消</button>
+              <button className="admin-btn admin-btn--primary" onClick={handleSaveEdit} disabled={editSaving}>
+                {editSaving ? '保存中...' : '保存'}
               </button>
             </div>
           </div>
