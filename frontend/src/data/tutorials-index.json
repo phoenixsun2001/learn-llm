@@ -8,8 +8,18 @@
     "subcategory": "harness",
     "difficulty": "beginner",
     "estimatedTime": 15,
-    "tags": ["claude-code", "入门"],
-    "keywords": ["claude", "code", "入门", "指南", "CLI", "harness"],
+    "tags": [
+      "claude-code",
+      "入门"
+    ],
+    "keywords": [
+      "claude",
+      "code",
+      "入门",
+      "指南",
+      "CLI",
+      "harness"
+    ],
     "prerequisites": [],
     "featured": true,
     "file": "/content/tutorials/harness/claude-code-intro.md"
@@ -23,9 +33,23 @@
     "subcategory": "harness",
     "difficulty": "beginner",
     "estimatedTime": 20,
-    "tags": ["claude-code", "安装"],
-    "keywords": ["安装", "配置", "API", "Key", "环境", "claude", "code", "harness"],
-    "prerequisites": ["claude-code-intro"],
+    "tags": [
+      "claude-code",
+      "安装"
+    ],
+    "keywords": [
+      "安装",
+      "配置",
+      "API",
+      "Key",
+      "环境",
+      "claude",
+      "code",
+      "harness"
+    ],
+    "prerequisites": [
+      "claude-code-intro"
+    ],
     "featured": true,
     "file": "/content/tutorials/harness/claude-code-install.md"
   },
@@ -38,9 +62,21 @@
     "subcategory": "harness",
     "difficulty": "beginner",
     "estimatedTime": 30,
-    "tags": ["claude-code", "实践"],
-    "keywords": ["claude", "code", "项目", "实战", "开发", "harness"],
-    "prerequisites": ["claude-code-install"],
+    "tags": [
+      "claude-code",
+      "实践"
+    ],
+    "keywords": [
+      "claude",
+      "code",
+      "项目",
+      "实战",
+      "开发",
+      "harness"
+    ],
+    "prerequisites": [
+      "claude-code-install"
+    ],
     "featured": true,
     "file": "/content/tutorials/harness/claude-code-first-use.md"
   },
@@ -53,9 +89,23 @@
     "subcategory": "harness",
     "difficulty": "intermediate",
     "estimatedTime": 25,
-    "tags": ["claude-code", "工作流"],
-    "keywords": ["claude", "code", "工作流", "日常", "审查", "重构", "调试", "harness"],
-    "prerequisites": ["claude-code-first-use"],
+    "tags": [
+      "claude-code",
+      "工作流"
+    ],
+    "keywords": [
+      "claude",
+      "code",
+      "工作流",
+      "日常",
+      "审查",
+      "重构",
+      "调试",
+      "harness"
+    ],
+    "prerequisites": [
+      "claude-code-first-use"
+    ],
     "file": "/content/tutorials/harness/claude-code-daily.md"
   },
   {
@@ -67,10 +117,120 @@
     "subcategory": "harness",
     "difficulty": "intermediate",
     "estimatedTime": 30,
-    "tags": ["claude-code", "hooks", "进阶"],
-    "keywords": ["claude", "code", "hooks", "自动化", "lint", "格式化", "测试", "harness"],
-    "prerequisites": ["claude-code-daily"],
+    "tags": [
+      "claude-code",
+      "hooks",
+      "进阶"
+    ],
+    "keywords": [
+      "claude",
+      "code",
+      "hooks",
+      "自动化",
+      "lint",
+      "格式化",
+      "测试",
+      "harness"
+    ],
+    "prerequisites": [
+      "claude-code-daily"
+    ],
     "file": "/content/tutorials/harness/claude-code-hooks.md"
+  },
+  {
+    "id": "tut-codex-intro",
+    "slug": "codex-intro",
+    "title": "Codex 核心概念与快速上手",
+    "description": "了解 OpenAI Codex 的定位、App 与 CLI 的区别、核心能力架构和适用场景。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "beginner",
+    "estimatedTime": 20,
+    "tags": [
+      "codex",
+      "openai",
+      "入门"
+    ],
+    "prerequisites": [],
+    "file": "/content/tutorials/harness/codex-intro.md",
+    "featured": true
+  },
+  {
+    "id": "tut-codex-install",
+    "slug": "codex-install",
+    "title": "Codex 安装与认证完整指南",
+    "description": "手把手教你安装 Codex App 和 CLI，完成 OpenAI 账号认证，配置本地项目。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "beginner",
+    "estimatedTime": 30,
+    "tags": [
+      "codex",
+      "安装",
+      "认证"
+    ],
+    "prerequisites": [
+      "codex-intro"
+    ],
+    "file": "/content/tutorials/harness/codex-install.md"
+  },
+  {
+    "id": "tut-codex-commands",
+    "slug": "codex-commands",
+    "title": "Codex Commands 与工作流入门",
+    "description": "掌握 Codex Commands 系统，理解内置命令与自定义命令，构建高效的日常工作流。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "intermediate",
+    "estimatedTime": 25,
+    "tags": [
+      "codex",
+      "commands",
+      "工作流"
+    ],
+    "prerequisites": [
+      "codex-install"
+    ],
+    "file": "/content/tutorials/harness/codex-commands.md"
+  },
+  {
+    "id": "tut-codex-skills",
+    "slug": "codex-skills",
+    "title": "Codex Skills 与 MCP 集成",
+    "description": "学习创建和管理 Codex Skills，通过 MCP 协议集成外部工具，扩展 AI 编程能力。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "intermediate",
+    "estimatedTime": 30,
+    "tags": [
+      "codex",
+      "skills",
+      "mcp"
+    ],
+    "prerequisites": [
+      "codex-commands"
+    ],
+    "file": "/content/tutorials/harness/codex-skills.md"
+  },
+  {
+    "id": "tut-codex-advanced",
+    "slug": "codex-advanced",
+    "title": "Codex 进阶：Subagents、Plugins 与企业实战",
+    "description": "深入 Codex 的高级特性：Subagents 多 Agent 协作、Automations 后台任务、Plugins 生态与企业部署。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "advanced",
+    "estimatedTime": 40,
+    "tags": [
+      "codex",
+      "subagents",
+      "plugins",
+      "企业"
+    ],
+    "prerequisites": [
+      "codex-skills"
+    ],
+    "file": "/content/tutorials/harness/codex-advanced.md"
   },
   {
     "id": "tut-cc-switch-guide",
@@ -81,8 +241,15 @@
     "subcategory": "harness",
     "difficulty": "beginner",
     "estimatedTime": 30,
-    "tags": ["cc-switch", "管理工具", "供应商", "代理"],
-    "prerequisites": ["claude-code-intro"],
+    "tags": [
+      "cc-switch",
+      "管理工具",
+      "供应商",
+      "代理"
+    ],
+    "prerequisites": [
+      "claude-code-intro"
+    ],
     "file": "/content/tutorials/harness/cc-switch-guide.md",
     "featured": true
   }
