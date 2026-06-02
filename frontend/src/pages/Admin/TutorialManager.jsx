@@ -97,7 +97,6 @@ const TutorialManager = () => {
   const [editSaving, setEditSaving] = useState(false)
   const [editViewMode, setEditViewMode] = useState('split')
   const [editSize, setEditSize] = useState({ w: 1100, h: 600 })
-  const [resizing, setResizing] = useState(false)
 
   /* Derived: filtered + sorted list */
   const filtered = useMemo(() => {
