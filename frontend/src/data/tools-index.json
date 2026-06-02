@@ -154,6 +154,22 @@
     ]
   },
   {
+    "id": "tool-kilo-code",
+    "slug": "kilo-code",
+    "name": "Kilo Code",
+    "description": "开源 AI 结对编程代理，支持 VS Code、JetBrains、CLI、浏览器等多平台，提供 Code/Ask/Plan/Debug 多 Agent 切换、自动补全、快速编辑等能力。",
+    "category": "harness",
+    "officialUrl": "https://kilo.ai",
+    "wizardSteps": [
+      { "step": 1, "title": "了解 Kilo Code", "tutorialSlug": "kilo-code-guide" },
+      { "step": 2, "title": "安装与配置", "tutorialSlug": "kilo-code-guide" },
+      { "step": 3, "title": "Agent 使用", "tutorialSlug": "kilo-code-guide" },
+      { "step": 4, "title": "核心功能", "tutorialSlug": "kilo-code-guide" },
+      { "step": 5, "title": "最佳实践", "tutorialSlug": "kilo-code-guide" }
+    ],
+    "tags": ["开源", "IDE", "多平台", "Agent", "结对编程"]
+  },
+  {
     "id": "tool-cc-switch",
     "slug": "cc-switch",
     "name": "CC Switch",

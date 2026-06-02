@@ -233,6 +233,20 @@
     "file": "/content/tutorials/harness/codex-advanced.md"
   },
   {
+    "id": "tut-kilo-code-guide",
+    "slug": "kilo-code-guide",
+    "title": "Kilo Code 开源 AI 编程代理指南",
+    "description": "学习使用 Kilo Code 开源 AI 结对编程工具，掌握多 Agent 切换、自动补全、上下文引用等核心功能。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "beginner",
+    "estimatedTime": 25,
+    "tags": ["kilo-code", "开源", "Agent", "IDE"],
+    "prerequisites": [],
+    "file": "/content/tutorials/harness/kilo-code-guide.md",
+    "featured": false
+  },
+  {
     "id": "tut-cc-switch-guide",
     "slug": "cc-switch-guide",
     "title": "CC Switch 统一管理工具指南",
