@@ -95,7 +95,9 @@ const TutorialManager = () => {
   const [editTags, setEditTags] = useState('')
   const [editTime, setEditTime] = useState(25)
   const [editSaving, setEditSaving] = useState(false)
-  const [editViewMode, setEditViewMode] = useState('split') // 'split' | 'edit' | 'preview'
+  const [editViewMode, setEditViewMode] = useState('split')
+  const [editSize, setEditSize] = useState({ w: 1100, h: 600 })
+  const [resizing, setResizing] = useState(false)
 
   /* Derived: filtered + sorted list */
   const filtered = useMemo(() => {
@@ -186,6 +188,33 @@ const TutorialManager = () => {
         return next
       })
     }
+  }
+
+  const handleResizeStart = (e) => {
+    e.preventDefault()
+    setResizing(true)
+    const startX = e.clientX
+    const startY = e.clientY
+    const startW = editSize.w
+    const startH = editSize.h
+
+    const onMove = (ev) => {
+      setEditSize({
+        w: Math.max(500, startW + ev.clientX - startX),
+        h: Math.max(350, startH + ev.clientY - startY),
+      })
+    }
+    const onUp = () => {
+      setResizing(false)
+      document.removeEventListener('mousemove', onMove)
+      document.removeEventListener('mouseup', onUp)
+      document.body.style.userSelect = ''
+      document.body.style.cursor = ''
+    }
+    document.addEventListener('mousemove', onMove)
+    document.addEventListener('mouseup', onUp)
+    document.body.style.userSelect = 'none'
+    document.body.style.cursor = 'se-resize'
   }
 
   const handleEditTutorial = (tutorial) => {
@@ -671,7 +700,7 @@ const TutorialManager = () => {
       {/* Edit Modal */}
       {editingTutorial && (
         <div className="admin-modal-overlay" onClick={() => setEditingTutorial(null)}>
-          <div className="admin-modal" style={{maxWidth: '90vw', width: '1100px', maxHeight: '90vh'}} onClick={(e) => e.stopPropagation()} role="dialog" aria-label="编辑教程">
+          <div className="admin-modal" style={{maxWidth: '96vw', width: editSize.w + 'px', maxHeight: '96vh', height: editSize.h + 'px'}} onClick={(e) => e.stopPropagation()} role="dialog" aria-label="编辑教程">
             <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom: 16}}>
               <h2 className="admin-modal-title" style={{margin:0}}>编辑教程</h2>
               <button onClick={() => setEditingTutorial(null)} style={{background:'none',border:'none',fontSize:20,cursor:'pointer',color:'var(--text-secondary)'}}>✕</button>
@@ -732,7 +761,22 @@ const TutorialManager = () => {
               )}
             </div>
 
-            <div className="admin-form-actions" style={{marginTop:16}}>
+            <div className="admin-form-actions" style={{marginTop:16, position:'relative'}}>
+            {/* Resize handle */}
+            <div
+              onMouseDown={handleResizeStart}
+              style={{
+                position:'absolute', bottom:-12, right:-12,
+                width:24, height:24, cursor:'se-resize',
+                display:'flex', alignItems:'flex-end', justifyContent:'flex-end',
+              }}
+              title="拖拽调整窗口大小"
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="var(--text-tertiary)">
+                <path d="M14 2v10L4 12V2h10zm-1 1H5v8h8V3zM12 6v1H8V6h4zm0 3v1H8V9h4z"/>
+                <path d="M2 14V4h1v9h9v1H2z" opacity="0.5"/>
+              </svg>
+            </div>
               <button className="admin-btn admin-btn--secondary" onClick={() => setEditingTutorial(null)}>取消</button>
               <button className="admin-btn admin-btn--primary" onClick={handleSaveEdit} disabled={editSaving}>
                 {editSaving ? '保存中...' : '保存'}
