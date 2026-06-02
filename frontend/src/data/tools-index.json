@@ -7,24 +7,82 @@
     "category": "harness",
     "officialUrl": "https://docs.anthropic.com/en/docs/claude-code/overview",
     "wizardSteps": [
-      {"step": 1, "title": "环境准备", "tutorialSlug": "claude-code-install"},
-      {"step": 2, "title": "安装配置", "tutorialSlug": "claude-code-install"},
-      {"step": 3, "title": "第一个用例", "tutorialSlug": "claude-code-first-use"},
-      {"step": 4, "title": "核心功能", "tutorialSlug": "claude-code-daily"},
-      {"step": 5, "title": "最佳实践", "tutorialSlug": "claude-code-hooks"},
-      {"step": 6, "title": "进阶技巧", "tutorialSlug": "claude-code-hooks"}
+      {
+        "step": 1,
+        "title": "环境准备",
+        "tutorialSlug": "claude-code-install"
+      },
+      {
+        "step": 2,
+        "title": "安装配置",
+        "tutorialSlug": "claude-code-install"
+      },
+      {
+        "step": 3,
+        "title": "第一个用例",
+        "tutorialSlug": "claude-code-first-use"
+      },
+      {
+        "step": 4,
+        "title": "核心功能",
+        "tutorialSlug": "claude-code-daily"
+      },
+      {
+        "step": 5,
+        "title": "最佳实践",
+        "tutorialSlug": "claude-code-hooks"
+      },
+      {
+        "step": 6,
+        "title": "进阶技巧",
+        "tutorialSlug": "claude-code-hooks"
+      }
     ],
-    "tags": ["CLI", "编码助手", "Anthropic"]
+    "tags": [
+      "CLI",
+      "编码助手",
+      "Anthropic"
+    ]
   },
   {
     "id": "tool-codex",
     "slug": "codex",
     "name": "Codex",
-    "description": "OpenAI 推出的 CLI 编码助手，在终端中提供 AI 辅助编程能力。",
+    "description": "OpenAI 推出的 AI 编程助手，支持 App 与 CLI 双模式，提供代码生成、审查、重构等全流程能力。",
     "category": "harness",
     "officialUrl": "https://github.com/openai/codex",
-    "wizardSteps": [],
-    "tags": ["CLI", "编码助手", "OpenAI"]
+    "wizardSteps": [
+      {
+        "step": 1,
+        "title": "核心概念",
+        "tutorialSlug": "codex-intro"
+      },
+      {
+        "step": 2,
+        "title": "安装与认证",
+        "tutorialSlug": "codex-install"
+      },
+      {
+        "step": 3,
+        "title": "Commands 工作流",
+        "tutorialSlug": "codex-commands"
+      },
+      {
+        "step": 4,
+        "title": "Skills 与 MCP",
+        "tutorialSlug": "codex-skills"
+      },
+      {
+        "step": 5,
+        "title": "进阶实战",
+        "tutorialSlug": "codex-advanced"
+      }
+    ],
+    "tags": [
+      "CLI",
+      "编码助手",
+      "OpenAI"
+    ]
   },
   {
     "id": "tool-trae",
@@ -34,7 +92,10 @@
     "category": "harness",
     "officialUrl": "",
     "wizardSteps": [],
-    "tags": ["IDE", "编码助手"]
+    "tags": [
+      "IDE",
+      "编码助手"
+    ]
   },
   {
     "id": "tool-dify",
@@ -44,7 +105,11 @@
     "category": "workflow",
     "officialUrl": "https://dify.ai",
     "wizardSteps": [],
-    "tags": ["工作流", "RAG", "低代码"]
+    "tags": [
+      "工作流",
+      "RAG",
+      "低代码"
+    ]
   },
   {
     "id": "tool-coze",
@@ -54,7 +119,11 @@
     "category": "workflow",
     "officialUrl": "https://www.coze.com",
     "wizardSteps": [],
-    "tags": ["Bot", "工作流", "低代码"]
+    "tags": [
+      "Bot",
+      "工作流",
+      "低代码"
+    ]
   },
   {
     "id": "tool-n8n",
@@ -64,7 +133,11 @@
     "category": "workflow",
     "officialUrl": "https://n8n.io",
     "wizardSteps": [],
-    "tags": ["自动化", "工作流", "开源"]
+    "tags": [
+      "自动化",
+      "工作流",
+      "开源"
+    ]
   },
   {
     "id": "tool-langchain",
@@ -74,7 +147,11 @@
     "category": "development",
     "officialUrl": "https://www.langchain.com",
     "wizardSteps": [],
-    "tags": ["框架", "Agent", "Python/JS"]
+    "tags": [
+      "框架",
+      "Agent",
+      "Python/JS"
+    ]
   },
   {
     "id": "tool-cc-switch",
@@ -84,12 +161,38 @@
     "category": "harness",
     "officialUrl": "https://ccswitch.io",
     "wizardSteps": [
-      { "step": 1, "title": "了解 CC Switch", "tutorialSlug": "cc-switch-guide" },
-      { "step": 2, "title": "安装与配置", "tutorialSlug": "cc-switch-guide" },
-      { "step": 3, "title": "供应商管理", "tutorialSlug": "cc-switch-guide" },
-      { "step": 4, "title": "代理与高可用", "tutorialSlug": "cc-switch-guide" },
-      { "step": 5, "title": "最佳实践", "tutorialSlug": "cc-switch-guide" }
+      {
+        "step": 1,
+        "title": "了解 CC Switch",
+        "tutorialSlug": "cc-switch-guide"
+      },
+      {
+        "step": 2,
+        "title": "安装与配置",
+        "tutorialSlug": "cc-switch-guide"
+      },
+      {
+        "step": 3,
+        "title": "供应商管理",
+        "tutorialSlug": "cc-switch-guide"
+      },
+      {
+        "step": 4,
+        "title": "代理与高可用",
+        "tutorialSlug": "cc-switch-guide"
+      },
+      {
+        "step": 5,
+        "title": "最佳实践",
+        "tutorialSlug": "cc-switch-guide"
+      }
     ],
-    "tags": ["管理工具", "供应商切换", "代理", "开源", "Tauri"]
+    "tags": [
+      "管理工具",
+      "供应商切换",
+      "代理",
+      "开源",
+      "Tauri"
+    ]
   }
 ]
