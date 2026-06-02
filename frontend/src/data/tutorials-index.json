@@ -252,5 +252,19 @@
     ],
     "file": "/content/tutorials/harness/cc-switch-guide.md",
     "featured": true
+  },
+  {
+    "id": "tut-superpowers-engineering",
+    "slug": "superpowers-engineering-guide",
+    "title": "AI 工程化编程全流程实战",
+    "description": "学习用 Superpowers 框架给 AI 编程套上工程纪律：需求澄清、TDD、两阶段审查、验证收尾。",
+    "category": "practice",
+    "subcategory": "harness",
+    "difficulty": "intermediate",
+    "estimatedTime": 35,
+    "tags": ["superpowers", "工程化", "TDD", "codex", "claude-code"],
+    "prerequisites": ["codex-install", "claude-code-intro"],
+    "file": "/content/tutorials/harness/superpowers-engineering-guide.md",
+    "featured": true
   }
 ]

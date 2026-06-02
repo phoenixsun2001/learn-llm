@@ -18,5 +18,15 @@
     "tools": ["claude-code"],
     "tutorials": ["claude-code-daily", "claude-code-hooks"],
     "workflow": "代码提交 → 触发 Hooks → AI 分析变更 → 更新对应文档"
+  },
+  {
+    "id": "scn-engineering-workflow",
+    "slug": "engineering-workflow",
+    "title": "工程化编程全流程实战",
+    "description": "从需求澄清到代码交付，用 Superpowers 框架给 AI 编程套上工程纪律。涵盖 Codex/Claude Code 配置、TDD 开发、两阶段代码审查和验证收尾。",
+    "goal": "我想让 AI 按照工程规范写代码，而不是随机生成",
+    "tools": ["claude-code", "codex"],
+    "tutorials": ["superpowers-engineering-guide", "codex-install", "claude-code-first-use"],
+    "workflow": "需求澄清 → 架构设计 → TDD 开发 → 两阶段审查 → 验证收尾"
   }
 ]

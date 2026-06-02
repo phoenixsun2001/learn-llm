@@ -223,5 +223,7 @@
     "difficulty": "advanced"
   },
   {"type":"tutorial","slug":"cc-switch-guide","title":"CC Switch 统一管理工具指南","keywords":["cc","switch","管理工具","供应商","切换","代理","高可用","tauri","用量","token"],"category":"harness","difficulty":"beginner"},
-  {"type":"tool","slug":"cc-switch","title":"CC Switch","keywords":["管理工具","供应商切换","代理","开源","tauri","claude","codex","gemini"],"category":"harness"}
+  {"type":"tool","slug":"cc-switch","title":"CC Switch","keywords":["管理工具","供应商切换","代理","开源","tauri","claude","codex","gemini"],"category":"harness"},
+  {"type":"tutorial","slug":"superpowers-engineering-guide","title":"AI 工程化编程全流程实战","keywords":["superpowers","工程化","TDD","workflow","codex","claude","流程","纪律","审查"],"category":"practice","difficulty":"intermediate"},
+  {"type":"scenario","slug":"engineering-workflow","title":"工程化编程全流程实战","keywords":["工程化","工作流","TDD","superpowers","流程","规范","codex"],"category":"practice"}
 ]
