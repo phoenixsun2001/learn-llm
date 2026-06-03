@@ -14,6 +14,8 @@ services:
     ports:
       - "80:80"
     restart: unless-stopped
+    volumes:
+      - ./content/tutorials:/usr/share/nginx/html/content/tutorials
     networks:
       - learn-llm
 

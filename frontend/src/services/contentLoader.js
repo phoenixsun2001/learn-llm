@@ -12,6 +12,54 @@ const STATUS_KEY = 'learn-llm-tutorial-statuses'
 const EDITED_CONTENT_KEY = 'learn-llm-edited-content'
 const PATHWAYS_KEY = 'learn-llm-custom-pathways'
 
+// ============================================
+// Dynamic index loading — fetches index.json
+// from the content volume at runtime so new
+// tutorials appear without a rebuild.
+// ============================================
+let _runtimeTutorialsIndex = [...tutorialsIndex]
+let _dynamicIndexLoaded = false
+let _dynamicIndexPromise = null
+
+/**
+ * Fetch the runtime tutorials index from the shared content volume.
+ * New entries are merged on top of the static import; existing slugs
+ * from the fetched index take precedence (allowing metadata updates).
+ */
+export async function refreshTutorialsIndex() {
+  try {
+    const resp = await fetch('/content/tutorials/index.json')
+    if (!resp.ok) {
+      console.warn('Dynamic tutorials index not available, using static fallback')
+      return
+    }
+    const dynamicEntries = await resp.json()
+    if (!Array.isArray(dynamicEntries)) return
+
+    // Merge: fetched entries take precedence over static for matching slugs
+    const staticSlugs = new Map(_runtimeTutorialsIndex.map(t => [t.slug, t]))
+    for (const entry of dynamicEntries) {
+      staticSlugs.set(entry.slug, entry)
+    }
+    _runtimeTutorialsIndex = Array.from(staticSlugs.values())
+    _dynamicIndexLoaded = true
+  } catch (e) {
+    // Graceful fallback: use static import + localStorage imports
+    console.warn('Failed to load dynamic tutorials index, using static fallback:', e.message)
+  }
+}
+
+// Kick off the dynamic load immediately (non-blocking)
+_dynamicIndexPromise = refreshTutorialsIndex()
+
+/**
+ * Wait for the dynamic index to finish loading (useful for SSR or initial render).
+ * Already called at module init; call again to force a re-fetch after publishing.
+ */
+export function waitForIndex() {
+  return _dynamicIndexPromise || Promise.resolve()
+}
+
 function loadPathways() {
   try { return JSON.parse(localStorage.getItem(PATHWAYS_KEY) || '[]') } catch { return [] }
 }
@@ -72,7 +120,7 @@ export function removeImportedTutorials(idsOrSlugs) {
 
 export function getTutorialBySlug(slug, filters = {}) {
   const statuses = loadStatuses()
-  let result = tutorialsIndex.find((t) => t.slug === slug)
+  let result = _runtimeTutorialsIndex.find((t) => t.slug === slug)
     || _importedTutorials.find((t) => t.slug === slug)
     || null;
   if (!result) return null;
@@ -83,7 +131,7 @@ export function getTutorialBySlug(slug, filters = {}) {
 
 export function getTutorialById(id, filters = {}) {
   const statuses = loadStatuses()
-  let result = tutorialsIndex.find((t) => t.id === id)
+  let result = _runtimeTutorialsIndex.find((t) => t.id === id)
     || _importedTutorials.find((t) => t.id === id)
     || null;
   if (!result) return null;
@@ -95,7 +143,7 @@ export function getTutorialById(id, filters = {}) {
 export function getAllTutorials(filters = {}) {
   const statuses = loadStatuses()
   // Merge status from localStorage; static tutorials default to 'published'
-  let result = [...tutorialsIndex, ..._importedTutorials].map((t) => ({
+  let result = [..._runtimeTutorialsIndex, ..._importedTutorials].map((t) => ({
     ...t,
     status: statuses[t.id] || t.status || 'published',
   }))
@@ -126,7 +174,7 @@ export async function loadTutorialContent(slug) {
     return edited.content;
   }
 
-  // Fall back to static file
+  // Fetch from the shared content volume (works for both static and dynamic tutorials)
   try {
     const response = await fetch(`/content/tutorials/${tutorial.subcategory}/${slug}.md`);
     if (!response.ok) throw new Error(`Failed to load: ${response.status}`);

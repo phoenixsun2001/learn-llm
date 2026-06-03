@@ -26,6 +26,7 @@ from admin_dashboard.models import (
 from admin_dashboard.routes.review import router as review_router
 from admin_dashboard.routes.materials import router as materials_router
 from admin_dashboard.routes.sources import router as sources_router
+from admin_dashboard.routes.tutorials import router as tutorials_router
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
 logger = logging.getLogger(__name__)
@@ -113,6 +114,7 @@ async def logout():
 app.include_router(review_router, prefix="/admin")
 app.include_router(materials_router, prefix="/admin")
 app.include_router(sources_router, prefix="/admin")
+app.include_router(tutorials_router)  # no prefix — routes define their own /api/tutorials paths
 
 
 # --------------- Dashboard ---------------
