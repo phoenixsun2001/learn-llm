@@ -25,7 +25,7 @@ class Config:
     # ZhipuAI (智谱AI / BigModel) — OpenAI-compatible endpoint
     zhipu_api_key: Optional[str] = field(default_factory=lambda: os.getenv("ZHIPU_API_KEY"))
     zhipu_api_base: str = field(default_factory=lambda: os.getenv("ZHIPU_API_BASE", "https://open.bigmodel.cn/api/coding/paas/v4"))
-    zhipu_model: str = field(default_factory=lambda: os.getenv("ZHIPU_MODEL", "glm-4-flash"))
+    zhipu_model: str = field(default_factory=lambda: os.getenv("ZHIPU_MODEL", "GLM-4.7"))
 
     # Paths (relative to pipeline/ directory)
     pipeline_output_dir: str = field(default_factory=lambda: os.getenv("PIPELINE_OUTPUT_DIR", "../content/materials/"))
