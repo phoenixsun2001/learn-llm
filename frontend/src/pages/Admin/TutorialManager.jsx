@@ -309,6 +309,48 @@ const TutorialManager = () => {
     }
     setCreateLoading(true)
     setCreateMessage(null)
+
+    // Generate local tutorial entry first (works even if pipeline is down)
+    const slug = createForm.title.trim().toLowerCase()
+      .replace(/[^a-z0-9一-鿿]+/g, '-')
+      .replace(/^-|-$/g, '')
+      .substring(0, 80)
+    const newTutorial = {
+      id: 'tut-custom-' + Date.now(),
+      slug: slug || ('tutorial-' + Date.now()),
+      title: createForm.title.trim(),
+      description: createForm.description.trim() || (createForm.category + ' / ' + createForm.difficulty),
+      category: createForm.category,
+      subcategory: createForm.category,
+      difficulty: createForm.difficulty,
+      estimatedTime: 15,
+      tags: createForm.tags.split(',').map(t => t.trim()).filter(Boolean),
+      keywords: createForm.tags.split(',').map(t => t.trim()).filter(Boolean),
+      prerequisites: [],
+      featured: false,
+      file: '/content/tutorials/' + createForm.category + '/' + (slug || 'tutorial') + '.md',
+    }
+
+    // Save to localStorage so it appears in admin list and frontend
+    addImportedTutorials([newTutorial])
+    // Initialize as draft
+    setStatuses((prev) => {
+      const next = { ...prev, [newTutorial.id]: 'draft' }
+      saveStatuses(next)
+      return next
+    })
+    // Save content for detail page rendering
+    saveEditedContent(newTutorial.slug, createForm.content.trim(), {
+      title: newTutorial.title,
+      category: newTutorial.category,
+      difficulty: newTutorial.difficulty,
+      tags: newTutorial.tags,
+      estimatedTime: newTutorial.estimatedTime,
+    })
+    // Refresh list
+    setRefreshKey(k => k + 1)
+
+    // Best-effort API call (don't block local creation)
     try {
       await createMaterial({
         title: createForm.title.trim(),
@@ -317,16 +359,16 @@ const TutorialManager = () => {
         difficulty: createForm.difficulty,
         tags: createForm.tags.split(',').map(t => t.trim()).filter(Boolean),
       })
-      setCreateMessage({ type: 'success', text: '教程创建成功！' })
-      setTimeout(() => {
-        setShowCreateModal(false)
-        setCreateMessage(null)
-      }, 1200)
     } catch (err) {
-      setCreateMessage({ type: 'error', text: `创建失败: ${err.message}` })
-    } finally {
-      setCreateLoading(false)
+      console.warn('Pipeline API not available, tutorial saved locally:', err.message)
     }
+
+    setCreateMessage({ type: 'success', text: '教程创建成功！' })
+    setTimeout(() => {
+      setShowCreateModal(false)
+      setCreateMessage(null)
+    }, 1200)
+    setCreateLoading(false)
   }
 
   const handleCancelCreate = () => {
