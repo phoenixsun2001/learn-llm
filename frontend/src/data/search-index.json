@@ -214,12 +214,16 @@
     "slug": "rag-best-practices-2026",
     "title": "RAG Best Practices 2026",
     "keywords": [
-      "rag",
-      "2026",
-      "best",
-      "practices"
+      "RAG",
+      "检索增强生成",
+      "向量检索",
+      "嵌入模型",
+      "分块策略",
+      "重排序",
+      "Agentic RAG",
+      "最佳实践"
     ],
-    "category": "rag",
+    "category": "practice",
     "difficulty": "advanced"
   },
   {
