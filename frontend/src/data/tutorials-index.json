@@ -266,5 +266,20 @@
     "prerequisites": ["codex-install", "claude-code-intro"],
     "file": "/content/tutorials/harness/superpowers-engineering-guide.md",
     "featured": true
+  },
+  {
+    "id": "tut-rag-best-practices-2026",
+    "slug": "rag-best-practices-2026",
+    "title": "RAG Best Practices 2026",
+    "description": "掌握检索增强生成（RAG）的核心架构、2026年最新趋势与生产级最佳实践，涵盖分块策略、嵌入选型、混合检索、重排序与评估体系",
+    "category": "practice",
+    "subcategory": "practice",
+    "difficulty": "advanced",
+    "estimatedTime": 30,
+    "tags": ["RAG", "检索增强生成", "最佳实践", "向量检索", "嵌入模型"],
+    "keywords": ["RAG", "检索增强生成", "向量数据库", "嵌入", "chunking", "reranking", "Agentic RAG"],
+    "prerequisites": [],
+    "featured": false,
+    "file": "/content/tutorials/practice/rag-best-practices-2026.md"
   }
 ]

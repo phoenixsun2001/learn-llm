@@ -9,11 +9,11 @@
     "published_at": ""
   },
   "ai_processed": {
-    "summary": "Production RAG patterns",
-    "category": "rag",
-    "subcategory": "",
+    "summary": "掌握RAG核心架构与2026年最新趋势：Agentic RAG、多模态检索、分块策略、嵌入选型、混合检索、重排序与评估体系",
+    "category": "practice",
+    "subcategory": "practice",
     "difficulty": "advanced",
-    "tags": [],
+    "tags": ["RAG", "检索增强生成", "最佳实践", "向量检索", "嵌入模型"],
     "quality_score": null
   },
   "review_status": "pending",

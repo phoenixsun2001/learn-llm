@@ -3,7 +3,7 @@ title: "RAG Best Practices 2026"
 source: "https://example.com/rag"
 source_name: "rss"
 source_type: "rss"
-category: "rag"
+category: "practice"
 difficulty: "advanced"
 ai_summary: "Production RAG patterns"
 tags: []
