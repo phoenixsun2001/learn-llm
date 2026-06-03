@@ -14,13 +14,16 @@ const MarkdownPreview = ({ content }) => (
 )
 
 /* Artificial status: in a real app this comes from a database.
-   For MVP, we persist simulated statuses in localStorage so changes
-   survive page refresh. */
+   For MVP, we persist statuses in localStorage so changes
+   survive page refresh and sync with the frontend.
+
+   Default: static tutorials (from tutorials-index.json) = 'published'
+            imported tutorials (tut-custom-*) = 'draft' */
+
 const STORED_STATUS_KEY = 'learn-llm-tutorial-statuses'
 
+/** Explicit overrides: these take precedence over the default */
 const SIMULATED_STATUSES = {
-  'tut-claude-code-intro': 'published',
-  'tut-claude-code-install': 'published',
   'tut-claude-code-first-use': 'draft',
 }
 
@@ -58,13 +61,26 @@ const TutorialManager = () => {
   const [refreshKey, setRefreshKey] = useState(0)
   const allTutorials = useMemo(() => getAllTutorials(), [refreshKey])
 
-  /* Local state for simulated statuses (persisted to localStorage) and search/filter */
+  /* Local state for statuses — synced with frontend via localStorage.
+     Static tutorials default to 'published' (matching the frontend's getAllTutorials default).
+     Imported tutorials (tut-custom-*) default to 'draft' until reviewed. */
   const [statuses, setStatuses] = useState(() => {
     const stored = loadStatuses()
     const map = {}
+    let needsSave = false
     allTutorials.forEach((t) => {
-      map[t.id] = stored[t.id] || SIMULATED_STATUSES[t.id] || 'draft'
+      const existing = stored[t.id] || SIMULATED_STATUSES[t.id]
+      if (existing) {
+        map[t.id] = existing
+      } else {
+        // Default: static tutorials = published, imported = draft
+        const isImported = t.id && t.id.startsWith('tut-custom-')
+        map[t.id] = isImported ? 'draft' : 'published'
+        needsSave = true
+      }
     })
+    // Backfill localStorage so frontend picks up defaults on first load
+    if (needsSave) saveStatuses(map)
     return map
   })
 
