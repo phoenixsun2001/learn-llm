@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { getAllTutorials, addImportedTutorials, saveEditedContent } from '../../services/contentLoader'
+import { getAllTutorials, addImportedTutorials, removeImportedTutorials, saveEditedContent } from '../../services/contentLoader'
 import { createMaterial } from '../../services/pipelineApi'
 import { CATEGORY_LABELS, DIFFICULTY_LABELS } from '../../utils/constants'
 import ImportWizard from './ImportWizard'
@@ -194,15 +194,33 @@ const TutorialManager = () => {
 
   const handleDelete = (id) => {
     const tutorial = allTutorials.find((t) => t.id === id)
-    if (window.confirm(`确定删除教程「${tutorial?.title || id}」？`)) {
-      // Remove from local state and localStorage
-      setStatuses((prev) => {
-        const next = { ...prev }
-        delete next[id]
-        saveStatuses(next)
-        return next
-      })
+    if (!window.confirm(`确定删除教程「${tutorial?.title || id}」？此操作不可撤销。`)) return
+
+    const slug = tutorial?.slug
+
+    // 1. Remove from imported tutorials (both runtime store and localStorage)
+    if (id) removeImportedTutorials([id])
+    if (slug) removeImportedTutorials([slug])
+
+    // 2. Remove edited content from localStorage
+    if (slug) {
+      try {
+        const edited = JSON.parse(localStorage.getItem('learn-llm-edited-content') || '{}')
+        delete edited[slug]
+        localStorage.setItem('learn-llm-edited-content', JSON.stringify(edited))
+      } catch {}
     }
+
+    // 3. Remove status entry
+    setStatuses((prev) => {
+      const next = { ...prev }
+      delete next[id]
+      saveStatuses(next)
+      return next
+    })
+
+    // 4. Refresh the list
+    setRefreshKey(k => k + 1)
   }
 
   const handleResizeStart = (e) => {

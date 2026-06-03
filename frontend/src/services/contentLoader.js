@@ -52,6 +52,15 @@ export function addImportedTutorials(newTutorials) {
   saveImported(_importedTutorials)
 }
 
+/** Remove imported tutorials by id or slug from runtime store and localStorage */
+export function removeImportedTutorials(idsOrSlugs) {
+  const removeSet = new Set(idsOrSlugs)
+  _importedTutorials = _importedTutorials.filter(
+    (t) => !removeSet.has(t.id) && !removeSet.has(t.slug)
+  )
+  saveImported(_importedTutorials)
+}
+
 export function getTutorialBySlug(slug, filters = {}) {
   const statuses = loadStatuses()
   let result = tutorialsIndex.find((t) => t.slug === slug)
