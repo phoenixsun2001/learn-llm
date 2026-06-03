@@ -4,7 +4,7 @@ import logging
 import re
 from typing import Dict, Optional
 
-from config import config
+from llm_client import call_llm
 
 logger = logging.getLogger(__name__)
 
@@ -23,44 +23,6 @@ DIFFICULTIES = {
     'intermediate': '进阶（需要一定基础，涉及配置和开发）',
     'advanced': '精通（深度技术内容，需要丰富经验）',
 }
-
-
-def _call_llm(prompt: str) -> Optional[str]:
-    """Try Claude API then Ollama, return response text or None."""
-    # Try Claude
-    if config.anthropic_api_key:
-        try:
-            from anthropic import Anthropic
-            client = Anthropic(api_key=config.anthropic_api_key)
-            message = client.messages.create(
-                model="claude-sonnet-4-6",
-                max_tokens=200,
-                messages=[{"role": "user", "content": prompt}],
-            )
-            return message.content[0].text.strip()
-        except Exception as e:
-            logger.warning(f"Claude API classification failed: {e}")
-
-    # Try Ollama
-    if config.ollama_base_url:
-        try:
-            import httpx
-            response = httpx.post(
-                f"{config.ollama_base_url}/api/generate",
-                json={
-                    "model": "qwen2.5:7b",
-                    "prompt": prompt,
-                    "stream": False,
-                    "options": {"num_predict": 200},
-                },
-                timeout=60,
-            )
-            response.raise_for_status()
-            return response.json().get("response", "").strip()
-        except Exception as e:
-            logger.warning(f"Ollama classification failed: {e}")
-
-    return None
 
 
 def classify_and_rate(item: Dict) -> Dict:
@@ -98,7 +60,7 @@ def classify_and_rate(item: Dict) -> Dict:
 请只返回一个JSON对象，格式如下（不要其他文字）：
 {{"category": "harness", "subcategory": "claude-code", "difficulty": "intermediate"}}"""
 
-    result = _call_llm(prompt)
+    result = call_llm(prompt, max_tokens=200)
 
     if result:
         try:

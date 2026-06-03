@@ -1,48 +1,11 @@
-"""AI-powered content summarizer using Claude API or local Ollama."""
+"""AI-powered content summarizer using the shared LLM client."""
 import logging
 import re
-from typing import Optional
 
 from config import config
+from llm_client import call_llm
 
 logger = logging.getLogger(__name__)
-
-
-def _call_claude(prompt: str, max_tokens: int = 300) -> Optional[str]:
-    """Call Claude API for text generation."""
-    try:
-        from anthropic import Anthropic
-        client = Anthropic(api_key=config.anthropic_api_key)
-        message = client.messages.create(
-            model="claude-sonnet-4-6",
-            max_tokens=max_tokens,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        return message.content[0].text.strip()
-    except Exception as e:
-        logger.warning(f"Claude API call failed: {e}")
-        return None
-
-
-def _call_ollama(prompt: str, max_tokens: int = 300) -> Optional[str]:
-    """Call local Ollama for text generation."""
-    try:
-        import httpx
-        response = httpx.post(
-            f"{config.ollama_base_url}/api/generate",
-            json={
-                "model": "qwen2.5:7b",
-                "prompt": prompt,
-                "stream": False,
-                "options": {"num_predict": max_tokens},
-            },
-            timeout=60,
-        )
-        response.raise_for_status()
-        return response.json().get("response", "").strip()
-    except Exception as e:
-        logger.warning(f"Ollama call failed: {e}")
-        return None
 
 
 def generate_summary(title: str, text: str, max_input_chars: int = None, max_output_chars: int = None) -> str:
@@ -66,15 +29,10 @@ def generate_summary(title: str, text: str, max_input_chars: int = None, max_out
         max_output_chars = config.summary_output_chars
 
     # Clean and truncate input
-    # Strip HTML tags for the prompt
     clean_text = re.sub(r'<[^>]+>', '', text)
-    # Strip Markdown image syntax: ![alt](url)
     clean_text = re.sub(r'!\[.*?\]\(.*?\)', '', clean_text)
-    # Strip Markdown link syntax, keep link text: [text](url) → text
     clean_text = re.sub(r'\[([^\]]*)\]\([^)]*\)', r'\1', clean_text)
-    # Strip common Markdown formatting chars
     clean_text = re.sub(r'[*_~`#>|]', '', clean_text)
-    # Collapse whitespace
     clean_text = re.sub(r'\s+', ' ', clean_text).strip()
 
     if len(clean_text) > max_input_chars:
@@ -89,19 +47,9 @@ def generate_summary(title: str, text: str, max_input_chars: int = None, max_out
 
 摘要："""
 
-    summary = None
-
-    # Try Claude first, then Ollama
-    if config.anthropic_api_key:
-        logger.info("Generating summary with Claude API...")
-        summary = _call_claude(prompt, max_tokens=max_output_chars)
-
-    if summary is None and config.ollama_base_url:
-        logger.info("Generating summary with Ollama...")
-        summary = _call_ollama(prompt, max_tokens=max_output_chars)
+    summary = call_llm(prompt, max_tokens=max_output_chars)
 
     if summary is None:
-        # Fallback: truncate original text
         logger.warning("No AI backend available. Using text truncation fallback.")
         summary = clean_text[:max_output_chars]
         if len(clean_text) > max_output_chars:
