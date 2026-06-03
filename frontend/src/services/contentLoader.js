@@ -102,8 +102,9 @@ export async function loadTutorialContent(slug) {
   if (!tutorial) return null;
 
   // Check for edited version in localStorage first
+  // Must pass validation to avoid truncated saves overriding full files
   const edited = getEditedContent(slug);
-  if (edited && edited.content) {
+  if (edited && edited.content && isValidContent(edited.content)) {
     return edited.content;
   }
 
@@ -116,6 +117,13 @@ export async function loadTutorialContent(slug) {
     console.error(`Failed to load tutorial content for ${slug}:`, error);
     return null;
   }
+}
+
+/** Validate that edited content is substantial (not a truncated save from admin editor) */
+function isValidContent(content) {
+  if (!content || typeof content !== 'string') return false;
+  // Must contain at least one markdown heading (##) and be > 500 chars
+  return /^#{1,6}\s/m.test(content) && content.length > 500;
 }
 
 export function getToolBySlug(slug) {
