@@ -178,3 +178,51 @@ export async function checkPipelineHealth() {
     return false
   }
 }
+
+// ============================================
+// Tutorial Publishing (dynamic content volume)
+// ============================================
+
+/**
+ * Publish a tutorial to the shared content volume.
+ * Writes the .md file and updates index.json — new tutorials
+ * appear immediately without a frontend rebuild.
+ */
+export async function publishTutorial({
+  slug,
+  title,
+  content,
+  category = 'practice',
+  subcategory = 'practice',
+  difficulty = 'beginner',
+  description = '',
+  tags = [],
+  keywords = [],
+}) {
+  const resp = await fetch('/api/tutorials/publish', {
+    method: 'POST',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      slug, title, content, category, subcategory,
+      difficulty, description, tags, keywords,
+    }),
+  })
+  if (!resp.ok) {
+    const err = await resp.text().catch(() => 'Unknown error')
+    throw new Error(`Publish failed (${resp.status}): ${err}`)
+  }
+  return resp.json()
+}
+
+/**
+ * Remove a tutorial from the dynamic index (does not delete the .md file).
+ */
+export async function unpublishTutorial(slug) {
+  const resp = await fetch(`/api/tutorials/${slug}`, {
+    method: 'DELETE',
+    credentials: 'include',
+  })
+  if (!resp.ok) throw new Error(`Unpublish failed: ${resp.status}`)
+  return resp.json()
+}

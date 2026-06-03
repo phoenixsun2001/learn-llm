@@ -1,0 +1,286 @@
+[
+  {
+    "id": "tut-claude-code-intro",
+    "slug": "claude-code-intro",
+    "title": "Claude Code 入门指南",
+    "description": "了解 Claude Code 的核心概念、工作原理和基本用法，为后续深入学习打下基础。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "beginner",
+    "estimatedTime": 15,
+    "tags": [
+      "claude-code",
+      "入门"
+    ],
+    "keywords": [
+      "claude",
+      "code",
+      "入门",
+      "指南",
+      "CLI",
+      "harness"
+    ],
+    "prerequisites": [],
+    "featured": true,
+    "file": "/content/tutorials/harness/claude-code-intro.md"
+  },
+  {
+    "id": "tut-claude-code-install",
+    "slug": "claude-code-install",
+    "title": "Claude Code 安装与配置",
+    "description": "手把手教你安装 Claude Code CLI，配置 API Key，完成首次运行。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "beginner",
+    "estimatedTime": 20,
+    "tags": [
+      "claude-code",
+      "安装"
+    ],
+    "keywords": [
+      "安装",
+      "配置",
+      "API",
+      "Key",
+      "环境",
+      "claude",
+      "code",
+      "harness"
+    ],
+    "prerequisites": [
+      "claude-code-intro"
+    ],
+    "featured": true,
+    "file": "/content/tutorials/harness/claude-code-install.md"
+  },
+  {
+    "id": "tut-claude-code-first-use",
+    "slug": "claude-code-first-use",
+    "title": "Claude Code 第一个项目",
+    "description": "使用 Claude Code 完成第一个实际项目：从需求描述到代码生成，体验完整的 AI 辅助开发流程。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "beginner",
+    "estimatedTime": 30,
+    "tags": [
+      "claude-code",
+      "实践"
+    ],
+    "keywords": [
+      "claude",
+      "code",
+      "项目",
+      "实战",
+      "开发",
+      "harness"
+    ],
+    "prerequisites": [
+      "claude-code-install"
+    ],
+    "featured": true,
+    "file": "/content/tutorials/harness/claude-code-first-use.md"
+  },
+  {
+    "id": "tut-claude-code-daily",
+    "slug": "claude-code-daily",
+    "title": "Claude Code 日常工作流",
+    "description": "掌握 Claude Code 的日常使用技巧：代码审查、重构、调试、文档生成等高频场景。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "intermediate",
+    "estimatedTime": 25,
+    "tags": [
+      "claude-code",
+      "工作流"
+    ],
+    "keywords": [
+      "claude",
+      "code",
+      "工作流",
+      "日常",
+      "审查",
+      "重构",
+      "调试",
+      "harness"
+    ],
+    "prerequisites": [
+      "claude-code-first-use"
+    ],
+    "file": "/content/tutorials/harness/claude-code-daily.md"
+  },
+  {
+    "id": "tut-claude-code-hooks",
+    "slug": "claude-code-hooks",
+    "title": "Claude Code Hooks 实战",
+    "description": "深入学习 Claude Code 的 Hooks 机制，自动化你的开发工作流。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "intermediate",
+    "estimatedTime": 30,
+    "tags": [
+      "claude-code",
+      "hooks",
+      "进阶"
+    ],
+    "keywords": [
+      "claude",
+      "code",
+      "hooks",
+      "自动化",
+      "lint",
+      "格式化",
+      "测试",
+      "harness"
+    ],
+    "prerequisites": [
+      "claude-code-daily"
+    ],
+    "file": "/content/tutorials/harness/claude-code-hooks.md"
+  },
+  {
+    "id": "tut-codex-intro",
+    "slug": "codex-intro",
+    "title": "Codex 核心概念与快速上手",
+    "description": "了解 OpenAI Codex 的定位、App 与 CLI 的区别、核心能力架构和适用场景。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "beginner",
+    "estimatedTime": 20,
+    "tags": [
+      "codex",
+      "openai",
+      "入门"
+    ],
+    "prerequisites": [],
+    "file": "/content/tutorials/harness/codex-intro.md",
+    "featured": true
+  },
+  {
+    "id": "tut-codex-install",
+    "slug": "codex-install",
+    "title": "Codex 安装与认证完整指南",
+    "description": "手把手教你安装 Codex App 和 CLI，完成 OpenAI 账号认证，配置本地项目。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "beginner",
+    "estimatedTime": 30,
+    "tags": [
+      "codex",
+      "安装",
+      "认证"
+    ],
+    "prerequisites": [
+      "codex-intro"
+    ],
+    "file": "/content/tutorials/harness/codex-install.md"
+  },
+  {
+    "id": "tut-codex-commands",
+    "slug": "codex-commands",
+    "title": "Codex Commands 与工作流入门",
+    "description": "掌握 Codex Commands 系统，理解内置命令与自定义命令，构建高效的日常工作流。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "intermediate",
+    "estimatedTime": 25,
+    "tags": [
+      "codex",
+      "commands",
+      "工作流"
+    ],
+    "prerequisites": [
+      "codex-install"
+    ],
+    "file": "/content/tutorials/harness/codex-commands.md"
+  },
+  {
+    "id": "tut-codex-skills",
+    "slug": "codex-skills",
+    "title": "Codex Skills 与 MCP 集成",
+    "description": "学习创建和管理 Codex Skills，通过 MCP 协议集成外部工具，扩展 AI 编程能力。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "intermediate",
+    "estimatedTime": 30,
+    "tags": [
+      "codex",
+      "skills",
+      "mcp"
+    ],
+    "prerequisites": [
+      "codex-commands"
+    ],
+    "file": "/content/tutorials/harness/codex-skills.md"
+  },
+  {
+    "id": "tut-codex-advanced",
+    "slug": "codex-advanced",
+    "title": "Codex 进阶：Subagents、Plugins 与企业实战",
+    "description": "深入 Codex 的高级特性：Subagents 多 Agent 协作、Automations 后台任务、Plugins 生态与企业部署。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "advanced",
+    "estimatedTime": 40,
+    "tags": [
+      "codex",
+      "subagents",
+      "plugins",
+      "企业"
+    ],
+    "prerequisites": [
+      "codex-skills"
+    ],
+    "file": "/content/tutorials/harness/codex-advanced.md"
+  },
+  {
+    "id": "tut-cc-switch-guide",
+    "slug": "cc-switch-guide",
+    "title": "CC Switch 统一管理工具指南",
+    "description": "学习使用 CC Switch 统一管理 Claude Code、Codex 等 AI 编程工具的供应商配置、API 用量和代理高可用。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "beginner",
+    "estimatedTime": 30,
+    "tags": [
+      "cc-switch",
+      "管理工具",
+      "供应商",
+      "代理"
+    ],
+    "prerequisites": [
+      "claude-code-intro"
+    ],
+    "file": "/content/tutorials/harness/cc-switch-guide.md",
+    "featured": true
+  },
+  {
+    "id": "tut-superpowers-engineering",
+    "slug": "superpowers-engineering-guide",
+    "title": "AI 工程化编程全流程实战",
+    "description": "学习用 Superpowers 框架给 AI 编程套上工程纪律：需求澄清、TDD、两阶段审查、验证收尾。",
+    "category": "practice",
+    "subcategory": "harness",
+    "difficulty": "intermediate",
+    "estimatedTime": 35,
+    "tags": [
+      "superpowers",
+      "工程化",
+      "TDD",
+      "codex",
+      "claude-code"
+    ],
+    "prerequisites": [
+      "codex-install",
+      "claude-code-intro"
+    ],
+    "file": "/content/tutorials/harness/superpowers-engineering-guide.md",
+    "featured": true
+  },
+  {
+    "id": "tut-rag-best-practices-2026",
+    "slug": "rag-best-practices-2026",
+    "title": "Rag Best Practices 2026",
+    "subcategory": "practice",
+    "file": "/content/tutorials/practice/rag-best-practices-2026.md"
+  }
+]
