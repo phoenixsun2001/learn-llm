@@ -38,6 +38,7 @@ services:
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
       - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://localhost:11434}
       - PIPELINE_OUTPUT_DIR=/app/content/materials/
+      - CONTENT_ROOT=/app/content
     networks:
       - learn-llm
 
