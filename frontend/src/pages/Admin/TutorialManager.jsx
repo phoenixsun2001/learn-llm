@@ -333,9 +333,9 @@ const TutorialManager = () => {
 
     // Save to localStorage so it appears in admin list and frontend
     addImportedTutorials([newTutorial])
-    // Initialize as draft
+    // Initialize as published (admin-authored content is ready to show)
     setStatuses((prev) => {
-      const next = { ...prev, [newTutorial.id]: 'draft' }
+      const next = { ...prev, [newTutorial.id]: 'published' }
       saveStatuses(next)
       return next
     })
@@ -576,7 +576,7 @@ const TutorialManager = () => {
                       <td onClick={(e) => e.stopPropagation()}>
                         <div className="admin-table-actions">
                           <a
-                            href={`/tutorials/${tutorial.slug}`}
+                            href={`/tutorials/${tutorial.slug}${tutorial.status !== 'published' ? '?preview=1' : ''}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="admin-btn admin-btn--secondary admin-btn--sm"

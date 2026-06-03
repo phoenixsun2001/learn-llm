@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useSearchParams } from 'react-router-dom';
 import { getTutorialBySlug, loadTutorialContent } from '../../services/contentLoader';
 import TutorialRenderer from '../../components/TutorialRenderer/TutorialRenderer';
 import './TutorialDetail.css';
 
 const TutorialDetail = () => {
   const { slug } = useParams();
+  const [searchParams] = useSearchParams();
+  const isPreview = searchParams.get('preview') === '1';
 
   const [tutorial, setTutorial] = useState(null);
   const [content, setContent] = useState(null);
@@ -20,7 +22,8 @@ const TutorialDetail = () => {
       setError(false);
       setContent(null);
 
-      const meta = getTutorialBySlug(slug, { status: 'published' });
+      // In preview mode, skip the status filter so drafts are visible
+      const meta = getTutorialBySlug(slug, isPreview ? {} : { status: 'published' });
       if (!meta) {
         if (!cancelled) {
           setError(true);
