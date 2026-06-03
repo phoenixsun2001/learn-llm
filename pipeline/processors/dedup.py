@@ -78,6 +78,7 @@ def deduplicate(
         existing_embeddings = []
 
     results = []
+    newly_added = []  # Track only items added in this batch
     new_embeddings = list(existing_embeddings)
     duplicate_count = 0
 
@@ -97,9 +98,9 @@ def deduplicate(
                 duplicate_of = existing_id
                 break
 
-        # Also check against newly added items (within this batch)
+        # Also check against newly added items (within this batch only)
         if not is_duplicate:
-            for new_id, new_emb in new_embeddings:
+            for new_id, new_emb in newly_added:
                 sim = cosine_similarity(emb, new_emb)
                 if sim >= threshold:
                     is_duplicate = True
@@ -116,6 +117,7 @@ def deduplicate(
             # Add to embeddings only if unique
             item_id = item.get('link', '') or item.get('title', '')
             new_embeddings.append((item_id, emb))
+            newly_added.append((item_id, emb))
 
         results.append(item)
 

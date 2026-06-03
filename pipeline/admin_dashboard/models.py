@@ -180,13 +180,13 @@ def insert_review_item(item: Dict[str, Any]) -> int:
 def update_review_status(item_id: int, status: str, reviewed_by: str = "admin") -> bool:
     conn = _get_conn()
     try:
-        conn.execute(
+        cur = conn.execute(
             """UPDATE review_queue SET status=?, reviewed_at=?, reviewed_by=?
                WHERE id=? AND status='pending'""",
             (status, datetime.now(timezone.utc).isoformat(), reviewed_by, item_id)
         )
         conn.commit()
-        return conn.total_changes > 0
+        return cur.rowcount > 0
     finally:
         conn.close()
 
@@ -204,12 +204,12 @@ def update_review_item(item_id: int, updates: Dict[str, Any]) -> bool:
 
     conn = _get_conn()
     try:
-        conn.execute(
+        cur = conn.execute(
             f"UPDATE review_queue SET {set_clause} WHERE id=?",
             values
         )
         conn.commit()
-        return conn.total_changes > 0
+        return cur.rowcount > 0
     finally:
         conn.close()
 
@@ -221,7 +221,7 @@ def insert_review_batch(items: List[Dict[str, Any]]) -> int:
     try:
         now = datetime.now(timezone.utc).isoformat()
         for item in items:
-            conn.execute(
+            cur = conn.execute(
                 """INSERT OR IGNORE INTO review_queue
                    (title, source_url, source_type, raw_content, ai_summary,
                     ai_category, ai_difficulty, status, created_at)
@@ -237,7 +237,8 @@ def insert_review_batch(items: List[Dict[str, Any]]) -> int:
                     now,
                 )
             )
-            count += 1
+            if cur.rowcount > 0:
+                count += 1
         conn.commit()
     finally:
         conn.close()
@@ -358,12 +359,12 @@ def update_material(material_id: str, updates: Dict[str, Any]) -> bool:
 
     conn = _get_conn()
     try:
-        conn.execute(
+        cur = conn.execute(
             f"UPDATE materials SET {set_clause} WHERE material_id=? OR id=?",
             values + [material_id]
         )
         conn.commit()
-        return conn.total_changes > 0
+        return cur.rowcount > 0
     finally:
         conn.close()
 
@@ -372,12 +373,12 @@ def delete_material(material_id: str) -> bool:
     """Soft-delete: archive the material by setting status='archived'."""
     conn = _get_conn()
     try:
-        conn.execute(
+        cur = conn.execute(
             "UPDATE materials SET status='archived' WHERE material_id=? OR id=?",
             (material_id, material_id)
         )
         conn.commit()
-        return conn.total_changes > 0
+        return cur.rowcount > 0
     finally:
         conn.close()
 
@@ -449,12 +450,12 @@ def update_source(source_id: int, updates: Dict[str, Any]) -> bool:
 
     conn = _get_conn()
     try:
-        conn.execute(
+        cur = conn.execute(
             f"UPDATE rss_sources SET {set_clause} WHERE id=?",
             values
         )
         conn.commit()
-        return conn.total_changes > 0
+        return cur.rowcount > 0
     finally:
         conn.close()
 
@@ -462,9 +463,9 @@ def update_source(source_id: int, updates: Dict[str, Any]) -> bool:
 def delete_source(source_id: int) -> bool:
     conn = _get_conn()
     try:
-        conn.execute("DELETE FROM rss_sources WHERE id=?", (source_id,))
+        cur = conn.execute("DELETE FROM rss_sources WHERE id=?", (source_id,))
         conn.commit()
-        return conn.total_changes > 0
+        return cur.rowcount > 0
     finally:
         conn.close()
 
@@ -472,12 +473,12 @@ def delete_source(source_id: int) -> bool:
 def toggle_source(source_id: int, enabled: bool) -> bool:
     conn = _get_conn()
     try:
-        conn.execute(
+        cur = conn.execute(
             "UPDATE rss_sources SET enabled=? WHERE id=?",
             (1 if enabled else 0, source_id)
         )
         conn.commit()
-        return conn.total_changes > 0
+        return cur.rowcount > 0
     finally:
         conn.close()
 

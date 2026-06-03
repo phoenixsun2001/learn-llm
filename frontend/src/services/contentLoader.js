@@ -155,9 +155,9 @@ export function getAllTutorials(filters = {}) {
   if (filters.search) {
     const q = filters.search.toLowerCase();
     result = result.filter((t) =>
-      t.title.toLowerCase().includes(q) ||
-      t.description.toLowerCase().includes(q) ||
-      t.tags.some((tag) => tag.toLowerCase().includes(q))
+      (t.title || '').toLowerCase().includes(q) ||
+      (t.description || '').toLowerCase().includes(q) ||
+      (t.tags || []).some((tag) => tag.toLowerCase().includes(q))
     );
   }
   return result;

@@ -15,6 +15,7 @@ from admin_dashboard.models import (
     list_materials,
     update_material,
 )
+from config import config
 
 logger = logging.getLogger(__name__)
 
@@ -25,7 +26,7 @@ DIFFICULTY_OPTIONS = ["beginner", "intermediate", "advanced"]
 
 def _check_auth(request: Request):
     token = request.cookies.get("admin_token")
-    if token != "learn-llm-admin":
+    if token != config.admin_token:
         raise HTTPException(status_code=401, detail="Unauthorized")
 
 
