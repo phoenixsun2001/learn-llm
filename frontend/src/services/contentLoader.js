@@ -10,6 +10,15 @@ import searchIndex from '../data/search-index.json';
 const IMPORTED_KEY = 'learn-llm-imported-tutorials'
 const STATUS_KEY = 'learn-llm-tutorial-statuses'
 const EDITED_CONTENT_KEY = 'learn-llm-edited-content'
+const PATHWAYS_KEY = 'learn-llm-custom-pathways'
+
+function loadPathways() {
+  try { return JSON.parse(localStorage.getItem(PATHWAYS_KEY) || '[]') } catch { return [] }
+}
+function savePathways(pathways) {
+  try { localStorage.setItem(PATHWAYS_KEY, JSON.stringify(pathways)) } catch {}
+}
+let _customPathways = loadPathways()
 
 function loadEditedContent() {
   try { return JSON.parse(localStorage.getItem(EDITED_CONTENT_KEY) || '{}') } catch { return {} }
@@ -145,10 +154,34 @@ export function getAllTools(category) {
 }
 
 export function getPathwayBySlug(slug) {
-  return pathwaysIndex.find((p) => p.slug === slug) || null;
+  return pathwaysIndex.find((p) => p.slug === slug)
+    || _customPathways.find((p) => p.slug === slug)
+    || null;
 }
 
-export function getAllPathways() { return pathwaysIndex; }
+export function getAllPathways() {
+  return [...pathwaysIndex, ..._customPathways]
+}
+
+/** Add a custom pathway to runtime store + localStorage */
+export function addPathway(pathway) {
+  _customPathways = [..._customPathways, pathway]
+  savePathways(_customPathways)
+}
+
+/** Update a custom pathway by slug */
+export function updatePathway(slug, updates) {
+  _customPathways = _customPathways.map((p) =>
+    p.slug === slug ? { ...p, ...updates } : p
+  )
+  savePathways(_customPathways)
+}
+
+/** Remove a custom pathway by slug */
+export function removePathway(slug) {
+  _customPathways = _customPathways.filter((p) => p.slug !== slug)
+  savePathways(_customPathways)
+}
 
 export function getScenarioBySlug(slug) {
   return scenariosIndex.find((s) => s.slug === slug) || null;

@@ -1,0 +1,62 @@
+.tutorial-editor-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,.45);
+  display: flex; align-items: center; justify-content: center;
+}
+.tutorial-editor-modal {
+  background: var(--bg-primary);
+  border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,.3);
+  display: flex; flex-direction: column;
+  overflow: hidden; position: relative;
+}
+.tutorial-editor-resize {
+  position: absolute; bottom: 0; right: 0; z-index: 10;
+  width: 16px; height: 16px; cursor: se-resize;
+  border-right: 2px solid var(--text-tertiary);
+  border-bottom: 2px solid var(--text-tertiary);
+}
+.tutorial-editor-head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 20px 0;
+}
+.tutorial-editor-title { margin: 0; font-size: 1.15rem; font-weight: 700; color: var(--text-primary); }
+.tutorial-editor-close { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-secondary); }
+
+.tutorial-editor-meta {
+  display: flex; gap: 10px; padding: 12px 20px 0; flex-wrap: wrap;
+}
+.tutorial-editor-field { display: flex; flex-direction: column; gap: 2px; }
+.tutorial-editor-field label { font-size: .72rem; font-weight: 600; color: var(--text-secondary); }
+.tutorial-editor-field input, .tutorial-editor-field select {
+  height: 32px; padding: 0 8px; border: 1px solid var(--border-color); border-radius: 6px;
+  font-size: .85rem; font-family: var(--font-family); color: var(--text-primary); background: var(--bg-primary);
+}
+.tutorial-editor-field select { cursor: pointer; }
+.tutorial-editor-readonly { background: var(--bg-secondary) !important; color: var(--text-secondary) !important; }
+
+.tutorial-editor-toolbar { display: flex; gap: 4px; padding: 10px 20px 0; }
+.tutorial-editor-mode-btn {
+  padding: 4px 14px; border: 1px solid var(--border-color); border-radius: 6px;
+  background: var(--bg-primary); color: var(--text-secondary); cursor: pointer; font-size: .8rem;
+}
+.tutorial-editor-mode-btn--active {
+  border-color: var(--accent-color); background: #eef2ff; color: var(--accent-color);
+}
+
+.tutorial-editor-body {
+  display: flex; gap: 12px; flex: 1; min-height: 0; padding: 10px 20px 0;
+}
+.tutorial-editor-textarea {
+  flex: 1; padding: 14px; border: 1px solid var(--border-color); border-radius: 8px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 13px; line-height: 1.6;
+  resize: none; color: var(--text-primary); background: var(--bg-secondary);
+}
+.tutorial-editor-preview {
+  flex: 1; padding: 14px; border: 1px solid var(--border-color); border-radius: 8px;
+  overflow: auto; background: var(--bg-secondary);
+  font-size: .9rem; line-height: 1.7; color: var(--text-primary);
+}
+
+.tutorial-editor-actions {
+  display: flex; justify-content: flex-end; gap: 8px; padding: 14px 20px 18px;
+}

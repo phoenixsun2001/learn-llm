@@ -1,0 +1,79 @@
+.pwy-editor-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,.45);
+  display: flex; align-items: center; justify-content: center;
+}
+.pwy-editor-modal {
+  background: var(--bg-primary); border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.3);
+  width: 780px; max-width: 95vw; max-height: 92vh;
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.pwy-editor-head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 20px 0;
+}
+.pwy-editor-title { margin: 0; font-size: 1.15rem; font-weight: 700; color: var(--text-primary); }
+.pwy-editor-close { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-secondary); }
+
+.pwy-editor-meta {
+  display: flex; gap: 10px; padding: 12px 20px 0; flex-wrap: wrap;
+}
+.pwy-editor-field { display: flex; flex-direction: column; gap: 2px; }
+.pwy-editor-field label { font-size: .72rem; font-weight: 600; color: var(--text-secondary); }
+.pwy-editor-field input, .pwy-editor-field select, .pwy-editor-field textarea {
+  padding: 6px 8px; border: 1px solid var(--border-color); border-radius: 6px;
+  font-size: .85rem; font-family: var(--font-family); color: var(--text-primary); background: var(--bg-primary);
+}
+.pwy-editor-field select { cursor: pointer; }
+
+.pwy-editor-icon-picker { display: flex; gap: 2px; flex-wrap: wrap; }
+.pwy-editor-icon-btn {
+  width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border-color); border-radius: 4px; background: var(--bg-primary); cursor: pointer; font-size: 14px;
+}
+.pwy-editor-icon-btn--active { border-color: var(--accent-color); background: #eef2ff; }
+
+/* Chapters */
+.pwy-editor-chapters { flex: 1; overflow-y: auto; padding: 0 20px; min-height: 150px; }
+.pwy-editor-chapters-head {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;
+}
+.pwy-editor-chapters-head h3 { font-size: .9rem; font-weight: 600; color: var(--text-primary); margin: 0; }
+.pwy-editor-chapters-count { font-weight: 400; color: var(--text-secondary); font-size: .8rem; margin-left: 6px; }
+.pwy-editor-chapters-empty {
+  text-align: center; padding: 30px; color: var(--text-secondary); font-size: .85rem;
+}
+.pwy-editor-chapters-list { display: flex; flex-direction: column; gap: 4px; }
+
+.pwy-editor-chapter {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px; border: 1px solid var(--border-color); border-radius: 8px;
+  background: var(--bg-secondary); transition: border-color .15s;
+}
+.pwy-editor-chapter--filled { border-color: #a5b4fc; background: #f5f3ff; }
+.pwy-editor-chapter-order {
+  width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; background: var(--accent-color); color: #fff; font-size: .75rem; font-weight: 700; flex-shrink: 0;
+}
+.pwy-editor-chapter-body { flex: 1; min-width: 0; }
+.pwy-editor-chapter-title {
+  width: 100%; border: none; background: transparent; font-size: .85rem; font-weight: 500;
+  color: var(--text-primary); padding: 2px 0; outline: none;
+}
+.pwy-editor-chapter-title:focus { border-bottom: 1px solid var(--accent-color); }
+.pwy-editor-chapter-status { font-size: .7rem; color: var(--text-secondary); }
+.pwy-editor-chapter-status--linked { color: #16a34a; }
+.pwy-editor-chapter-actions { display: flex; gap: 2px; flex-shrink: 0; }
+.pwy-editor-arrow-btn {
+  width: 26px; height: 26px; display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border-color); border-radius: 4px; background: var(--bg-primary);
+  cursor: pointer; font-size: 12px; color: var(--text-secondary);
+}
+.pwy-editor-arrow-btn:hover:not(:disabled) { border-color: var(--accent-color); color: var(--accent-color); }
+.pwy-editor-arrow-btn:disabled { opacity: .3; cursor: default; }
+.pwy-editor-arrow-btn--danger:hover:not(:disabled) { border-color: var(--error-color); color: var(--error-color); }
+
+.pwy-editor-actions {
+  display: flex; justify-content: flex-end; gap: 8px; padding: 14px 20px 18px;
+}
