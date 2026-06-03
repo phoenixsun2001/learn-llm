@@ -136,7 +136,7 @@ const Home = () => {
                 <div className="home-pathway-body">
                   <h3 className="home-pathway-title">{pw.title}</h3>
                   <p className="home-pathway-meta">
-                    {pw.steps.length} 个步骤
+                    {(pw.steps || []).length} 个步骤
                   </p>
                 </div>
                 <span className="home-pathway-arrow" aria-hidden="true">

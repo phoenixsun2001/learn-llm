@@ -99,12 +99,14 @@ const TutorialRenderer = ({ tutorial, content, loading }) => {
     if (loading || !contentRef.current) return;
 
     const contentEl = contentRef.current;
+    let observer = null;
+
     /* Small delay so react-markdown nodes are in the DOM */
     const timeout = setTimeout(() => {
       const h2Elements = contentEl.querySelectorAll('h2');
       if (h2Elements.length === 0) return;
 
-      const observer = new IntersectionObserver(
+      observer = new IntersectionObserver(
         (entries) => {
           /* Find the first h2 whose top is above the viewport center */
           for (const entry of entries) {
@@ -123,12 +125,13 @@ const TutorialRenderer = ({ tutorial, content, loading }) => {
       );
 
       h2Elements.forEach((el) => observer.observe(el));
-
-      return () => observer.disconnect();
     }, 150);
 
-    return () => clearTimeout(timeout);
-  }, [content, loading, contentRef.current]);
+    return () => {
+      clearTimeout(timeout);
+      if (observer) observer.disconnect();
+    };
+  }, [content, loading]);
 
   /* ---------- Step click: scroll to corresponding h2 ---------- */
   const handleStepClick = useCallback(

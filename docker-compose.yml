@@ -13,7 +13,11 @@ services:
     container_name: learn-llm-frontend
     ports:
       - "80:80"
+    volumes:
+      - ./content:/usr/share/nginx/html/content
     restart: unless-stopped
+    depends_on:
+      - backend
     networks:
       - learn-llm
 
@@ -28,13 +32,15 @@ services:
     ports:
       - "8400:8400"
     restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - ./content:/app/content
       - ./pipeline/data:/app/data
     environment:
       - ADMIN_TOKEN=${ADMIN_TOKEN:-learn-llm-admin}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
-      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://localhost:11434}
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
       - PIPELINE_OUTPUT_DIR=/app/content/materials/
     networks:
       - learn-llm

@@ -13,6 +13,7 @@ from admin_dashboard.models import (
     update_review_item,
     update_review_status,
 )
+from config import config
 
 logger = logging.getLogger(__name__)
 
@@ -21,7 +22,7 @@ router = APIRouter()
 
 def _check_auth(request: Request):
     token = request.cookies.get("admin_token")
-    if token != "learn-llm-admin":
+    if token != config.admin_token:
         raise HTTPException(status_code=401, detail="Unauthorized")
 
 

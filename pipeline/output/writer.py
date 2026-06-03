@@ -6,6 +6,8 @@ import re
 from datetime import datetime
 from typing import Dict, Optional
 
+import yaml
+
 from config import config
 
 # Standard 6 categories from the learning platform taxonomy
@@ -119,18 +121,21 @@ def write_material(item: Dict, output_dir: str = None) -> Optional[str]:
     with open(json_path, 'w', encoding='utf-8') as f:
         json.dump(metadata, f, ensure_ascii=False, indent=2)
 
-    # Write Markdown file with YAML frontmatter
+    # Write Markdown file with YAML frontmatter (use yaml.dump for proper escaping)
+    frontmatter = {
+        'title': title,
+        'source': item.get('link', ''),
+        'source_name': item.get('source_name', 'Unknown'),
+        'source_type': item.get('source_type', 'unknown'),
+        'category': category,
+        'difficulty': item.get('difficulty', 'beginner'),
+        'ai_summary': item.get('ai_summary', ''),
+        'tags': item.get('tags', []),
+        'material_id': material_id,
+    }
+    yaml_header = yaml.dump(frontmatter, allow_unicode=True, default_flow_style=False)
     md_content = f"""---
-title: "{title}"
-source: "{item.get('link', '')}"
-source_name: "{item.get('source_name', 'Unknown')}"
-source_type: "{item.get('source_type', 'unknown')}"
-category: "{category}"
-difficulty: "{item.get('difficulty', 'beginner')}"
-ai_summary: "{item.get('ai_summary', '')}"
-tags: {json.dumps(item.get('tags', []), ensure_ascii=False)}
-material_id: "{material_id}"
----
+{yaml_header}---
 
 # {title}
 
