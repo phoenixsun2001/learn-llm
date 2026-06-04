@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}提示词管理 - Learn-LLM Admin{% endblock %}
+{% block page_title %}提示词管理 <span class="count-badge">{{ items|length }}</span>{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">筛选条件</h3>
+        <a href="/admin/prompts/new" class="btn btn-primary btn-sm">+ 创建提示词</a>
+    </div>
+    <form method="GET" action="/admin/prompts" class="filter-form">
+        <div class="filter-row">
+            <div class="form-group" style="flex:2;">
+                <label for="search">搜索</label>
+                <input type="text" id="search" name="search" placeholder="标题、描述、模板、标签、关键词..."
+                       value="{{ current_search }}">
+            </div>
+            <div class="form-group" style="flex:1;">
+                <label for="category">分类</label>
+                <select id="category" name="category">
+                    <option value="">全部</option>
+                    {% for c in categories %}
+                    <option value="{{ c }}" {% if current_category == c %}selected{% endif %}>{{ c }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group" style="flex:1;">
+                <label for="difficulty">难度</label>
+                <select id="difficulty" name="difficulty">
+                    <option value="">全部</option>
+                    {% for d in difficulties %}
+                    <option value="{{ d }}" {% if current_difficulty == d %}selected{% endif %}>{{ d }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group" style="align-self:flex-end;">
+                <button type="submit" class="btn btn-primary">筛选</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="card" style="margin-top: 20px;">
+    {% if items %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width:22%;">标题</th>
+                <th style="width:10%;">分类</th>
+                <th style="width:10%;">难度</th>
+                <th style="width:18%;">标签</th>
+                <th style="width:10%;">变量数</th>
+                <th style="width:10%;">关联场景</th>
+                <th style="width:20%;">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td class="cell-title">
+                    <a href="/admin/prompts/{{ item.slug }}">{{ item.title }}</a>
+                </td>
+                <td><span class="badge badge-category">{{ item.category }}</span></td>
+                <td><span class="badge badge-tag">{{ item.difficulty or '-' }}</span></td>
+                <td>
+                    {% if item.tags %}
+                        {% for tag in item.tags[:3] %}
+                        <span class="badge badge-tag">{{ tag }}</span>
+                        {% endfor %}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td style="font-size:12px;">{{ item.variables|length if item.variables else 0 }} 个</td>
+                <td style="font-size:12px;">{{ item.relatedScenarios|length if item.relatedScenarios else 0 }} 个</td>
+                <td class="action-cell">
+                    <a href="/admin/prompts/{{ item.slug }}" class="btn-sm btn-edit">编辑</a>
+                    <form method="POST" action="/admin/prompts/{{ item.slug }}/delete"
+                          style="display:inline;" onsubmit="return confirm('确定删除此提示词？')">
+                        <button type="submit" class="btn-sm btn-reject">删除</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="empty-state">
+        <p>暂无提示词。</p>
+        <a href="/admin/prompts/new" class="btn btn-primary">创建提示词</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

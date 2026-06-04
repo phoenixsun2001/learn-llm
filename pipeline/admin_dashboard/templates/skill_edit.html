@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}{% if item %}编辑技能: {{ item.name }}{% else %}创建技能{% endif %} - Learn-LLM Admin{% endblock %}
+{% block page_title %}{% if item %}编辑技能: {{ item.name }}{% else %}创建技能{% endif %}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">{% if item %}编辑技能{% else %}新建技能{% endif %}</h3>
+        {% if item %}
+        <span class="badge badge-source">{{ item.slug }}</span>
+        {% endif %}
+    </div>
+
+    <form method="POST"
+          action="{% if item %}/admin/skills/{{ item.slug }}/update{% else %}/admin/skills/new{% endif %}"
+          class="edit-form">
+
+        {% if item %}
+        <input type="hidden" name="id" value="{{ item.id }}">
+        {% endif %}
+
+        <div class="form-row">
+            <div class="form-group" style="flex:1;">
+                <label for="slug">Slug</label>
+                <input type="text" id="slug" name="slug" value="{{ item.slug if item else '' }}"
+                       {% if item %}readonly{% else %}required{% endif %}>
+            </div>
+            <div class="form-group" style="flex:1;">
+                <label for="name">名称</label>
+                <input type="text" id="name" name="name" value="{{ item.name if item else '' }}" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="description">描述</label>
+            <textarea id="description" name="description" rows="3">{{ item.description if item else '' }}</textarea>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group" style="flex:1;">
+                <label for="category">分类</label>
+                <select id="category" name="category">
+                    {% for c in categories %}
+                    <option value="{{ c }}" {% if item and item.category == c %}selected{% endif %}>{{ c }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group" style="flex:1;">
+                <label for="difficulty">难度</label>
+                <select id="difficulty" name="difficulty">
+                    {% for d in difficulties %}
+                    <option value="{{ d }}" {% if item and item.difficulty == d %}selected{% endif %}>{{ d }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group" style="flex:1;">
+                <label for="layer">层级 (1-4)</label>
+                <input type="number" id="layer" name="layer" min="1" max="4"
+                       value="{{ item.layer if item else 1 }}">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group" style="flex:1;">
+                <label for="usage">使用级别</label>
+                <select id="usage" name="usage">
+                    {% for u in usage_options %}
+                    <option value="{{ u }}" {% if item and item.usage == u %}selected{% endif %}>{{ u }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group" style="flex:1;">
+                <label for="package">技能包</label>
+                <select id="package" name="package">
+                    <option value="">-- 无 --</option>
+                    {% for p in packages %}
+                    <option value="{{ p.slug }}" {% if item and item.package == p.slug %}selected{% endif %}>{{ p.name }} ({{ p.slug }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="file">内容文件路径</label>
+            <input type="text" id="file" name="file" value="{{ item.file if item else '' }}"
+                   placeholder="例如：/content/skills/using-superpowers.md">
+        </div>
+
+        <div class="form-group">
+            <label for="relatedSkills">关联技能（每行一个 slug）</label>
+            <textarea id="relatedSkills" name="relatedSkills" rows="2"
+                      placeholder="每行一个">{{ (item.relatedSkills or [])|join('\n') if item else '' }}</textarea>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group" style="flex:1;">
+                <label for="tags">标签（每行一个）</label>
+                <textarea id="tags" name="tags" rows="2"
+                          placeholder="每行一个">{{ (item.tags or [])|join('\n') if item else '' }}</textarea>
+            </div>
+            <div class="form-group" style="flex:1;">
+                <label for="keywords">关键词（每行一个）</label>
+                <textarea id="keywords" name="keywords" rows="2"
+                          placeholder="每行一个">{{ (item.keywords or [])|join('\n') if item else '' }}</textarea>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">{% if item %}保存修改{% else %}创建技能{% endif %}</button>
+            <a href="/admin/skills" class="btn btn-secondary">取消</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

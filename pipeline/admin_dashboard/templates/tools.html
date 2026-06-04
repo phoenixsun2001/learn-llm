@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}工具管理 - Learn-LLM Admin{% endblock %}
+{% block page_title %}工具管理 <span class="count-badge">{{ items|length }}</span>{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">筛选条件</h3>
+        <a href="/admin/tools/new" class="btn btn-primary btn-sm">+ 创建工具</a>
+    </div>
+    <form method="GET" action="/admin/tools" class="filter-form">
+        <div class="filter-row">
+            <div class="form-group" style="flex:2;">
+                <label for="search">搜索</label>
+                <input type="text" id="search" name="search" placeholder="名称、描述..."
+                       value="{{ current_search }}">
+            </div>
+            <div class="form-group" style="flex:1;">
+                <label for="category">分类</label>
+                <select id="category" name="category">
+                    <option value="">全部</option>
+                    {% for c in categories %}
+                    <option value="{{ c }}" {% if current_category == c %}selected{% endif %}>{{ c }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group" style="align-self:flex-end;">
+                <button type="submit" class="btn btn-primary">筛选</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="card" style="margin-top: 20px;">
+    {% if items %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width:20%;">名称</th>
+                <th style="width:10%;">分类</th>
+                <th style="width:20%;">URL</th>
+                <th style="width:10%;">向导步骤</th>
+                <th style="width:15%;">标签</th>
+                <th style="width:12%;">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td class="cell-title">
+                    <a href="/admin/tools/{{ item.slug }}">{{ item.name or item.slug }}</a>
+                </td>
+                <td><span class="badge badge-category">{{ item.category }}</span></td>
+                <td style="font-size:12px;color:var(--text-secondary);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                    {% if item.officialUrl %}
+                    <a href="{{ item.officialUrl }}" target="_blank">{{ item.officialUrl }}</a>
+                    {% else %}
+                    -
+                    {% endif %}
+                </td>
+                <td style="font-size:12px;">{{ item.wizardSteps|length if item.wizardSteps else 0 }} 个</td>
+                <td>
+                    {% if item.tags %}
+                        {% for tag in item.tags[:3] %}
+                        <span class="badge badge-tag">{{ tag }}</span>
+                        {% endfor %}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td class="action-cell">
+                    <a href="/admin/tools/{{ item.slug }}" class="btn-sm btn-edit">编辑</a>
+                    <form method="POST" action="/admin/tools/{{ item.slug }}/delete"
+                          style="display:inline;" onsubmit="return confirm('确定删除此工具？')">
+                        <button type="submit" class="btn-sm btn-reject">删除</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="empty-state">
+        <p>暂无工具。</p>
+        <a href="/admin/tools/new" class="btn btn-primary">创建工具</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

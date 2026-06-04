@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}技能包管理 - Learn-LLM Admin{% endblock %}
+{% block page_title %}技能包管理 <span class="count-badge">{{ items|length }}</span>{% endblock %}
+
+{% block content %}
+<!-- Sub-navigation tabs -->
+<div class="sub-nav">
+    <a href="/admin/skills" class="{% if tab == 'skills' %}active{% endif %}">技能列表</a>
+    <a href="/admin/skills/packages" class="{% if tab == 'packages' %}active{% endif %}">技能包管理</a>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">技能包列表</h3>
+        <a href="/admin/skills/packages/new" class="btn btn-primary btn-sm">+ 创建技能包</a>
+    </div>
+</div>
+
+<div class="card" style="margin-top: 20px;">
+    {% if items %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width:20%;">名称</th>
+                <th style="width:20%;">来源</th>
+                <th style="width:10%;">技能数</th>
+                <th style="width:8%;">层级数</th>
+                <th style="width:15%;">标签</th>
+                <th style="width:14%;">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td class="cell-title">
+                    <a href="/admin/skills/packages/{{ item.slug }}">{{ item.name }}</a>
+                </td>
+                <td style="font-size:12px;">
+                    {% if item.source %}
+                    <a href="{{ item.source }}" target="_blank">{{ item.sourceLabel or item.source }}</a>
+                    {% else %}
+                    -
+                    {% endif %}
+                </td>
+                <td style="text-align:center;">{{ item.skillCount or 0 }}</td>
+                <td style="text-align:center;">{{ item.layers or 0 }}</td>
+                <td>
+                    {% if item.tags %}
+                        {% for tag in item.tags[:3] %}
+                        <span class="badge badge-tag">{{ tag }}</span>
+                        {% endfor %}
+                    {% else %}
+                    -
+                    {% endif %}
+                </td>
+                <td class="action-cell">
+                    <a href="/admin/skills/packages/{{ item.slug }}" class="btn-sm btn-edit">编辑</a>
+                    <form method="POST" action="/admin/skills/packages/{{ item.slug }}/delete"
+                          style="display:inline;" onsubmit="return confirm('确定删除此技能包？关联的技能不会删除但会失去技能包关联。')">
+                        <button type="submit" class="btn-sm btn-reject">删除</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="empty-state">
+        <p>暂无技能包。</p>
+        <a href="/admin/skills/packages/new" class="btn btn-primary">创建技能包</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block title %}{% if item %}编辑提示词: {{ item.title }}{% else %}创建提示词{% endif %} - Learn-LLM Admin{% endblock %}
+{% block page_title %}{% if item %}编辑提示词: {{ item.title }}{% else %}创建提示词{% endif %}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">{% if item %}编辑提示词{% else %}新建提示词{% endif %}</h3>
+        {% if item %}
+        <span class="badge badge-source">{{ item.slug }}</span>
+        {% endif %}
+    </div>
+
+    <form method="POST"
+          action="{% if item %}/admin/prompts/{{ item.slug }}/update{% else %}/admin/prompts/new{% endif %}"
+          class="edit-form">
+
+        <!-- ID (hidden for edit) -->
+        {% if item %}
+        <input type="hidden" name="id" value="{{ item.id }}">
+        {% endif %}
+
+        <div class="form-row">
+            <div class="form-group" style="flex:1;">
+                <label for="slug">Slug</label>
+                <input type="text" id="slug" name="slug" value="{{ item.slug if item else '' }}"
+                       {% if item %}readonly{% else %}required{% endif %}>
+            </div>
+            <div class="form-group" style="flex:1;">
+                <label for="category">分类</label>
+                <select id="category" name="category">
+                    {% for c in categories %}
+                    <option value="{{ c }}" {% if item and item.category == c %}selected{% endif %}>{{ c }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group" style="flex:1;">
+                <label for="difficulty">难度</label>
+                <select id="difficulty" name="difficulty">
+                    {% for d in difficulties %}
+                    <option value="{{ d }}" {% if item and item.difficulty == d %}selected{% endif %}>{{ d }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="title">标题</label>
+            <input type="text" id="title" name="title" value="{{ item.title if item else '' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">描述</label>
+            <textarea id="description" name="description" rows="3"
+                      placeholder="简要描述此提示词的用途">{{ item.description if item else '' }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="template">提示词模板</label>
+            <textarea id="template" name="template" rows="12"
+                      style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px;"
+                      placeholder="输入提示词模板，使用 {variable_name} 标记变量">{{ item.template if item else '' }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label>变量定义</label>
+            <div id="variables-container">
+                {% if item and item.variables %}
+                {% for v in item.variables %}
+                <div class="nested-row">
+                    <input type="text" name="var_name" value="{{ v.name }}" placeholder="变量名">
+                    <input type="text" name="var_label" value="{{ v.label }}" placeholder="显示标签">
+                    <input type="text" name="var_example" value="{{ v.example }}" placeholder="示例值">
+                    <button type="button" class="btn-sm btn-reject row-remove">-</button>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <button type="button" class="btn-add-row" onclick="addVarRow()">+ 添加变量</button>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group" style="flex:1;">
+                <label for="tags">标签（每行一个）</label>
+                <textarea id="tags" name="tags" rows="2"
+                          placeholder="每行一个">{{ (item.tags or [])|join('\n') if item else '' }}</textarea>
+            </div>
+            <div class="form-group" style="flex:1;">
+                <label for="keywords">关键词（每行一个）</label>
+                <textarea id="keywords" name="keywords" rows="2"
+                          placeholder="每行一个">{{ (item.keywords or [])|join('\n') if item else '' }}</textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="tips">使用提示（每行一个）</label>
+            <textarea id="tips" name="tips" rows="3"
+                      placeholder="每行一个使用提示">{{ (item.tips or [])|join('\n') if item else '' }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="relatedScenarios">关联场景（每行一个 slug）</label>
+            <textarea id="relatedScenarios" name="relatedScenarios" rows="2"
+                      placeholder="每行一个场景 slug，例如：code-review">{{ (item.relatedScenarios or [])|join('\n') if item else '' }}</textarea>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">{% if item %}保存修改{% else %}创建提示词{% endif %}</button>
+            <a href="/admin/prompts" class="btn btn-secondary">取消</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function addVarRow() {
+    const container = document.getElementById('variables-container');
+    const row = document.createElement('div');
+    row.className = 'nested-row';
+    row.innerHTML = `
+        <input type="text" name="var_name" placeholder="变量名">
+        <input type="text" name="var_label" placeholder="显示标签">
+        <input type="text" name="var_example" placeholder="示例值">
+        <button type="button" class="btn-sm btn-reject row-remove">-</button>
+    `;
+    container.appendChild(row);
+}
+
+document.getElementById('variables-container').addEventListener('click', function(e) {
+    if (e.target.classList.contains('row-remove')) {
+        e.target.closest('.nested-row').remove();
+    }
+});
+</script>
+{% endblock %}

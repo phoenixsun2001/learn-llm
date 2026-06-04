@@ -596,3 +596,96 @@ a:hover {
 .btn-edit.btn-sm:hover {
     background: #e2e8f0;
 }
+
+/* ===== Nav Separator ===== */
+.nav-separator {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 8px 12px;
+}
+
+/* ===== Nested Dynamic Rows (variables, wizardSteps) ===== */
+.nested-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+    align-items: center;
+}
+
+.nested-row input,
+.nested-row select {
+    flex: 1;
+    padding: 6px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--text-primary);
+    background: var(--bg-primary);
+}
+
+.nested-row input:focus,
+.nested-row select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12);
+}
+
+.btn-add-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-family: inherit;
+    color: var(--accent-color);
+    background: none;
+    border: 1px dashed var(--accent-color);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.btn-add-row:hover {
+    background: rgba(37, 99, 235, 0.06);
+}
+
+.nested-row .btn-sm {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1;
+}
+
+/* ===== Sub-nav tabs (e.g., Skills / Packages) ===== */
+.sub-nav {
+    display: flex;
+    gap: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.sub-nav a {
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.sub-nav a:hover {
+    color: var(--accent-color);
+}
+
+.sub-nav a.active {
+    color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
+}

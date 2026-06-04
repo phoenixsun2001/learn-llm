@@ -28,6 +28,10 @@ from admin_dashboard.routes.materials import router as materials_router
 from admin_dashboard.routes.sources import router as sources_router
 from admin_dashboard.routes.tutorials import router as tutorials_router
 from admin_dashboard.routes.chat import router as chat_router
+from admin_dashboard.routes.scenarios import router as scenarios_router
+from admin_dashboard.routes.prompts import router as prompts_router
+from admin_dashboard.routes.tools import router as tools_router
+from admin_dashboard.routes.skills import router as skills_router
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
 logger = logging.getLogger(__name__)
@@ -117,6 +121,10 @@ app.include_router(materials_router, prefix="/admin")
 app.include_router(sources_router, prefix="/admin")
 app.include_router(tutorials_router)  # no prefix — routes define their own /api/tutorials paths
 app.include_router(chat_router)  # no prefix — public /chat endpoint
+app.include_router(scenarios_router, prefix="/admin")
+app.include_router(prompts_router, prefix="/admin")
+app.include_router(tools_router, prefix="/admin")
+app.include_router(skills_router, prefix="/admin")
 
 
 # --------------- Dashboard ---------------
