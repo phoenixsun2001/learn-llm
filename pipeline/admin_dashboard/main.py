@@ -121,10 +121,10 @@ app.include_router(materials_router, prefix="/admin")
 app.include_router(sources_router, prefix="/admin")
 app.include_router(tutorials_router)  # no prefix — routes define their own /api/tutorials paths
 app.include_router(chat_router)  # no prefix — public /chat endpoint
-app.include_router(scenarios_router, prefix="/admin")
-app.include_router(prompts_router, prefix="/admin")
-app.include_router(tools_router, prefix="/admin")
-app.include_router(skills_router, prefix="/admin")
+app.include_router(scenarios_router)  # routes already include /admin/ prefix
+app.include_router(prompts_router)
+app.include_router(tools_router)
+app.include_router(skills_router)
 
 
 # --------------- Dashboard ---------------
