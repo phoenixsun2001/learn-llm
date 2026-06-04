@@ -7,7 +7,7 @@ const TYPE_CONFIG = {
   tutorial: { emoji: '📚', label: '教程', linkPrefix: '/tutorials', badgeClass: 'search-badge--tutorial' },
   tool: { emoji: '🔧', label: '工具', linkPrefix: '/tools', badgeClass: 'search-badge--tool' },
   scenario: { emoji: '🎯', label: '场景', linkPrefix: '/scenarios', badgeClass: 'search-badge--scenario' },
-  skill: { emoji: '🧩', label: '技能', linkPrefix: '/skills', badgeClass: 'search-badge--skill' },
+  prompt: { emoji: '💡', label: '提示词', linkPrefix: '/prompts', badgeClass: 'search-badge--prompt' },
 };
 
 const DIFFICULTY_LABELS = {
@@ -26,7 +26,7 @@ const SearchResults = () => {
   const results = useMemo(() => searchAll(query), [query]);
 
   const grouped = useMemo(() => {
-    const groups = { tutorial: [], tool: [], scenario: [], skill: [] };
+    const groups = { tutorial: [], tool: [], scenario: [], prompt: [] };
     results.forEach((item) => {
       if (groups[item.type]) groups[item.type].push(item);
     });
@@ -158,7 +158,7 @@ const SearchResults = () => {
                 {items.map((item) => (
                   <li key={`${item.type}-${item.slug}`} className="search-result-item">
                     <Link
-                      to={item.package ? `${config.linkPrefix}/${item.package}/${item.slug}` : `${config.linkPrefix}/${item.slug}`}
+                      to={`${config.linkPrefix}/${item.slug}`}
                       className="search-result-link"
                     >
                       <span className={`search-badge ${config.badgeClass}`}>

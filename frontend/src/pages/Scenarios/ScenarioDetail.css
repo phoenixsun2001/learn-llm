@@ -44,6 +44,17 @@
   margin-bottom: var(--spacing-2xl);
 }
 
+.scenario-detail-category-badge {
+  display: inline-block;
+  padding: 3px 12px;
+  margin-bottom: var(--spacing-sm);
+  background-color: var(--accent-light);
+  color: var(--accent-color);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  border-radius: var(--radius-full);
+}
+
 .scenario-detail-title {
   font-size: var(--font-size-3xl);
   font-weight: 700;

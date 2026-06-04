@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { getAllScenarios } from '../../services/contentLoader';
+import { SCENARIO_CATEGORY_LABELS } from '../../utils/constants';
 import './ScenarioList.css';
 
 const ScenarioList = () => {
-  const scenarios = getAllScenarios();
+  const [search, setSearch] = useState('');
+  const [activeCategory, setActiveCategory] = useState('');
+
+  const scenarios = useMemo(() => {
+    return getAllScenarios({
+      category: activeCategory || undefined,
+      search: search || undefined,
+    });
+  }, [search, activeCategory]);
 
   return (
     <div className="scenario-list-page">
@@ -16,6 +25,37 @@ const ScenarioList = () => {
         </p>
       </section>
 
+      {/* Filters */}
+      <div className="scenario-list-filters">
+        <input
+          type="search"
+          className="scenario-list-search"
+          placeholder="搜索场景..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          aria-label="搜索场景"
+        />
+        <div className="scenario-list-chip-row">
+          <button
+            className={`scenario-list-chip${!activeCategory ? ' scenario-list-chip--active' : ''}`}
+            onClick={() => setActiveCategory('')}
+            aria-pressed={!activeCategory}
+          >
+            全部
+          </button>
+          {Object.entries(SCENARIO_CATEGORY_LABELS).map(([key, label]) => (
+            <button
+              key={key}
+              className={`scenario-list-chip${activeCategory === key ? ' scenario-list-chip--active' : ''}`}
+              onClick={() => setActiveCategory(activeCategory === key ? '' : key)}
+              aria-pressed={activeCategory === key}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* Result count */}
       <p className="scenario-list-count">{scenarios.length} 个场景</p>
 
@@ -25,6 +65,7 @@ const ScenarioList = () => {
           {scenarios.map((scenario) => {
             const toolCount = scenario.tools ? scenario.tools.length : 0;
             const tutorialCount = scenario.tutorials ? scenario.tutorials.length : 0;
+            const categoryLabel = SCENARIO_CATEGORY_LABELS[scenario.category];
 
             return (
               <Link
@@ -32,6 +73,11 @@ const ScenarioList = () => {
                 to={`/scenarios/${scenario.slug}`}
                 className="scenario-card"
               >
+                {/* Category badge */}
+                {categoryLabel && (
+                  <span className="scenario-card-badge">{categoryLabel}</span>
+                )}
+
                 {/* Title */}
                 <h3 className="scenario-card-title">{scenario.title}</h3>
 
@@ -82,7 +128,9 @@ const ScenarioList = () => {
         /* Empty state */
         <div className="scenario-list-empty" role="status">
           <span className="scenario-list-empty-icon" aria-hidden="true">🔍</span>
-          <p className="scenario-list-empty-text">暂无场景。</p>
+          <p className="scenario-list-empty-text">
+            {search || activeCategory ? '没有找到匹配的场景，请调整筛选条件。' : '暂无场景。'}
+          </p>
         </div>
       )}
     </div>

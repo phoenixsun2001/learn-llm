@@ -13,9 +13,8 @@ import PathwayList from './pages/Pathways/PathwayList';
 import PathwayDetail from './pages/Pathways/PathwayDetail';
 import ScenarioList from './pages/Scenarios/ScenarioList';
 import ScenarioDetail from './pages/Scenarios/ScenarioDetail';
-import SkillList from './pages/Skills/SkillList';
-import SkillPackage from './pages/Skills/SkillPackage';
-import SkillDetail from './pages/Skills/SkillDetail';
+import PromptList from './pages/Prompts/PromptList';
+import PromptDetail from './pages/Prompts/PromptDetail';
 import SearchResults from './pages/Search/SearchResults';
 import AdminLayout from './pages/Admin/AdminLayout';
 import TutorialManager from './pages/Admin/TutorialManager';
@@ -52,9 +51,8 @@ const App = () => {
                 <Route path="/pathways/:slug" element={<PathwayDetail />} />
                 <Route path="/scenarios" element={<ScenarioList />} />
                 <Route path="/scenarios/:slug" element={<ScenarioDetail />} />
-                <Route path="/skills" element={<SkillList />} />
-                <Route path="/skills/:package" element={<SkillPackage />} />
-                <Route path="/skills/:package/:slug" element={<SkillDetail />} />
+                <Route path="/prompts" element={<PromptList />} />
+                <Route path="/prompts/:slug" element={<PromptDetail />} />
                 <Route path="/search" element={<SearchResults />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

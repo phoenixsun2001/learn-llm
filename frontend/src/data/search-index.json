@@ -214,500 +214,54 @@
     "slug": "rag-best-practices-2026",
     "title": "RAG Best Practices 2026",
     "keywords": [
-      "RAG",
-      "检索增强生成",
-      "向量检索",
-      "嵌入模型",
-      "分块策略",
-      "重排序",
-      "Agentic RAG",
-      "最佳实践"
+      "rag",
+      "2026",
+      "best",
+      "practices"
     ],
-    "category": "practice",
+    "category": "rag",
     "difficulty": "advanced"
   },
-  {
-    "type": "tutorial",
-    "slug": "cc-switch-guide",
-    "title": "CC Switch 统一管理工具指南",
-    "keywords": [
-      "cc",
-      "switch",
-      "管理工具",
-      "供应商",
-      "切换",
-      "代理",
-      "高可用",
-      "tauri",
-      "用量",
-      "token"
-    ],
-    "category": "harness",
-    "difficulty": "beginner"
-  },
-  {
-    "type": "tool",
-    "slug": "cc-switch",
-    "title": "CC Switch",
-    "keywords": [
-      "管理工具",
-      "供应商切换",
-      "代理",
-      "开源",
-      "tauri",
-      "claude",
-      "codex",
-      "gemini"
-    ],
-    "category": "harness"
-  },
-  {
-    "type": "tutorial",
-    "slug": "superpowers-engineering-guide",
-    "title": "AI 工程化编程全流程实战",
-    "keywords": [
-      "superpowers",
-      "工程化",
-      "TDD",
-      "workflow",
-      "codex",
-      "claude",
-      "流程",
-      "纪律",
-      "审查"
-    ],
-    "category": "practice",
-    "difficulty": "intermediate"
-  },
-  {
-    "type": "scenario",
-    "slug": "engineering-workflow",
-    "title": "工程化编程全流程实战",
-    "keywords": [
-      "工程化",
-      "工作流",
-      "TDD",
-      "superpowers",
-      "流程",
-      "规范",
-      "codex"
-    ],
-    "category": "practice"
-  },
-  {
-    "type": "tutorial",
-    "slug": "kilo-code-guide",
-    "title": "Kilo Code 开源 AI 编程代理指南",
-    "keywords": [
-      "kilo",
-      "code",
-      "开源",
-      "agent",
-      "IDE",
-      "自动补全",
-      "结对编程"
-    ],
-    "category": "harness",
-    "difficulty": "beginner"
-  },
-  {
-    "type": "tool",
-    "slug": "kilo-code",
-    "title": "Kilo Code",
-    "keywords": [
-      "kilo",
-      "code",
-      "开源",
-      "agent",
-      "IDE",
-      "多平台",
-      "结对编程"
-    ],
-    "category": "harness"
-  },
-  {
-    "type": "skill",
-    "slug": "using-superpowers",
-    "title": "Using Superpowers",
-    "keywords": [
-      "superpowers",
-      "入口",
-      "规则",
-      "调度",
-      "总开关",
-      "using"
-    ],
-    "package": "superpowers"
-  },
-  {
-    "type": "skill",
-    "slug": "brainstorming",
-    "title": "Brainstorming 头脑风暴",
-    "keywords": [
-      "brainstorming",
-      "头脑风暴",
-      "需求澄清",
-      "方案设计",
-      "spec",
-      "设计文档"
-    ],
-    "package": "superpowers"
-  },
-  {
-    "type": "skill",
-    "slug": "writing-plans",
-    "title": "Writing Plans 编写计划",
-    "keywords": [
-      "writing",
-      "plans",
-      "计划",
-      "任务",
-      "拆解",
-      "实施",
-      "步骤"
-    ],
-    "package": "superpowers"
-  },
-  {
-    "type": "skill",
-    "slug": "using-git-worktrees",
-    "title": "Using Git Worktrees 隔离工作区",
-    "keywords": [
-      "git",
-      "worktree",
-      "隔离",
-      "工作区",
-      "分支",
-      "环境"
-    ],
-    "package": "superpowers"
-  },
-  {
-    "type": "skill",
-    "slug": "subagent-driven-development",
-    "title": "Subagent-Driven Development 子智能体开发",
-    "keywords": [
-      "subagent",
-      "子智能体",
-      "审查",
-      "并行",
-      "隔离",
-      "review",
-      "两阶段"
-    ],
-    "package": "superpowers"
-  },
-  {
-    "type": "skill",
-    "slug": "executing-plans",
-    "title": "Executing Plans 按计划执行",
-    "keywords": [
-      "executing",
-      "plans",
-      "执行",
-      "计划",
-      "顺序",
-      "todo"
-    ],
-    "package": "superpowers"
-  },
-  {
-    "type": "skill",
-    "slug": "test-driven-development",
-    "title": "Test-Driven Development 测试驱动开发",
-    "keywords": [
-      "tdd",
-      "测试驱动",
-      "red",
-      "green",
-      "refactor",
-      "单元测试"
-    ],
-    "package": "superpowers"
-  },
-  {
-    "type": "skill",
-    "slug": "systematic-debugging",
-    "title": "Systematic Debugging 系统化调试",
-    "keywords": [
-      "debugging",
-      "调试",
-      "根因",
-      "修复",
-      "bug",
-      "系统化"
-    ],
-    "package": "superpowers"
-  },
-  {
-    "type": "skill",
-    "slug": "verification-before-completion",
-    "title": "Verification Before Completion 完成前验证",
-    "keywords": [
-      "verification",
-      "验证",
-      "完成",
-      "证据",
-      "exit",
-      "code",
-      "claim"
-    ],
-    "package": "superpowers"
-  },
-  {
-    "type": "skill",
-    "slug": "requesting-code-review",
-    "title": "Requesting Code Review 请求代码审查",
-    "keywords": [
-      "code",
-      "review",
-      "审查",
-      "reviewer",
-      "critical",
-      "质量"
-    ],
-    "package": "superpowers"
-  },
-  {
-    "type": "skill",
-    "slug": "receiving-code-review",
-    "title": "Receiving Code Review 接收代码审查",
-    "keywords": [
-      "receiving",
-      "review",
-      "接收",
-      "反馈",
-      "审查",
-      "判断",
-      "验证"
-    ],
-    "package": "superpowers"
-  },
-  {
-    "type": "skill",
-    "slug": "dispatching-parallel-agents",
-    "title": "Dispatching Parallel Agents 并行派发",
-    "keywords": [
-      "parallel",
-      "并行",
-      "dispatch",
-      "派发",
-      "agent",
-      "加速"
-    ],
-    "package": "superpowers"
-  },
-  {
-    "type": "skill",
-    "slug": "finishing-a-development-branch",
-    "title": "Finishing a Development Branch 收尾流程",
-    "keywords": [
-      "finishing",
-      "收尾",
-      "branch",
-      "分支",
-      "merge",
-      "PR",
-      "合并"
-    ],
-    "package": "superpowers"
-  },
-  {
-    "type": "skill",
-    "slug": "writing-skills",
-    "title": "Writing Skills 编写自定义技能",
-    "keywords": [
-      "writing",
-      "skills",
-      "编写",
-      "自定义",
-      "扩展",
-      "规范",
-      "沉淀"
-    ],
-    "package": "superpowers"
-  },
-  {
-    "type": "skill",
-    "slug": "openspec-overview",
-    "title": "OpenSpec 概述与核心理念",
-    "keywords": [
-      "openspec",
-      "概述",
-      "哲学",
-      "fluid",
-      "iterative",
-      "brownfield",
-      "delta"
-    ],
-    "package": "openspec"
-  },
-  {
-    "type": "skill",
-    "slug": "opsx-propose",
-    "title": "Propose 快速启动变更",
-    "keywords": [
-      "propose",
-      "启动",
-      "变更",
-      "proposal",
-      "快速",
-      "规划产物"
-    ],
-    "package": "openspec"
-  },
-  {
-    "type": "skill",
-    "slug": "opsx-explore",
-    "title": "Explore 探索式调研",
-    "keywords": [
-      "explore",
-      "探索",
-      "调研",
-      "分析",
-      "侦察",
-      "技术选型"
-    ],
-    "package": "openspec"
-  },
-  {
-    "type": "skill",
-    "slug": "delta-specs",
-    "title": "Delta Specs 增量规格编写",
-    "keywords": [
-      "delta",
-      "specs",
-      "需求",
-      "场景",
-      "given",
-      "when",
-      "then",
-      "added",
-      "modified",
-      "removed"
-    ],
-    "package": "openspec"
-  },
-  {
-    "type": "skill",
-    "slug": "design-and-tasks",
-    "title": "Design 技术设计与 Tasks 任务拆解",
-    "keywords": [
-      "design",
-      "tasks",
-      "技术方案",
-      "任务拆解",
-      "架构",
-      "决策"
-    ],
-    "package": "openspec"
-  },
-  {
-    "type": "skill",
-    "slug": "opsx-apply",
-    "title": "Apply 任务实现",
-    "keywords": [
-      "apply",
-      "实现",
-      "编码",
-      "执行",
-      "任务",
-      "checkbox"
-    ],
-    "package": "openspec"
-  },
-  {
-    "type": "skill",
-    "slug": "opsx-verify",
-    "title": "Verify 完成前验证",
-    "keywords": [
-      "verify",
-      "验证",
-      "质量",
-      "检查",
-      "completeness",
-      "correctness",
-      "coherence"
-    ],
-    "package": "openspec"
-  },
-  {
-    "type": "skill",
-    "slug": "opsx-new-ff",
-    "title": "New / Continue / FF 分步工作流",
-    "keywords": [
-      "new",
-      "continue",
-      "ff",
-      "fast-forward",
-      "分步",
-      "scaffold",
-      "依赖图"
-    ],
-    "package": "openspec"
-  },
-  {
-    "type": "skill",
-    "slug": "opsx-archive",
-    "title": "Archive 归档与 Sync 同步",
-    "keywords": [
-      "archive",
-      "归档",
-      "sync",
-      "同步",
-      "merge",
-      "bulk",
-      "审计"
-    ],
-    "package": "openspec"
-  },
-  {
-    "type": "skill",
-    "slug": "opsx-customize",
-    "title": "Customize 自定义工作流",
-    "keywords": [
-      "customize",
-      "自定义",
-      "schema",
-      "config",
-      "配置",
-      "fork",
-      "社区"
-    ],
-    "package": "openspec"
-  },
-  {
-    "type": "tutorial",
-    "slug": "ecc-guide",
-    "title": "Everything Claude Code (ECC) 完全指南",
-    "keywords": [
-      "ecc",
-      "everything",
-      "claude",
-      "code",
-      "配置",
-      "agent",
-      "skill",
-      "hook",
-      "agentshield",
-      "安全"
-    ],
-    "category": "harness",
-    "difficulty": "intermediate"
-  },
-  {
-    "type": "tool",
-    "slug": "ecc",
-    "title": "ECC (Everything Claude Code)",
-    "keywords": [
-      "ecc",
-      "everything",
-      "claude",
-      "code",
-      "配置",
-      "agent",
-      "skill"
-    ],
-    "category": "harness"
-  }
+  {"type":"tutorial","slug":"cc-switch-guide","title":"CC Switch 统一管理工具指南","keywords":["cc","switch","管理工具","供应商","切换","代理","高可用","tauri","用量","token"],"category":"harness","difficulty":"beginner"},
+  {"type":"tool","slug":"cc-switch","title":"CC Switch","keywords":["管理工具","供应商切换","代理","开源","tauri","claude","codex","gemini"],"category":"harness"},
+  {"type":"tutorial","slug":"superpowers-engineering-guide","title":"AI 工程化编程全流程实战","keywords":["superpowers","工程化","TDD","workflow","codex","claude","流程","纪律","审查"],"category":"practice","difficulty":"intermediate"},
+  {"type":"scenario","slug":"engineering-workflow","title":"工程化编程全流程实战","keywords":["工程化","工作流","TDD","superpowers","流程","规范","codex"],"category":"practice"},
+  {"type":"scenario","slug":"email-writing","title":"AI 邮件撰写助手","keywords":["邮件","撰写","沟通","商务","通知","email"],"category":"writing"},
+  {"type":"scenario","slug":"meeting-minutes","title":"会议纪要自动生成","keywords":["会议","纪要","记录","决议","行动项","minutes"],"category":"writing"},
+  {"type":"scenario","slug":"report-writing","title":"报告与方案撰写","keywords":["报告","方案","撰写","项目","技术方案","商业提案"],"category":"writing"},
+  {"type":"scenario","slug":"market-research","title":"市场调研分析","keywords":["市场","调研","竞品","行业","趋势","分析"],"category":"research"},
+  {"type":"scenario","slug":"literature-review","title":"文献综述与知识梳理","keywords":["文献","综述","知识梳理","研究","学术","检索"],"category":"research"},
+  {"type":"scenario","slug":"data-analysis-report","title":"数据分析报告","keywords":["数据","分析","报告","可视化","统计","图表"],"category":"analysis"},
+  {"type":"scenario","slug":"project-planning","title":"项目任务规划","keywords":["项目","规划","任务","WBS","排期","依赖"],"category":"management"},
+  {"type":"scenario","slug":"risk-assessment","title":"风险评估与预案","keywords":["风险","评估","预案","应急","项目管理"],"category":"management"},
+  {"type":"scenario","slug":"social-media-content","title":"社交媒体内容创作","keywords":["社交","媒体","文案","内容","小红书","公众号"],"category":"creative"},
+  {"type":"scenario","slug":"brainstorming-ideation","title":"头脑风暴与创意发想","keywords":["头脑风暴","创意","发想","SCAMPER","创新","方法论"],"category":"creative"},
+  {"type":"scenario","slug":"client-communication","title":"客户沟通与响应","keywords":["客户","沟通","回复","投诉","咨询","服务"],"category":"communication"},
+  {"type":"scenario","slug":"knowledge-extraction","title":"知识提炼与总结","keywords":["知识","提炼","总结","摘要","文档","学习"],"category":"learning"},
+  {"type":"scenario","slug":"translation-localization","title":"多语言翻译与本地化","keywords":["翻译","本地化","多语言","术语","中英文","translation"],"category":"translation"},
+  {"type":"prompt","slug":"email-drafting","title":"邮件撰写助手","keywords":["邮件","沟通","商务","通知","email","撰写"],"category":"writing","difficulty":"beginner"},
+  {"type":"prompt","slug":"meeting-minutes-gen","title":"会议纪要生成器","keywords":["会议","纪要","记录","决议","行动项","minutes"],"category":"writing","difficulty":"beginner"},
+  {"type":"prompt","slug":"project-report-writing","title":"项目报告撰写","keywords":["报告","项目","总结","进展","评审"],"category":"writing","difficulty":"intermediate"},
+  {"type":"prompt","slug":"business-proposal-draft","title":"商业提案草稿","keywords":["提案","商业","方案","立项","合作","proposal"],"category":"writing","difficulty":"intermediate"},
+  {"type":"prompt","slug":"data-analysis-assistant","title":"数据分析助手","keywords":["数据","分析","SQL","Python","可视化","统计"],"category":"analysis","difficulty":"intermediate"},
+  {"type":"prompt","slug":"swot-analysis","title":"SWOT 分析框架","keywords":["SWOT","分析","战略","优势","劣势","机会","威胁"],"category":"analysis","difficulty":"beginner"},
+  {"type":"prompt","slug":"competitive-analysis","title":"竞品分析报告","keywords":["竞品","分析","对比","市场","对手","competitive"],"category":"analysis","difficulty":"intermediate"},
+  {"type":"prompt","slug":"social-media-copy","title":"社交媒体文案","keywords":["社交","文案","内容","微博","小红书","公众号","copy"],"category":"creative","difficulty":"beginner"},
+  {"type":"prompt","slug":"blog-outline","title":"博客文章大纲","keywords":["博客","文章","大纲","blog","写作","outline"],"category":"creative","difficulty":"beginner"},
+  {"type":"prompt","slug":"brainstorming-facilitator","title":"头脑风暴引导","keywords":["头脑风暴","创意","brainstorm","SCAMPER","发想","创新"],"category":"creative","difficulty":"beginner"},
+  {"type":"prompt","slug":"presentation-outline","title":"演示文稿大纲","keywords":["演示","演讲","PPT","presentation","大纲","汇报"],"category":"creative","difficulty":"intermediate"},
+  {"type":"prompt","slug":"code-review-helper","title":"代码审查助手","keywords":["代码","审查","review","bug","质量","安全"],"category":"coding","difficulty":"intermediate"},
+  {"type":"prompt","slug":"debug-analyzer","title":"调试分析器","keywords":["调试","debug","bug","错误","异常","troubleshoot"],"category":"coding","difficulty":"intermediate"},
+  {"type":"prompt","slug":"tech-doc-generator","title":"技术文档生成器","keywords":["文档","API","README","documentation","技术文档"],"category":"coding","difficulty":"intermediate"},
+  {"type":"prompt","slug":"knowledge-summarizer","title":"知识摘要提取","keywords":["摘要","总结","summary","提取","知识","要点"],"category":"learning","difficulty":"beginner"},
+  {"type":"prompt","slug":"book-notes-gen","title":"读书笔记生成","keywords":["读书","笔记","书籍","book","notes","阅读"],"category":"learning","difficulty":"beginner"},
+  {"type":"prompt","slug":"concept-explainer","title":"概念解释器","keywords":["概念","解释","入门","explain","理解","基础"],"category":"learning","difficulty":"beginner"},
+  {"type":"prompt","slug":"interview-prep","title":"面试准备助手","keywords":["面试","interview","求职","准备","模拟","答题"],"category":"learning","difficulty":"intermediate"},
+  {"type":"prompt","slug":"project-planner","title":"项目计划拆解","keywords":["项目","计划","任务","WBS","拆解","规划"],"category":"management","difficulty":"intermediate"},
+  {"type":"prompt","slug":"weekly-report-gen","title":"周报生成器","keywords":["周报","汇报","weekly","report","工作总结"],"category":"management","difficulty":"beginner"},
+  {"type":"prompt","slug":"risk-assessment-template","title":"风险评估模板","keywords":["风险","评估","risk","预案","应急","管理"],"category":"management","difficulty":"intermediate"},
+  {"type":"prompt","slug":"client-reply-helper","title":"客户回复助手","keywords":["客户","回复","client","客服","投诉","咨询"],"category":"communication","difficulty":"beginner"},
+  {"type":"prompt","slug":"internal-announcement","title":"内部公告撰写","keywords":["公告","通知","announcement","内部","制度","变更"],"category":"communication","difficulty":"beginner"},
+  {"type":"prompt","slug":"document-translator","title":"文档翻译助手","keywords":["翻译","translation","文档","多语言","英文","中文"],"category":"translation","difficulty":"beginner"},
+  {"type":"prompt","slug":"glossary-manager","title":"术语表维护","keywords":["术语","术语表","glossary","一致性","翻译","专业"],"category":"translation","difficulty":"intermediate"}
 ]

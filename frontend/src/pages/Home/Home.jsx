@@ -22,6 +22,13 @@ const ENTRY_CARDS = [
       '描述你的目标，系统智能匹配推荐工具链和教程。问题驱动，即学即用。',
   },
   {
+    emoji: '💡',
+    title: '提示词库',
+    to: '/prompts',
+    description:
+      '精选高质量提示词模板，覆盖写作、分析、创意等场景。即用即改，让 AI 更好地为你工作。',
+  },
+  {
     emoji: '🔧',
     title: '工具向导',
     to: '/tools',
@@ -93,7 +100,7 @@ const Home = () => {
       {/* ========== Entry Cards Section ========== */}
       <section className="home-section">
         <div className="home-section-header">
-          <h2 className="home-section-title">三种学习方式</h2>
+          <h2 className="home-section-title">学习入口</h2>
           <p className="home-section-desc">
             无论你是零基础入门，还是解决具体问题，总能找到适合你的学习路径。
           </p>

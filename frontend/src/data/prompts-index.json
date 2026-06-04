@@ -1,0 +1,592 @@
+[
+  {
+    "id": "prompt-001",
+    "slug": "email-drafting",
+    "title": "邮件撰写助手",
+    "description": "快速撰写专业的商务邮件、项目沟通邮件和内部通知。支持自定义语气、收件人和邮件目的。",
+    "category": "writing",
+    "tags": ["邮件", "沟通", "商务"],
+    "keywords": ["email", "邮件", "沟通", "商务邮件", "通知", "letter"],
+    "difficulty": "beginner",
+    "template": "你是一位专业的{role}。请根据以下信息撰写一封邮件：\n\n背景：{context}\n收件人：{recipient}\n主要目的：{purpose}\n语气：{tone}\n\n请确保邮件结构清晰、语言得体，包含适当的称呼和结尾。正文控制在3-5段以内。",
+    "variables": [
+      { "name": "role", "label": "你的角色", "example": "产品经理" },
+      { "name": "context", "label": "背景信息", "example": "项目进度更新，本周完成了核心模块开发" },
+      { "name": "recipient", "label": "收件人", "example": "项目组全体成员" },
+      { "name": "purpose", "label": "邮件目的", "example": "同步本周开发进度，预告下周计划" },
+      { "name": "tone", "label": "语气风格", "example": "正式" }
+    ],
+    "tips": [
+      "先明确邮件的核心目的，避免信息过载",
+      "可以提供参考邮件样例，让 AI 学习你的写作风格",
+      "如果收件人是上级，建议增加数据支撑和结论前置"
+    ],
+    "relatedScenarios": ["email-writing"]
+  },
+  {
+    "id": "prompt-002",
+    "slug": "meeting-minutes-gen",
+    "title": "会议纪要生成器",
+    "description": "将会议录音转写、聊天记录或简要笔记转化为结构化的会议纪要。",
+    "category": "writing",
+    "tags": ["会议", "纪要", "记录"],
+    "keywords": ["会议", "纪要", "minutes", "记录", "决议", "行动项"],
+    "difficulty": "beginner",
+    "template": "请根据以下会议记录生成结构化的会议纪要：\n\n会议主题：{topic}\n参会人员：{participants}\n会议时长：{duration}\n\n会议记录/笔记：\n{notes}\n\n请按以下格式输出：\n1. 会议概要（一句话总结）\n2. 关键讨论点（分条列出）\n3. 决议事项（明确结论）\n4. 行动项（包含责任人和截止日期）\n5. 下次会议安排（如有）",
+    "variables": [
+      { "name": "topic", "label": "会议主题", "example": "Q3 产品路线图评审" },
+      { "name": "participants", "label": "参会人员", "example": "张三、李四、王五、赵六" },
+      { "name": "duration", "label": "会议时长", "example": "60分钟" },
+      { "name": "notes", "label": "会议记录", "example": "讨论了三个功能优先级，决定先做用户画像..." }
+    ],
+    "tips": [
+      "尽量提供完整的原始记录，AI 提取效果更好",
+      "如果记录过于简略，可以补充你记得的关键信息",
+      "生成的纪要建议在24小时内发给参会者确认"
+    ],
+    "relatedScenarios": ["meeting-minutes"]
+  },
+  {
+    "id": "prompt-003",
+    "slug": "project-report-writing",
+    "title": "项目报告撰写",
+    "description": "AI 辅助撰写项目进展报告、技术评审报告或阶段性总结报告。",
+    "category": "writing",
+    "tags": ["报告", "项目", "总结"],
+    "keywords": ["报告", "项目", "总结", "进展", "report", "评审"],
+    "difficulty": "intermediate",
+    "template": "你是一位{role}，请撰写一份{reportType}：\n\n项目名称：{projectName}\n报告周期：{period}\n\n关键数据/进展：\n{highlights}\n\n遇到的问题：\n{issues}\n\n下一步计划：\n{nextSteps}\n\n请确保报告结构专业、数据准确、结论明确，适合向{audience}汇报。",
+    "variables": [
+      { "name": "role", "label": "你的角色", "example": "项目经理" },
+      { "name": "reportType", "label": "报告类型", "example": "项目阶段性进展报告" },
+      { "name": "projectName", "label": "项目名称", "example": "Learn AI 平台开发" },
+      { "name": "period", "label": "报告周期", "example": "2026年5月" },
+      { "name": "highlights", "label": "关键进展", "example": "完成核心功能开发，用户注册量增长30%" },
+      { "name": "issues", "label": "遇到的问题", "example": "第三方API响应延迟，影响用户体验" },
+      { "name": "nextSteps", "label": "下一步计划", "example": "优化API缓存策略，启动移动端适配" },
+      { "name": "audience", "label": "汇报对象", "example": "公司管理层" }
+    ],
+    "tips": [
+      "先列出关键数据再让 AI 扩展，比从零开始更高效",
+      "多次迭代：先让 AI 生成框架，再逐步填充细节",
+      "向管理层汇报时，建议先写结论再展开分析"
+    ],
+    "relatedScenarios": ["report-writing"]
+  },
+  {
+    "id": "prompt-004",
+    "slug": "business-proposal-draft",
+    "title": "商业提案草稿",
+    "description": "快速起草商业提案、合作方案或项目立项书，包含目标、方案、预算和时间线。",
+    "category": "writing",
+    "tags": ["提案", "商业", "方案"],
+    "keywords": ["提案", "商业", "proposal", "方案", "立项", "合作"],
+    "difficulty": "intermediate",
+    "template": "请帮我起草一份商业提案：\n\n项目/提案名称：{title}\n目标客户/合作方：{client}\n核心问题/需求：{problem}\n我方解决方案：{solution}\n预期成果：{expectedOutcome}\n预算范围：{budget}\n时间要求：{timeline}\n\n请包含以下部分：\n1. 背景与问题分析\n2. 解决方案概述\n3. 实施计划与时间线\n4. 预期成果与衡量指标\n5. 预算概览\n6. 风险与应对策略",
+    "variables": [
+      { "name": "title", "label": "提案名称", "example": "AI 智能客服系统建设方案" },
+      { "name": "client", "label": "目标客户", "example": "某电商平台" },
+      { "name": "problem", "label": "核心问题", "example": "人工客服成本高、响应慢，夜间无人值守" },
+      { "name": "solution", "label": "解决方案", "example": "基于大语言模型的智能客服系统" },
+      { "name": "expectedOutcome", "label": "预期成果", "example": "客服响应速度提升80%，成本降低60%" },
+      { "name": "budget", "label": "预算范围", "example": "50-80万元" },
+      { "name": "timeline", "label": "时间要求", "example": "3个月完成交付" }
+    ],
+    "tips": [
+      "提案的核心是让客户看到价值和可行性，先写好问题分析",
+      "预算部分建议留出10-20%的缓冲空间",
+      "附上类似案例或数据支撑能大幅提升说服力"
+    ],
+    "relatedScenarios": ["report-writing"]
+  },
+  {
+    "id": "prompt-005",
+    "slug": "data-analysis-assistant",
+    "title": "数据分析助手",
+    "description": "描述你的数据和分析目标，AI 帮你规划分析步骤、生成 SQL 查询或 Python 代码。",
+    "category": "analysis",
+    "tags": ["数据", "分析", "SQL"],
+    "keywords": ["数据", "分析", "data", "SQL", "Python", "可视化", "统计"],
+    "difficulty": "intermediate",
+    "template": "你是一位数据分析专家。请帮我分析以下数据：\n\n数据来源：{dataSource}\n数据描述：{dataDesc}\n分析目标：{goal}\n\n请提供：\n1. 数据预处理建议（清洗、转换、缺失值处理）\n2. 探索性分析步骤（描述统计、分布、相关性）\n3. 关键分析方法和模型建议\n4. 可视化图表推荐\n5. 结果解读框架\n\n如果需要写代码，请使用{language}。",
+    "variables": [
+      { "name": "dataSource", "label": "数据来源", "example": "PostgreSQL 数据库，orders 表" },
+      { "name": "dataDesc", "label": "数据描述", "example": "包含用户订单数据，字段有 user_id, order_date, amount, category 等" },
+      { "name": "goal", "label": "分析目标", "example": "分析用户购买行为模式，找出高价值用户特征" },
+      { "name": "language", "label": "编程语言", "example": "Python (pandas + matplotlib)" }
+    ],
+    "tips": [
+      "提供字段名和样本数据能让 AI 给出更精确的分析方案",
+      "先让 AI 做探索性分析，再决定是否做深度建模",
+      "注意数据隐私，不要上传敏感的真实数据"
+    ],
+    "relatedScenarios": ["data-analysis-report"]
+  },
+  {
+    "id": "prompt-006",
+    "slug": "swot-analysis",
+    "title": "SWOT 分析框架",
+    "description": "对一个项目、产品或决策进行结构化的 SWOT 分析，识别优势、劣势、机会和威胁。",
+    "category": "analysis",
+    "tags": ["SWOT", "分析", "战略"],
+    "keywords": ["SWOT", "分析", "战略", "优势", "劣势", "机会", "威胁"],
+    "difficulty": "beginner",
+    "template": "请对以下对象进行详细的 SWOT 分析：\n\n分析对象：{subject}\n行业/领域：{industry}\n当前阶段：{stage}\n主要竞争对手：{competitors}\n\n请按以下维度分析，每个维度列出至少5个要点：\n\n**优势 (Strengths)：**\n[内部积极因素]\n\n**劣势 (Weaknesses)：**\n[内部消极因素]\n\n**机会 (Opportunities)：**\n[外部积极因素]\n\n**威胁 (Threats)：**\n[外部消极因素]\n\n最后请给出：\n- SO 策略（利用优势抓住机会）\n- WO 策略（克服劣势利用机会）\n- ST 策略（利用优势应对威胁）\n- WT 策略（减少劣势回避威胁）",
+    "variables": [
+      { "name": "subject", "label": "分析对象", "example": "我们的 SaaS 产品" },
+      { "name": "industry", "label": "行业/领域", "example": "企业级协作工具" },
+      { "name": "stage", "label": "当前阶段", "example": "成长期，已有500+付费客户" },
+      { "name": "competitors", "label": "主要竞争对手", "example": "飞书、钉钉、Notion" }
+    ],
+    "tips": [
+      "SWOT 分析的价值在于后续的策略推导，不要只停留在列点",
+      "邀请不同角色的团队成员参与，避免分析盲区",
+      "定期更新 SWOT，市场变化可能很快改变机会和威胁"
+    ],
+    "relatedScenarios": ["market-research"]
+  },
+  {
+    "id": "prompt-007",
+    "slug": "competitive-analysis",
+    "title": "竞品分析报告",
+    "description": "系统化分析竞争对手的产品、定价、功能和市场策略，生成对比报告。",
+    "category": "analysis",
+    "tags": ["竞品", "分析", "对比"],
+    "keywords": ["竞品", "分析", "competitive", "对比", "市场", "对手"],
+    "difficulty": "intermediate",
+    "template": "请帮我做一份竞品分析报告：\n\n我方产品：{ourProduct}\n行业：{industry}\n竞品列表：{competitors}\n分析维度：{dimensions}\n\n请提供：\n1. 市场概览（市场规模、增长趋势）\n2. 竞品概览表（逐项对比分析维度）\n3. 各竞品的优势和劣势分析\n4. 我方产品的差异化定位建议\n5. 市场机会和潜在威胁\n6. 行动建议",
+    "variables": [
+      { "name": "ourProduct", "label": "我方产品", "example": "AI 学习平台 Learn-LLM" },
+      { "name": "industry", "label": "行业", "example": "AI 教育和培训" },
+      { "name": "competitors", "label": "竞品列表", "example": "Coursera, Udemy, 极客时间" },
+      { "name": "dimensions", "label": "分析维度", "example": "内容质量、价格、用户体验、AI 功能、社区活跃度" }
+    ],
+    "tips": [
+      "竞品分析要基于真实数据，避免主观臆断",
+      "关注竞品的用户评价和社区反馈，这比官方宣传更有价值",
+      "建议用表格形式做功能对比，一目了然"
+    ],
+    "relatedScenarios": ["market-research"]
+  },
+  {
+    "id": "prompt-008",
+    "slug": "social-media-copy",
+    "title": "社交媒体文案",
+    "description": "为不同社交平台生成适配风格的文案，支持微博、微信公众号、小红书等平台。",
+    "category": "creative",
+    "tags": ["社交媒体", "文案", "内容"],
+    "keywords": ["社交", "文案", "内容", "微博", "小红书", "公众号", "copy"],
+    "difficulty": "beginner",
+    "template": "你是一位资深的社交媒体运营。请为以下内容生成社交媒体文案：\n\n主题/产品：{topic}\n目标平台：{platform}\n目标受众：{audience}\n核心卖点/信息：{keyMessage}\n期望行动（CTA）：{cta}\n\n请生成 3 个不同风格的文案变体，每个变体包含：\n- 标题/开头吸引语\n- 正文（符合平台风格）\n- 结尾 CTA\n- 建议的话题标签\n- 建议配图描述",
+    "variables": [
+      { "name": "topic", "label": "主题/产品", "example": "AI 编程助手新产品发布" },
+      { "name": "platform", "label": "目标平台", "example": "微信公众号" },
+      { "name": "audience", "label": "目标受众", "example": "一线开发者和技术管理者" },
+      { "name": "keyMessage", "label": "核心卖点", "example": "10倍编码效率，支持30+编程语言" },
+      { "name": "cta", "label": "期望行动", "example": "点击链接免费试用" }
+    ],
+    "tips": [
+      "不同平台有不同风格：小红书偏口语化，公众号偏深度，微博偏精炼",
+      "好的开头决定了80%的阅读率，多尝试几种开头方式",
+      "发布前搜索相关热门话题标签，增加曝光"
+    ],
+    "relatedScenarios": ["social-media-content"]
+  },
+  {
+    "id": "prompt-009",
+    "slug": "blog-outline",
+    "title": "博客文章大纲",
+    "description": "给定一个主题，AI 生成结构化的博客文章大纲，包含标题、章节和小节。",
+    "category": "creative",
+    "tags": ["博客", "文章", "大纲"],
+    "keywords": ["博客", "文章", "大纲", "blog", "写作", "outline"],
+    "difficulty": "beginner",
+    "template": "请为以下主题生成一篇详细的博客文章大纲：\n\n主题：{topic}\n目标读者：{audience}\n文章类型：{articleType}\n期望长度：{length}\n\n请提供：\n1. 3个候选标题（含副标题）\n2. 文章引言思路（吸引读者的开头方式）\n3. 详细的章节大纲（每个章节含2-3个要点）\n4. 每个章节的预估字数\n5. 结尾/总结思路\n6. 建议配图位置和描述",
+    "variables": [
+      { "name": "topic", "label": "文章主题", "example": "2026年 AI Agent 开发实战指南" },
+      { "name": "audience", "label": "目标读者", "example": "有1-3年经验的开发者" },
+      { "name": "articleType", "label": "文章类型", "example": "技术教程" },
+      { "name": "length", "label": "期望长度", "example": "3000-5000字" }
+    ],
+    "tips": [
+      "好的大纲是成功的一半，花时间打磨大纲比直接写更高效",
+      "标题决定点击率，建议写3-5个候选后选择最好的",
+      "在引言中设置读者的期望，告诉他们能学到什么"
+    ],
+    "relatedScenarios": ["social-media-content"]
+  },
+  {
+    "id": "prompt-010",
+    "slug": "brainstorming-facilitator",
+    "title": "头脑风暴引导",
+    "description": "用结构化方法论引导创意发想，支持 SCAMPER、六顶思考帽、逆向思维等方法。",
+    "category": "creative",
+    "tags": ["头脑风暴", "创意", "方法论"],
+    "keywords": ["头脑风暴", "创意", "brainstorm", "SCAMPER", "发想", "创新"],
+    "difficulty": "beginner",
+    "template": "你是一位创意引导师。请使用{method}方法论，围绕以下主题进行头脑风暴：\n\n主题：{topic}\n背景/约束：{context}\n期望产出：{expectedOutput}\n\n请按以下步骤进行：\n1. 用所选方法论拆解主题\n2. 为每个维度生成3-5个创意方向\n3. 对每个创意进行可行性评估（高/中/低）\n4. 推荐最具潜力的3个创意并说明理由\n5. 为推荐的创意给出下一步行动建议",
+    "variables": [
+      { "name": "method", "label": "方法论", "example": "SCAMPER（替代、合并、调整、修改、其他用途、消除、重组）" },
+      { "name": "topic", "label": "创意主题", "example": "如何提升SaaS产品的用户留存率" },
+      { "name": "context", "label": "背景/约束", "example": "预算有限，不能大幅增加功能开发" },
+      { "name": "expectedOutput", "label": "期望产出", "example": "3-5个可快速实施的创意方案" }
+    ],
+    "tips": [
+      "先发散再收敛，不要过早否定任何创意",
+      "多种方法论交替使用，能产出更多元的创意",
+      "将创意写在便利贴或白板上，可视化有助于发现关联"
+    ],
+    "relatedScenarios": ["brainstorming-ideation"]
+  },
+  {
+    "id": "prompt-011",
+    "slug": "presentation-outline",
+    "title": "演示文稿大纲",
+    "description": "快速生成演讲或演示文稿的结构化大纲，包含开场、主体和结尾。",
+    "category": "creative",
+    "tags": ["演示", "演讲", "PPT"],
+    "keywords": ["演示", "演讲", "PPT", "presentation", "大纲", "汇报"],
+    "difficulty": "intermediate",
+    "template": "请帮我设计一份演示文稿的大纲：\n\n演示主题：{topic}\n听众：{audience}\n演示时长：{duration}\n演示目的：{purpose}\n核心信息（不超过3条）：{keyMessages}\n\n请提供：\n1. 开场方式建议（故事/数据/提问）\n2. 详细的幻灯片大纲（每页包含标题和要点）\n3. 过渡话术建议\n4. 数据可视化建议\n5. 互动环节设计\n6. 结尾/行动呼吁\n7. Q&A 准备（列出可能被问到的问题和回答要点）",
+    "variables": [
+      { "name": "topic", "label": "演示主题", "example": "AI 技术在产品中的应用" },
+      { "name": "audience", "label": "听众", "example": "公司高管和产品团队" },
+      { "name": "duration", "label": "演示时长", "example": "20分钟演示 + 10分钟问答" },
+      { "name": "purpose", "label": "演示目的", "example": "获取AI功能的开发预算批准" },
+      { "name": "keyMessages", "label": "核心信息", "example": "1. AI能提升效率30% 2. 竞品已布局 3. 我们有技术储备" }
+    ],
+    "tips": [
+      "20分钟以内的演示，建议控制在10-15页幻灯片",
+      "每页只传达一个核心观点，避免信息堆叠",
+      "提前准备Q&A，这是最容易出彩也最容易翻车的环节"
+    ],
+    "relatedScenarios": ["report-writing"]
+  },
+  {
+    "id": "prompt-012",
+    "slug": "code-review-helper",
+    "title": "代码审查助手",
+    "description": "让 AI 帮你审查代码，发现潜在的 Bug、性能问题和安全隐患。",
+    "category": "coding",
+    "tags": ["代码", "审查", "质量"],
+    "keywords": ["代码", "审查", "review", "bug", "质量", "安全"],
+    "difficulty": "intermediate",
+    "template": "你是一位资深代码审查专家。请审查以下代码：\n\n编程语言：{language}\n代码功能描述：{feature}\n\n代码：\n```\n{code}\n```\n\n请从以下角度审查：\n1. 功能正确性：逻辑是否有 Bug\n2. 安全性：是否有安全隐患（注入、XSS、权限等）\n3. 性能：是否有性能瓶颈\n4. 可维护性：命名、结构、注释是否清晰\n5. 最佳实践：是否符合语言/框架的最佳实践\n\n对每个问题标注严重程度（Critical/Warning/Suggestion）并给出修改建议。",
+    "variables": [
+      { "name": "language", "label": "编程语言", "example": "JavaScript (React)" },
+      { "name": "feature", "label": "功能描述", "example": "用户登录表单组件" },
+      { "name": "code", "label": "代码内容", "example": "// 在此处粘贴你的代码" }
+    ],
+    "tips": [
+      "提供足够的上下文（项目框架、代码功能），AI 的审查会更准确",
+      "AI 审查不能完全替代人工审查，重点关注它标记为 Critical 的问题",
+      "可以先让 AI 审查整体架构，再逐段审查细节"
+    ],
+    "relatedScenarios": ["ai-code-review"]
+  },
+  {
+    "id": "prompt-013",
+    "slug": "debug-analyzer",
+    "title": "调试分析器",
+    "description": "描述你遇到的 Bug 或错误，AI 帮你分析根因并提供修复方案。",
+    "category": "coding",
+    "tags": ["调试", "Bug", "错误"],
+    "keywords": ["调试", "debug", "bug", "错误", "异常", "troubleshoot"],
+    "difficulty": "intermediate",
+    "template": "你是一位经验丰富的调试专家。请帮我分析以下问题：\n\n编程语言/框架：{techStack}\n问题描述：{problemDesc}\n预期行为：{expectedBehavior}\n实际行为：{actualBehavior}\n\n错误信息/日志：\n```\n{errorLog}\n```\n\n相关代码：\n```\n{relevantCode}\n```\n\n请提供：\n1. 根因分析（最可能的原因是什么）\n2. 排查步骤（如何确认根因）\n3. 修复方案（附代码示例）\n4. 预防措施（如何避免类似问题）",
+    "variables": [
+      { "name": "techStack", "label": "技术栈", "example": "React 18 + Vite" },
+      { "name": "problemDesc", "label": "问题描述", "example": "页面加载后白屏，控制台报错" },
+      { "name": "expectedBehavior", "label": "预期行为", "example": "显示用户列表页面" },
+      { "name": "actualBehavior", "label": "实际行为", "example": "白屏，无任何渲染" },
+      { "name": "errorLog", "label": "错误信息", "example": "TypeError: Cannot read properties of undefined (reading 'map')" },
+      { "name": "relevantCode", "label": "相关代码", "example": "// 在此处粘贴相关代码片段" }
+    ],
+    "tips": [
+      "提供完整的错误堆栈信息，不要只截取最后一行",
+      "说明你已经尝试过的方法，避免重复建议",
+      "如果问题涉及异步操作，注意提供时序相关的上下文"
+    ],
+    "relatedScenarios": ["ai-code-review"]
+  },
+  {
+    "id": "prompt-014",
+    "slug": "tech-doc-generator",
+    "title": "技术文档生成器",
+    "description": "根据代码或功能描述，自动生成 API 文档、README 或使用说明。",
+    "category": "coding",
+    "tags": ["文档", "API", "README"],
+    "keywords": ["文档", "API", "README", "documentation", "技术文档"],
+    "difficulty": "intermediate",
+    "template": "请为以下代码/功能生成{docType}：\n\n项目名称：{projectName}\n文档类型：{docType}\n代码/功能描述：\n{description}\n\n相关代码（如有）：\n```\n{code}\n```\n\n请包含：\n1. 概述（功能简介和使用场景）\n2. 快速开始（安装和基本用法）\n3. API 参考（参数、返回值、示例）\n4. 配置说明\n5. 常见问题\n6. 更新日志模板",
+    "variables": [
+      { "name": "projectName", "label": "项目名称", "example": "Learn-LLM Content Pipeline" },
+      { "name": "docType", "label": "文档类型", "example": "API 文档" },
+      { "name": "description", "label": "功能描述", "example": "RSS 内容抓取和处理管道，支持5步自动化流水线" },
+      { "name": "code", "label": "相关代码", "example": "// 在此处粘贴代码（可选）" }
+    ],
+    "tips": [
+      "提供代码示例能让文档更准确，尤其是 API 参数类型和返回值",
+      "文档要面向使用者而非开发者，避免过多的内部实现细节",
+      "记得补充错误码和异常处理的说明"
+    ],
+    "relatedScenarios": ["doc-auto-generation"]
+  },
+  {
+    "id": "prompt-015",
+    "slug": "knowledge-summarizer",
+    "title": "知识摘要提取",
+    "description": "从长文档或文章中提取核心观点，生成结构化摘要和关键要点。",
+    "category": "learning",
+    "tags": ["摘要", "总结", "知识"],
+    "keywords": ["摘要", "总结", "summary", "提取", "知识", "要点"],
+    "difficulty": "beginner",
+    "template": "请对以下内容进行结构化摘要提取：\n\n内容主题：{topic}\n内容类型：{contentType}\n\n原始内容：\n{content}\n\n请提供：\n1. 一句话总结（核心观点）\n2. 三个关键要点\n3. 重要数据/引用（如有）\n4. 结论与启示\n5. 建议进一步了解的方向",
+    "variables": [
+      { "name": "topic", "label": "内容主题", "example": "大语言模型的最新进展" },
+      { "name": "contentType", "label": "内容类型", "example": "技术博客文章" },
+      { "name": "content", "label": "原始内容", "example": "（在此处粘贴需要总结的长文本）" }
+    ],
+    "tips": [
+      "内容超过2000字时，建议分段提取再综合",
+      "可以指定输出格式（要点列表/思维导图/表格）来获得不同视角的摘要",
+      "提取后用自己的话复述一遍，检验是否真正理解了核心内容"
+    ],
+    "relatedScenarios": ["knowledge-extraction"]
+  },
+  {
+    "id": "prompt-016",
+    "slug": "book-notes-gen",
+    "title": "读书笔记生成",
+    "description": "将阅读的书籍章节或段落转化为结构化的读书笔记，方便回顾和分享。",
+    "category": "learning",
+    "tags": ["读书", "笔记", "学习"],
+    "keywords": ["读书", "笔记", "书籍", "book", "notes", "阅读"],
+    "difficulty": "beginner",
+    "template": "请帮我整理以下书籍内容的读书笔记：\n\n书名：{bookTitle}\n作者：{author}\n章节/页码：{chapter}\n\n阅读内容：\n{content}\n\n请按以下格式整理：\n1. 本章核心主题\n2. 关键概念解释（用通俗语言）\n3. 重要引用（金句）\n4. 我的思考/启发（请基于内容提出反思问题）\n5. 实际应用（如何将本章内容应用到{application}中）",
+    "variables": [
+      { "name": "bookTitle", "label": "书名", "example": "《人类简史》" },
+      { "name": "author", "label": "作者", "example": "尤瓦尔·赫拉利" },
+      { "name": "chapter", "label": "章节", "example": "第三章：人类的统一" },
+      { "name": "content", "label": "阅读内容", "example": "（在此处粘贴阅读的段落）" },
+      { "name": "application", "label": "应用领域", "example": "产品设计和用户增长" }
+    ],
+    "tips": [
+      "边读边记比读完再记效果更好",
+      "将书中观点与自己的经验关联，形成个人化的理解",
+      "定期回顾笔记，建立不同书籍之间的知识关联"
+    ],
+    "relatedScenarios": ["knowledge-extraction"]
+  },
+  {
+    "id": "prompt-017",
+    "slug": "concept-explainer",
+    "title": "概念解释器",
+    "description": "用通俗易懂的语言解释复杂的技术概念，支持不同深度的解释方式。",
+    "category": "learning",
+    "tags": ["概念", "解释", "入门"],
+    "keywords": ["概念", "解释", "入门", "explain", "理解", "基础"],
+    "difficulty": "beginner",
+    "template": "请帮我理解以下概念：\n\n概念：{concept}\n我的当前理解水平：{level}\n学习目的：{purpose}\n\n请按以下层次解释：\n1. 一句话解释（给外行听）\n2. 生活类比（用日常事物类比）\n3. 技术原理（给{level}水平的开发者）\n4. 实际例子（具体的应用场景）\n5. 与相关概念的区别（如{relatedConcepts}）\n6. 推荐的下一步学习方向",
+    "variables": [
+      { "name": "concept", "label": "概念名称", "example": "RAG（检索增强生成）" },
+      { "name": "level", "label": "当前水平", "example": "初级" },
+      { "name": "purpose", "label": "学习目的", "example": "想在项目中使用RAG技术构建知识问答系统" },
+      { "name": "relatedConcepts", "label": "相关概念", "example": "Fine-tuning、Embedding、向量数据库" }
+    ],
+    "tips": [
+      "费曼学习法的核心就是用简单语言解释复杂概念",
+      "如果你觉得解释还是太复杂，可以要求AI用'给10岁小孩'的方式重新解释",
+      "学完概念后，尝试不看笔记自己复述一遍"
+    ],
+    "relatedScenarios": ["knowledge-extraction"]
+  },
+  {
+    "id": "prompt-018",
+    "slug": "interview-prep",
+    "title": "面试准备助手",
+    "description": "针对目标岗位生成面试题、模拟面试和回答建议，帮你高效备战面试。",
+    "category": "learning",
+    "tags": ["面试", "求职", "准备"],
+    "keywords": ["面试", "interview", "求职", "准备", "模拟", "答题"],
+    "difficulty": "intermediate",
+    "template": "你是一位{field}领域的面试官。请帮我准备面试：\n\n目标岗位：{position}\n公司类型：{companyType}\n我的经验水平：{experience}\n重点准备方向：{focusArea}\n\n请提供：\n1. 10个高概率面试题（含技术题和行为题）\n2. 每道题的参考答案框架\n3. 加分回答技巧\n4. 可能的追问和应对策略\n5. 反问面试官的建议问题\n\n然后请模拟一场面试，逐题提问并点评我的回答。",
+    "variables": [
+      { "name": "field", "label": "领域", "example": "AI/机器学习" },
+      { "name": "position", "label": "目标岗位", "example": "AI应用开发工程师" },
+      { "name": "companyType", "label": "公司类型", "example": "B轮AI创业公司" },
+      { "name": "experience", "label": "经验水平", "example": "3年后端开发经验，1年AI应用开发经验" },
+      { "name": "focusArea", "label": "重点方向", "example": "LLM应用架构和Prompt Engineering" }
+    ],
+    "tips": [
+      "用 STAR 法则（情境-任务-行动-结果）组织行为面试的回答",
+      "技术面试重点是思路而非完美答案，说出你的思考过程",
+      "准备3-5个有深度的问题反问面试官，展现你的思考深度"
+    ],
+    "relatedScenarios": ["knowledge-extraction"]
+  },
+  {
+    "id": "prompt-019",
+    "slug": "project-planner",
+    "title": "项目计划拆解",
+    "description": "将一个模糊的项目目标拆解为具体的任务清单，含优先级、预估工期和依赖关系。",
+    "category": "management",
+    "tags": ["项目", "计划", "任务拆解"],
+    "keywords": ["项目", "计划", "任务", "WBS", "拆解", "规划"],
+    "difficulty": "intermediate",
+    "template": "你是一位经验丰富的项目经理。请帮我拆解以下项目：\n\n项目目标：{goal}\n项目约束：{constraints}\n团队规模：{teamSize}\n期望周期：{timeline}\n\n请提供：\n1. 项目里程碑（3-5个关键节点）\n2. WBS 工作分解结构（每个里程碑下的子任务）\n3. 任务依赖关系图（哪些任务必须串行）\n4. 优先级排序（P0/P1/P2）\n5. 每个任务的预估工期\n6. 关键风险点\n7. 建议的项目管理工具和方法",
+    "variables": [
+      { "name": "goal", "label": "项目目标", "example": "开发一个AI学习平台MVP" },
+      { "name": "constraints", "label": "项目约束", "example": "1名全栈开发，3个月时间，预算5万" },
+      { "name": "teamSize", "label": "团队规模", "example": "1名全栈 + 1名UI设计（兼职）" },
+      { "name": "timeline", "label": "期望周期", "example": "3个月" }
+    ],
+    "tips": [
+      "项目拆解粒度控制在每个任务1-3天可完成为宜",
+      "先识别关键路径，优先保证关键路径上的任务按时完成",
+      "预留20%的缓冲时间处理不确定因素"
+    ],
+    "relatedScenarios": ["project-planning"]
+  },
+  {
+    "id": "prompt-020",
+    "slug": "weekly-report-gen",
+    "title": "周报生成器",
+    "description": "快速生成格式规范的周报，包含本周完成、下周计划和需要的支持。",
+    "category": "management",
+    "tags": ["周报", "汇报", "工作"],
+    "keywords": ["周报", "汇报", "weekly", "report", "工作总结"],
+    "difficulty": "beginner",
+    "template": "请帮我生成一份工作周报：\n\n我的角色：{role}\n本周主要工作：\n{thisWeekWork}\n\n遇到的问题/卡点：\n{blockers}\n\n下周计划：\n{nextWeekPlan}\n\n需要的支持：\n{supportNeeded}\n\n请按以下格式输出：\n## 本周完成\n- （按优先级列出，标注完成度）\n\n## 关键数据/成果\n- （量化产出）\n\n## 遇到的挑战\n- （问题描述 + 你的应对）\n\n## 下周计划\n- （按优先级列出）\n\n## 需要的支持\n- （具体请求）",
+    "variables": [
+      { "name": "role", "label": "你的角色", "example": "前端开发工程师" },
+      { "name": "thisWeekWork", "label": "本周工作", "example": "完成了首页重构，修复了5个Bug" },
+      { "name": "blockers", "label": "遇到的问题", "example": "接口联调被后端阻塞" },
+      { "name": "nextWeekPlan", "label": "下周计划", "example": "完成搜索功能开发，性能优化" },
+      { "name": "supportNeeded", "label": "需要的支持", "example": "需要后端在本周三前完成搜索接口" }
+    ],
+    "tips": [
+      "周报重在数据化和结果导向，少用'进行中'多用'完成XX%'",
+      "问题和卡点要带着你的思考和解决方案一起提",
+      "周报是展现你价值的机会，不要只列任务要写成果"
+    ],
+    "relatedScenarios": ["project-planning"]
+  },
+  {
+    "id": "prompt-021",
+    "slug": "risk-assessment-template",
+    "title": "风险评估模板",
+    "description": "系统化识别项目风险，评估概率和影响，生成风险矩阵和应急预案。",
+    "category": "management",
+    "tags": ["风险", "评估", "预案"],
+    "keywords": ["风险", "评估", "risk", "预案", "应急", "管理"],
+    "difficulty": "intermediate",
+    "template": "请帮我进行项目风险评估：\n\n项目名称：{project}\n项目阶段：{stage}\n项目规模：{scale}\n关键依赖：{dependencies}\n\n请提供：\n1. 风险识别清单（至少10个风险项）\n2. 风险矩阵（概率×影响的二维评估）\n3. 每个高风险项的应急预案\n4. 风险监控指标和频率\n5. 风险升级机制（什么情况下上报）\n6. 风险应对的优先级排序",
+    "variables": [
+      { "name": "project", "label": "项目名称", "example": "电商平台大促保障" },
+      { "name": "stage", "label": "项目阶段", "example": "上线前一周" },
+      { "name": "scale", "label": "项目规模", "example": "预计10万并发用户" },
+      { "name": "dependencies", "label": "关键依赖", "example": "支付网关、CDN、第三方物流API" }
+    ],
+    "tips": [
+      "风险识别要尽量全面，宁多勿漏",
+      "重点关注概率高且影响大的风险，这是最需要预案的",
+      "定期更新风险评估，项目不同阶段的风险不同"
+    ],
+    "relatedScenarios": ["risk-assessment"]
+  },
+  {
+    "id": "prompt-022",
+    "slug": "client-reply-helper",
+    "title": "客户回复助手",
+    "description": "根据客户消息生成专业、得体的回复，处理咨询、投诉或跟进。",
+    "category": "communication",
+    "tags": ["客户", "回复", "服务"],
+    "keywords": ["客户", "回复", "client", "客服", "投诉", "咨询"],
+    "difficulty": "beginner",
+    "template": "你是一位专业的客户服务经理。请帮我回复以下客户消息：\n\n客户消息：\n{clientMessage}\n\n客户情绪：{emotion}\n问题类型：{issueType}\n\n我方立场/政策：{ourPosition}\n\n请提供：\n1. 3种不同语气的回复版本（正式/友好/简洁）\n2. 每个版本的核心要点\n3. 不宜提及的敏感点提醒\n4. 后续跟进建议",
+    "variables": [
+      { "name": "clientMessage", "label": "客户消息", "example": "你们的产品昨天宕机了2个小时，我们的业务受到了严重影响！" },
+      { "name": "emotion", "label": "客户情绪", "example": "愤怒、焦虑" },
+      { "name": "issueType", "label": "问题类型", "example": "服务中断投诉" },
+      { "name": "ourPosition", "label": "我方立场", "example": "确认是AWS区域故障导致，已修复，可提供1个月免费延期作为补偿" }
+    ],
+    "tips": [
+      "先共情再解释，客户需要感受到被重视",
+      "避免使用技术术语解释故障，客户关心的是影响和补偿",
+      "投诉处理时效很关键，2小时内的回复能大幅降低升级率"
+    ],
+    "relatedScenarios": ["client-communication"]
+  },
+  {
+    "id": "prompt-023",
+    "slug": "internal-announcement",
+    "title": "内部公告撰写",
+    "description": "撰写公司内部公告、制度通知或团队变更通知，确保信息清晰、语气恰当。",
+    "category": "communication",
+    "tags": ["公告", "通知", "内部"],
+    "keywords": ["公告", "通知", "announcement", "内部", "制度", "变更"],
+    "difficulty": "beginner",
+    "template": "请帮我撰写一份内部公告：\n\n公告类型：{announcementType}\n核心信息：{coreMessage}\n影响范围：{scope}\n生效时间：{effectiveDate}\n需要员工采取的行动：{action}\n\n请按以下格式输出：\n1. 标题（简洁明确）\n2. 开头（说明背景和原因）\n3. 核心变更/信息（分条列出）\n4. 影响说明（对员工的具体影响）\n5. 需要的行动（清晰的步骤）\n6. 答疑渠道（联系方式）\n7. 结尾（感谢和鼓励）",
+    "variables": [
+      { "name": "announcementType", "label": "公告类型", "example": "制度变更通知" },
+      { "name": "coreMessage", "label": "核心信息", "example": "从下月起实施弹性工作制" },
+      { "name": "scope", "label": "影响范围", "example": "全体员工" },
+      { "name": "effectiveDate", "label": "生效时间", "example": "2026年7月1日" },
+      { "name": "action", "label": "需要行动", "example": "在OA系统中选择固定工时或弹性工时" }
+    ],
+    "tips": [
+      "公告标题要让员工一眼知道核心内容",
+      "重要的信息放在开头，避免长篇大论",
+      "给出明确的行动步骤和截止时间"
+    ],
+    "relatedScenarios": ["client-communication"]
+  },
+  {
+    "id": "prompt-024",
+    "slug": "document-translator",
+    "title": "文档翻译助手",
+    "description": "高质量翻译技术文档、产品说明或商务文件，保持专业术语的准确性。",
+    "category": "translation",
+    "tags": ["翻译", "文档", "多语言"],
+    "keywords": ["翻译", "translation", "文档", "多语言", "英文", "中文"],
+    "difficulty": "beginner",
+    "template": "你是一位专业的{domain}领域翻译。请将以下内容从{sourceLang}翻译为{targetLang}：\n\n源文本：\n{sourceText}\n\n翻译要求：\n- 保持专业术语的准确性\n- 语气：{tone}\n- 目标读者：{audience}\n- 翻译风格：{style}\n\n请提供：\n1. 翻译结果\n2. 关键术语对照表\n3. 翻译不确定的地方（需要人工确认）",
+    "variables": [
+      { "name": "domain", "label": "领域", "example": "软件技术" },
+      { "name": "sourceLang", "label": "源语言", "example": "英文" },
+      { "name": "targetLang", "label": "目标语言", "example": "中文" },
+      { "name": "sourceText", "label": "源文本", "example": "（在此处粘贴需要翻译的文本）" },
+      { "name": "tone", "label": "语气", "example": "专业正式" },
+      { "name": "audience", "label": "目标读者", "example": "软件开发者" },
+      { "name": "style", "label": "翻译风格", "example": "意译为主，保持中文表达习惯" }
+    ],
+    "tips": [
+      "提供术语表能让翻译更加一致和专业",
+      "技术文档翻译建议保留英文原文的专有名词",
+      "长文档建议分段翻译，每段翻译后确认质量再继续"
+    ],
+    "relatedScenarios": ["translation-localization"]
+  },
+  {
+    "id": "prompt-025",
+    "slug": "glossary-manager",
+    "title": "术语表维护",
+    "description": "从文档中提取专业术语，生成和维护中英对照术语表，确保翻译一致性。",
+    "category": "translation",
+    "tags": ["术语", "术语表", "一致性"],
+    "keywords": ["术语", "术语表", "glossary", "一致性", "翻译", "专业"],
+    "difficulty": "intermediate",
+    "template": "请从以下文档中提取{domain}领域的专业术语，并生成术语表：\n\n文档内容：\n{document}\n\n请提供：\n1. 术语表（包含：英文原文、建议中文翻译、定义、使用场景）\n2. 已有翻译建议的术语（行业通用翻译）\n3. 需要讨论的术语（翻译可能有争议的）\n4. 术语使用建议（在什么场景用哪个翻译）",
+    "variables": [
+      { "name": "domain", "label": "领域", "example": "AI/机器学习" },
+      { "name": "document", "label": "文档内容", "example": "（在此处粘贴文档内容）" }
+    ],
+    "tips": [
+      "术语表应该由团队共同维护，统一标准",
+      "同一个术语在不同场景可能有不同翻译，需标注使用场景",
+      "定期更新术语表，尤其是快速发展的技术领域"
+    ],
+    "relatedScenarios": ["translation-localization"]
+  }
+]

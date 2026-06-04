@@ -174,10 +174,10 @@
   color: #ea580c;
 }
 
-/* Skill — purple */
-.search-badge--skill {
-  background-color: #f5f3ff;
-  color: #7c3aed;
+/* Prompt — amber */
+.search-badge--prompt {
+  background-color: #fffbeb;
+  color: #d97706;
 }
 
 /* ---------- Result title ---------- */

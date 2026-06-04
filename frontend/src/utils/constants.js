@@ -55,3 +55,51 @@ export const SKILL_USAGE_LABELS = {
   optional: '可选',
   advanced: '高级',
 };
+
+// 场景分类
+export const SCENARIO_CATEGORIES = {
+  CODING: 'coding',
+  WRITING: 'writing',
+  RESEARCH: 'research',
+  ANALYSIS: 'analysis',
+  MANAGEMENT: 'management',
+  CREATIVE: 'creative',
+  COMMUNICATION: 'communication',
+  LEARNING: 'learning',
+  TRANSLATION: 'translation',
+};
+
+export const SCENARIO_CATEGORY_LABELS = {
+  [SCENARIO_CATEGORIES.CODING]: '编程开发',
+  [SCENARIO_CATEGORIES.WRITING]: '写作',
+  [SCENARIO_CATEGORIES.RESEARCH]: '研究',
+  [SCENARIO_CATEGORIES.ANALYSIS]: '分析',
+  [SCENARIO_CATEGORIES.MANAGEMENT]: '管理',
+  [SCENARIO_CATEGORIES.CREATIVE]: '创意',
+  [SCENARIO_CATEGORIES.COMMUNICATION]: '沟通',
+  [SCENARIO_CATEGORIES.LEARNING]: '学习',
+  [SCENARIO_CATEGORIES.TRANSLATION]: '翻译',
+};
+
+// 提示词分类
+export const PROMPT_CATEGORIES = {
+  WRITING: 'writing',
+  ANALYSIS: 'analysis',
+  CREATIVE: 'creative',
+  CODING: 'coding',
+  LEARNING: 'learning',
+  MANAGEMENT: 'management',
+  COMMUNICATION: 'communication',
+  TRANSLATION: 'translation',
+};
+
+export const PROMPT_CATEGORY_LABELS = {
+  [PROMPT_CATEGORIES.WRITING]: '写作',
+  [PROMPT_CATEGORIES.ANALYSIS]: '分析',
+  [PROMPT_CATEGORIES.CREATIVE]: '创意',
+  [PROMPT_CATEGORIES.CODING]: '编程',
+  [PROMPT_CATEGORIES.LEARNING]: '学习',
+  [PROMPT_CATEGORIES.MANAGEMENT]: '管理',
+  [PROMPT_CATEGORIES.COMMUNICATION]: '沟通',
+  [PROMPT_CATEGORIES.TRANSLATION]: '翻译',
+};
