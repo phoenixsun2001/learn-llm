@@ -5,6 +5,7 @@
     "title": "使用 AI 进行代码审查",
     "description": "自动化代码审查流程，提升代码质量和团队协作效率。",
     "goal": "我想自动化代码审查",
+    "category": "coding",
     "tools": ["claude-code"],
     "tutorials": ["claude-code-daily"],
     "workflow": "开发者提交 PR → Claude Code 自动审查 → 生成 Review 意见 → 开发者修改"
@@ -15,6 +16,7 @@
     "title": "构建文档自动生成流水线",
     "description": "利用 AI 工具自动生成和维护项目文档，保持文档与代码同步。",
     "goal": "我想自动生成项目文档",
+    "category": "coding",
     "tools": ["claude-code"],
     "tutorials": ["claude-code-daily", "claude-code-hooks"],
     "workflow": "代码提交 → 触发 Hooks → AI 分析变更 → 更新对应文档"
@@ -25,8 +27,152 @@
     "title": "工程化编程全流程实战",
     "description": "从需求澄清到代码交付，用 Superpowers 框架给 AI 编程套上工程纪律。涵盖 Codex/Claude Code 配置、TDD 开发、两阶段代码审查和验证收尾。",
     "goal": "我想让 AI 按照工程规范写代码，而不是随机生成",
+    "category": "coding",
     "tools": ["claude-code", "codex"],
     "tutorials": ["superpowers-engineering-guide", "codex-install", "claude-code-first-use"],
     "workflow": "需求澄清 → 架构设计 → TDD 开发 → 两阶段审查 → 验证收尾"
+  },
+  {
+    "id": "scn-email-writing",
+    "slug": "email-writing",
+    "title": "AI 邮件撰写助手",
+    "description": "快速撰写专业邮件、内部通知和项目沟通文档，提高日常沟通效率。支持中英文邮件，适配不同语气和场景。",
+    "goal": "我想用 AI 高效撰写各类邮件和沟通文档",
+    "category": "writing",
+    "tools": [],
+    "tutorials": [],
+    "workflow": "明确邮件目的和收件人 → 提供关键信息给 AI → AI 生成初稿 → 审阅修改 → 发送"
+  },
+  {
+    "id": "scn-meeting-minutes",
+    "slug": "meeting-minutes",
+    "title": "会议纪要自动生成",
+    "description": "从会议录音、文字记录或简要笔记中自动生成结构化会议纪要，包含决议事项、责任人和截止日期。",
+    "goal": "我想自动整理会议纪要，不遗漏关键决议",
+    "category": "writing",
+    "tools": [],
+    "tutorials": [],
+    "workflow": "提供会议记录/笔记 → AI 提取关键议题 → 生成结构化纪要 → 补充行动项 → 分发给参会者"
+  },
+  {
+    "id": "scn-report-writing",
+    "slug": "report-writing",
+    "title": "报告与方案撰写",
+    "description": "AI 辅助撰写项目报告、技术方案和商业提案。从大纲到成稿，确保结构清晰、论据充分。",
+    "goal": "我想用 AI 辅助撰写高质量的项目报告或方案",
+    "category": "writing",
+    "tools": [],
+    "tutorials": [],
+    "workflow": "明确报告类型和受众 → AI 生成大纲 → 逐节扩展内容 → 审阅润色 → 定稿"
+  },
+  {
+    "id": "scn-market-research",
+    "slug": "market-research",
+    "title": "市场调研分析",
+    "description": "利用 AI 进行行业分析、竞品调研和市场趋势追踪，快速生成调研报告和洞察摘要。",
+    "goal": "我想用 AI 进行市场调研和竞品分析",
+    "category": "research",
+    "tools": [],
+    "tutorials": [],
+    "workflow": "定义调研目标 → AI 搜集整理行业信息 → 生成竞品对比 → 提炼关键洞察 → 输出报告"
+  },
+  {
+    "id": "scn-literature-review",
+    "slug": "literature-review",
+    "title": "文献综述与知识梳理",
+    "description": "AI 辅助文献检索、摘要提取和知识图谱构建，帮助快速掌握一个新领域的核心知识体系。",
+    "goal": "我想快速梳理一个新领域的文献和知识体系",
+    "category": "research",
+    "tools": [],
+    "tutorials": [],
+    "workflow": "确定研究主题和关键词 → AI 检索相关文献 → 提取核心观点 → 分类整理 → 生成综述"
+  },
+  {
+    "id": "scn-data-analysis-report",
+    "slug": "data-analysis-report",
+    "title": "数据分析报告",
+    "description": "从原始数据到可视化报告的 AI 辅助全流程。上传数据，AI 自动分析趋势、异常和关键指标。",
+    "goal": "我想用 AI 从数据中快速生成分析报告",
+    "category": "analysis",
+    "tools": [],
+    "tutorials": [],
+    "workflow": "上传或描述数据 → AI 分析数据特征 → 识别趋势和异常 → 生成图表和建议 → 输出报告"
+  },
+  {
+    "id": "scn-project-planning",
+    "slug": "project-planning",
+    "title": "项目任务规划",
+    "description": "用 AI 拆解项目目标、生成 WBS（工作分解结构）和排期建议，自动识别依赖关系和关键路径。",
+    "goal": "我想用 AI 帮我规划项目任务和排期",
+    "category": "management",
+    "tools": [],
+    "tutorials": [],
+    "workflow": "输入项目目标和约束 → AI 拆解任务 → 识别依赖关系 → 生成排期建议 → 调整确认"
+  },
+  {
+    "id": "scn-risk-assessment",
+    "slug": "risk-assessment",
+    "title": "风险评估与预案",
+    "description": "AI 辅助识别项目风险、评估影响和概率，并生成应急预案和缓解措施。",
+    "goal": "我想用 AI 系统化地识别和管理项目风险",
+    "category": "management",
+    "tools": [],
+    "tutorials": [],
+    "workflow": "描述项目背景 → AI 识别潜在风险 → 评估概率和影响 → 生成应急预案 → 定期回顾"
+  },
+  {
+    "id": "scn-social-media-content",
+    "slug": "social-media-content",
+    "title": "社交媒体内容创作",
+    "description": "AI 生成社交媒体文案、话题策划和内容日历，适配不同平台风格和受众群体。",
+    "goal": "我想用 AI 批量生成社交媒体内容",
+    "category": "creative",
+    "tools": [],
+    "tutorials": [],
+    "workflow": "确定平台和主题 → AI 生成文案变体 → 选择和微调 → 排期发布 → 效果追踪"
+  },
+  {
+    "id": "scn-brainstorming",
+    "slug": "brainstorming-ideation",
+    "title": "头脑风暴与创意发想",
+    "description": "用 AI 进行结构化头脑风暴，突破创意瓶颈。支持 SCAMPER、六顶思考帽等多种方法论。",
+    "goal": "我想用 AI 进行结构化的创意发想",
+    "category": "creative",
+    "tools": [],
+    "tutorials": [],
+    "workflow": "定义创意主题 → 选择方法论 → AI 生成多角度创意 → 筛选和组合 → 形成方案"
+  },
+  {
+    "id": "scn-client-communication",
+    "slug": "client-communication",
+    "title": "客户沟通与响应",
+    "description": "AI 辅助客户咨询回复、投诉处理和关系维护，保持专业和一致的沟通风格。",
+    "goal": "我想用 AI 提升客户沟通的效率和质量",
+    "category": "communication",
+    "tools": [],
+    "tutorials": [],
+    "workflow": "收到客户消息 → AI 分析意图和情绪 → 生成回复建议 → 审阅调整 → 发送"
+  },
+  {
+    "id": "scn-knowledge-extraction",
+    "slug": "knowledge-extraction",
+    "title": "知识提炼与总结",
+    "description": "从长文档、文章和视频中提取核心观点和结构化摘要，快速掌握关键信息。",
+    "goal": "我想用 AI 快速提炼长文档的核心内容",
+    "category": "learning",
+    "tools": [],
+    "tutorials": [],
+    "workflow": "提供原始材料 → AI 识别关键主题 → 提取核心观点 → 生成结构化摘要 → 保存归档"
+  },
+  {
+    "id": "scn-translation",
+    "slug": "translation-localization",
+    "title": "多语言翻译与本地化",
+    "description": "AI 辅助文档翻译、术语表维护和本地化适配，支持多语言互译和风格调整。",
+    "goal": "我想用 AI 进行高质量翻译和本地化",
+    "category": "translation",
+    "tools": [],
+    "tutorials": [],
+    "workflow": "确定源文本和目标语言 → AI 初步翻译 → 术语和风格校验 → 人工审阅 → 定稿"
   }
 ]

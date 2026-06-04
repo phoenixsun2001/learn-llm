@@ -2,6 +2,7 @@ import tutorialsIndex from '../data/tutorials-index.json';
 import toolsIndex from '../data/tools-index.json';
 import pathwaysIndex from '../data/pathways-index.json';
 import scenariosIndex from '../data/scenarios-index.json';
+import promptsIndex from '../data/prompts-index.json';
 import searchIndex from '../data/search-index.json';
 
 // Runtime store for dynamically imported tutorials (persisted to localStorage)
@@ -135,7 +136,43 @@ export function getScenarioBySlug(slug) {
   return scenariosIndex.find((s) => s.slug === slug) || null;
 }
 
-export function getAllScenarios() { return scenariosIndex; }
+export function getAllScenarios(filters = {}) {
+  let result = scenariosIndex;
+  if (filters.category) result = result.filter((s) => s.category === filters.category);
+  if (filters.search) {
+    const q = filters.search.toLowerCase();
+    result = result.filter((s) =>
+      (s.title || '').toLowerCase().includes(q) ||
+      (s.description || '').toLowerCase().includes(q) ||
+      (s.goal || '').toLowerCase().includes(q) ||
+      (s.tags || []).some((tag) => tag.toLowerCase().includes(q))
+    );
+  }
+  return result;
+}
+
+// ============================================
+// Prompt Library
+// ============================================
+export function getPromptBySlug(slug) {
+  return promptsIndex.find((p) => p.slug === slug) || null;
+}
+
+export function getAllPrompts(filters = {}) {
+  let result = promptsIndex;
+  if (filters.category) result = result.filter((p) => p.category === filters.category);
+  if (filters.difficulty) result = result.filter((p) => p.difficulty === filters.difficulty);
+  if (filters.search) {
+    const q = filters.search.toLowerCase();
+    result = result.filter((p) =>
+      (p.title || '').toLowerCase().includes(q) ||
+      (p.description || '').toLowerCase().includes(q) ||
+      (p.tags || []).some((tag) => tag.toLowerCase().includes(q)) ||
+      (p.keywords || []).some((kw) => kw.toLowerCase().includes(q))
+    );
+  }
+  return result;
+}
 
 /**
  * 全局搜索：在教程、工具、场景中按标题和关键词搜索

@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getScenarioBySlug, getToolBySlug, getTutorialBySlug } from '../../services/contentLoader';
-import { DIFFICULTY_LABELS } from '../../utils/constants';
+import { DIFFICULTY_LABELS, SCENARIO_CATEGORY_LABELS } from '../../utils/constants';
 import './ScenarioDetail.css';
 
 const ScenarioDetail = () => {
@@ -58,6 +58,11 @@ const ScenarioDetail = () => {
 
       {/* Header */}
       <header className="scenario-detail-header">
+        {scenario.category && SCENARIO_CATEGORY_LABELS[scenario.category] && (
+          <span className="scenario-detail-category-badge">
+            {SCENARIO_CATEGORY_LABELS[scenario.category]}
+          </span>
+        )}
         <h1 className="scenario-detail-title">{scenario.title}</h1>
 
         {/* Goal quote */}
