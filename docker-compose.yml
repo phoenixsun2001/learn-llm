@@ -37,12 +37,14 @@ services:
     volumes:
       - ./content:/app/content
       - ./pipeline/data:/app/data
+      - ./frontend/src/data:/app/frontend-data
     environment:
       - ADMIN_TOKEN=${ADMIN_TOKEN:-learn-llm-admin}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
       - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
       - PIPELINE_OUTPUT_DIR=/app/content/materials/
       - CONTENT_ROOT=/app/content
+      - FRONTEND_DATA_DIR=/app/frontend-data/
     networks:
       - learn-llm
 
