@@ -15,6 +15,9 @@ import ScenarioList from './pages/Scenarios/ScenarioList';
 import ScenarioDetail from './pages/Scenarios/ScenarioDetail';
 import PromptList from './pages/Prompts/PromptList';
 import PromptDetail from './pages/Prompts/PromptDetail';
+import SkillList from './pages/Skills/SkillList';
+import SkillPackage from './pages/Skills/SkillPackage';
+import SkillDetail from './pages/Skills/SkillDetail';
 import SearchResults from './pages/Search/SearchResults';
 import AdminLayout from './pages/Admin/AdminLayout';
 import TutorialManager from './pages/Admin/TutorialManager';
@@ -53,6 +56,9 @@ const App = () => {
                 <Route path="/scenarios/:slug" element={<ScenarioDetail />} />
                 <Route path="/prompts" element={<PromptList />} />
                 <Route path="/prompts/:slug" element={<PromptDetail />} />
+                <Route path="/skills" element={<SkillList />} />
+                <Route path="/skills/:package" element={<SkillPackage />} />
+                <Route path="/skills/:package/:slug" element={<SkillDetail />} />
                 <Route path="/search" element={<SearchResults />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
