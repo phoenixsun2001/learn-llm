@@ -1,184 +1,250 @@
-# 🧠 Learn AI — AI 学习平台
+# Learn AI / Learn-LLM
 
-一个开源、引导式的 AI 学习平台，帮助用户从入门到精通地使用各类 AI 专业工具。
+Learn AI 是一个中文 AI 学习平台，面向开发者和知识工作者，提供教程库、学习路径、场景检索、工具向导、提示词库和技能包等学习入口。
 
-## 核心理念
+当前默认 GitLab 仓库：
 
-- **引导式学习**：三条入口（学习路径 / 场景检索 / 工具向导）降低上手门槛
-- **开源驱动**：内容托管在 GitHub，社区 PR 贡献
-- **内容聚合**：多源内容经 AI 加工，人工审核后融入教程
+```bash
+git remote set-url gitlab http://192.168.120.62/personal/phoenix/learnllm.git
+```
+
+## 当前能力
+
+- 教程库：按分类、难度、发布状态管理 Markdown 教程内容。
+- 学习路径：把教程组织成连续课程，支持路径详情和章节化学习。
+- 工具向导：按工具提供分步学习入口，例如 Claude Code、Codex、Trae、Coze 等。
+- 场景检索：从真实工作目标出发，推荐相关工具链和教程。
+- 提示词库：沉淀可复用提示词模板。
+- 技能包：管理可组合的 AI 工作技能和技能集合。
+- 素材与采集后台：通过 8400 端口管理 RSS/素材/审核/内容生成管道。
+
+## 重要边界
+
+项目里有两个“管理”概念，职责不同：
+
+1. 前端 `/admin/*`
+
+   这是前端用户可见内容的管理入口。`/admin/tutorials` 的发布、下架、编辑只控制前端用户能看到的教程和正文覆盖，不再同步到 8400 后端。
+
+   主要本地存储键：
+
+   - `learn-llm-imported-tutorials`
+   - `learn-llm-edited-content`
+   - `learn-llm-tutorial-statuses`
+   - `learn-llm-custom-pathways`
+
+2. 后端 `http://localhost:8400/admin`
+
+   这是内容采集、素材库、审核队列、RSS 源、提示词/工具/技能等数据源维护后台。它服务内容生产和素材管理，不是前台教程发布链路。
+
+前台公共页面默认只展示 `published` 教程；草稿可通过管理页预览链接访问。
 
 ## 技术栈
 
-- **前端**：React 18 + Vite + react-router-dom v6
-- **样式**：CSS 变量 + 普通 CSS（无 Tailwind）
-- **渲染**：react-markdown + react-syntax-highlighter
-- **后端**：Python FastAPI + Supabase (PostgreSQL)
-- **AI 管道**：sentence-transformers + Claude API / Ollama
-- **部署**：Docker Compose (Nginx + FastAPI)
+- 前端：React 18、Vite 5、react-router-dom v6
+- UI：Ant Design 5、CSS custom properties、普通 CSS
+- Markdown：react-markdown、remark-gfm、react-syntax-highlighter
+- 认证：Supabase 可选；未配置时前台仍可运行
+- 后端：FastAPI、Jinja2、SQLite
+- 内容管道：RSS/GitHub/Web fetcher、去重、摘要、分类、写入器
+- LLM 后端优先级：ZhipuAI -> Anthropic -> Ollama -> fallback
+- 部署：Docker Compose，前端 Nginx + 后端 FastAPI
 
----
+## 快速开始
 
-## 快速部署
-
-### 前置要求
-
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (v24+)
-- [Supabase](https://supabase.com) 账号（免费层即可）
-
-### 1. 配置 Supabase
-
-1. 在 [Supabase Dashboard](https://supabase.com/dashboard) 创建项目
-2. SQL Editor → 运行 `supabase/migrations/001_init.sql`
-3. Authentication → Providers → 启用 GitHub
-4. Settings → API → 复制 **Project URL** 和 **anon public key**
-
-### 2. 启动服务
+### 前端开发
 
 ```bash
-# 克隆仓库
-git clone https://github.com/phoenixsun2001/learn-llm.git
-cd learn-llm
-
-# 配置环境
-cp .env.example .env
-# 编辑 .env，填入 Supabase URL 和 Anon Key
-
-# 一键部署
-./deploy.sh
+cd frontend
+npm install
+npm run dev
 ```
 
-访问：
-- 前端：**http://localhost**
-- 管理后台：**http://localhost:8400/admin**
-- 后台 Token：`learn-llm-admin`（可在 .env 中修改）
+默认访问：
 
-### 3. 常用命令
-
-```bash
-./deploy.sh              # 启动/重启
-./deploy.sh --status     # 查看状态
-./deploy.sh --logs       # 查看日志
-./deploy.sh --down       # 停止
-
-# 运行内容管道
-./deploy.sh --pipeline --full
-./deploy.sh --pipeline --source langchain_blog
-./deploy.sh --pipeline --list-sources
+```text
+http://localhost:3000
 ```
 
----
-
-## 本地开发
+### 前端生产预览
 
 ```bash
-# 前端
-cd frontend && npm install && npm run dev
+cd frontend
+npm run build
+npm run preview
+```
 
-# 管道管理后台
-cd pipeline && pip install -r requirements.txt
+默认访问：
+
+```text
+http://localhost:4173
+```
+
+### 后端素材/管道后台
+
+```bash
+cd pipeline
+pip install -r requirements.txt
 python -m admin_dashboard.main
 ```
 
----
+默认访问：
 
-## 项目结构
-
-```
-learn-llm/
-├── frontend/              # React SPA
-│   ├── Dockerfile           # 多阶段构建 (Node → Nginx)
-│   ├── nginx.conf           # SPA 路由 + 缓存策略
-│   └── src/
-├── pipeline/              # 内容管道
-│   ├── Dockerfile           # Python 3.12 容器
-│   ├── fetchers/            # 内容采集器
-│   ├── processors/          # AI 处理器
-│   ├── output/              # 输出写入器
-│   ├── admin_dashboard/     # 管理后台 (FastAPI)
-│   └── run_pipeline.py      # CLI 入口
-├── content/               # 教程 Markdown
-├── supabase/              # 数据库迁移
-├── docker-compose.yml     # Docker 编排
-├── deploy.sh              # 部署脚本
-└── docs/                  # 设计文档
+```text
+http://localhost:8400/admin
 ```
 
----
+后台 token 由 `ADMIN_TOKEN` 控制，默认开发值为：
 
-## Docker 服务架构
-
-```
-docker compose up
-    ├── frontend (nginx:80)     ← React SPA
-    │     └── Supabase (Cloud)  ← Auth + PostgreSQL
-    └── backend  (FastAPI:8400) ← 管道管理 + 审核后台
-          ├── SQLite (容器内)
-          └── content/ (挂载卷)
+```text
+learn-llm-admin
 ```
 
----
+## Docker 部署
+
+```bash
+./deploy.sh
+./deploy.sh --build
+./deploy.sh --status
+./deploy.sh --logs
+./deploy.sh --down
+```
+
+Docker 服务：
+
+- `frontend`：Nginx 80 端口，挂载 `./content` 到静态内容目录。
+- `backend`：FastAPI 8400 端口，挂载 `./content`、`./pipeline/data` 和 `./frontend/src/data`。
+
+`docker-compose.yml` 中后端通过 `FRONTEND_DATA_DIR=/app/frontend-data/` 维护部分前端 JSON 数据源。
+
+## 内容结构
+
+```text
+content/
+  tutorials/
+    index.json
+    harness/
+    practice/
+    workflow/
+  materials/
+
+frontend/src/data/
+  tutorials-index.json
+  pathways-index.json
+  tools-index.json
+  scenarios-index.json
+  prompts-index.json
+  skills-index.json
+  skills-packages-index.json
+  search-index.json
+```
+
+教程正文使用 Markdown 文件，教程索引和其他模块使用 JSON 数据。前端运行时会合并静态 JSON、`/content/tutorials/index.json`、localStorage 中的导入教程、正文覆盖和状态覆盖。
+
+## 路由
+
+公共路由：
+
+- `/`
+- `/tutorials`
+- `/tutorials/:slug`
+- `/tools`
+- `/tools/:slug`
+- `/pathways`
+- `/pathways/:slug`
+- `/scenarios`
+- `/scenarios/:slug`
+- `/prompts`
+- `/prompts/:slug`
+- `/skills`
+- `/skills/:package`
+- `/skills/:package/:slug`
+- `/search`
+
+前端管理路由：
+
+- `/admin/tutorials`
+- `/admin/pathways`
+- `/admin/materials`
+
+后端管理路由：
+
+- `/admin`
+- `/admin/review`
+- `/admin/materials`
+- `/admin/sources`
+- `/admin/scenarios`
+- `/admin/prompts`
+- `/admin/tools`
+- `/admin/skills`
+- `/admin/skills/packages`
 
 ## 内容管道
 
-5 步处理流程：**采集 → 去重 → 摘要 → 分类 → 输出**
+```bash
+cd pipeline
+python run_pipeline.py --full
+python run_pipeline.py --source <name>
+python run_pipeline.py --list-sources
+python run_pipeline.py --update-index
+```
+
+测试命令：
 
 ```bash
-# 完整管道
-docker compose exec backend python run_pipeline.py --full
-
-# 查看可用 RSS 源
-docker compose exec backend python run_pipeline.py --list-sources
-
-# 更新前端搜索索引
-docker compose exec backend python run_pipeline.py --update-index
+cd pipeline
+$env:PYTHONPATH='.'
+python tests/test_rss_fetcher.py
+python tests/test_dedup.py
+python tests/test_writer.py
+python tests/test_pipeline.py
 ```
 
-### 环境变量
+## 环境变量
 
-| 变量 | 说明 | 默认值 |
-|------|------|--------|
-| `VITE_SUPABASE_URL` | Supabase 项目 URL | 必填 |
-| `VITE_SUPABASE_ANON_KEY` | Supabase 匿名公钥 | 必填 |
-| `ADMIN_TOKEN` | 管理后台登录 Token | `learn-llm-admin` |
-| `ANTHROPIC_API_KEY` | Claude API 密钥（可选，启用 AI 摘要） | - |
-| `OLLAMA_BASE_URL` | Ollama 服务地址 | `http://localhost:11434` |
+| 变量 | 说明 | 是否必需 |
+|---|---|---|
+| `VITE_SUPABASE_URL` | Supabase 项目 URL | 可选 |
+| `VITE_SUPABASE_ANON_KEY` | Supabase anon key | 可选 |
+| `ADMIN_TOKEN` | 8400 后端管理后台登录 token | 后端管理必需 |
+| `VITE_ADMIN_TOKEN` | 前端访问素材库后端时的 token | 可选 |
+| `ZHIPU_API_KEY` | 智谱 API key | 可选 |
+| `ZHIPU_API_BASE` | 智谱 API base URL | 可选 |
+| `ZHIPU_MODEL` | 智谱模型名 | 可选 |
+| `ANTHROPIC_API_KEY` | Anthropic API key | 可选 |
+| `OLLAMA_BASE_URL` | Ollama 服务地址 | 可选 |
+| `PIPELINE_OUTPUT_DIR` | 管道素材输出目录 | 可选 |
+| `CONTENT_ROOT` | 后端读取内容根目录 | 可选 |
+| `FRONTEND_DATA_DIR` | 后端维护前端 JSON 数据目录 | 可选 |
 
----
+## 常用 Git
 
-## 故障排查
+默认 GitLab remote 应指向：
 
-### 登录后台报 500 错误
 ```bash
-# 重建后端镜像
-docker compose build backend --no-cache
-docker compose up -d backend
+gitlab  http://192.168.120.62/personal/phoenix/learnllm.git
 ```
 
-### 前端未显示登录按钮
+推送当前分支：
+
 ```bash
-# 检查 .env 是否配置正确
-cat .env | grep VITE_SUPABASE
-docker compose restart frontend
+git fetch gitlab
+git push gitlab master
 ```
 
-### 镜像拉取慢
-编辑 `~/.docker/daemon.json`，移除失效的 `registry-mirrors` 配置项。
+如需同步 GitHub 镜像：
 
-### 端口冲突
-编辑 `docker-compose.yml` 修改端口映射：
-```yaml
-ports:
-  - "8080:80"    # 前端改为 8080
-  - "8410:8400"  # 后台改为 8410
+```bash
+git push origin master
 ```
 
----
+## 维护提示
 
-## 贡献
+- 不要把 `.claude/`、`.playwright-mcp/`、`__pycache__/`、SQLite 数据库和本地截图混入业务提交。
+- 前端教程发布状态由前端管理页和 localStorage 控制，不需要调用 8400 后端发布接口。
+- 修改前台展示逻辑时，注意所有公共入口都应过滤 `status: published`。
+- 修改 CSS 时优先使用 `src/index.css` 中的设计变量。
 
-欢迎贡献教程内容！请阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。
+## License
 
-## 许可证
-
-MIT License
+MIT
