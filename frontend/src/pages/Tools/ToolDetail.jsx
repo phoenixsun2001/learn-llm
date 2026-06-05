@@ -25,7 +25,13 @@ const ToolDetail = () => {
   }
 
   const categoryLabel = TOOL_CATEGORY_LABELS[tool.category] || tool.category;
-  const hasWizard = tool.wizardSteps && tool.wizardSteps.length > 0;
+  const publishedWizardSteps = (tool.wizardSteps || [])
+    .map((step) => ({
+      ...step,
+      tutorial: getTutorialBySlug(step.tutorialSlug, { status: 'published' }),
+    }))
+    .filter((step) => step.tutorial);
+  const hasWizard = publishedWizardSteps.length > 0;
 
   return (
     <div className="tool-detail-page">
@@ -87,9 +93,7 @@ const ToolDetail = () => {
 
         {hasWizard ? (
           <div className="tool-detail-steps">
-            {tool.wizardSteps.map((step) => {
-              const tutorial = getTutorialBySlug(step.tutorialSlug);
-
+            {publishedWizardSteps.map((step) => {
               return (
                 <Link
                   key={step.step}
@@ -108,27 +112,25 @@ const ToolDetail = () => {
                         {step.title}
                       </span>
                     </div>
-                    {tutorial && (
-                      <div className="tool-detail-step-meta">
-                        <span className="tool-detail-step-tutorial">
-                          {tutorial.title}
-                        </span>
-                        <span className="tool-detail-step-time">
-                          <svg
-                            className="tool-detail-step-time-icon"
-                            viewBox="0 0 16 16"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            aria-hidden="true"
-                          >
-                            <circle cx="8" cy="8" r="7" />
-                            <path d="M8 4v4l3 2" />
-                          </svg>
-                          {tutorial.estimatedTime} 分钟
-                        </span>
-                      </div>
-                    )}
+                    <div className="tool-detail-step-meta">
+                      <span className="tool-detail-step-tutorial">
+                        {step.tutorial.title}
+                      </span>
+                      <span className="tool-detail-step-time">
+                        <svg
+                          className="tool-detail-step-time-icon"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          aria-hidden="true"
+                        >
+                          <circle cx="8" cy="8" r="7" />
+                          <path d="M8 4v4l3 2" />
+                        </svg>
+                        {step.tutorial.estimatedTime} 分钟
+                      </span>
+                    </div>
                   </div>
                   <svg
                     className="tool-detail-step-arrow"

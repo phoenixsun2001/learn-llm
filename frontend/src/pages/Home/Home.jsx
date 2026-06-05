@@ -53,7 +53,7 @@ const Home = () => {
 
   useEffect(() => {
     // All data is static JSON imports — load synchronously in effect
-    setTutorials(getAllTutorials());
+    setTutorials(getAllTutorials({ status: 'published' }));
     setTools(getAllTools());
     setPathways(getAllPathways());
   }, []);

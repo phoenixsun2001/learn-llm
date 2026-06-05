@@ -150,7 +150,7 @@ const TutorialRenderer = ({ tutorial, content, loading }) => {
   const prerequisites = useMemo(() => {
     if (!tutorial || !tutorial.prerequisites || tutorial.prerequisites.length === 0) return [];
     return tutorial.prerequisites
-      .map((slug) => getTutorialBySlug(slug))
+      .map((slug) => getTutorialBySlug(slug, { status: 'published' }))
       .filter(Boolean);
   }, [tutorial]);
 

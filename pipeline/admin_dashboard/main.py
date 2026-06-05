@@ -26,7 +26,6 @@ from admin_dashboard.models import (
 from admin_dashboard.routes.review import router as review_router
 from admin_dashboard.routes.materials import router as materials_router
 from admin_dashboard.routes.sources import router as sources_router
-from admin_dashboard.routes.tutorials import router as tutorials_router
 from admin_dashboard.routes.chat import router as chat_router
 from admin_dashboard.routes.scenarios import router as scenarios_router
 from admin_dashboard.routes.prompts import router as prompts_router
@@ -79,7 +78,15 @@ app.add_middleware(AuthMiddleware)
 # CORS must be added AFTER AuthMiddleware so it processes requests first (outer layer)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost", "http://localhost:80", "http://127.0.0.1"],
+    allow_origins=[
+        "http://localhost",
+        "http://localhost:80",
+        "http://localhost:3000",
+        "http://localhost:4173",
+        "http://127.0.0.1",
+        "http://127.0.0.1:3000",
+        "http://127.0.0.1:4173",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -104,14 +111,21 @@ async def login_action(request: Request):
         }, status_code=401)
 
     response = RedirectResponse("/admin", status_code=303)
-    response.set_cookie(key="admin_token", value=token, httponly=True, max_age=86400)
+    response.set_cookie(
+        key="admin_token",
+        value=token,
+        httponly=True,
+        max_age=86400,
+        path="/",
+        samesite="lax",
+    )
     return response
 
 
 @app.get("/admin/logout")
 async def logout():
     response = RedirectResponse("/admin/login", status_code=302)
-    response.delete_cookie("admin_token")
+    response.delete_cookie("admin_token", path="/")
     return response
 
 
@@ -119,7 +133,6 @@ async def logout():
 app.include_router(review_router, prefix="/admin")
 app.include_router(materials_router, prefix="/admin")
 app.include_router(sources_router, prefix="/admin")
-app.include_router(tutorials_router)  # no prefix — routes define their own /api/tutorials paths
 app.include_router(chat_router)  # no prefix — public /chat endpoint
 app.include_router(scenarios_router)  # routes already include /admin/ prefix
 app.include_router(prompts_router)

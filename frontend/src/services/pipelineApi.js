@@ -5,13 +5,81 @@
 
 // Same-origin via nginx proxy (avoids CORS)
 const API_BASE = '/api/admin'
+const BACKEND_ORIGIN = import.meta.env.VITE_ADMIN_API_ORIGIN || 'http://localhost:8400'
 
 // Simple token-based auth (same as admin dashboard)
 const ADMIN_TOKEN = import.meta.env.VITE_ADMIN_TOKEN || null
-let authToken = ADMIN_TOKEN
+const ADMIN_TOKEN_STORAGE_KEY = 'learn-llm-admin-token'
+let authToken = ADMIN_TOKEN || getStoredAuthToken()
 
 export function setAuthToken(token) {
   authToken = token
+  try {
+    if (token) localStorage.setItem(ADMIN_TOKEN_STORAGE_KEY, token)
+    else localStorage.removeItem(ADMIN_TOKEN_STORAGE_KEY)
+  } catch {}
+}
+
+function toBackendPath(path) {
+  return path.startsWith('/api/') ? path.slice(4) : path
+}
+
+function getStoredAuthToken() {
+  try {
+    return localStorage.getItem(ADMIN_TOKEN_STORAGE_KEY) || null
+  } catch {
+    return null
+  }
+}
+
+function requestAdminToken() {
+  if (typeof window === 'undefined') return null
+  const token = window.prompt('访问素材库后端需要 ADMIN_TOKEN。请输入后台访问令牌：')
+  if (!token) return null
+  setAuthToken(token.trim())
+  return authToken
+}
+
+function withAdminToken(headers = {}) {
+  const nextHeaders = { ...headers }
+  if (authToken) {
+    nextHeaders['X-Admin-Token'] = authToken
+  }
+  return nextHeaders
+}
+
+async function fetchWithBackendFallback(path, options = {}) {
+  const sameOriginUrl = path
+  const fallbackUrl = `${BACKEND_ORIGIN}${toBackendPath(path)}`
+
+  try {
+    const resp = await fetch(sameOriginUrl, options)
+    const contentType = resp.headers.get('content-type') || ''
+    if (contentType.includes('text/html')) {
+      return fetch(fallbackUrl, options)
+    }
+    if (resp.ok || resp.status === 401 || resp.status === 403) return resp
+    return resp
+  } catch {
+    return fetch(fallbackUrl, options)
+  }
+}
+
+async function fetchWithAdminRetry(path, options = {}) {
+  const resp = await fetchWithBackendFallback(path, {
+    ...options,
+    headers: withAdminToken(options.headers),
+  })
+  if (resp.status !== 401) return resp
+
+  setAuthToken(null)
+  const token = requestAdminToken()
+  if (!token) return resp
+
+  return fetchWithBackendFallback(path, {
+    ...options,
+    headers: withAdminToken(options.headers),
+  })
 }
 
 async function apiFetch(path, options = {}) {
@@ -157,8 +225,9 @@ export async function createMaterial(data) {
   formData.append('category', data.category || 'practice')
   formData.append('difficulty', data.difficulty || 'beginner')
   formData.append('tags', JSON.stringify(data.tags || []))
+  formData.append('status', data.status || 'draft')
 
-  const resp = await fetch(API_BASE + '/materials/new', {
+  const resp = await fetchWithAdminRetry(API_BASE + '/materials/new', {
     method: 'POST',
     body: formData,
     credentials: 'include',
@@ -179,50 +248,3 @@ export async function checkPipelineHealth() {
   }
 }
 
-// ============================================
-// Tutorial Publishing (dynamic content volume)
-// ============================================
-
-/**
- * Publish a tutorial to the shared content volume.
- * Writes the .md file and updates index.json — new tutorials
- * appear immediately without a frontend rebuild.
- */
-export async function publishTutorial({
-  slug,
-  title,
-  content,
-  category = 'practice',
-  subcategory = 'practice',
-  difficulty = 'beginner',
-  description = '',
-  tags = [],
-  keywords = [],
-}) {
-  const resp = await fetch('/api/tutorials/publish', {
-    method: 'POST',
-    credentials: 'include',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      slug, title, content, category, subcategory,
-      difficulty, description, tags, keywords,
-    }),
-  })
-  if (!resp.ok) {
-    const err = await resp.text().catch(() => 'Unknown error')
-    throw new Error(`Publish failed (${resp.status}): ${err}`)
-  }
-  return resp.json()
-}
-
-/**
- * Remove a tutorial from the dynamic index (does not delete the .md file).
- */
-export async function unpublishTutorial(slug) {
-  const resp = await fetch(`/api/tutorials/${slug}`, {
-    method: 'DELETE',
-    credentials: 'include',
-  })
-  if (!resp.ok) throw new Error(`Unpublish failed: ${resp.status}`)
-  return resp.json()
-}

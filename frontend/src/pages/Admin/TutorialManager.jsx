@@ -1,9 +1,9 @@
 import React, { useState, useMemo, useCallback } from 'react'
 import {
   getAllTutorials, addImportedTutorials, removeImportedTutorials,
-  saveEditedContent, addPathway, updatePathway
+  saveEditedContent, addPathway, updatePathway,
+  loadTutorialContent
 } from '../../services/contentLoader'
-import { createMaterial } from '../../services/pipelineApi'
 import { CATEGORY_LABELS, DIFFICULTY_LABELS } from '../../utils/constants'
 import TutorialEditor from '../../components/TutorialEditor/TutorialEditor'
 import PathwayEditor from '../../components/PathwayEditor/PathwayEditor'
@@ -122,12 +122,27 @@ const TutorialManager = () => {
     else { setSortKey(key); setSortDir('asc') }
   }
 
-  const handleCycleStatus = (id) => {
-    setStatuses((prev) => {
-      const next = { ...prev, [id]: STATUS_CYCLE[prev[id]] || 'draft' }
-      saveStatuses(next)
-      return next
-    })
+  const handleCycleStatus = async (id) => {
+    const tutorial = allTutorials.find((t) => t.id === id)
+    if (!tutorial) return
+    const currentStatus = statuses[id] || tutorial?.status || 'draft'
+    const nextStatus = STATUS_CYCLE[currentStatus] || 'draft'
+
+    try {
+      if (nextStatus === 'published') {
+        const content = await loadTutorialContent(tutorial.slug)
+        if (!content) throw new Error('正文为空或加载失败，无法发布。')
+      }
+
+      setStatuses((prev) => {
+        const next = { ...prev, [id]: nextStatus }
+        saveStatuses(next)
+        return next
+      })
+      setRefreshKey(k => k + 1)
+    } catch (err) {
+      alert(err?.message || '状态更新失败，请检查教程正文是否可用。')
+    }
   }
 
   const handleDelete = (id) => {
@@ -154,51 +169,24 @@ const TutorialManager = () => {
 
   /* ---------- TutorialEditor save ---------- */
   const handleEditorSave = useCallback(async ({ tutorial: tut, status }) => {
-    if (tut.id) {
-      // Edit existing
-      const stored = JSON.parse(localStorage.getItem('learn-llm-imported-tutorials') || '[]')
-      const idx = stored.findIndex(t => t.id === tut.id)
-      if (idx >= 0) stored[idx] = { ...stored[idx], ...tut }
-      else stored.push(tut)
-      localStorage.setItem('learn-llm-imported-tutorials', JSON.stringify(stored))
-    } else {
-      // Create new
-      const newTut = {
-        id: 'tut-custom-' + Date.now(),
-        slug: tut.slug,
-        title: tut.title,
-        description: tut.content ? tut.content.split('\n').find(l => l.trim() && !l.startsWith('#')) || tut.title : tut.title,
-        category: tut.category,
-        subcategory: tut.category,
-        difficulty: tut.difficulty,
-        estimatedTime: tut.estimatedTime,
-        tags: tut.tags,
-        keywords: tut.keywords || tut.tags,
-        prerequisites: [],
-        featured: false,
-        tutorialType: tut.tutorialType || 'single',
-        pathwayId: tut.pathwayId || null,
-        stepOrder: tut.stepOrder || null,
-        file: '/content/tutorials/' + tut.category + '/' + tut.slug + '.md',
-      }
-      addImportedTutorials([newTut])
-      setStatuses((prev) => {
-        const next = { ...prev, [newTut.id]: status }
-        saveStatuses(next)
-        return next
-      })
-    }
+    const savedTut = buildTutorialRecord(tut, status)
+
+    const stored = JSON.parse(localStorage.getItem('learn-llm-imported-tutorials') || '[]')
+    const idx = stored.findIndex(t => t.id === savedTut.id || t.slug === savedTut.slug)
+    if (idx >= 0) stored[idx] = { ...stored[idx], ...savedTut }
+    else stored.push(savedTut)
+    localStorage.setItem('learn-llm-imported-tutorials', JSON.stringify(stored))
+
+    setStatuses((prev) => {
+      const next = { ...prev, [savedTut.id]: status }
+      saveStatuses(next)
+      return next
+    })
 
     saveEditedContent(tut.slug, tut.content || '', {
       title: tut.title, category: tut.category, difficulty: tut.difficulty,
       tags: tut.tags, estimatedTime: tut.estimatedTime,
     })
-
-    // Best-effort API call
-    try {
-      await createMaterial({ title: tut.title, content: tut.content || '', category: tut.category, difficulty: tut.difficulty, tags: tut.tags })
-    } catch {}
-
     setEditorState(null)
     setRefreshKey(k => k + 1)
 
@@ -248,24 +236,7 @@ const TutorialManager = () => {
 
   const handleChapterEditorSave = useCallback(async ({ tutorial: tut, status }) => {
     // Save the chapter tutorial
-    const newTut = {
-      id: 'tut-custom-' + Date.now(),
-      slug: tut.slug,
-      title: tut.title,
-      description: tut.content ? tut.content.split('\n').find(l => l.trim() && !l.startsWith('#')) || tut.title : tut.title,
-      category: tut.category,
-      subcategory: tut.category,
-      difficulty: tut.difficulty,
-      estimatedTime: tut.estimatedTime,
-      tags: tut.tags,
-      keywords: tut.keywords || tut.tags,
-      prerequisites: [],
-      featured: false,
-      tutorialType: 'pathway',
-      pathwayId: tut.pathwayId,
-      stepOrder: tut.stepOrder,
-      file: '/content/tutorials/' + tut.category + '/' + tut.slug + '.md',
-    }
+    const newTut = buildTutorialRecord({ ...tut, tutorialType: 'pathway' }, status)
     addImportedTutorials([newTut])
     setStatuses((prev) => {
       const next = { ...prev, [newTut.id]: status }
@@ -303,24 +274,32 @@ const TutorialManager = () => {
     const newTutorials = []
     for (const mat of editedMaterials) {
       try {
-        await createMaterial({
-          title: mat.editedTitle, content: mat.content || '',
-          category: mat.editedCategory, difficulty: mat.editedDifficulty,
-          tags: Array.isArray(mat.editedTags) ? mat.editedTags : [],
-        })
         const matSlug = slugify(mat.editedTitle) || ('imported-' + Date.now())
-        newTutorials.push({
+        const assignment = assignments?.find((a) => a.materialIndex === editedMaterials.indexOf(mat)) || {}
+        const status = assignment.publish ? 'published' : 'draft'
+        const newTutorial = {
           id: 'tut-custom-' + Date.now() + '-' + created,
           slug: matSlug,
           title: mat.editedTitle,
-          description: mat.editedCategory + ' / ' + mat.editedDifficulty,
+          description: getDescriptionFromContent(mat.content, mat.editedTitle),
           category: mat.editedCategory, subcategory: mat.editedCategory,
           difficulty: mat.editedDifficulty, estimatedTime: mat.estimatedTime || 25,
           tags: Array.isArray(mat.editedTags) ? mat.editedTags : [],
           keywords: Array.isArray(mat.editedTags) ? mat.editedTags : [],
           prerequisites: [], featured: false,
-          tutorialType: 'single',
+          tutorialType: assignment.pathwayId ? 'pathway' : 'single',
+          pathwayId: assignment.pathwayId || null,
+          stepOrder: assignment.stepOrder || null,
           file: '/content/tutorials/' + mat.editedCategory + '/' + matSlug + '.md',
+          status,
+        }
+        newTutorials.push(newTutorial)
+        saveEditedContent(matSlug, mat.content || '', {
+          title: mat.editedTitle,
+          category: mat.editedCategory,
+          difficulty: mat.editedDifficulty,
+          tags: newTutorial.tags,
+          estimatedTime: newTutorial.estimatedTime,
         })
         created++
       } catch (err) { console.error('Import failed:', mat.editedTitle, err) }
@@ -330,7 +309,7 @@ const TutorialManager = () => {
       setRefreshKey(k => k + 1)
       setStatuses((prev) => {
         const next = { ...prev }
-        newTutorials.forEach((t) => { next[t.id] = 'draft' })
+        newTutorials.forEach((t) => { next[t.id] = t.status || 'draft' })
         saveStatuses(next)
         return next
       })
@@ -507,6 +486,39 @@ function slugify(text) {
     .replace(/[^a-z0-9一-鿿]+/g, '-')
     .replace(/^-|-$/g, '')
     .substring(0, 80)
+}
+
+function buildTutorialRecord(tut, status = 'draft') {
+  const slug = tut.slug || slugify(tut.title) || ('tutorial-' + Date.now())
+  const category = tut.category || 'practice'
+  return {
+    id: tut.id || 'tut-custom-' + Date.now(),
+    slug,
+    title: tut.title,
+    description: getDescriptionFromContent(tut.content, tut.title),
+    category,
+    subcategory: tut.subcategory || category,
+    difficulty: tut.difficulty || 'beginner',
+    estimatedTime: tut.estimatedTime || 15,
+    tags: tut.tags || [],
+    keywords: tut.keywords || tut.tags || [],
+    prerequisites: tut.prerequisites || [],
+    featured: Boolean(tut.featured),
+    tutorialType: tut.tutorialType || 'single',
+    pathwayId: tut.pathwayId || null,
+    stepOrder: tut.stepOrder || null,
+    file: '/content/tutorials/' + category + '/' + slug + '.md',
+    status,
+  }
+}
+
+function getDescriptionFromContent(content, fallback) {
+  if (!content) return fallback || ''
+  const line = content
+    .split('\n')
+    .map((l) => l.trim())
+    .find((l) => l && !l.startsWith('#') && !l.startsWith('---'))
+  return line || fallback || ''
 }
 
 export default TutorialManager

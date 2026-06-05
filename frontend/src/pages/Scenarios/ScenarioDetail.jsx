@@ -17,7 +17,7 @@ const ScenarioDetail = () => {
   /* Resolve tutorial references */
   const tutorials = useMemo(() => {
     if (!scenario || !scenario.tutorials) return [];
-    return scenario.tutorials.map((tutSlug) => getTutorialBySlug(tutSlug)).filter(Boolean);
+    return scenario.tutorials.map((tutSlug) => getTutorialBySlug(tutSlug, { status: 'published' })).filter(Boolean);
   }, [scenario]);
 
   /* Parse workflow string into steps */
