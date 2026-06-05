@@ -30,6 +30,43 @@ const NAV_ITEMS = [
       </svg>
     ),
   },
+  {
+    to: '/admin/scenarios',
+    label: '场景管理',
+    icon: (
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fillRule="evenodd" d="M10 2a6 6 0 00-6 6c0 4.5 6 10 6 10s6-5.5 6-10a6 6 0 00-6-6zm0 8.25A2.25 2.25 0 1110 5.75a2.25 2.25 0 010 4.5z" clipRule="evenodd" />
+      </svg>
+    ),
+  },
+  {
+    to: '/admin/prompts',
+    label: '提示词管理',
+    icon: (
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path d="M4 3a2 2 0 00-2 2v7a2 2 0 002 2h2.5L10 17.5l3.5-3.5H16a2 2 0 002-2V5a2 2 0 00-2-2H4zm2 4h8v1.5H6V7zm0 3h5v1.5H6V10z" />
+      </svg>
+    ),
+  },
+  {
+    to: '/admin/tools',
+    label: '工具管理',
+    icon: (
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fillRule="evenodd" d="M11.49 2.17a1 1 0 011.03.24l5.07 5.07a1 1 0 01-.7 1.71h-2.08l-5.3 5.3a3 3 0 11-4.24-4.24l5.3-5.3V2.87a1 1 0 01.92-.7zM6.68 11.66a1 1 0 101.41 1.41l4.6-4.6-1.41-1.41-4.6 4.6z" clipRule="evenodd" />
+      </svg>
+    ),
+  },
+  {
+    to: '/admin/skills',
+    label: '技能管理',
+    icon: (
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path d="M10 2l7 4v8l-7 4-7-4V6l7-4zm0 2.3L5 7.15v5.7l5 2.85 5-2.85v-5.7L10 4.3z" />
+        <path d="M10 6.5l3 1.7v3.6l-3 1.7-3-1.7V8.2l3-1.7z" />
+      </svg>
+    ),
+  },
 ]
 
 const AdminLayout = () => {

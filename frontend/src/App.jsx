@@ -23,6 +23,7 @@ import AdminLayout from './pages/Admin/AdminLayout';
 import TutorialManager from './pages/Admin/TutorialManager';
 import PathwayManager from './pages/Admin/PathwayManager';
 import MaterialsBrowser from './pages/Admin/MaterialsBrowser';
+import ContentEntityManager from './pages/Admin/ContentEntityManager';
 import ErrorBoundary from './components/ErrorBoundary';
 import NotFound from './pages/NotFound';
 
@@ -36,6 +37,11 @@ const App = () => {
           <Route index element={<Navigate to="/admin/tutorials" replace />} />
           <Route path="tutorials" element={<TutorialManager />} />
           <Route path="pathways" element={<PathwayManager />} />
+          <Route path="scenarios" element={<ContentEntityManager type="scenarios" />} />
+          <Route path="prompts" element={<ContentEntityManager type="prompts" />} />
+          <Route path="tools" element={<ContentEntityManager type="tools" />} />
+          <Route path="skills" element={<ContentEntityManager type="skills" />} />
+          <Route path="skill-packages" element={<ContentEntityManager type="skill-packages" />} />
           <Route path="materials" element={<MaterialsBrowser />} />
         </Route>
 

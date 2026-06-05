@@ -1,0 +1,130 @@
+.admin-entity-manager {
+  min-width: 0;
+}
+
+.admin-entity-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  background: rgba(15, 23, 42, 0.52);
+}
+
+.admin-entity-modal {
+  width: min(920px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.admin-entity-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.admin-entity-modal-header h2 {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  color: var(--text-primary);
+}
+
+.admin-entity-close {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--text-tertiary);
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.admin-entity-close:hover {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.admin-entity-form {
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing-md);
+  padding: var(--spacing-xl);
+}
+
+.admin-entity-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.admin-entity-field--wide {
+  grid-column: 1 / -1;
+}
+
+.admin-entity-field span {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.admin-entity-field input,
+.admin-entity-field textarea {
+  width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  font: inherit;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  resize: vertical;
+}
+
+.admin-entity-field input:focus,
+.admin-entity-field textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.admin-entity-error {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  background: rgba(220, 38, 38, 0.08);
+  color: var(--error-color);
+  font-size: var(--font-size-sm);
+}
+
+.admin-entity-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  border-top: 1px solid var(--border-color);
+}
+
+@media (max-width: 720px) {
+  .admin-entity-modal-backdrop {
+    padding: var(--spacing-md);
+  }
+
+  .admin-entity-form {
+    grid-template-columns: 1fr;
+    padding: var(--spacing-lg);
+  }
+}
