@@ -269,6 +269,7 @@ export function getToolBySlug(slug) {
 }
 
 export function getAllTools(filters = {}) {
+  if (!filters) filters = {}
   if (typeof filters === 'string') filters = { category: filters }
   let result = mergeBySlug(toolsIndex, _customTools, _deletedTools)
   if (filters.category) result = result.filter((t) => t.category === filters.category);
@@ -334,6 +335,7 @@ export function getScenarioBySlug(slug) {
 }
 
 export function getAllScenarios(filters = {}) {
+  if (!filters) filters = {}
   let result = mergeBySlug(scenariosIndex, _customScenarios, _deletedScenarios);
   if (filters.category) result = result.filter((s) => s.category === filters.category);
   if (filters.search) {
@@ -372,6 +374,7 @@ export function getPromptBySlug(slug) {
 }
 
 export function getAllPrompts(filters = {}) {
+  if (!filters) filters = {}
   let result = mergeBySlug(promptsIndex, _customPrompts, _deletedPrompts);
   if (filters.category) result = result.filter((p) => p.category === filters.category);
   if (filters.difficulty) result = result.filter((p) => p.difficulty === filters.difficulty);
@@ -411,6 +414,7 @@ export function getSkillBySlug(slug) {
 }
 
 export function getAllSkills(filters = {}) {
+  if (!filters) filters = {}
   let result = mergeBySlug(skillsIndex, _customSkills, _deletedSkills);
   if (filters.category) result = result.filter((s) => s.category === filters.category);
   if (filters.package) result = result.filter((s) => s.package === filters.package);
@@ -449,6 +453,7 @@ export function getSkillPackage(slug) {
 
 /** Get all skill packages */
 export function getAllSkillPackages(filters = {}) {
+  if (!filters) filters = {}
   let result = mergeBySlug(skillsPackagesIndex, _customSkillPackages, _deletedSkillPackages)
   if (filters.search) {
     const q = filters.search.toLowerCase()
