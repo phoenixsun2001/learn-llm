@@ -20,6 +20,8 @@ python run_pipeline.py --update-index       # Rebuild search index only
 # Pipeline tests (set PYTHONPATH first)
 cd pipeline && PYTHONPATH="." python tests/test_rss_fetcher.py
 PYTHONPATH="." python tests/test_dedup.py
+PYTHONPATH="." python tests/test_writer.py
+PYTHONPATH="." python tests/test_pipeline.py
 
 # Admin backend (FastAPI on port 8400)
 cd pipeline && python -m admin_dashboard.main
@@ -35,15 +37,17 @@ cd pipeline && python -m admin_dashboard.main
 
 ## Architecture
 
-**Learn-LLM** is an open-source AI learning platform with three entry points: tutorial library, scenario search, and tool wizard. Content is curated from RSS feeds through an AI pipeline and served as static Markdown.
+**Learn-LLM** is an open-source AI learning platform with multiple entry points: tutorial library, scenario search, tool wizard, skill packages, and learning pathways. Content is curated from RSS feeds through an AI pipeline and served as static Markdown. The UI language is Chinese (中文).
 
 ### Frontend (`frontend/`)
 
-React 18 SPA built with **Vite** (not CRA). Uses `react-router-dom` v6 for routing.
+React 18 SPA built with **Vite** (not CRA). Pure JavaScript — no TypeScript. Uses `react-router-dom` v6 for routing.
 
 **Routing** (defined in `src/App.jsx`):
 - `/admin/*` — Admin routes with standalone layout (no public Navbar/Footer), guarded by `AdminGuard`
 - `/*` — Public routes wrapped in Navbar + Footer + AIAssistant
+
+Public routes include: `/`, `/tutorials`, `/tutorials/:slug`, `/tools`, `/tools/:slug`, `/pathways`, `/pathways/:slug`, `/scenarios`, `/scenarios/:slug`, `/skills`, `/skills/:package`, `/skills/:package/:slug`, `/search`.
 
 **Data layer** — Content is served as static JSON indexes (`src/data/*-index.json`) plus Markdown files fetched at runtime from `/content/tutorials/`. `contentLoader.js` is the central data access module; it merges static index data with localStorage-stored imported tutorials, edited content, custom pathways, and per-tutorial status overrides. Key localStorage keys: `learn-llm-imported-tutorials`, `learn-llm-tutorial-statuses`, `learn-llm-edited-content`, `learn-llm-custom-pathways`.
 
@@ -59,10 +63,13 @@ React 18 SPA built with **Vite** (not CRA). Uses `react-router-dom` v6 for routi
 
 Python 3.12 FastAPI app serving an admin dashboard on port 8400.
 
+**LLM backend** (`llm_client.py`) — Shared client with priority order: **ZhipuAI → Anthropic Claude → Ollama → None (fallback)**. Both the pipeline processors and the chat route use this client. Configured via `ZHIPU_API_KEY`, `ANTHROPIC_API_KEY`, and `OLLAMA_BASE_URL` env vars.
+
 **Admin dashboard** (`admin_dashboard/main.py`):
 - Cookie-token auth middleware (`admin_token` cookie vs `ADMIN_TOKEN` env var)
 - Jinja2 server-rendered templates for the dashboard UI
-- REST API routes: `routes/review.py`, `routes/materials.py`, `routes/sources.py`
+- REST API routes: `routes/review.py`, `routes/materials.py`, `routes/sources.py`, `routes/tutorials.py`, `routes/chat.py`
+- `routes/chat.py` proxies frontend AI Assistant requests to the LLM backend (API key stays server-side)
 - SQLite database (`data/admin.db`) for pipeline state — initialized on startup via `models.py`
 - Static files served from `admin_dashboard/static/`
 
@@ -70,12 +77,26 @@ Python 3.12 FastAPI app serving an admin dashboard on port 8400.
 ```
 Step 1: Fetch    (fetchers/) — RSS, GitHub, web scrapers
 Step 2: Dedup    (processors/dedup.py) — sentence-transformers embeddings + cosine similarity
-Step 3: Summarize (processors/summarizer.py) — Claude API or Ollama
+Step 3: Summarize (processors/summarizer.py) — LLM via llm_client.py (ZhipuAI / Claude / Ollama)
 Step 4: Classify (processors/classifier.py) — AI classification + difficulty rating
 Step 5: Output   (output/writer.py) — Write .md + .json to content/materials/, update search index
 ```
 
-**Config** (`config.py`): Dataclass-based, reads from environment variables. Default RSS feeds: Anthropic, OpenAI, LangChain, Dify blogs. AI steps are skipped if no `ANTHROPIC_API_KEY` is set.
+**Config** (`config.py`): Dataclass-based, reads from environment variables. Default RSS feeds: Anthropic, OpenAI, LangChain, Dify blogs. AI steps are skipped if no LLM API key is configured.
+
+### Key Environment Variables
+
+| Variable | Purpose | Required |
+|---|---|---|
+| `VITE_SUPABASE_URL` | Supabase project URL (auth + DB) | Optional |
+| `VITE_SUPABASE_ANON_KEY` | Supabase anon key | Optional |
+| `ADMIN_TOKEN` | Admin dashboard login token | Yes (for admin) |
+| `ANTHROPIC_API_KEY` | Claude API for pipeline processing | Optional |
+| `ZHIPU_API_KEY` | ZhipuAI API (primary LLM backend) | Optional |
+| `ZHIPU_API_BASE` | ZhipuAI API base URL | Optional |
+| `ZHIPU_MODEL` | ZhipuAI model name (default: `GLM-4.7`) | Optional |
+| `OLLAMA_BASE_URL` | Ollama local LLM fallback | Optional |
+| `PIPELINE_OUTPUT_DIR` | Materials output directory | Optional |
 
 ### Database (Supabase)
 
@@ -97,6 +118,8 @@ Two services on a shared `learn-llm` bridge network:
 - **frontend** — Multi-stage build: Node 20 Alpine → Vite build → Nginx 1.27 Alpine serving `/usr/share/nginx/html`
 - **backend** — Python 3.12 Slim running uvicorn, with `content/` and `pipeline/data/` mounted as volumes
 
+The backend uses `requirements-docker.txt` (lightweight, excludes `sentence-transformers` and `chromadb` which add ~3GB). For full pipeline ML capabilities, use the standard `requirements.txt`.
+
 Environment variables are passed at build time for the frontend and at runtime for the backend. The `.env` file is gitignored; `.env.example` is the template.
 
 ### Graceful Degradation
@@ -104,4 +127,4 @@ Environment variables are passed at build time for the frontend and at runtime f
 The app is designed to work without any backend services:
 - No Supabase → auth is hidden, progress is localStorage-only
 - No backend container → admin pages won't work, but all public pages function
-- No AI API keys → pipeline skips summarization/classification steps
+- No AI API keys → pipeline skips summarization/classification steps, AI Assistant chat returns an error

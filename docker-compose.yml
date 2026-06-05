@@ -1,7 +1,5 @@
 services:
-  # ============================================
   # Frontend: React SPA served by nginx
-  # ============================================
   frontend:
     build:
       context: ./frontend
@@ -21,9 +19,7 @@ services:
     networks:
       - learn-llm
 
-  # ============================================
   # Backend: Pipeline Admin Dashboard (FastAPI)
-  # ============================================
   backend:
     build:
       context: ./pipeline
@@ -45,6 +41,9 @@ services:
       - PIPELINE_OUTPUT_DIR=/app/content/materials/
       - CONTENT_ROOT=/app/content
       - FRONTEND_DATA_DIR=/app/frontend-data/
+      - ZHIPU_API_KEY=${ZHIPU_API_KEY:-}
+      - ZHIPU_API_BASE=${ZHIPU_API_BASE:-https://open.bigmodel.cn/api/coding/paas/v4}
+      - ZHIPU_MODEL=${ZHIPU_MODEL:-GLM-4.7}
     networks:
       - learn-llm
 
