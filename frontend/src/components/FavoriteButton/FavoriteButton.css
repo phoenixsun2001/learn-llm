@@ -1,0 +1,39 @@
+.favorite-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.favorite-btn:hover:not(:disabled) {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.favorite-btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.favorite-btn-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.favorite-btn--active {
+  border-color: var(--warning-color);
+  color: var(--warning-color);
+  background-color: rgba(245, 158, 11, 0.08);
+}
+
+.favorite-btn--active:hover:not(:disabled) {
+  color: var(--warning-color);
+  border-color: var(--warning-color);
+}

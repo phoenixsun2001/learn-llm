@@ -1,24 +1,25 @@
-import React, { useState, useCallback } from 'react';
-import { NavLink, Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
-import AuthModal from '../Auth/AuthModal';
-import './Navbar.css';
+import React, { useState, useCallback } from "react";
+import { NavLink, Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
+import AuthModal from "../Auth/AuthModal";
+import "./Navbar.css";
 
 const NAV_LINKS = [
-  { to: '/pathways',  emoji: '🗺️', label: '学习路径' },
-  { to: '/scenarios', emoji: '🎯', label: '场景检索' },
-  { to: '/prompts',   emoji: '💡', label: '提示词库' },
-  { to: '/tools',     emoji: '🛠️', label: '工具向导' },
-  { to: '/skills',    emoji: '🧩', label: '技能库'   },
-  { to: '/tutorials', emoji: '📖', label: '教程库'   },
+  { to: "/pathways",  emoji: "🗺️", label: "学习路径" },
+  { to: "/scenarios", emoji: "🎯", label: "场景检索" },
+  { to: "/prompts",   emoji: "💡", label: "提示词库" },
+  { to: "/tools",     emoji: "🛠️", label: "工具向导" },
+  { to: "/skills",    emoji: "🧩", label: "技能库"   },
+  { to: "/tutorials", emoji: "📖", label: "教程库"   },
+  { to: "/my-learning", emoji: "📚", label: "我的学习" },
 ];
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [showAuthModal, setShowAuthModal] = useState(false);
   const navigate = useNavigate();
-  const { user, hasSupabase } = useAuth();
+  const { user } = useAuth();
 
   const toggleMenu = useCallback(() => {
     setMenuOpen((prev) => !prev);
@@ -33,7 +34,7 @@ const Navbar = () => {
     const q = searchQuery.trim();
     if (q) {
       navigate(`/search?q=${encodeURIComponent(q)}`);
-      setSearchQuery('');
+      setSearchQuery("");
       closeMenu();
     }
   };
@@ -54,16 +55,16 @@ const Navbar = () => {
 
         {/* Desktop + Mobile nav links */}
         <nav
-          className={`navbar-links${menuOpen ? ' navbar-links--open' : ''}`}
+          className={`navbar-links${menuOpen ? " navbar-links--open" : ""}`}
           aria-label="主导航"
         >
           {NAV_LINKS.map(({ to, emoji, label }) => (
             <NavLink
               key={to}
               to={to}
-              end={to === '/'}
+              end={to === "/"}
               className={({ isActive }) =>
-                `navbar-link${isActive ? ' navbar-link--active' : ''}`
+                `navbar-link${isActive ? " navbar-link--active" : ""}`
               }
               onClick={closeMenu}
               aria-label={label}
@@ -110,45 +111,35 @@ const Navbar = () => {
           </button>
         </form>
 
-        {/* Auth section — only shown when Supabase is configured */}
-        {hasSupabase && (
-          <div className="navbar-auth">
-            {user ? (
-              <button
-                className="navbar-auth-avatar"
-                onClick={() => setShowAuthModal((prev) => !prev)}
-                aria-label="用户菜单"
-                aria-expanded={showAuthModal}
-              >
-                {user.user_metadata?.avatar_url ? (
-                  <img
-                    src={user.user_metadata.avatar_url}
-                    alt=""
-                    className="navbar-auth-avatar-img"
-                  />
-                ) : (
-                  <span className="navbar-auth-avatar-fallback">
-                    {(user.user_metadata?.full_name || user.user_metadata?.user_name || 'U')[0].toUpperCase()}
-                  </span>
-                )}
-              </button>
-            ) : (
-              <button
-                className="navbar-auth-login"
-                onClick={() => setShowAuthModal(true)}
-                aria-label="登录"
-              >
-                登录
-              </button>
-            )}
-          </div>
-        )}
+        {/* Auth section */}
+        <div className="navbar-auth">
+          {user ? (
+            <button
+              className="navbar-auth-avatar"
+              onClick={() => setShowAuthModal((prev) => !prev)}
+              aria-label="用户菜单"
+              aria-expanded={showAuthModal}
+            >
+              <span className="navbar-auth-avatar-fallback">
+                {(user.email || "U")[0].toUpperCase()}
+              </span>
+            </button>
+          ) : (
+            <button
+              className="navbar-auth-login"
+              onClick={() => setShowAuthModal(true)}
+              aria-label="登录"
+            >
+              登录
+            </button>
+          )}
+        </div>
 
         {/* Mobile hamburger toggle */}
         <button
-          className={`navbar-toggle${menuOpen ? ' navbar-toggle--open' : ''}`}
+          className={`navbar-toggle${menuOpen ? " navbar-toggle--open" : ""}`}
           onClick={toggleMenu}
-          aria-label={menuOpen ? '关闭导航菜单' : '打开导航菜单'}
+          aria-label={menuOpen ? "关闭导航菜单" : "打开导航菜单"}
           aria-expanded={menuOpen}
         >
           <span className="navbar-toggle-bar" />

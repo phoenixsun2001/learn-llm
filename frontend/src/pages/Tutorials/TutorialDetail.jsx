@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useSearchParams } from 'react-router-dom';
 import { getTutorialBySlug, loadTutorialContent } from '../../services/contentLoader';
 import TutorialRenderer from '../../components/TutorialRenderer/TutorialRenderer';
+import FavoriteButton from '../../components/FavoriteButton/FavoriteButton';
+import { useHistoryView } from '../../hooks/useHistoryView';
 import './TutorialDetail.css';
 
 const TutorialDetail = () => {
@@ -13,6 +15,7 @@ const TutorialDetail = () => {
   const [content, setContent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  useHistoryView('tutorial', slug);
 
   useEffect(() => {
     let cancelled = false;
@@ -81,6 +84,9 @@ const TutorialDetail = () => {
         )}
       </nav>
 
+      <div className="tutorial-detail-actions">
+        <FavoriteButton type="tutorial" slug={slug} />
+      </div>
       <TutorialRenderer
         tutorial={tutorial}
         content={content}

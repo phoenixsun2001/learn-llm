@@ -5,11 +5,8 @@ import { CATEGORIES, CATEGORY_LABELS, DIFFICULTY_LABELS } from '../../utils/cons
 import './TutorialList.css';
 
 /* ---------- filter configs derived from constants ---------- */
-const CATEGORY_OPTIONS = [
-  { key: null, label: '全部' },
-  ...Object.values(CATEGORIES).map((v) => ({ key: v, label: CATEGORY_LABELS[v] })),
-];
-
+/* Category chips are computed inside the component so empty categories
+   (those with no published tutorials) are hidden from the filter bar. */
 const DIFFICULTY_OPTIONS = [
   { key: null, label: '全部难度' },
   ...Object.entries(DIFFICULTY_LABELS).map(([k, v]) => ({ key: k, label: v })),
@@ -26,6 +23,22 @@ const TutorialList = () => {
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState(null);
   const [activeDifficulty, setActiveDifficulty] = useState(null);
+
+  /* Full published set (unfiltered) — used to hide categories with no content. */
+  const allPublished = useMemo(() => getAllTutorials({ status: 'published' }), []);
+  const availableCategories = useMemo(
+    () => new Set(allPublished.map((t) => t.category).filter(Boolean)),
+    [allPublished]
+  );
+  const categoryOptions = useMemo(
+    () => [
+      { key: null, label: '全部' },
+      ...Object.values(CATEGORIES)
+        .filter((v) => availableCategories.has(v))
+        .map((v) => ({ key: v, label: CATEGORY_LABELS[v] })),
+    ],
+    [availableCategories]
+  );
 
   /* Derive filtered list via useMemo — only published tutorials on public page */
   const tutorials = useMemo(() => {
@@ -74,7 +87,7 @@ const TutorialList = () => {
 
         {/* Category chips */}
         <div className="tutorial-list-chip-row" role="group" aria-label="按分类筛选">
-          {CATEGORY_OPTIONS.map(({ key, label }) => (
+          {categoryOptions.map(({ key, label }) => (
             <button
               key={key ?? '__all_cat__'}
               className={`tutorial-list-chip${activeCategory === key ? ' tutorial-list-chip--active' : ''}`}

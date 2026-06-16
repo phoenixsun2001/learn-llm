@@ -19,10 +19,12 @@ import SkillList from './pages/Skills/SkillList';
 import SkillPackage from './pages/Skills/SkillPackage';
 import SkillDetail from './pages/Skills/SkillDetail';
 import SearchResults from './pages/Search/SearchResults';
+import MyLearning from './pages/MyLearning/MyLearning';
 import AdminLayout from './pages/Admin/AdminLayout';
 import TutorialManager from './pages/Admin/TutorialManager';
 import PathwayManager from './pages/Admin/PathwayManager';
 import MaterialsBrowser from './pages/Admin/MaterialsBrowser';
+import UserManager from "./pages/Admin/UserManager";
 import ContentEntityManager from './pages/Admin/ContentEntityManager';
 import ErrorBoundary from './components/ErrorBoundary';
 import NotFound from './pages/NotFound';
@@ -43,6 +45,7 @@ const App = () => {
           <Route path="skills" element={<ContentEntityManager type="skills" />} />
           <Route path="skill-packages" element={<ContentEntityManager type="skill-packages" />} />
           <Route path="materials" element={<MaterialsBrowser />} />
+          <Route path="users" element={<UserManager />} />
         </Route>
 
         {/* Public routes */}
@@ -65,6 +68,7 @@ const App = () => {
                 <Route path="/skills" element={<SkillList />} />
                 <Route path="/skills/:package" element={<SkillPackage />} />
                 <Route path="/skills/:package/:slug" element={<SkillDetail />} />
+                <Route path="/my-learning" element={<MyLearning />} />
                 <Route path="/search" element={<SearchResults />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
