@@ -1,1 +1,25 @@
 .env
+
+# Claude Code migration archive (contains session history with secrets/keys)
+.migration-from-claude/
+
+# AI coding tool artifacts
+.claude/
+.playwright-mcp/
+
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Local data
+pipeline/data/
+pipeline/admin_dashboard/__pycache__/
+pipeline/tests/__pycache__/
+
+# Editor state
+.obsidian/workspace.json
+
+# Local reference materials / screenshots
+Clippings/
+docs/Source/
+*.png
