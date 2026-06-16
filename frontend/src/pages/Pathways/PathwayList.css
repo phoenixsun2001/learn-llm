@@ -88,8 +88,7 @@
   font-size: var(--font-size-sm);
   color: var(--text-secondary);
   line-height: 1.7;
-  margin: 0 0 var(--spacing-lg);
-  flex: 1;
+  margin: 0 0 var(--spacing-md);
   /* Clamp to 2 lines */
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -97,13 +96,22 @@
   overflow: hidden;
 }
 
+.pathway-card-audience {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+  line-height: 1.6;
+  margin: 0 0 var(--spacing-lg);
+  flex: 1;
+}
+
 /* ---------- Card Footer ---------- */
 .pathway-card-footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 100%;
   gap: var(--spacing-sm);
+  flex-wrap: wrap;
 }
 
 .pathway-card-steps {
@@ -114,7 +122,15 @@
   font-weight: 500;
 }
 
+.pathway-card-time {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+}
+
 .pathway-card-arrow {
+  margin-left: auto;
   font-size: var(--font-size-md);
   color: var(--text-tertiary);
   transition: transform 0.2s ease, color 0.15s ease;

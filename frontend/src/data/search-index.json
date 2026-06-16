@@ -114,6 +114,8 @@
       "IDE",
       "编码",
       "助手",
+      "SOLO",
+      "Builder",
       "harness"
     ],
     "category": "harness"
@@ -141,6 +143,8 @@
       "工作流",
       "低代码",
       "字节",
+      "Coze 3.0",
+      "多 Agent",
       "workflow"
     ],
     "category": "workflow"
@@ -206,7 +210,7 @@
       "architecture",
       "transformer"
     ],
-    "category": "llm_basics",
+    "category": "principle",
     "difficulty": "intermediate"
   },
   {
@@ -219,49 +223,1006 @@
       "best",
       "practices"
     ],
-    "category": "rag",
+    "category": "development",
     "difficulty": "advanced"
   },
-  {"type":"tutorial","slug":"cc-switch-guide","title":"CC Switch 统一管理工具指南","keywords":["cc","switch","管理工具","供应商","切换","代理","高可用","tauri","用量","token"],"category":"harness","difficulty":"beginner"},
-  {"type":"tool","slug":"cc-switch","title":"CC Switch","keywords":["管理工具","供应商切换","代理","开源","tauri","claude","codex","gemini"],"category":"harness"},
-  {"type":"tutorial","slug":"superpowers-engineering-guide","title":"AI 工程化编程全流程实战","keywords":["superpowers","工程化","TDD","workflow","codex","claude","流程","纪律","审查"],"category":"practice","difficulty":"intermediate"},
-  {"type":"scenario","slug":"engineering-workflow","title":"工程化编程全流程实战","keywords":["工程化","工作流","TDD","superpowers","流程","规范","codex"],"category":"practice"},
-  {"type":"scenario","slug":"email-writing","title":"AI 邮件撰写助手","keywords":["邮件","撰写","沟通","商务","通知","email"],"category":"writing"},
-  {"type":"scenario","slug":"meeting-minutes","title":"会议纪要自动生成","keywords":["会议","纪要","记录","决议","行动项","minutes"],"category":"writing"},
-  {"type":"scenario","slug":"report-writing","title":"报告与方案撰写","keywords":["报告","方案","撰写","项目","技术方案","商业提案"],"category":"writing"},
-  {"type":"scenario","slug":"market-research","title":"市场调研分析","keywords":["市场","调研","竞品","行业","趋势","分析"],"category":"research"},
-  {"type":"scenario","slug":"literature-review","title":"文献综述与知识梳理","keywords":["文献","综述","知识梳理","研究","学术","检索"],"category":"research"},
-  {"type":"scenario","slug":"data-analysis-report","title":"数据分析报告","keywords":["数据","分析","报告","可视化","统计","图表"],"category":"analysis"},
-  {"type":"scenario","slug":"project-planning","title":"项目任务规划","keywords":["项目","规划","任务","WBS","排期","依赖"],"category":"management"},
-  {"type":"scenario","slug":"risk-assessment","title":"风险评估与预案","keywords":["风险","评估","预案","应急","项目管理"],"category":"management"},
-  {"type":"scenario","slug":"social-media-content","title":"社交媒体内容创作","keywords":["社交","媒体","文案","内容","小红书","公众号"],"category":"creative"},
-  {"type":"scenario","slug":"brainstorming-ideation","title":"头脑风暴与创意发想","keywords":["头脑风暴","创意","发想","SCAMPER","创新","方法论"],"category":"creative"},
-  {"type":"scenario","slug":"client-communication","title":"客户沟通与响应","keywords":["客户","沟通","回复","投诉","咨询","服务"],"category":"communication"},
-  {"type":"scenario","slug":"knowledge-extraction","title":"知识提炼与总结","keywords":["知识","提炼","总结","摘要","文档","学习"],"category":"learning"},
-  {"type":"scenario","slug":"translation-localization","title":"多语言翻译与本地化","keywords":["翻译","本地化","多语言","术语","中英文","translation"],"category":"translation"},
-  {"type":"prompt","slug":"email-drafting","title":"邮件撰写助手","keywords":["邮件","沟通","商务","通知","email","撰写"],"category":"writing","difficulty":"beginner"},
-  {"type":"prompt","slug":"meeting-minutes-gen","title":"会议纪要生成器","keywords":["会议","纪要","记录","决议","行动项","minutes"],"category":"writing","difficulty":"beginner"},
-  {"type":"prompt","slug":"project-report-writing","title":"项目报告撰写","keywords":["报告","项目","总结","进展","评审"],"category":"writing","difficulty":"intermediate"},
-  {"type":"prompt","slug":"business-proposal-draft","title":"商业提案草稿","keywords":["提案","商业","方案","立项","合作","proposal"],"category":"writing","difficulty":"intermediate"},
-  {"type":"prompt","slug":"data-analysis-assistant","title":"数据分析助手","keywords":["数据","分析","SQL","Python","可视化","统计"],"category":"analysis","difficulty":"intermediate"},
-  {"type":"prompt","slug":"swot-analysis","title":"SWOT 分析框架","keywords":["SWOT","分析","战略","优势","劣势","机会","威胁"],"category":"analysis","difficulty":"beginner"},
-  {"type":"prompt","slug":"competitive-analysis","title":"竞品分析报告","keywords":["竞品","分析","对比","市场","对手","competitive"],"category":"analysis","difficulty":"intermediate"},
-  {"type":"prompt","slug":"social-media-copy","title":"社交媒体文案","keywords":["社交","文案","内容","微博","小红书","公众号","copy"],"category":"creative","difficulty":"beginner"},
-  {"type":"prompt","slug":"blog-outline","title":"博客文章大纲","keywords":["博客","文章","大纲","blog","写作","outline"],"category":"creative","difficulty":"beginner"},
-  {"type":"prompt","slug":"brainstorming-facilitator","title":"头脑风暴引导","keywords":["头脑风暴","创意","brainstorm","SCAMPER","发想","创新"],"category":"creative","difficulty":"beginner"},
-  {"type":"prompt","slug":"presentation-outline","title":"演示文稿大纲","keywords":["演示","演讲","PPT","presentation","大纲","汇报"],"category":"creative","difficulty":"intermediate"},
-  {"type":"prompt","slug":"code-review-helper","title":"代码审查助手","keywords":["代码","审查","review","bug","质量","安全"],"category":"coding","difficulty":"intermediate"},
-  {"type":"prompt","slug":"debug-analyzer","title":"调试分析器","keywords":["调试","debug","bug","错误","异常","troubleshoot"],"category":"coding","difficulty":"intermediate"},
-  {"type":"prompt","slug":"tech-doc-generator","title":"技术文档生成器","keywords":["文档","API","README","documentation","技术文档"],"category":"coding","difficulty":"intermediate"},
-  {"type":"prompt","slug":"knowledge-summarizer","title":"知识摘要提取","keywords":["摘要","总结","summary","提取","知识","要点"],"category":"learning","difficulty":"beginner"},
-  {"type":"prompt","slug":"book-notes-gen","title":"读书笔记生成","keywords":["读书","笔记","书籍","book","notes","阅读"],"category":"learning","difficulty":"beginner"},
-  {"type":"prompt","slug":"concept-explainer","title":"概念解释器","keywords":["概念","解释","入门","explain","理解","基础"],"category":"learning","difficulty":"beginner"},
-  {"type":"prompt","slug":"interview-prep","title":"面试准备助手","keywords":["面试","interview","求职","准备","模拟","答题"],"category":"learning","difficulty":"intermediate"},
-  {"type":"prompt","slug":"project-planner","title":"项目计划拆解","keywords":["项目","计划","任务","WBS","拆解","规划"],"category":"management","difficulty":"intermediate"},
-  {"type":"prompt","slug":"weekly-report-gen","title":"周报生成器","keywords":["周报","汇报","weekly","report","工作总结"],"category":"management","difficulty":"beginner"},
-  {"type":"prompt","slug":"risk-assessment-template","title":"风险评估模板","keywords":["风险","评估","risk","预案","应急","管理"],"category":"management","difficulty":"intermediate"},
-  {"type":"prompt","slug":"client-reply-helper","title":"客户回复助手","keywords":["客户","回复","client","客服","投诉","咨询"],"category":"communication","difficulty":"beginner"},
-  {"type":"prompt","slug":"internal-announcement","title":"内部公告撰写","keywords":["公告","通知","announcement","内部","制度","变更"],"category":"communication","difficulty":"beginner"},
-  {"type":"prompt","slug":"document-translator","title":"文档翻译助手","keywords":["翻译","translation","文档","多语言","英文","中文"],"category":"translation","difficulty":"beginner"},
-  {"type":"prompt","slug":"glossary-manager","title":"术语表维护","keywords":["术语","术语表","glossary","一致性","翻译","专业"],"category":"translation","difficulty":"intermediate"}
+  {
+    "type": "tutorial",
+    "slug": "cc-switch-guide",
+    "title": "CC Switch 统一管理工具指南",
+    "keywords": [
+      "cc",
+      "switch",
+      "管理工具",
+      "供应商",
+      "切换",
+      "代理",
+      "高可用",
+      "tauri",
+      "用量",
+      "token"
+    ],
+    "category": "harness",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "tool",
+    "slug": "cc-switch",
+    "title": "CC Switch",
+    "keywords": [
+      "管理工具",
+      "供应商切换",
+      "代理",
+      "开源",
+      "tauri",
+      "claude",
+      "codex",
+      "gemini"
+    ],
+    "category": "harness"
+  },
+  {
+    "type": "tutorial",
+    "slug": "trae-solo-guide",
+    "title": "Trae SOLO Builder 实战指南",
+    "keywords": [
+      "trae",
+      "solo",
+      "builder",
+      "ai ide",
+      "编码助手",
+      "应用生成",
+      "项目上下文"
+    ],
+    "category": "harness",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "tutorial",
+    "slug": "coze-3-guide",
+    "title": "Coze 3.0 多 Agent 协作指南",
+    "keywords": [
+      "coze",
+      "扣子",
+      "3.0",
+      "多 agent",
+      "工作流",
+      "技能包",
+      "团队协作"
+    ],
+    "category": "workflow",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "superpowers-engineering-guide",
+    "title": "AI 工程化编程全流程实战",
+    "keywords": [
+      "superpowers",
+      "工程化",
+      "TDD",
+      "workflow",
+      "codex",
+      "claude",
+      "流程",
+      "纪律",
+      "审查"
+    ],
+    "category": "practice",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "scenario",
+    "slug": "engineering-workflow",
+    "title": "工程化编程全流程实战",
+    "keywords": [
+      "工程化",
+      "工作流",
+      "TDD",
+      "superpowers",
+      "流程",
+      "规范",
+      "codex"
+    ],
+    "category": "practice"
+  },
+  {
+    "type": "scenario",
+    "slug": "email-writing",
+    "title": "AI 邮件撰写助手",
+    "keywords": [
+      "邮件",
+      "撰写",
+      "沟通",
+      "商务",
+      "通知",
+      "email"
+    ],
+    "category": "writing"
+  },
+  {
+    "type": "scenario",
+    "slug": "meeting-minutes",
+    "title": "会议纪要自动生成",
+    "keywords": [
+      "会议",
+      "纪要",
+      "记录",
+      "决议",
+      "行动项",
+      "minutes"
+    ],
+    "category": "writing"
+  },
+  {
+    "type": "scenario",
+    "slug": "report-writing",
+    "title": "报告与方案撰写",
+    "keywords": [
+      "报告",
+      "方案",
+      "撰写",
+      "项目",
+      "技术方案",
+      "商业提案"
+    ],
+    "category": "writing"
+  },
+  {
+    "type": "scenario",
+    "slug": "market-research",
+    "title": "市场调研分析",
+    "keywords": [
+      "市场",
+      "调研",
+      "竞品",
+      "行业",
+      "趋势",
+      "分析"
+    ],
+    "category": "research"
+  },
+  {
+    "type": "scenario",
+    "slug": "literature-review",
+    "title": "文献综述与知识梳理",
+    "keywords": [
+      "文献",
+      "综述",
+      "知识梳理",
+      "研究",
+      "学术",
+      "检索"
+    ],
+    "category": "research"
+  },
+  {
+    "type": "scenario",
+    "slug": "data-analysis-report",
+    "title": "数据分析报告",
+    "keywords": [
+      "数据",
+      "分析",
+      "报告",
+      "可视化",
+      "统计",
+      "图表"
+    ],
+    "category": "analysis"
+  },
+  {
+    "type": "scenario",
+    "slug": "project-planning",
+    "title": "项目任务规划",
+    "keywords": [
+      "项目",
+      "规划",
+      "任务",
+      "WBS",
+      "排期",
+      "依赖"
+    ],
+    "category": "management"
+  },
+  {
+    "type": "scenario",
+    "slug": "risk-assessment",
+    "title": "风险评估与预案",
+    "keywords": [
+      "风险",
+      "评估",
+      "预案",
+      "应急",
+      "项目管理"
+    ],
+    "category": "management"
+  },
+  {
+    "type": "scenario",
+    "slug": "social-media-content",
+    "title": "社交媒体内容创作",
+    "keywords": [
+      "社交",
+      "媒体",
+      "文案",
+      "内容",
+      "小红书",
+      "公众号"
+    ],
+    "category": "creative"
+  },
+  {
+    "type": "scenario",
+    "slug": "brainstorming-ideation",
+    "title": "头脑风暴与创意发想",
+    "keywords": [
+      "头脑风暴",
+      "创意",
+      "发想",
+      "SCAMPER",
+      "创新",
+      "方法论"
+    ],
+    "category": "creative"
+  },
+  {
+    "type": "scenario",
+    "slug": "client-communication",
+    "title": "客户沟通与响应",
+    "keywords": [
+      "客户",
+      "沟通",
+      "回复",
+      "投诉",
+      "咨询",
+      "服务"
+    ],
+    "category": "communication"
+  },
+  {
+    "type": "scenario",
+    "slug": "knowledge-extraction",
+    "title": "知识提炼与总结",
+    "keywords": [
+      "知识",
+      "提炼",
+      "总结",
+      "摘要",
+      "文档",
+      "学习"
+    ],
+    "category": "learning"
+  },
+  {
+    "type": "scenario",
+    "slug": "translation-localization",
+    "title": "多语言翻译与本地化",
+    "keywords": [
+      "翻译",
+      "本地化",
+      "多语言",
+      "术语",
+      "中英文",
+      "translation"
+    ],
+    "category": "translation"
+  },
+  {
+    "type": "prompt",
+    "slug": "email-drafting",
+    "title": "邮件撰写助手",
+    "keywords": [
+      "邮件",
+      "沟通",
+      "商务",
+      "通知",
+      "email",
+      "撰写"
+    ],
+    "category": "writing",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "prompt",
+    "slug": "meeting-minutes-gen",
+    "title": "会议纪要生成器",
+    "keywords": [
+      "会议",
+      "纪要",
+      "记录",
+      "决议",
+      "行动项",
+      "minutes"
+    ],
+    "category": "writing",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "prompt",
+    "slug": "project-report-writing",
+    "title": "项目报告撰写",
+    "keywords": [
+      "报告",
+      "项目",
+      "总结",
+      "进展",
+      "评审"
+    ],
+    "category": "writing",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "prompt",
+    "slug": "business-proposal-draft",
+    "title": "商业提案草稿",
+    "keywords": [
+      "提案",
+      "商业",
+      "方案",
+      "立项",
+      "合作",
+      "proposal"
+    ],
+    "category": "writing",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "prompt",
+    "slug": "data-analysis-assistant",
+    "title": "数据分析助手",
+    "keywords": [
+      "数据",
+      "分析",
+      "SQL",
+      "Python",
+      "可视化",
+      "统计"
+    ],
+    "category": "analysis",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "prompt",
+    "slug": "swot-analysis",
+    "title": "SWOT 分析框架",
+    "keywords": [
+      "SWOT",
+      "分析",
+      "战略",
+      "优势",
+      "劣势",
+      "机会",
+      "威胁"
+    ],
+    "category": "analysis",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "prompt",
+    "slug": "competitive-analysis",
+    "title": "竞品分析报告",
+    "keywords": [
+      "竞品",
+      "分析",
+      "对比",
+      "市场",
+      "对手",
+      "competitive"
+    ],
+    "category": "analysis",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "prompt",
+    "slug": "social-media-copy",
+    "title": "社交媒体文案",
+    "keywords": [
+      "社交",
+      "文案",
+      "内容",
+      "微博",
+      "小红书",
+      "公众号",
+      "copy"
+    ],
+    "category": "creative",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "prompt",
+    "slug": "blog-outline",
+    "title": "博客文章大纲",
+    "keywords": [
+      "博客",
+      "文章",
+      "大纲",
+      "blog",
+      "写作",
+      "outline"
+    ],
+    "category": "creative",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "prompt",
+    "slug": "brainstorming-facilitator",
+    "title": "头脑风暴引导",
+    "keywords": [
+      "头脑风暴",
+      "创意",
+      "brainstorm",
+      "SCAMPER",
+      "发想",
+      "创新"
+    ],
+    "category": "creative",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "prompt",
+    "slug": "presentation-outline",
+    "title": "演示文稿大纲",
+    "keywords": [
+      "演示",
+      "演讲",
+      "PPT",
+      "presentation",
+      "大纲",
+      "汇报"
+    ],
+    "category": "creative",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "prompt",
+    "slug": "code-review-helper",
+    "title": "代码审查助手",
+    "keywords": [
+      "代码",
+      "审查",
+      "review",
+      "bug",
+      "质量",
+      "安全"
+    ],
+    "category": "coding",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "prompt",
+    "slug": "debug-analyzer",
+    "title": "调试分析器",
+    "keywords": [
+      "调试",
+      "debug",
+      "bug",
+      "错误",
+      "异常",
+      "troubleshoot"
+    ],
+    "category": "coding",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "prompt",
+    "slug": "tech-doc-generator",
+    "title": "技术文档生成器",
+    "keywords": [
+      "文档",
+      "API",
+      "README",
+      "documentation",
+      "技术文档"
+    ],
+    "category": "coding",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "prompt",
+    "slug": "knowledge-summarizer",
+    "title": "知识摘要提取",
+    "keywords": [
+      "摘要",
+      "总结",
+      "summary",
+      "提取",
+      "知识",
+      "要点"
+    ],
+    "category": "learning",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "prompt",
+    "slug": "book-notes-gen",
+    "title": "读书笔记生成",
+    "keywords": [
+      "读书",
+      "笔记",
+      "书籍",
+      "book",
+      "notes",
+      "阅读"
+    ],
+    "category": "learning",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "prompt",
+    "slug": "concept-explainer",
+    "title": "概念解释器",
+    "keywords": [
+      "概念",
+      "解释",
+      "入门",
+      "explain",
+      "理解",
+      "基础"
+    ],
+    "category": "learning",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "prompt",
+    "slug": "interview-prep",
+    "title": "面试准备助手",
+    "keywords": [
+      "面试",
+      "interview",
+      "求职",
+      "准备",
+      "模拟",
+      "答题"
+    ],
+    "category": "learning",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "prompt",
+    "slug": "project-planner",
+    "title": "项目计划拆解",
+    "keywords": [
+      "项目",
+      "计划",
+      "任务",
+      "WBS",
+      "拆解",
+      "规划"
+    ],
+    "category": "management",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "prompt",
+    "slug": "weekly-report-gen",
+    "title": "周报生成器",
+    "keywords": [
+      "周报",
+      "汇报",
+      "weekly",
+      "report",
+      "工作总结"
+    ],
+    "category": "management",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "prompt",
+    "slug": "risk-assessment-template",
+    "title": "风险评估模板",
+    "keywords": [
+      "风险",
+      "评估",
+      "risk",
+      "预案",
+      "应急",
+      "管理"
+    ],
+    "category": "management",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "prompt",
+    "slug": "client-reply-helper",
+    "title": "客户回复助手",
+    "keywords": [
+      "客户",
+      "回复",
+      "client",
+      "客服",
+      "投诉",
+      "咨询"
+    ],
+    "category": "communication",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "prompt",
+    "slug": "internal-announcement",
+    "title": "内部公告撰写",
+    "keywords": [
+      "公告",
+      "通知",
+      "announcement",
+      "内部",
+      "制度",
+      "变更"
+    ],
+    "category": "communication",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "prompt",
+    "slug": "document-translator",
+    "title": "文档翻译助手",
+    "keywords": [
+      "翻译",
+      "translation",
+      "文档",
+      "多语言",
+      "英文",
+      "中文"
+    ],
+    "category": "translation",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "prompt",
+    "slug": "glossary-manager",
+    "title": "术语表维护",
+    "keywords": [
+      "术语",
+      "术语表",
+      "glossary",
+      "一致性",
+      "翻译",
+      "专业"
+    ],
+    "category": "translation",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "a-shared-playbook-for-trustworthy-third-party-evaluations",
+    "title": "A shared playbook for trustworthy third party evaluations",
+    "keywords": [
+      "shared",
+      "party",
+      "playbook",
+      "evaluations",
+      "for",
+      "third",
+      "trustworthy"
+    ],
+    "category": "practice",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "advancing-content-provenance-for-a-safer-more-transparent-ai-ecosystem",
+    "title": "Advancing content provenance for a safer, more transparent AI ecosystem",
+    "keywords": [
+      "more",
+      "advancing",
+      "transparent",
+      "content",
+      "safer,",
+      "provenance",
+      "for",
+      "ecosystem",
+      "ai"
+    ],
+    "category": "practice",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "adventhealth-advances-whole-person-care-with-openai",
+    "title": "AdventHealth advances whole-person care with OpenAI",
+    "keywords": [
+      "with",
+      "adventhealth",
+      "openai",
+      "care",
+      "advances",
+      "person",
+      "whole"
+    ],
+    "category": "model",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "an-openai-model-has-disproved-a-central-conjecture-in-discrete-geometry",
+    "title": "An OpenAI model has disproved a central conjecture in discrete geometry",
+    "keywords": [
+      "discrete",
+      "in",
+      "disproved",
+      "has",
+      "geometry",
+      "an",
+      "model",
+      "central",
+      "openai",
+      "conjecture"
+    ],
+    "category": "model",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "boston-childrens-uses-ai-to-unlock-new-diagnoses",
+    "title": "Boston Children’s uses AI to unlock new diagnoses",
+    "keywords": [
+      "uses",
+      "boston",
+      "diagnoses",
+      "children’s",
+      "to",
+      "unlock",
+      "new",
+      "ai"
+    ],
+    "category": "practice",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "building-self-improving-tax-agents-with-codex",
+    "title": "Building self-improving tax agents with Codex",
+    "keywords": [
+      "with",
+      "self",
+      "building",
+      "tax",
+      "agents",
+      "codex",
+      "improving"
+    ],
+    "category": "harness",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "cisco-and-openai-redefine-enterprise-engineering-with-codex",
+    "title": "Cisco and OpenAI redefine enterprise engineering with Codex",
+    "keywords": [
+      "with",
+      "and",
+      "redefine",
+      "enterprise",
+      "cisco",
+      "openai",
+      "codex",
+      "engineering"
+    ],
+    "category": "harness",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "election-information-and-safeguards-in-2026",
+    "title": "Election information and safeguards in 2026",
+    "keywords": [
+      "in",
+      "and",
+      "information",
+      "election",
+      "safeguards",
+      "2026"
+    ],
+    "category": "practice",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "getting-started-with-dify",
+    "title": "Getting Started with Dify",
+    "keywords": [
+      "getting",
+      "started",
+      "with",
+      "dify"
+    ],
+    "category": "workflow",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "tutorial",
+    "slug": "how-braintrust-turns-customer-requests-into-code-with-codex",
+    "title": "How Braintrust turns customer requests into code with Codex",
+    "keywords": [
+      "with",
+      "how",
+      "braintrust",
+      "code",
+      "turns",
+      "into",
+      "customer",
+      "requests",
+      "codex"
+    ],
+    "category": "harness",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "how-endava-builds-an-agentic-organization-with-codex",
+    "title": "How Endava builds an agentic organization with Codex",
+    "keywords": [
+      "with",
+      "how",
+      "organization",
+      "builds",
+      "an",
+      "agentic",
+      "codex",
+      "endava"
+    ],
+    "category": "harness",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "how-ramp-engineers-accelerate-code-review-with-codex",
+    "title": "How Ramp engineers accelerate code review with Codex",
+    "keywords": [
+      "with",
+      "how",
+      "code",
+      "accelerate",
+      "ramp",
+      "codex",
+      "engineers",
+      "review"
+    ],
+    "category": "harness",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "how-virgin-atlantic-ships-faster-with-codex",
+    "title": "How Virgin Atlantic ships faster with Codex",
+    "keywords": [
+      "with",
+      "how",
+      "faster",
+      "atlantic",
+      "codex",
+      "virgin",
+      "ships"
+    ],
+    "category": "harness",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "introducing-openai-for-singapore",
+    "title": "Introducing OpenAI for Singapore",
+    "keywords": [
+      "openai",
+      "singapore",
+      "introducing",
+      "for"
+    ],
+    "category": "model",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "mufg-aims-to-become-ai-native-with-openai",
+    "title": "MUFG aims to become AI-native with OpenAI",
+    "keywords": [
+      "native",
+      "with",
+      "mufg",
+      "become",
+      "aims",
+      "to",
+      "openai",
+      "ai"
+    ],
+    "category": "model",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "openai-grupo-folha-and-grupo-uol-announce-strategic-content-partnership",
+    "title": "OpenAI, Grupo Folha and Grupo UOL announce strategic content partnership",
+    "keywords": [
+      "and",
+      "openai,",
+      "uol",
+      "strategic",
+      "grupo",
+      "partnership",
+      "content",
+      "folha",
+      "announce"
+    ],
+    "category": "model",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "openai-named-a-leader-in-enterprise-coding-agents-by-gartner",
+    "title": "OpenAI named a Leader in enterprise coding agents by Gartner",
+    "keywords": [
+      "in",
+      "named",
+      "enterprise",
+      "coding",
+      "leader",
+      "by",
+      "agents",
+      "openai",
+      "gartner"
+    ],
+    "category": "harness",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "openais-frontier-governance-framework",
+    "title": "OpenAI’s Frontier Governance Framework",
+    "keywords": [
+      "framework",
+      "frontier",
+      "openai’s",
+      "governance"
+    ],
+    "category": "model",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "strengthening-societal-resilience-with-rosalind-biodefense",
+    "title": "Strengthening societal resilience with Rosalind Biodefense",
+    "keywords": [
+      "with",
+      "resilience",
+      "strengthening",
+      "rosalind",
+      "biodefense",
+      "societal"
+    ],
+    "category": "practice",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "the-next-phase-of-openais-education-for-countries",
+    "title": "The next phase of OpenAI’s Education for Countries",
+    "keywords": [
+      "the",
+      "phase",
+      "of",
+      "countries",
+      "education",
+      "openai’s",
+      "next",
+      "for"
+    ],
+    "category": "model",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "warps-big-bet-on-building-open-source-with-gpt-55",
+    "title": "Warp’s big bet on building open source with GPT-5.5",
+    "keywords": [
+      "with",
+      "big",
+      "gpt",
+      "building",
+      "open",
+      "source",
+      "warp’s",
+      "bet",
+      "on"
+    ],
+    "category": "model",
+    "difficulty": "intermediate"
+  }
 ]

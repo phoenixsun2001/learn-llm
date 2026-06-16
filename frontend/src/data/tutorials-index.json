@@ -252,6 +252,34 @@
     "featured": false
   },
   {
+    "id": "tut-trae-solo-guide",
+    "slug": "trae-solo-guide",
+    "title": "Trae SOLO Builder 实战指南",
+    "description": "学习用 Trae SOLO Builder 从自然语言需求出发，完成项目上下文准备、应用生成、代码审查和迭代交付。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "beginner",
+    "estimatedTime": 45,
+    "tags": [
+      "Trae",
+      "SOLO",
+      "Builder",
+      "AI IDE"
+    ],
+    "keywords": [
+      "trae",
+      "solo",
+      "builder",
+      "ai ide",
+      "编码助手",
+      "应用生成",
+      "项目上下文"
+    ],
+    "prerequisites": [],
+    "file": "/content/tutorials/harness/trae-solo-guide.md",
+    "featured": false
+  },
+  {
     "id": "tut-cc-switch-guide",
     "slug": "cc-switch-guide",
     "title": "CC Switch 统一管理工具指南",
@@ -271,6 +299,34 @@
     ],
     "file": "/content/tutorials/harness/cc-switch-guide.md",
     "featured": true
+  },
+  {
+    "id": "tut-coze-3-guide",
+    "slug": "coze-3-guide",
+    "title": "Coze 3.0 多 Agent 协作指南",
+    "description": "理解 Coze 3.0 从 Bot 搭建走向多 Agent 项目协作的变化，学习项目空间、Agent 分工、工作流、技能包和上线治理。",
+    "category": "workflow",
+    "subcategory": "workflow",
+    "difficulty": "intermediate",
+    "estimatedTime": 55,
+    "tags": [
+      "Coze",
+      "Coze 3.0",
+      "Agent",
+      "工作流"
+    ],
+    "keywords": [
+      "coze",
+      "扣子",
+      "3.0",
+      "多 agent",
+      "工作流",
+      "技能包",
+      "团队协作"
+    ],
+    "prerequisites": [],
+    "file": "/content/tutorials/workflow/coze-3-guide.md",
+    "featured": false
   },
   {
     "id": "tut-superpowers-engineering",
@@ -343,10 +399,192 @@
     "subcategory": "practice",
     "difficulty": "advanced",
     "estimatedTime": 30,
-    "tags": ["RAG", "检索增强生成", "最佳实践", "向量检索", "嵌入模型"],
-    "keywords": ["RAG", "检索增强生成", "向量数据库", "嵌入", "chunking", "reranking", "Agentic RAG"],
+    "tags": [
+      "RAG",
+      "检索增强生成",
+      "最佳实践",
+      "向量检索",
+      "嵌入模型"
+    ],
+    "keywords": [
+      "RAG",
+      "检索增强生成",
+      "向量数据库",
+      "嵌入",
+      "chunking",
+      "reranking",
+      "Agentic RAG"
+    ],
     "prerequisites": [],
     "featured": false,
     "file": "/content/tutorials/practice/rag-best-practices-2026.md"
+  },
+  {
+    "id": "tut-llm-how-it-works",
+    "slug": "llm-how-it-works",
+    "title": "大语言模型是如何工作的",
+    "description": "用类比讲透 LLM 的本质：预测下一个 token，以及预训练、微调、RLHF 如何塑造它的能力与局限。",
+    "category": "principle",
+    "subcategory": "principle",
+    "difficulty": "beginner",
+    "estimatedTime": 15,
+    "tags": [
+      "大语言模型",
+      "基础概念"
+    ],
+    "keywords": [
+      "大语言模型",
+      "LLM",
+      "token",
+      "预训练",
+      "微调",
+      "SFT",
+      "RLHF",
+      "幻觉",
+      "上下文窗口",
+      "原理"
+    ],
+    "prerequisites": [],
+    "featured": true,
+    "file": "/content/tutorials/principle/llm-how-it-works.md"
+  },
+  {
+    "id": "tut-transformer-attention",
+    "slug": "transformer-attention-intro",
+    "title": "Transformer 与注意力机制入门",
+    "description": "从 RNN 的局限出发，通俗讲透自注意力、QKV、多头、位置编码与扩展定律的直觉。",
+    "category": "principle",
+    "subcategory": "principle",
+    "difficulty": "intermediate",
+    "estimatedTime": 20,
+    "tags": [
+      "Transformer",
+      "注意力机制"
+    ],
+    "keywords": [
+      "Transformer",
+      "注意力",
+      "self-attention",
+      "QKV",
+      "多头注意力",
+      "位置编码",
+      "扩展定律",
+      "原理"
+    ],
+    "prerequisites": [
+      "llm-how-it-works"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/principle/transformer-attention-intro.md"
+  },
+  {
+    "id": "tut-llm-models-overview",
+    "slug": "llm-models-overview",
+    "title": "主流大模型概览：GPT、Claude、GLM、Llama",
+    "description": "梳理 OpenAI、Anthropic、智谱、Meta 及国内主流大模型家族的定位、特色与适用场景，附对比表。",
+    "category": "model",
+    "subcategory": "model",
+    "difficulty": "beginner",
+    "estimatedTime": 15,
+    "tags": [
+      "模型选型",
+      "大模型"
+    ],
+    "keywords": [
+      "GPT",
+      "Claude",
+      "GLM",
+      "Llama",
+      "Qwen",
+      "DeepSeek",
+      "Kimi",
+      "模型对比",
+      "开源",
+      "闭源"
+    ],
+    "prerequisites": [],
+    "featured": true,
+    "file": "/content/tutorials/model/llm-models-overview.md"
+  },
+  {
+    "id": "tut-choose-llm-model",
+    "slug": "choose-llm-model",
+    "title": "如何选择适合的大模型",
+    "description": "给出一套基于能力、成本、上下文、合规等维度的选型决策框架，覆盖个人、企业、本地部署三类场景。",
+    "category": "model",
+    "subcategory": "model",
+    "difficulty": "intermediate",
+    "estimatedTime": 20,
+    "tags": [
+      "模型选型",
+      "决策框架"
+    ],
+    "keywords": [
+      "模型选型",
+      "决策框架",
+      "上下文窗口",
+      "成本",
+      "许可证",
+      "合规",
+      "本地部署"
+    ],
+    "prerequisites": [
+      "llm-models-overview"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/model/choose-llm-model.md"
+  },
+  {
+    "id": "tut-llm-api-first-app",
+    "slug": "llm-api-first-app",
+    "title": "用 LLM API 构建第一个应用",
+    "description": "从获取 API Key 到流式输出与错误处理，用 Python 跑通第一个真实可用的 AI 小应用。",
+    "category": "development",
+    "subcategory": "development",
+    "difficulty": "beginner",
+    "estimatedTime": 20,
+    "tags": [
+      "API",
+      "开发入门"
+    ],
+    "keywords": [
+      "API",
+      "OpenAI",
+      "chat completion",
+      "Python",
+      "流式",
+      "错误处理",
+      "开发"
+    ],
+    "prerequisites": [],
+    "featured": true,
+    "file": "/content/tutorials/development/llm-api-first-app.md"
+  },
+  {
+    "id": "tut-prompt-engineering",
+    "slug": "prompt-engineering-basics",
+    "title": "Prompt 工程入门",
+    "description": "掌握 Prompt 工程五条核心原则与四种常见模式，写出稳定可控的大模型提示词。",
+    "category": "development",
+    "subcategory": "development",
+    "difficulty": "beginner",
+    "estimatedTime": 15,
+    "tags": [
+      "Prompt 工程",
+      "开发入门"
+    ],
+    "keywords": [
+      "prompt",
+      "提示词",
+      "few-shot",
+      "思维链",
+      "chain of thought",
+      "角色扮演",
+      "提示工程",
+      "开发"
+    ],
+    "prerequisites": [],
+    "featured": false,
+    "file": "/content/tutorials/development/prompt-engineering-basics.md"
   }
 ]

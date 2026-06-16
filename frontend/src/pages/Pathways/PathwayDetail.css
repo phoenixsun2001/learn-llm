@@ -94,6 +94,36 @@
   color: var(--text-secondary);
 }
 
+/* ---------- Summary ---------- */
+.pathway-detail-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.pathway-detail-summary-item {
+  padding: var(--spacing-lg);
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.pathway-detail-summary-label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+.pathway-detail-summary-item p {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
 /* ---------- Overall Progress ---------- */
 .pathway-detail-progress {
   margin-bottom: var(--spacing-xl);
@@ -281,6 +311,17 @@
   color: var(--text-tertiary);
 }
 
+.timeline-step-role {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 8px;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+}
+
 .timeline-step-required-badge {
   display: inline-flex;
   align-items: center;
@@ -449,5 +490,9 @@
 
   .pathway-detail-progress {
     padding: var(--spacing-md);
+  }
+
+  .pathway-detail-summary {
+    grid-template-columns: 1fr;
   }
 }

@@ -1,26 +1,105 @@
 [
   {
-    "id": "pwy-beginner",
-    "slug": "beginner",
-    "title": "🌱 AI 入门之路",
-    "description": "面向 AI 初学者，从基础概念到第一个 AI 工具实战。",
+    "id": "pwy-ai-coding-starter",
+    "slug": "ai-coding-starter",
+    "title": "AI 编程工具入门",
+    "description": "从基础概念、安装配置到第一个 AI 编程项目，建立使用 Claude Code 与 Codex 的基本能力。",
+    "audience": "适合第一次系统接触 AI 编程工具，或希望把工具接入本地项目的学习者。",
+    "outcome": "完成后，你将能够独立安装并配置主流 AI 编程工具，理解基本工作方式，并完成一个从需求到代码的入门项目。",
     "level": "beginner",
+    "estimatedTime": 125,
     "steps": [
-      {"tutorialId": "tut-claude-code-intro", "order": 1, "required": false},
-      {"tutorialId": "tut-claude-code-install", "order": 2, "required": false},
-      {"tutorialId": "tut-claude-code-first-use", "order": 3, "required": false}
+      {
+        "tutorialId": "tut-claude-code-intro",
+        "order": 1,
+        "required": true,
+        "role": "基础概念"
+      },
+      {
+        "tutorialId": "tut-claude-code-install",
+        "order": 2,
+        "required": true,
+        "role": "安装配置"
+      },
+      {
+        "tutorialId": "tut-claude-code-first-use",
+        "order": 3,
+        "required": true,
+        "role": "首次实战"
+      },
+      {
+        "tutorialId": "tut-codex-intro",
+        "order": 4,
+        "required": true,
+        "role": "工具扩展"
+      },
+      {
+        "tutorialId": "tut-codex-install",
+        "order": 5,
+        "required": true,
+        "role": "本地接入"
+      },
+      {
+        "tutorialId": "tut-cc-switch-guide",
+        "order": 6,
+        "required": false,
+        "role": "可选扩展"
+      }
     ],
     "icon": "🌱"
   },
   {
-    "id": "pwy-intermediate",
-    "slug": "intermediate",
-    "title": "🌿 Harness 工具进阶",
-    "description": "掌握 Claude Code 的日常使用技巧和 Hooks 机制。",
+    "id": "pwy-ai-engineering-workflow",
+    "slug": "ai-engineering-workflow",
+    "title": "AI 工程化工作流进阶",
+    "description": "从日常使用走向工程化协作，学习 Hooks、Commands、Skills、审查流程和多工具管理。",
+    "audience": "适合已经能使用 AI 编程工具，想把它们纳入真实开发流程的开发者和技术团队。",
+    "outcome": "完成后，你将能够为项目建立更稳定的 AI 编程工作流，覆盖需求澄清、自动化、质量审查、上下文管理和企业级扩展。",
     "level": "intermediate",
+    "estimatedTime": 185,
     "steps": [
-      {"tutorialId": "tut-claude-code-daily", "order": 1, "required": false},
-      {"tutorialId": "tut-claude-code-hooks", "order": 2, "required": false}
+      {
+        "tutorialId": "tut-claude-code-daily",
+        "order": 1,
+        "required": true,
+        "role": "日常流程"
+      },
+      {
+        "tutorialId": "tut-claude-code-hooks",
+        "order": 2,
+        "required": true,
+        "role": "自动化"
+      },
+      {
+        "tutorialId": "tut-codex-commands",
+        "order": 3,
+        "required": true,
+        "role": "命令工作流"
+      },
+      {
+        "tutorialId": "tut-codex-skills",
+        "order": 4,
+        "required": true,
+        "role": "能力扩展"
+      },
+      {
+        "tutorialId": "tut-superpowers-engineering",
+        "order": 5,
+        "required": true,
+        "role": "工程纪律"
+      },
+      {
+        "tutorialId": "tut-codex-advanced",
+        "order": 6,
+        "required": true,
+        "role": "高级协作"
+      },
+      {
+        "tutorialId": "tut-ecc-guide",
+        "order": 7,
+        "required": false,
+        "role": "可选扩展"
+      }
     ],
     "icon": "🌿"
   }

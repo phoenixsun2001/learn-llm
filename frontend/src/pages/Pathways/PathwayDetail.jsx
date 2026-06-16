@@ -111,8 +111,30 @@ const PathwayDetail = () => {
           <span className="pathway-detail-step-count">
             {progressStats.total} 个教程
           </span>
+          {pathway.estimatedTime && (
+            <span className="pathway-detail-step-count">
+              约 {pathway.estimatedTime} 分钟
+            </span>
+          )}
         </div>
       </header>
+
+      {(pathway.audience || pathway.outcome) && (
+        <section className="pathway-detail-summary" aria-label="路径说明">
+          {pathway.audience && (
+            <div className="pathway-detail-summary-item">
+              <span className="pathway-detail-summary-label">适合人群</span>
+              <p>{pathway.audience}</p>
+            </div>
+          )}
+          {pathway.outcome && (
+            <div className="pathway-detail-summary-item">
+              <span className="pathway-detail-summary-label">完成后你将能够</span>
+              <p>{pathway.outcome}</p>
+            </div>
+          )}
+        </section>
+      )}
 
       {/* Overall Progress */}
       <section className="pathway-detail-progress" aria-label="总体进度">
@@ -185,6 +207,9 @@ const PathwayDetail = () => {
                   <p className="timeline-step-desc">{tutorialDesc}</p>
 
                   <div className="timeline-step-meta">
+                    {step.role && (
+                      <span className="timeline-step-role">{step.role}</span>
+                    )}
                     {tutorialTime != null && (
                       <span className="timeline-step-time">
                         ⏱ {tutorialTime} 分钟

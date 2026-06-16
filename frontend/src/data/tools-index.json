@@ -88,13 +88,41 @@
     "id": "tool-trae",
     "slug": "trae",
     "name": "Trae",
-    "description": "新一代 AI 编码助手，提供智能代码补全和项目管理功能。",
+    "description": "面向真实项目开发的 AI IDE，支持 SOLO Builder 从自然语言需求出发生成 PRD、代码和可预览结果。",
     "category": "harness",
-    "officialUrl": "",
-    "wizardSteps": [],
+    "officialUrl": "https://www.trae.ai",
+    "wizardSteps": [
+      {
+        "step": 1,
+        "title": "认识 Trae 与 SOLO",
+        "tutorialSlug": "trae-solo-guide"
+      },
+      {
+        "step": 2,
+        "title": "准备项目上下文",
+        "tutorialSlug": "trae-solo-guide"
+      },
+      {
+        "step": 3,
+        "title": "用 Builder 生成应用",
+        "tutorialSlug": "trae-solo-guide"
+      },
+      {
+        "step": 4,
+        "title": "审查 PRD 与代码",
+        "tutorialSlug": "trae-solo-guide"
+      },
+      {
+        "step": 5,
+        "title": "迭代与交付",
+        "tutorialSlug": "trae-solo-guide"
+      }
+    ],
     "tags": [
       "IDE",
-      "编码助手"
+      "编码助手",
+      "SOLO",
+      "Builder"
     ]
   },
   {
@@ -115,14 +143,42 @@
     "id": "tool-coze",
     "slug": "coze",
     "name": "Coze",
-    "description": "字节跳动推出的 AI Bot 开发平台，支持可视化编排和工作流设计。",
+    "description": "字节跳动推出的 AI Agent 协作平台。3.0 版本从单体 Bot 构建转向多人多 Agent 项目协作，支持行业技能包、本地 Agent 接入和多端同步。",
     "category": "workflow",
-    "officialUrl": "https://www.coze.com",
-    "wizardSteps": [],
+    "officialUrl": "https://www.coze.cn",
+    "wizardSteps": [
+      {
+        "step": 1,
+        "title": "理解 Coze 3.0 定位",
+        "tutorialSlug": "coze-3-guide"
+      },
+      {
+        "step": 2,
+        "title": "设计项目空间",
+        "tutorialSlug": "coze-3-guide"
+      },
+      {
+        "step": 3,
+        "title": "组建 Agent 团队",
+        "tutorialSlug": "coze-3-guide"
+      },
+      {
+        "step": 4,
+        "title": "编排工作流与技能包",
+        "tutorialSlug": "coze-3-guide"
+      },
+      {
+        "step": 5,
+        "title": "协作上线与治理",
+        "tutorialSlug": "coze-3-guide"
+      }
+    ],
     "tags": [
       "Bot",
       "工作流",
-      "低代码"
+      "低代码",
+      "多 Agent",
+      "Coze 3.0"
     ]
   },
   {

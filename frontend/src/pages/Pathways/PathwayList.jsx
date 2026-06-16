@@ -24,6 +24,9 @@ const PathwayList = () => {
         <div className="pathway-list-grid">
           {pathways.map((pathway) => {
             const stepCount = pathway.steps ? pathway.steps.length : 0;
+            const requiredCount = pathway.steps
+              ? pathway.steps.filter((step) => step.required).length
+              : 0;
 
             return (
               <Link
@@ -42,11 +45,20 @@ const PathwayList = () => {
                 {/* Description */}
                 <p className="pathway-card-desc">{pathway.description}</p>
 
+                {pathway.audience && (
+                  <p className="pathway-card-audience">{pathway.audience}</p>
+                )}
+
                 {/* Footer: step count */}
                 <div className="pathway-card-footer">
                   <span className="pathway-card-steps">
-                    {stepCount} 个教程
+                    {stepCount} 个教程 · {requiredCount} 个必修
                   </span>
+                  {pathway.estimatedTime && (
+                    <span className="pathway-card-time">
+                      约 {pathway.estimatedTime} 分钟
+                    </span>
+                  )}
                   <span className="pathway-card-arrow" aria-hidden="true">&rarr;</span>
                 </div>
               </Link>
