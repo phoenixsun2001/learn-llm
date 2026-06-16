@@ -5,20 +5,21 @@ import re
 from typing import Dict, Optional
 
 from llm_client import call_llm
+from content_taxonomy import normalize_category, normalize_difficulty
 
 logger = logging.getLogger(__name__)
 
 # Valid categories and their Chinese descriptions
 CATEGORIES = {
-    'principle': '技术原理（Transformer、RLHF等底层技术）',
-    'model': '模型产品（GPT、Claude、Gemini等模型介绍/对比）',
-    'harness': 'Harness工具（Claude Code、Cursor、Copilot等编码助手）',
-    'workflow': 'Workflow工具（Dify、Coze、n8n等工作流平台）',
-    'development': '开发框架（LangChain、RAG、MCP、CLI开发等）',
+    'principle': '技术原理（Transformer、RLHF 等底层技术）',
+    'model': '模型基础（GPT、Claude、Gemini 等模型介绍/对比）',
+    'harness': 'Harness 工具（Claude Code、Cursor、Copilot 等编码助手）',
+    'workflow': 'Workflow 工具（Dify、Coze、n8n 等工作流平台）',
+    'development': '开发框架（LangChain、RAG、MCP、CLI 开发等）',
     'practice': '最佳实践（应用场景、落地案例、经验总结）',
 }
 
-DIFFICULTIES = {
+DIFFICULTY_DESCRIPTIONS = {
     'beginner': '入门（面向新手，无需前置知识）',
     'intermediate': '进阶（需要一定基础，涉及配置和开发）',
     'advanced': '精通（深度技术内容，需要丰富经验）',
@@ -34,7 +35,7 @@ def classify_and_rate(item: Dict) -> Dict:
 
     Returns:
         Dict with 'category', 'subcategory', 'difficulty', 'confidence' keys.
-        Falls back to 'uncategorized' / 'beginner' on failure.
+        Falls back to 'practice' / 'beginner' on failure.
     """
     title = item.get('title', '')
     text = item.get('ai_summary', '') or item.get('summary', '') or item.get('raw_html', '')
@@ -44,7 +45,7 @@ def classify_and_rate(item: Dict) -> Dict:
     clean_text = re.sub(r'\s+', ' ', clean_text).strip()[:2000]
 
     category_list = '\n'.join([f'- {k}: {v}' for k, v in CATEGORIES.items()])
-    difficulty_list = '\n'.join([f'- {k}: {v}' for k, v in DIFFICULTIES.items()])
+    difficulty_list = '\n'.join([f'- {k}: {v}' for k, v in DIFFICULTY_DESCRIPTIONS.items()])
 
     prompt = f"""请分析以下文章，完成两个任务：
 
@@ -68,14 +69,11 @@ def classify_and_rate(item: Dict) -> Dict:
             json_match = re.search(r'\{[^}]+\}', result)
             if json_match:
                 parsed = json.loads(json_match.group())
-                category = parsed.get('category', 'uncategorized')
-                # Validate category
-                if category not in CATEGORIES:
-                    category = 'uncategorized'
+                category = normalize_category(parsed.get('category'))
                 return {
                     'category': category,
                     'subcategory': parsed.get('subcategory', ''),
-                    'difficulty': parsed.get('difficulty', 'beginner') if parsed.get('difficulty') in DIFFICULTIES else 'beginner',
+                    'difficulty': normalize_difficulty(parsed.get('difficulty')),
                     'confidence': 0.8,
                 }
         except json.JSONDecodeError:

@@ -7,6 +7,11 @@ import argparse
 import logging
 import sys
 import os
+import json
+import glob
+
+import yaml
+from datetime import datetime
 
 # Add pipeline directory to path for imports
 sys.path.insert(0, os.path.dirname(__file__))
@@ -101,6 +106,94 @@ def run_full_pipeline(source_name=None):
     logger.info("=" * 60)
 
 
+def run_process_only():
+    """Re-process existing materials in the output directory.
+
+    Re-runs classification on every material (valuable after the taxonomy or
+    classifier prompts change) and rebuilds the search index. Summarization is
+    intentionally NOT re-run because the raw source text is not persisted in
+    material metadata — only the AI summary is stored.
+    """
+    output_dir = config.pipeline_output_dir
+    if not os.path.isabs(output_dir):
+        output_dir = os.path.join(os.path.dirname(__file__), output_dir)
+
+    if not os.path.isdir(output_dir):
+        logger.error(f"Materials directory not found: {output_dir}")
+        logger.error("Run --full first to fetch and process content.")
+        return
+
+    json_files = glob.glob(os.path.join(output_dir, '**', '*.json'), recursive=True)
+    logger.info("=" * 60)
+    logger.info(f"Process-only mode: re-classifying {len(json_files)} materials")
+    logger.info("=" * 60)
+    if not json_files:
+        logger.info("No materials found. Nothing to process.")
+        return
+
+    reclassified = 0
+    for i, json_path in enumerate(json_files, 1):
+        try:
+            with open(json_path, 'r', encoding='utf-8') as f:
+                meta = json.load(f)
+        except Exception as err:
+            logger.warning(f"  [{i}/{len(json_files)}] Skipping (invalid JSON): {json_path}")
+            continue
+
+        title = meta.get('title', '')
+        ai = meta.get('ai_processed', {}) or {}
+        # Use the stored summary as the text signal for classification.
+        text = ai.get('summary') or meta.get('summary') or title
+
+        try:
+            result = classify_and_rate({'title': title, 'raw_html': text, 'summary': text})
+        except Exception as err:
+            logger.warning(f"  [{i}/{len(json_files)}] Classify failed for {title[:40]!r}: {err}")
+            continue
+
+        ai['category'] = result['category']
+        ai['subcategory'] = result.get('subcategory', '')
+        ai['difficulty'] = result['difficulty']
+        ai['tags'] = result.get('tags', [])
+        meta['ai_processed'] = ai
+        meta['reprocessed_at'] = datetime.now().isoformat()
+
+        try:
+            with open(json_path, 'w', encoding='utf-8') as f:
+                json.dump(meta, f, ensure_ascii=False, indent=2)
+        except Exception as err:
+            logger.warning(f"  [{i}/{len(json_files)}] Write failed for {json_path}: {err}")
+            continue
+
+        # Keep the paired .md frontmatter consistent with the new classification.
+        md_path = json_path[:-5] + '.md'
+        if os.path.exists(md_path):
+            try:
+                with open(md_path, 'r', encoding='utf-8') as f:
+                    md_text = f.read()
+                parts = md_text.split('---', 2)
+                if len(parts) >= 3:
+                    fm = yaml.safe_load(parts[1]) or {}
+                    fm['category'] = result['category']
+                    fm['difficulty'] = result['difficulty']
+                    fm['tags'] = result.get('tags', [])
+                    new_fm = yaml.dump(fm, allow_unicode=True, default_flow_style=False)
+                    with open(md_path, 'w', encoding='utf-8') as f:
+                        f.write('---\n' + new_fm + '---' + parts[2])
+            except Exception as err:
+                logger.warning(f"  [{i}/{len(json_files)}] MD update failed for {md_path}: {err}")
+
+        reclassified += 1
+        logger.info(f"  [{i}/{len(json_files)}] {title[:50]:<50} -> {result['category']}")
+
+    logger.info(f"Re-classified {reclassified}/{len(json_files)} materials")
+    added = update_search_index()
+    logger.info(f"Search index rebuilt: {added} new entries")
+    logger.info("=" * 60)
+    logger.info("Process-only complete")
+    logger.info("=" * 60)
+
+
 def main():
     parser = argparse.ArgumentParser(
         description='Learn-LLM Content Pipeline',
@@ -165,9 +258,7 @@ def main():
         count = update_search_index()
         logger.info(f"Updated search index: {count} entries")
     elif args.process_only:
-        logger.info("Process-only mode: reading from materials directory...")
-        logger.info("Not yet implemented for standalone process-only mode.")
-        logger.info("Use --full to run the complete pipeline.")
+        run_process_only()
 
 
 if __name__ == '__main__':

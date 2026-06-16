@@ -43,5 +43,11 @@ class Config:
     admin_port: int = 8400
     admin_token: Optional[str] = field(default_factory=lambda: os.getenv("ADMIN_TOKEN", "learn-llm-admin"))
 
+    # JWT auth (self-hosted; for enterprise / air-gapped deployment)
+    jwt_secret: str = field(default_factory=lambda: os.getenv("JWT_SECRET", ""))
+    jwt_algorithm: str = "HS256"
+    access_token_expire_minutes: int = 60 * 24 * 7  # 7 days
+    allow_public_register: bool = field(default_factory=lambda: os.getenv("ALLOW_PUBLIC_REGISTER", "true").lower() == "true")
+
 # Singleton
 config = Config()

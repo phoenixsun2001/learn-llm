@@ -9,29 +9,20 @@ from typing import Dict, Optional
 import yaml
 
 from config import config
+from content_taxonomy import LEARNING_CATEGORIES, normalize_category, normalize_difficulty
 
 # Standard 6 categories from the learning platform taxonomy
-VALID_CATEGORIES = {
-    'principle', 'model', 'harness', 'workflow', 'development', 'practice'
-}
-
-CATEGORY_LABELS = {
-    'principle': '技术原理',
-    'model': '模型产品',
-    'harness': 'Harness工具',
-    'workflow': 'Workflow工具',
-    'development': '开发框架',
-    'practice': '最佳实践',
-}
+VALID_CATEGORIES = set(LEARNING_CATEGORIES)
+CATEGORY_LABELS = LEARNING_CATEGORIES
 
 
 def _validate_category(category: str) -> str:
     """Validate and normalize category. Falls back to 'practice' if invalid."""
-    if not category or category.lower() not in VALID_CATEGORIES:
+    normalized = normalize_category(category)
+    if normalized != (category or "").strip().lower():
         if category:
             logger.warning(f"Unknown category '{category}', falling back to 'practice'")
-        return 'practice'
-    return category.lower()
+    return normalized
 
 logger = logging.getLogger(__name__)
 
@@ -79,6 +70,7 @@ def write_material(item: Dict, output_dir: str = None) -> Optional[str]:
     material_id = _generate_id()
     category = _validate_category(item.get('category', ''))
     subcategory = item.get('subcategory', '')
+    difficulty = normalize_difficulty(item.get('difficulty', 'beginner'))
     title = item.get('title', 'Untitled')
 
     # Create category subdirectory
@@ -109,7 +101,7 @@ def write_material(item: Dict, output_dir: str = None) -> Optional[str]:
             'summary': item.get('ai_summary', ''),
             'category': category,
             'subcategory': subcategory,
-            'difficulty': item.get('difficulty', 'beginner'),
+            'difficulty': difficulty,
             'tags': item.get('tags', []),
             'quality_score': item.get('quality_score', None),
         },
@@ -128,7 +120,7 @@ def write_material(item: Dict, output_dir: str = None) -> Optional[str]:
         'source_name': item.get('source_name', 'Unknown'),
         'source_type': item.get('source_type', 'unknown'),
         'category': category,
-        'difficulty': item.get('difficulty', 'beginner'),
+        'difficulty': difficulty,
         'ai_summary': item.get('ai_summary', ''),
         'tags': item.get('tags', []),
         'material_id': material_id,
@@ -140,7 +132,7 @@ def write_material(item: Dict, output_dir: str = None) -> Optional[str]:
 # {title}
 
 > 来源：[{item.get('source_name', 'Unknown')}]({item.get('link', '')})
-> 分类：{category} | 难度：{item.get('difficulty', 'beginner')}
+> 分类：{category} | 难度：{difficulty}
 
 ## AI 摘要
 
