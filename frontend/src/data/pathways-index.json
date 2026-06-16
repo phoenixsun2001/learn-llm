@@ -102,5 +102,30 @@
       }
     ],
     "icon": "🌿"
+  },
+  {
+    "id": "pwy-loop-engineering",
+    "slug": "loop-engineering",
+    "title": "Loop Engineering（循环工程）",
+    "description": "理解以「循环」为核心的软件工程新范式——AI 主导开发、人监督编排，掌握四大要素与内外循环的分工。",
+    "audience": "适合已熟悉 AI 编程工具，想理解并采用「AI 主导、人编排」这一进阶协作范式的开发者和团队。",
+    "outcome": "完成后，你将能够区分 Loop Engineering 与传统辅助编码，掌握人机协作、自主迭代、反馈驱动、上下文管理四大要素，并把这一范式与本平台的 Superpowers、ZCode、ECC 实践对号入座。",
+    "level": "advanced",
+    "estimatedTime": 75,
+    "steps": [
+      {
+        "tutorialId": "tut-loop-engineering",
+        "order": 1,
+        "required": true,
+        "role": "核心理念"
+      },
+      {
+        "tutorialId": "tut-superpowers-engineering",
+        "order": 2,
+        "required": false,
+        "role": "对比延伸"
+      }
+    ],
+    "icon": "🔄"
   }
 ]

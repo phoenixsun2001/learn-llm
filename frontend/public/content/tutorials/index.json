@@ -558,5 +558,35 @@
     "prerequisites": [],
     "featured": false,
     "file": "/content/tutorials/harness/zcode-guide.md"
+  },
+  {
+    "id": "tut-loop-engineering",
+    "slug": "loop-engineering",
+    "title": "Loop Engineering（循环工程）：用 AI 重塑软件工程范式",
+    "description": "理解以「循环」为核心的软件工程新范式——AI 主导开发、人监督编排，掌握人机协作、自主迭代、反馈驱动、上下文管理四大要素。",
+    "category": "workflow",
+    "subcategory": "workflow",
+    "difficulty": "advanced",
+    "estimatedTime": 45,
+    "tags": [
+      "Loop Engineering",
+      "循环工程",
+      "Agent",
+      "人机协作",
+      "范式"
+    ],
+    "keywords": [
+      "loop engineering",
+      "循环工程",
+      "agent",
+      "人机协作",
+      "自主迭代",
+      "反馈驱动",
+      "上下文管理",
+      "范式"
+    ],
+    "prerequisites": [],
+    "featured": false,
+    "file": "/content/tutorials/workflow/loop-engineering.md"
   }
 ]

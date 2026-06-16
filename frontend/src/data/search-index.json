@@ -1258,5 +1258,23 @@
     ],
     "category": "harness",
     "difficulty": "beginner"
+  },
+  {
+    "type": "tutorial",
+    "slug": "loop-engineering",
+    "title": "Loop Engineering（循环工程）：用 AI 重塑软件工程范式",
+    "keywords": [
+      "loop engineering",
+      "循环工程",
+      "agent",
+      "人机协作",
+      "自主迭代",
+      "反馈驱动",
+      "上下文管理",
+      "范式",
+      "workflow"
+    ],
+    "category": "workflow",
+    "difficulty": "advanced"
   }
 ]
