@@ -16,6 +16,7 @@ git remote set-url gitlab http://192.168.120.62/personal/phoenix/learnllm.git
 - 场景检索：从真实工作目标出发，推荐相关工具链和教程。
 - 提示词库：沉淀可复用提示词模板。
 - 技能包：管理可组合的 AI 工作技能和技能集合。
+- 我的学习：登录用户可收藏教程、查看学习历史和进度，统一在 `/my-learning` 管理。
 - 素材与采集后台：通过 8400 端口管理 RSS/素材/审核/内容生成管道。
 
 ## 重要边界
@@ -35,16 +36,25 @@ git remote set-url gitlab http://192.168.120.62/personal/phoenix/learnllm.git
 
 2. 后端 `http://localhost:8400/admin`
 
-   这是内容采集、素材库、审核队列、RSS 源、提示词/工具/技能等数据源维护后台。它服务内容生产和素材管理，不是前台教程发布链路。
+   这是内容采集、素材库、审核队列、RSS 源维护后台。它服务内容生产和素材管理，不是前台教程发布链路。
 
 前台公共页面默认只展示 `published` 教程；草稿可通过管理页预览链接访问。
+
+### 用户与学习数据
+
+平台支持两种登录方式，登录后的收藏、历史、进度等学习数据走 8400 后端持久化：
+
+- **GitHub OAuth**（Supabase）：面向公开站点，配置 Supabase 凭据即用。
+- **自托管 JWT**（邮箱注册/登录）：面向企业内部部署，无需第三方服务。由 `auth_utils.py` 签发 JWT，用户表存储在 SQLite（`pipeline/data/admin.db`）。登录态由前端 `useAuth` hook 管理，`/admin/users` 提供用户管理。
+
+未登录或未配置任何认证时，学习数据退化为浏览器 localStorage，前台功能不受影响。
 
 ## 技术栈
 
 - 前端：React 18、Vite 5、react-router-dom v6
 - UI：Ant Design 5、CSS custom properties、普通 CSS
 - Markdown：react-markdown、remark-gfm、react-syntax-highlighter
-- 认证：Supabase 可选；未配置时前台仍可运行
+- 认证：两种可选模式 —— GitHub OAuth（Supabase）或自托管 JWT（邮箱注册/登录）。未配置时前台仍可运行（学习数据退化为 localStorage）。
 - 后端：FastAPI、Jinja2、SQLite
 - 内容管道：RSS/GitHub/Web fetcher、去重、摘要、分类、写入器
 - LLM 后端优先级：ZhipuAI -> Anthropic -> Ollama -> fallback
@@ -163,6 +173,7 @@ frontend/src/data/
 - `/skills`
 - `/skills/:package`
 - `/skills/:package/:slug`
+- `/my-learning`
 - `/search`
 
 前端管理路由：
@@ -170,6 +181,7 @@ frontend/src/data/
 - `/admin/tutorials`
 - `/admin/pathways`
 - `/admin/materials`
+- `/admin/users`
 
 后端管理路由（仅内容采集与素材生产）：
 
@@ -188,7 +200,7 @@ python run_pipeline.py --full
 python run_pipeline.py --source <name>
 python run_pipeline.py --list-sources
 python run_pipeline.py --update-index
-python run_pipeline.py --process-only    # 重分类已有素材 + 重建索引
+python run_pipeline.py --process-only    # 对已有素材重跑 去重→摘要→分类→写入 + 重建索引
 ```
 
 测试命令：
@@ -203,6 +215,8 @@ python tests/test_pipeline.py
 python tests/test_summarizer.py
 python tests/test_classifier.py
 python tests/test_llm_client.py
+python tests/test_auth.py
+python tests/test_library.py
 ```
 
 ## 环境变量
@@ -212,6 +226,8 @@ python tests/test_llm_client.py
 | `VITE_SUPABASE_URL` | Supabase 项目 URL | 可选 |
 | `VITE_SUPABASE_ANON_KEY` | Supabase anon key | 可选 |
 | `ADMIN_TOKEN` | 8400 后端管理后台登录 token | 后端管理必需 |
+| `JWT_SECRET` | 自托管认证的 HS256 签名密钥（企业部署建议设置） | 可选 |
+| `ALLOW_PUBLIC_REGISTER` | 自托管注册开关，`true` 开放注册（默认），`false` 仅限管理员创建账号 | 可选 |
 | `VITE_ADMIN_TOKEN` | 前端访问素材库后端时的 token | 可选 |
 | `ZHIPU_API_KEY` | 智谱 API key | 可选 |
 | `ZHIPU_API_BASE` | 智谱 API base URL | 可选 |
