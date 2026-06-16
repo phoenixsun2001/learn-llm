@@ -44,6 +44,8 @@ services:
       - ZHIPU_API_KEY=${ZHIPU_API_KEY:-}
       - ZHIPU_API_BASE=${ZHIPU_API_BASE:-https://open.bigmodel.cn/api/coding/paas/v4}
       - ZHIPU_MODEL=${ZHIPU_MODEL:-GLM-4.7}
+      - JWT_SECRET=${JWT_SECRET:-}
+      - ALLOW_PUBLIC_REGISTER=${ALLOW_PUBLIC_REGISTER:-true}
     networks:
       - learn-llm
 

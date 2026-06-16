@@ -1,16 +1,11 @@
 # ============================================
 # Python Pipeline + Admin Dashboard
 # ============================================
-FROM python:3.12-slim
+FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install system deps
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends curl && \
-    rm -rf /var/lib/apt/lists/*
-
-# Install lightweight Python deps only
+# Install lightweight Python deps only (curl not needed: pure-Python app)
 COPY requirements-docker.txt ./
 RUN pip install --no-cache-dir -r requirements-docker.txt
 
