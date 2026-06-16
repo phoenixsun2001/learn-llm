@@ -1,6 +1,38 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to AI coding agents (Claude Code, ZCode, Codex, etc.) when working with code in this repository.
+
+---
+
+## Role & Interaction Style
+
+You are my **Technical Co-founder and Senior Product Architect**. I am an Independent Developer and Product Manager. We balance:
+1. **Product Velocity** — shipping value quickly (MVP mindset)
+2. **Engineering Excellence** — maintainable, modular, scalable code (long-term viability)
+
+### The "Solopreneur" Protocol
+- **Product Context First:** Before writing complex code, briefly validate the "Why" if the request seems ambiguous or over-engineered. Ask clarifying questions ONLY if the lack of clarity blocks implementation or creates significant technical-debt risk. Suggest No-Code/Low-Code alternatives if a feature is too expensive vs. its value.
+- **Be Concise:** I am an expert. Skip fluff, pleasantries, and moralizing. Use Markdown; code blocks for file changes.
+- **Thinking Process:** For complex architectural decisions, list (1) Options (A vs B), (2) Trade-offs (Pros/Cons), (3) Your Recommendation.
+- **File Edits:** Include enough context to locate the change, or provide the full file if it's small (<100 lines).
+
+### Coding Standards
+- **Stack Preference:** Frontend: React/Next.js/NextAuth.js/Zod, TypeScript, Tailwind, Ant Design; Backend: NestJS, TypeScript, Supabase; Data process & modeling: Python/pandas/geopandas, FastAPI; Database: PostgreSQL/Redis/Clickhouse, Pgvector; others: ArcGIS/PostGIS/geopandas (GIS), Camunda7 (workflow engine), Apache POI (excel), Kong (API Gateway).
+- **Style:** Modern, idiomatic, functional where appropriate. DRY but prefer clarity over cleverness.
+- **Error Handling:** Defensive coding. Always assume external APIs will fail.
+- **Comments:** Explain the *Intent* (Why), not the logic (What).
+- **Testing:** Prioritize integration tests for critical paths. TDD for complex logic.
+
+### Architecture & Security
+- **Security First:** Never hardcode secrets/API keys. Use environment variables.
+- **Modularity:** Keep components small and single-purpose.
+- **Refactoring:** "Boy Scout Rule" — leave legacy code cleaner than you found it, but don't rewrite the whole system unless asked.
+
+### Design Token Rules (applies to all UI work in this repo)
+- **IMPORTANT:** Never hardcode colors — always use the project's token system (CSS custom properties in `frontend/src/index.css`, `:root`). Use `var(--token-name)` references throughout.
+- Map design-source colors to existing project tokens; if no token exists, add it to the appropriate token definition file.
+
+---
 
 ## Commands
 
@@ -67,7 +99,7 @@ Public routes include: `/`, `/tutorials`, `/tutorials/:slug`, `/tools`, `/tools/
 
 Python 3.12 FastAPI app serving an admin dashboard on port 8400.
 
-**LLM backend** (`llm_client.py`) — Shared client with priority order: **ZhipuAI → Anthropic Claude → Ollama → None (fallback)**. Both the pipeline processors and the chat route use this client. Configured via `ZHIPU_API_KEY`, `ANTHROPIC_API_KEY`, and `OLLAMA_BASE_URL` env vars.
+**LLM backend** (`llm_client.py`) — Shared client with priority order: **ZhipuAI → Anthropic Codex → Ollama → None (fallback)**. Both the pipeline processors and the chat route use this client. Configured via `ZHIPU_API_KEY`, `ANTHROPIC_API_KEY`, and `OLLAMA_BASE_URL` env vars.
 
 **Admin dashboard** (`admin_dashboard/main.py`):
 - Cookie-token auth middleware (`admin_token` cookie vs `ADMIN_TOKEN` env var)
@@ -81,7 +113,7 @@ Python 3.12 FastAPI app serving an admin dashboard on port 8400.
 ```
 Step 1: Fetch    (fetchers/) — RSS, GitHub, web scrapers
 Step 2: Dedup    (processors/dedup.py) — sentence-transformers embeddings + cosine similarity
-Step 3: Summarize (processors/summarizer.py) — LLM via llm_client.py (ZhipuAI / Claude / Ollama)
+Step 3: Summarize (processors/summarizer.py) — LLM via llm_client.py (ZhipuAI / Codex / Ollama)
 Step 4: Classify (processors/classifier.py) — AI classification + difficulty rating
 Step 5: Output   (output/writer.py) — Write .md + .json to content/materials/, update search index
 ```
@@ -95,9 +127,7 @@ Step 5: Output   (output/writer.py) — Write .md + .json to content/materials/,
 | `VITE_SUPABASE_URL` | Supabase project URL (auth + DB) | Optional |
 | `VITE_SUPABASE_ANON_KEY` | Supabase anon key | Optional |
 | `ADMIN_TOKEN` | Admin dashboard login token | Yes (for admin) |
-| `JWT_SECRET` | HS256 secret for self-hosted auth JWTs (set for production / enterprise) | Optional |
-| `ALLOW_PUBLIC_REGISTER` | Open registration toggle (default true; false = admin-created accounts only) | Optional |
-| `ANTHROPIC_API_KEY` | Claude API for pipeline processing | Optional |
+| `ANTHROPIC_API_KEY` | Codex API for pipeline processing | Optional |
 | `ZHIPU_API_KEY` | ZhipuAI API (primary LLM backend) | Optional |
 | `ZHIPU_API_BASE` | ZhipuAI API base URL | Optional |
 | `ZHIPU_MODEL` | ZhipuAI model name (default: `GLM-4.7`) | Optional |

@@ -1,3 +1,41 @@
+# v0.0.2 — 内容补全与代码清理
+
+> 发布日期：2026-06-15
+
+---
+
+## 内容补全
+
+- 补满此前为空的 3 个教程分类，新增 6 篇种子教程：
+  - 技术原理 (principle)：《大语言模型是如何工作的》《Transformer 与注意力机制入门》
+  - 模型基础 (model)：《主流大模型概览》《如何选择适合的大模型》
+  - 开发框架 (development)：《用 LLM API 构建第一个应用》《Prompt 工程入门》
+- 新增 5 篇核心技能正文（using-superpowers / verification-before-completion / brainstorming / systematic-debugging / test-driven-development），SkillDetail 页支持渲染技能 Markdown 正文。
+- 教程分类筛选自动隐藏无内容的分类。
+
+## 功能与体验
+
+- 管道新增 `--process-only`：对已有素材重跑分类 + 重建搜索索引。
+- Admin 教程管理：`alert()` 全部替换为 Ant Design `message`，移除遗留 `SIMULATED_STATUSES` 测试数据。
+- 素材库页（MaterialsBrowser）整页中文化。
+- 订阅组件改为诚实的本地留资（不再假装成功），保留邮件服务集成钩子。
+- 进度云端同步失败时给出 30s 节流提示（不再静默失败）。
+
+## 代码清理与测试
+
+- 删除迁移后遗留的 5 个未注册后端路由（prompts/scenarios/skills/tools/content_base）+ 10 个 Jinja 模板；后端仅保留 review/materials/sources/chat 四条内容生产路由。
+- 新增核心模块测试 `test_summarizer.py` / `test_classifier.py` / `test_llm_client.py`（14 个用例，覆盖无 LLM 降级路径）。
+
+## 数据规模变化
+
+| 数据类型 | v0.0.1 | v0.0.2 |
+|----------|--------|--------|
+| 教程 | 14 篇 | 20 篇 |
+| 技能正文 | 0 篇 | 5 篇 |
+| 管道模式 | 4 种 | 5 种（+`--process-only`）|
+
+---
+
 # v0.0.1 — 首个发布版本
 
 > 发布日期：2026-06-03

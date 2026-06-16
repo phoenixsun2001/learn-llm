@@ -126,7 +126,11 @@ content/
     harness/
     practice/
     workflow/
+    principle/
+    model/
+    development/
   materials/
+  skills/
 
 frontend/src/data/
   tutorials-index.json
@@ -167,17 +171,14 @@ frontend/src/data/
 - `/admin/pathways`
 - `/admin/materials`
 
-后端管理路由：
+后端管理路由（仅内容采集与素材生产）：
 
 - `/admin`
 - `/admin/review`
 - `/admin/materials`
 - `/admin/sources`
-- `/admin/scenarios`
-- `/admin/prompts`
-- `/admin/tools`
-- `/admin/skills`
-- `/admin/skills/packages`
+
+> 场景、提示词、工具、技能等实体的 CRUD 由前端 `/admin/*` 管理（localStorage），不再走 8400 后端。
 
 ## 内容管道
 
@@ -187,6 +188,7 @@ python run_pipeline.py --full
 python run_pipeline.py --source <name>
 python run_pipeline.py --list-sources
 python run_pipeline.py --update-index
+python run_pipeline.py --process-only    # 重分类已有素材 + 重建索引
 ```
 
 测试命令：
@@ -198,6 +200,9 @@ python tests/test_rss_fetcher.py
 python tests/test_dedup.py
 python tests/test_writer.py
 python tests/test_pipeline.py
+python tests/test_summarizer.py
+python tests/test_classifier.py
+python tests/test_llm_client.py
 ```
 
 ## 环境变量

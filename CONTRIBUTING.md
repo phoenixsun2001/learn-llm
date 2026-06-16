@@ -11,27 +11,22 @@
 **流程：**
 
 1. **Fork 本仓库** 并克隆到本地
-2. 在 `content/tutorials/{category}/` 下创建新的 `.md` 文件
-3. 使用 YAML frontmatter 添加元数据：
+2. 在 `content/tutorials/{category}/` 下创建新的 `.md` 文件（**正文为主，无需 frontmatter**——现有教程均不使用）。
+3. 在索引中注册教程元数据（**必需**，否则教程不会出现在前台）：
+   - 分别在 `content/tutorials/index.json`（运行时索引）和 `frontend/src/data/tutorials-index.json`（静态打包副本）追加一条条目。
+   - 必填字段：`id`、`slug`、`title`、`description`、`category`、`subcategory`、`difficulty`、`estimatedTime`、`tags`、`keywords`、`prerequisites`、`file`（值为 `/content/tutorials/{category}/{slug}.md`）。
 
-```markdown
----
-title: "你的教程标题"
-source: "原始文章来源（可选）"
-source_name: "来源名称"
-category: "harness"
-difficulty: "beginner"
-tags: ["claude-code", "入门"]
----
+   Markdown 正文示例：
 
-# 你的教程标题
+   ```markdown
+   # 你的教程标题
 
-## 第一节
+   ## 第一节
 
-教程内容...
-```
+   教程内容...
+   ```
 
-4. 提交 PR 到 `main` 分支
+4. 提交 PR 到 `master` 分支（本项目主分支为 `master`）
 5. 团队成员审核后合并，自动部署上线
 
 **教程质量标准：**
