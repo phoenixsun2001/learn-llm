@@ -1224,5 +1224,39 @@
     ],
     "category": "model",
     "difficulty": "intermediate"
+  },
+  {
+    "type": "tool",
+    "slug": "zcode",
+    "title": "ZCode",
+    "keywords": [
+      "ZCode",
+      "GLM-5.2",
+      "ADE",
+      "Agent",
+      "智谱",
+      "长任务",
+      "harness",
+      "z.ai"
+    ],
+    "category": "harness"
+  },
+  {
+    "type": "tutorial",
+    "slug": "zcode-guide",
+    "title": "ZCode 实战指南：面向长任务的 Agentic 开发环境",
+    "keywords": [
+      "ZCode",
+      "GLM-5.2",
+      "ADE",
+      "Agent",
+      "智谱",
+      "长任务",
+      "agentic",
+      "z.ai",
+      "harness"
+    ],
+    "category": "harness",
+    "difficulty": "beginner"
   }
 ]

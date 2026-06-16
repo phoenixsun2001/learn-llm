@@ -334,5 +334,48 @@
       "Agent",
       "安全"
     ]
+  },
+  {
+    "id": "tool-zcode",
+    "slug": "zcode",
+    "name": "ZCode",
+    "description": "智谱 Z.ai 推出的全功能 Agentic 开发环境（ADE），面向长跨度、多步骤的复杂开发任务，围绕 GLM-5.2 深度联调，让 Agent 从规划一路推进到验证收口。",
+    "category": "harness",
+    "officialUrl": "https://zcode.z.ai/cn/docs/welcome",
+    "wizardSteps": [
+      {
+        "step": 1,
+        "title": "认识 ZCode",
+        "tutorialSlug": "zcode-guide"
+      },
+      {
+        "step": 2,
+        "title": "安装与接入模型",
+        "tutorialSlug": "zcode-guide"
+      },
+      {
+        "step": 3,
+        "title": "用 Agent 发起任务",
+        "tutorialSlug": "zcode-guide"
+      },
+      {
+        "step": 4,
+        "title": "执行模式与 Plan",
+        "tutorialSlug": "zcode-guide"
+      },
+      {
+        "step": 5,
+        "title": "从规划到收口",
+        "tutorialSlug": "zcode-guide"
+      }
+    ],
+    "tags": [
+      "ZCode",
+      "GLM-5.2",
+      "ADE",
+      "Agent",
+      "智谱",
+      "长任务"
+    ]
   }
 ]
