@@ -67,6 +67,15 @@ const NAV_ITEMS = [
       </svg>
     ),
   },
+  {
+    to: "/admin/users",
+    label: "用户管理",
+    icon: (
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path d="M7 8a3 3 0 116 0 3 3 0 01-6 0zM2 15a5 5 0 0110 0M13 9a2.5 2.5 0 114 0 2.5 2.5 0 01-4 0zM13.5 15a4.5 4.5 0 014-2.4" />
+      </svg>
+    ),
+  },
 ]
 
 const AdminLayout = () => {

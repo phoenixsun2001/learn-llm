@@ -157,3 +157,129 @@
     max-width: 100%;
   }
 }
+
+/* ---------- Login / register tabs ---------- */
+.auth-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: var(--spacing-md);
+  padding: 4px;
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-md);
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background-color: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.auth-tab--active {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------- Form ---------- */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.auth-field-label {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+}
+
+.auth-field-input {
+  width: 100%;
+  padding: 8px var(--spacing-sm);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  box-sizing: border-box;
+}
+
+.auth-field-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.auth-error {
+  margin: 0;
+  padding: 6px var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  color: var(--error-color);
+  background-color: rgba(239, 68, 68, 0.08);
+  border-radius: var(--radius-sm);
+}
+
+/* ---------- Primary submit button ---------- */
+.auth-btn-primary {
+  margin-top: var(--spacing-xs);
+  background-color: var(--accent-color);
+  color: #ffffff;
+}
+
+.auth-btn-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+.auth-btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ---------- Avatar fallback (initial letter) ---------- */
+.auth-avatar--fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background-color: var(--accent-light);
+  color: var(--accent-color);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* ---------- Role badge ---------- */
+.auth-role-badge {
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: 2px;
+  padding: 1px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: var(--radius-full);
+}
+
+.auth-role-badge--admin {
+  color: var(--accent-text);
+  background-color: var(--accent-light);
+}
+
+.auth-role-badge--user {
+  color: var(--text-secondary);
+  background-color: var(--bg-tertiary);
+}

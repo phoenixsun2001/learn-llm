@@ -1,23 +1,8 @@
-import React from 'react'
-import { Navigate } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth'
+import React from "react"
+import { useAuth } from "../hooks/useAuth"
 
 const AdminGuard = ({ children }) => {
-  const { user, isAdmin, loading, hasSupabase } = useAuth()
-
-  if (!hasSupabase) {
-    return (
-      <div className="admin-unavailable">
-        <div className="admin-unavailable-card">
-          <span className="admin-unavailable-icon" aria-hidden="true">&#9888;</span>
-          <h2 className="admin-unavailable-title">管理后台不可用</h2>
-          <p className="admin-unavailable-text">
-            管理后台需要配置 Supabase 才能使用。请参考项目文档完成 Supabase 配置后重试。
-          </p>
-        </div>
-      </div>
-    )
-  }
+  const { user, isAdmin, loading } = useAuth()
 
   if (loading) {
     return (
@@ -29,7 +14,18 @@ const AdminGuard = ({ children }) => {
   }
 
   if (!user) {
-    return <Navigate to="/" replace />
+    return (
+      <div className="admin-unavailable">
+        <div className="admin-unavailable-card">
+          <span className="admin-unavailable-icon" aria-hidden="true">&#9888;</span>
+          <h2 className="admin-unavailable-title">需要登录</h2>
+          <p className="admin-unavailable-text">
+            管理后台需要登录管理员账号才能访问。请返回首页点击右上角"登录"，完成后再进入管理后台。
+          </p>
+          <a href="/" className="admin-denied-link">返回首页登录</a>
+        </div>
+      </div>
+    )
   }
 
   if (!isAdmin) {

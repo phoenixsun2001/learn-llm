@@ -1,0 +1,208 @@
+.user-manager {
+  max-width: 100%;
+}
+
+.user-manager-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-lg);
+}
+
+.user-manager-title {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.user-manager-create {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.user-manager-input {
+  padding: 8px var(--spacing-sm);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+}
+
+.user-manager-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.user-manager-btn {
+  padding: 6px var(--spacing-sm);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.user-manager-btn:hover:not(:disabled) {
+  background-color: var(--bg-secondary);
+}
+
+.user-manager-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.user-manager-btn--primary {
+  border-color: var(--accent-color);
+  background-color: var(--accent-color);
+  color: #ffffff;
+}
+
+.user-manager-btn--primary:hover:not(:disabled) {
+  background-color: var(--accent-hover);
+}
+
+.user-manager-empty {
+  padding: var(--spacing-xl);
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.user-manager-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.user-manager-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+}
+
+.user-manager-table th,
+.user-manager-table td {
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.user-manager-table th {
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.user-manager-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.user-manager-self {
+  margin-left: 6px;
+  color: var(--text-secondary);
+}
+
+.user-manager-role,
+.user-manager-status {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+}
+
+.user-manager-role--admin {
+  color: var(--accent-text);
+  background-color: var(--accent-light);
+}
+
+.user-manager-role--user {
+  color: var(--text-secondary);
+  background-color: var(--bg-tertiary);
+}
+
+.user-manager-status--active {
+  color: var(--success-color);
+  background-color: rgba(34, 197, 94, 0.12);
+}
+
+.user-manager-status--disabled {
+  color: var(--error-color);
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+.user-manager-actions {
+  display: flex;
+  gap: 6px;
+}
+
+/* ---------- Reset password modal ---------- */
+.user-manager-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.user-manager-modal {
+  width: 100%;
+  max-width: 420px;
+  padding: var(--spacing-lg);
+  background-color: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.user-manager-modal-title {
+  margin: 0 0 var(--spacing-xs);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.user-manager-modal-desc {
+  margin: 0 0 var(--spacing-md);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.user-manager-modal .user-manager-input {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: var(--spacing-md);
+}
+
+.user-manager-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+}
+
+@media (max-width: 768px) {
+  .user-manager-create {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .user-manager-create .user-manager-input,
+  .user-manager-create .user-manager-btn {
+    width: 100%;
+  }
+}

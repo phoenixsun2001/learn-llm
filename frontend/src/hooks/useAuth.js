@@ -1,59 +1,65 @@
-import { useState, useEffect, useCallback } from 'react'
-import { supabase, hasSupabase } from '../services/supabase'
+import { useState, useEffect, useCallback } from "react"
+import {
+  login as apiLogin,
+  register as apiRegister,
+  fetchMe,
+  getAuthToken,
+  setAuthToken,
+} from "../services/authApi"
 
 export function useAuth() {
   const [user, setUser] = useState(null)
-  const [loading, setLoading] = useState(hasSupabase)
+  const [loading, setLoading] = useState(true)
   const [isAdmin, setIsAdmin] = useState(false)
 
+  const applyUser = useCallback((u) => {
+    setUser(u || null)
+    setIsAdmin(u?.role === "admin")
+  }, [])
+
+  // Restore the session on mount if a token is present.
   useEffect(() => {
-    // No Supabase configured — no auth to load
-    if (!hasSupabase || !supabase) {
+    let cancelled = false
+    if (!getAuthToken()) {
       setLoading(false)
       return
     }
+    fetchMe()
+      .then((data) => {
+        if (!cancelled) applyUser(data?.user || null)
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setAuthToken(null)
+          applyUser(null)
+        }
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false)
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [applyUser])
 
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null)
-      setIsAdmin(session?.user?.app_metadata?.role === 'admin')
-      setLoading(false)
-    })
+  const signIn = useCallback(async (email, password) => {
+    const data = await apiLogin(email, password)
+    setAuthToken(data.token)
+    applyUser(data.user)
+    return data.user
+  }, [applyUser])
 
-    // Listen for auth state changes (login, logout, token refresh)
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setUser(session?.user ?? null)
-        setIsAdmin(session?.user?.app_metadata?.role === 'admin')
-      }
-    )
+  const signUp = useCallback(async (email, password) => {
+    const data = await apiRegister(email, password)
+    setAuthToken(data.token)
+    applyUser(data.user)
+    return data.user
+  }, [applyUser])
 
-    return () => subscription.unsubscribe()
-  }, [])
+  const signOut = useCallback(() => {
+    setAuthToken(null)
+    applyUser(null)
+  }, [applyUser])
 
-  const signInWithGitHub = useCallback(async () => {
-    if (!supabase) return
-    await supabase.auth.signInWithOAuth({
-      provider: 'github',
-      options: {
-        redirectTo: window.location.origin,
-      },
-    })
-  }, [])
-
-  const signOut = useCallback(async () => {
-    if (!supabase) return
-    await supabase.auth.signOut()
-    setUser(null)
-    setIsAdmin(false)
-  }, [])
-
-  return {
-    user,
-    loading,
-    isAdmin,
-    signInWithGitHub,
-    signOut,
-    hasSupabase,
-  }
+  return { user, loading, isAdmin, signIn, signUp, signOut }
 }

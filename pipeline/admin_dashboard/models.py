@@ -51,7 +51,7 @@ def init_db():
                 material_id TEXT UNIQUE NOT NULL,
                 title TEXT NOT NULL,
                 content TEXT,
-                category TEXT DEFAULT 'uncategorized',
+                category TEXT DEFAULT 'practice',
                 difficulty TEXT DEFAULT 'beginner',
                 tags TEXT DEFAULT '[]',
                 source_url TEXT,
@@ -68,6 +68,46 @@ def init_db():
                 enabled INTEGER DEFAULT 1,
                 last_fetched_at TEXT,
                 error_count INTEGER DEFAULT 0
+            );
+
+            CREATE TABLE IF NOT EXISTS users (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                email TEXT UNIQUE NOT NULL,
+                password_hash TEXT NOT NULL,
+                role TEXT DEFAULT 'user',
+                status TEXT DEFAULT 'active',
+                created_at TEXT,
+                last_login_at TEXT
+            );
+
+            CREATE TABLE IF NOT EXISTS user_favorites (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER NOT NULL,
+                item_type TEXT NOT NULL,
+                item_slug TEXT NOT NULL,
+                created_at TEXT,
+                UNIQUE(user_id, item_type, item_slug)
+            );
+
+            CREATE TABLE IF NOT EXISTS user_history (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER NOT NULL,
+                item_type TEXT NOT NULL,
+                item_slug TEXT NOT NULL,
+                viewed_at TEXT NOT NULL,
+                view_count INTEGER DEFAULT 1,
+                UNIQUE(user_id, item_type, item_slug)
+            );
+
+            CREATE TABLE IF NOT EXISTS user_progress (
+                user_id INTEGER NOT NULL,
+                item_slug TEXT NOT NULL,
+                completed INTEGER DEFAULT 0,
+                chapter_index INTEGER DEFAULT 0,
+                chapters TEXT,
+                completed_at TEXT,
+                updated_at TEXT,
+                PRIMARY KEY(user_id, item_slug)
             );
         """)
         conn.commit()
@@ -166,7 +206,7 @@ def insert_review_item(item: Dict[str, Any]) -> int:
                 item.get("source_type", "rss"),
                 item.get("raw_content", ""),
                 item.get("ai_summary", ""),
-                item.get("ai_category", "uncategorized"),
+                item.get("ai_category", "practice"),
                 item.get("ai_difficulty", "beginner"),
                 datetime.now(timezone.utc).isoformat(),
             )
@@ -232,7 +272,7 @@ def insert_review_batch(items: List[Dict[str, Any]]) -> int:
                     item.get("source_type", "rss"),
                     item.get("raw_content", ""),
                     item.get("ai_summary", ""),
-                    item.get("ai_category", "uncategorized"),
+                    item.get("ai_category", "practice"),
                     item.get("ai_difficulty", "beginner"),
                     now,
                 )
@@ -328,7 +368,7 @@ def insert_material(item: Dict[str, Any]) -> Optional[str]:
                 item.get("material_id", ""),
                 item.get("title", "Untitled"),
                 item.get("content", ""),
-                item.get("category", "uncategorized"),
+                item.get("category", "practice"),
                 item.get("difficulty", "beginner"),
                 tags,
                 item.get("source_url", ""),
@@ -523,5 +563,253 @@ def seed_default_sources():
                 pass
         conn.commit()
         logger.info(f"Seeded {len(config.rss_feeds)} default RSS sources")
+    finally:
+        conn.close()
+
+
+# -------------------- Users (self-hosted auth) --------------------
+
+def get_user_by_email(email: str) -> Optional[Dict[str, Any]]:
+    """Full user row (incl. password_hash) for auth verification."""
+    conn = _get_conn()
+    try:
+        row = conn.execute("SELECT * FROM users WHERE email = ?", (email,)).fetchone()
+        return dict(row) if row else None
+    finally:
+        conn.close()
+
+
+def get_user_by_id(user_id: int) -> Optional[Dict[str, Any]]:
+    conn = _get_conn()
+    try:
+        row = conn.execute("SELECT * FROM users WHERE id = ?", (user_id,)).fetchone()
+        return dict(row) if row else None
+    finally:
+        conn.close()
+
+
+def count_users() -> int:
+    conn = _get_conn()
+    try:
+        return conn.execute("SELECT COUNT(*) FROM users").fetchone()[0]
+    finally:
+        conn.close()
+
+
+def count_users_by_role(role: str) -> int:
+    """Count ACTIVE users with a given role (used for last-admin protection)."""
+    conn = _get_conn()
+    try:
+        return conn.execute(
+            "SELECT COUNT(*) FROM users WHERE role = ? AND status = 'active'", (role,)
+        ).fetchone()[0]
+    finally:
+        conn.close()
+
+
+def list_users() -> List[Dict[str, Any]]:
+    """All users without password_hash."""
+    conn = _get_conn()
+    try:
+        rows = conn.execute(
+            "SELECT id, email, role, status, created_at, last_login_at FROM users ORDER BY id"
+        ).fetchall()
+        return [dict(r) for r in rows]
+    finally:
+        conn.close()
+
+
+def insert_user(email: str, password_hash: str, role: str = "user") -> Optional[int]:
+    """Insert a user; returns new id, or None if email already exists."""
+    conn = _get_conn()
+    try:
+        cur = conn.execute(
+            "INSERT INTO users (email, password_hash, role, status, created_at) "
+            "VALUES (?, ?, ?, 'active', ?)",
+            (email, password_hash, role, datetime.now(timezone.utc).isoformat()),
+        )
+        conn.commit()
+        return cur.lastrowid
+    except sqlite3.IntegrityError:
+        return None
+    finally:
+        conn.close()
+
+
+def update_user(user_id: int, **fields) -> bool:
+    """Whitelist update of role / status / last_login_at. True if a row changed."""
+    allowed = {"role", "status", "last_login_at", "password_hash"}
+    sets = [f"{k} = ?" for k in fields if k in allowed]
+    vals = [v for k, v in fields.items() if k in allowed]
+    if not sets:
+        return False
+    vals.append(user_id)
+    conn = _get_conn()
+    try:
+        cur = conn.execute(f"UPDATE users SET {', '.join(sets)} WHERE id = ?", vals)
+        conn.commit()
+        return cur.rowcount > 0
+    finally:
+        conn.close()
+
+
+# -------------------- User Library: favorites / history / progress --------------------
+
+VALID_ITEM_TYPES = ("tutorial", "tool", "scenario", "prompt", "skill", "skill_package")
+
+
+def add_favorite(user_id, item_type, item_slug):
+    conn = _get_conn()
+    try:
+        conn.execute(
+            "INSERT OR IGNORE INTO user_favorites (user_id, item_type, item_slug, created_at) VALUES (?, ?, ?, ?)",
+            (user_id, item_type, item_slug, datetime.now(timezone.utc).isoformat()),
+        )
+        conn.commit()
+        return True
+    finally:
+        conn.close()
+
+
+def remove_favorite(user_id, item_type, item_slug):
+    conn = _get_conn()
+    try:
+        cur = conn.execute(
+            "DELETE FROM user_favorites WHERE user_id=? AND item_type=? AND item_slug=?",
+            (user_id, item_type, item_slug),
+        )
+        conn.commit()
+        return cur.rowcount > 0
+    finally:
+        conn.close()
+
+
+def list_favorites(user_id, item_type=None):
+    conn = _get_conn()
+    try:
+        if item_type:
+            cur = conn.execute(
+                "SELECT item_type, item_slug, created_at FROM user_favorites WHERE user_id=? AND item_type=? ORDER BY created_at DESC",
+                (user_id, item_type),
+            )
+        else:
+            cur = conn.execute(
+                "SELECT item_type, item_slug, created_at FROM user_favorites WHERE user_id=? ORDER BY created_at DESC",
+                (user_id,),
+            )
+        return [dict(r) for r in cur.fetchall()]
+    finally:
+        conn.close()
+
+
+def is_favorite(user_id, item_type, item_slug):
+    conn = _get_conn()
+    try:
+        cur = conn.execute(
+            "SELECT 1 FROM user_favorites WHERE user_id=? AND item_type=? AND item_slug=?",
+            (user_id, item_type, item_slug),
+        )
+        return cur.fetchone() is not None
+    finally:
+        conn.close()
+
+
+def record_view(user_id, item_type, item_slug):
+    """Upsert a view: bump view_count + viewed_at, or insert a new row."""
+    conn = _get_conn()
+    try:
+        now = datetime.now(timezone.utc).isoformat()
+        cur = conn.execute(
+            "UPDATE user_history SET viewed_at=?, view_count=view_count+1 WHERE user_id=? AND item_type=? AND item_slug=?",
+            (now, user_id, item_type, item_slug),
+        )
+        if cur.rowcount == 0:
+            conn.execute(
+                "INSERT INTO user_history (user_id, item_type, item_slug, viewed_at, view_count) VALUES (?, ?, ?, ?, 1)",
+                (user_id, item_type, item_slug, now),
+            )
+        conn.commit()
+    finally:
+        conn.close()
+
+
+def list_history(user_id, limit=50):
+    conn = _get_conn()
+    try:
+        cur = conn.execute(
+            "SELECT item_type, item_slug, viewed_at, view_count FROM user_history WHERE user_id=? ORDER BY viewed_at DESC LIMIT ?",
+            (user_id, limit),
+        )
+        return [dict(r) for r in cur.fetchall()]
+    finally:
+        conn.close()
+
+
+def clear_history(user_id):
+    conn = _get_conn()
+    try:
+        conn.execute("DELETE FROM user_history WHERE user_id=?", (user_id,))
+        conn.commit()
+        return True
+    finally:
+        conn.close()
+
+
+def list_progress(user_id):
+    """Return {slug: {completed, chapterIndex, chapters, completedAt}} for the user."""
+    conn = _get_conn()
+    try:
+        cur = conn.execute(
+            "SELECT item_slug, completed, chapter_index, chapters, completed_at FROM user_progress WHERE user_id=?",
+            (user_id,),
+        )
+        out = {}
+        for r in cur.fetchall():
+            try:
+                chapters = json.loads(r["chapters"]) if r["chapters"] else {}
+            except (json.JSONDecodeError, TypeError):
+                chapters = {}
+            out[r["item_slug"]] = {
+                "completed": bool(r["completed"]),
+                "chapterIndex": r["chapter_index"] or 0,
+                "chapters": chapters,
+                "completedAt": r["completed_at"],
+            }
+        return out
+    finally:
+        conn.close()
+
+
+def upsert_progress(user_id, item_slug, completed=False, chapter_index=0, chapters=None):
+    conn = _get_conn()
+    try:
+        now = datetime.now(timezone.utc).isoformat()
+        chap_json = json.dumps(chapters or {}, ensure_ascii=False)
+        completed_at = now if completed else None
+        conn.execute(
+            "INSERT INTO user_progress (user_id, item_slug, completed, chapter_index, chapters, completed_at, updated_at) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?) "
+            "ON CONFLICT(user_id, item_slug) DO UPDATE SET "
+            "completed=excluded.completed, chapter_index=excluded.chapter_index, "
+            "chapters=excluded.chapters, "
+            "completed_at=CASE WHEN excluded.completed=1 THEN excluded.completed_at ELSE user_progress.completed_at END, "
+            "updated_at=excluded.updated_at",
+            (user_id, item_slug, 1 if completed else 0, chapter_index, chap_json, completed_at, now),
+        )
+        conn.commit()
+        return True
+    finally:
+        conn.close()
+
+
+def delete_progress(user_id, item_slug=None):
+    conn = _get_conn()
+    try:
+        if item_slug:
+            conn.execute("DELETE FROM user_progress WHERE user_id=? AND item_slug=?", (user_id, item_slug))
+        else:
+            conn.execute("DELETE FROM user_progress WHERE user_id=?", (user_id,))
+        conn.commit()
+        return True
     finally:
         conn.close()

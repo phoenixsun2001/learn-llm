@@ -27,6 +27,9 @@ from admin_dashboard.routes.review import router as review_router
 from admin_dashboard.routes.materials import router as materials_router
 from admin_dashboard.routes.sources import router as sources_router
 from admin_dashboard.routes.chat import router as chat_router
+from admin_dashboard.routes.auth import router as auth_router
+from admin_dashboard.routes.users import router as users_router
+from admin_dashboard.routes.library import router as library_router
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
 logger = logging.getLogger(__name__)
@@ -61,7 +64,10 @@ class AuthMiddleware(BaseHTTPMiddleware):
         # All other /admin routes require auth
         if path.startswith("/admin"):
             token = request.cookies.get("admin_token") or request.headers.get("X-Admin-Token")
-            if token != config.admin_token:
+            from auth_utils import get_current_user
+            jwt_user = get_current_user(request)
+            jwt_admin_ok = bool(jwt_user and jwt_user.get("role") == "admin")
+            if (not jwt_admin_ok) and token != config.admin_token:
                 if request.method == "GET":
                     return RedirectResponse("/admin/login", status_code=302)
                 raise HTTPException(status_code=401, detail="Unauthorized")
@@ -130,6 +136,9 @@ app.include_router(review_router, prefix="/admin")
 app.include_router(materials_router, prefix="/admin")
 app.include_router(sources_router, prefix="/admin")
 app.include_router(chat_router)  # no prefix — public /chat endpoint
+app.include_router(auth_router)   # /auth/* self-hosted login/register (proxied via /api)
+app.include_router(users_router)  # /users/* admin user management (proxied via /api)
+app.include_router(library_router)  # /me/* user favorites/history/progress (proxied via /api)
 
 
 # --------------- Dashboard ---------------
