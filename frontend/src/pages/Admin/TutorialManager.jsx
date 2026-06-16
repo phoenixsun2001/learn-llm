@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useCallback } from 'react'
+import { message } from 'antd'
 import {
   getAllTutorials, addImportedTutorials, removeImportedTutorials,
   saveEditedContent, addPathway, updatePathway,
@@ -12,10 +13,6 @@ import './TutorialManager.css'
 
 /* ---------- status helpers (localStorage) ---------- */
 const STORED_STATUS_KEY = 'learn-llm-tutorial-statuses'
-
-const SIMULATED_STATUSES = {
-  'tut-claude-code-first-use': 'draft',
-}
 
 function loadStatuses() {
   try { return JSON.parse(localStorage.getItem(STORED_STATUS_KEY) || '{}') } catch { return {} }
@@ -42,7 +39,7 @@ const TutorialManager = () => {
     const map = {}
     let needsSave = false
     allTutorials.forEach((t) => {
-      const existing = stored[t.id] || SIMULATED_STATUSES[t.id]
+      const existing = stored[t.id]
       if (existing) { map[t.id] = existing }
       else {
         const isImported = t.id && t.id.startsWith('tut-custom-')
@@ -141,7 +138,7 @@ const TutorialManager = () => {
       })
       setRefreshKey(k => k + 1)
     } catch (err) {
-      alert(err?.message || '状态更新失败，请检查教程正文是否可用。')
+      message.error(err?.message || '状态更新失败，请检查教程正文是否可用。')
     }
   }
 
@@ -212,7 +209,7 @@ const TutorialManager = () => {
     setPathwayEditorState(null)
     setActivePathway(null)
     setRefreshKey(k => k + 1)
-    alert('路径已保存')
+    message.success('路径已保存')
   }, [])
 
   /* ---------- Chapter editing flow ---------- */
@@ -315,7 +312,7 @@ const TutorialManager = () => {
       })
     }
     setShowImportWizard(false)
-    alert(`成功导入 ${created}/${editedMaterials.length} 个教程`)
+    message.success(`成功导入 ${created}/${editedMaterials.length} 个教程`)
   }
 
   /* ---------- Sort icon ---------- */

@@ -2,6 +2,8 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getPromptBySlug } from '../../services/contentLoader';
 import { PROMPT_CATEGORY_LABELS, DIFFICULTY_LABELS } from '../../utils/constants';
+import FavoriteButton from '../../components/FavoriteButton/FavoriteButton';
+import { useHistoryView } from '../../hooks/useHistoryView';
 import './PromptDetail.css';
 
 /**
@@ -36,6 +38,7 @@ function tokenizeTemplate(template) {
 
 const PromptDetail = () => {
   const { slug } = useParams();
+  useHistoryView('prompt', slug);
   const prompt = getPromptBySlug(slug);
 
   // Variable form state: { varName: value }
@@ -142,6 +145,7 @@ const PromptDetail = () => {
           )}
         </div>
         <h1 className="prompt-detail-title">{prompt.title}</h1>
+        <FavoriteButton type="prompt" slug={slug} />
         {prompt.description && (
           <p className="prompt-detail-desc">{prompt.description}</p>
         )}

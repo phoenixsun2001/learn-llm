@@ -1,5 +1,6 @@
 // 分类常量
 export const CATEGORIES = {
+  PRINCIPLE: 'principle',
   MODEL: 'model',
   HARNESS: 'harness',
   WORKFLOW: 'workflow',
@@ -8,6 +9,7 @@ export const CATEGORIES = {
 };
 
 export const CATEGORY_LABELS = {
+  [CATEGORIES.PRINCIPLE]: '技术原理',
   [CATEGORIES.MODEL]: '模型基础',
   [CATEGORIES.HARNESS]: 'Harness 工具',
   [CATEGORIES.WORKFLOW]: 'Workflow 工具',
@@ -15,11 +17,21 @@ export const CATEGORY_LABELS = {
   [CATEGORIES.PRACTICE]: '最佳实践',
 };
 
+export const CATEGORY_OPTIONS = Object.values(CATEGORIES).map((value) => ({
+  value,
+  label: CATEGORY_LABELS[value],
+}));
+
 export const DIFFICULTY_LABELS = {
   beginner: '入门',
   intermediate: '进阶',
   advanced: '精通',
 };
+
+export const DIFFICULTY_OPTIONS = Object.entries(DIFFICULTY_LABELS).map(([value, label]) => ({
+  value,
+  label,
+}));
 
 export const TOOL_CATEGORIES = {
   HARNESS: 'harness',

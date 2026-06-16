@@ -14,6 +14,7 @@ from admin_dashboard.models import (
     update_source_fetch,
 )
 from config import config
+from content_taxonomy import normalize_category
 
 logger = logging.getLogger(__name__)
 
@@ -21,9 +22,9 @@ router = APIRouter()
 
 
 def _check_auth(request: Request):
-    token = request.cookies.get("admin_token")
-    if token != config.admin_token:
-        raise HTTPException(status_code=401, detail="Unauthorized")
+    # Unified: accepts JWT(admin) from SPA login OR the legacy admin_token.
+    from auth_utils import check_admin_or_token
+    check_admin_or_token(request)
 
 
 @router.get("/sources")
@@ -117,7 +118,7 @@ async def fetch_source_route(source_id: int, request: Request):
                     "source_type": "rss",
                     "raw_content": entry.get("summary", entry.get("content", [{}])[0].get("value", "")) if hasattr(entry, 'get') else "",
                     "ai_summary": "",
-                    "ai_category": source.get("category", "uncategorized"),
+                    "ai_category": normalize_category(source.get("category", "practice")),
                     "ai_difficulty": "beginner",
                 })
 

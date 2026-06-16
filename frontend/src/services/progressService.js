@@ -1,4 +1,8 @@
-import { supabase, hasSupabase } from './supabase'
+import { message } from 'antd'
+import * as libApi from './libraryApi'
+
+// Throttle cloud-sync warnings so transient failures don't spam the user.
+let _lastSyncWarnAt = 0
 
 const LOCAL_KEY = 'learn-ai-progress'
 
@@ -21,27 +25,14 @@ export function saveLocalProgress(progress) {
   }
 }
 
-// ============ Cloud Sync (Supabase) ============
+// ============ Cloud Sync (self-hosted backend, /api/me/progress) ============
+// Replaces the former Supabase path. Same seam/contract as before so useProgress
+// is unchanged: load -> {slug:{...}} | null, save -> per-slug upsert, clear -> all.
 
 export async function loadCloudProgress(userId) {
-  if (!hasSupabase || !supabase || !userId) return null
+  if (!userId) return null
   try {
-    const { data, error } = await supabase
-      .from('user_progress')
-      .select('*')
-      .eq('user_id', userId)
-    if (error) throw error
-    // Convert array to object keyed by tutorial_slug
-    const progress = {}
-    for (const row of (data || [])) {
-      progress[row.tutorial_slug] = {
-        completed: row.completed,
-        chapterIndex: row.chapter_index || 0,
-        chapters: row.chapters || {},
-        completedAt: row.completed_at,
-      }
-    }
-    return progress
+    return await libApi.listProgress()
   } catch (err) {
     console.warn('Failed to load cloud progress:', err)
     return null
@@ -49,35 +40,29 @@ export async function loadCloudProgress(userId) {
 }
 
 export async function saveCloudProgress(userId, tutorialSlug, tutorialProgress) {
-  if (!hasSupabase || !supabase || !userId) return
+  if (!userId) return
   try {
-    const { error } = await supabase
-      .from('user_progress')
-      .upsert({
-        user_id: userId,
-        tutorial_slug: tutorialSlug,
-        completed: tutorialProgress.completed || false,
-        chapter_index: tutorialProgress.chapterIndex ?? (tutorialProgress.chapters
-          ? Math.max(...Object.keys(tutorialProgress.chapters).map(Number), 0)
-          : 0),
-        chapters: tutorialProgress.chapters || {},
-        completed_at: tutorialProgress.completedAt || new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-      }, { onConflict: 'user_id,tutorial_slug' })
-    if (error) throw error
+    await libApi.upsertProgress(tutorialSlug, {
+      completed: tutorialProgress.completed || false,
+      chapterIndex: tutorialProgress.chapterIndex ?? (tutorialProgress.chapters
+        ? Math.max(...Object.keys(tutorialProgress.chapters).map(Number), 0)
+        : 0),
+      chapters: tutorialProgress.chapters || {},
+    })
   } catch (err) {
     console.warn('Failed to save cloud progress:', err)
+    const now = Date.now()
+    if (now - _lastSyncWarnAt > 30000) {
+      _lastSyncWarnAt = now
+      message.warning('学习进度未能同步，已保存在本地')
+    }
   }
 }
 
 export async function clearCloudProgress(userId) {
-  if (!hasSupabase || !supabase || !userId) return
+  if (!userId) return
   try {
-    const { error } = await supabase
-      .from('user_progress')
-      .delete()
-      .eq('user_id', userId)
-    if (error) throw error
+    await libApi.clearProgress()
   } catch (err) {
     console.warn('Failed to clear cloud progress:', err)
   }

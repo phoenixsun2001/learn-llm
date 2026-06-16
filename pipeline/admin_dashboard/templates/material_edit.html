@@ -40,14 +40,14 @@
                 <label for="category">分类</label>
                 {% if item_type == 'review' %}
                 <select id="category" name="category">
-                    {% set cats = ['llm_basics', 'prompt_engineering', 'rag', 'agents', 'tools', 'deployment', 'tutorials', 'research', 'uncategorized'] %}
+                    {% set cats = categories if categories else ['principle', 'model', 'harness', 'workflow', 'development', 'practice'] %}
                     {% for c in cats %}
                     <option value="{{ c }}" {% if item and item.ai_category == c %}selected{% endif %}>{{ c }}</option>
                     {% endfor %}
                 </select>
                 {% else %}
                 <select id="category" name="category">
-                    {% set cats = categories if categories else ['llm_basics', 'prompt_engineering', 'rag', 'agents', 'tools', 'deployment', 'tutorials', 'research', 'uncategorized'] %}
+                    {% set cats = categories if categories else ['principle', 'model', 'harness', 'workflow', 'development', 'practice'] %}
                     {% for c in cats %}
                     <option value="{{ c }}" {% if item and item.category == c %}selected{% endif %}>{{ c }}</option>
                     {% endfor %}

@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getSkillBySlug, getSkillPackage } from '../../services/contentLoader';
+import { getSkillBySlug, getSkillPackage, getAllSkills } from '../../services/contentLoader';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { SKILL_CATEGORY_LABELS, SKILL_USAGE_LABELS, DIFFICULTY_LABELS } from '../../utils/constants';
+import FavoriteButton from '../../components/FavoriteButton/FavoriteButton';
+import { useHistoryView } from '../../hooks/useHistoryView';
 import './SkillDetail.css';
 
 const SKILL_WORKFLOW_STEPS = [
@@ -13,8 +17,24 @@ const SKILL_WORKFLOW_STEPS = [
 
 const SkillDetail = () => {
   const { package: pkgSlug, slug } = useParams();
+  useHistoryView('skill', slug);
   const skill = getSkillBySlug(slug);
   const pkg = getSkillPackage(pkgSlug);
+
+  const totalSkillsCount = getAllSkills().length;
+
+  // Fetch the skill's markdown body when a file is defined; degrade gracefully when missing.
+  const [body, setBody] = useState(null);
+  useEffect(() => {
+    let cancelled = false;
+    if (!skill || !skill.file) { setBody(null); return; }
+    setBody(null);
+    fetch(skill.file)
+      .then((r) => { if (!r.ok) throw new Error('not found'); return r.text(); })
+      .then((text) => { if (!cancelled) setBody(text); })
+      .catch(() => { if (!cancelled) setBody(null); });
+    return () => { cancelled = true; };
+  }, [skill]);
 
   /* ---------- Skill Not Found ---------- */
   if (!skill) {
@@ -68,6 +88,7 @@ const SkillDetail = () => {
           </span>
         </div>
         <h1 className="skill-detail-name">{skill.name}</h1>
+        <FavoriteButton type="skill" slug={slug} />
         <p className="skill-detail-desc">{skill.description}</p>
 
         {/* Tags */}
@@ -79,6 +100,16 @@ const SkillDetail = () => {
           </div>
         )}
       </header>
+
+      {/* Detailed body — only rendered when a markdown file exists for this skill */}
+      {body && (
+        <section className="skill-detail-body">
+          <h2 className="skill-detail-section-title">详细说明</h2>
+          <div className="skill-detail-markdown">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{body}</ReactMarkdown>
+          </div>
+        </section>
+      )}
 
       {/* Workflow Context — where this skill fits */}
       <section className="skill-detail-workflow">
@@ -175,7 +206,7 @@ const SkillDetail = () => {
       <section className="skill-detail-more">
         <h3 className="skill-detail-more-title">浏览更多</h3>
         <p className="skill-detail-more-desc">
-          探索所有 14 个 Skills，了解完整的 Superpowers 工程化工作流。
+          探索全部 {totalSkillsCount} 个技能，了解完整的工程化工作流。
         </p>
         <Link to={`/skills/${pkgSlug}`} className="skill-detail-more-link">
           浏览全部技能 &rarr;

@@ -2,10 +2,13 @@ import React, { useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getScenarioBySlug, getToolBySlug, getTutorialBySlug } from '../../services/contentLoader';
 import { DIFFICULTY_LABELS, SCENARIO_CATEGORY_LABELS } from '../../utils/constants';
+import FavoriteButton from '../../components/FavoriteButton/FavoriteButton';
+import { useHistoryView } from '../../hooks/useHistoryView';
 import './ScenarioDetail.css';
 
 const ScenarioDetail = () => {
   const { slug } = useParams();
+  useHistoryView('scenario', slug);
   const scenario = getScenarioBySlug(slug);
 
   /* Resolve tool references */
@@ -64,6 +67,7 @@ const ScenarioDetail = () => {
           </span>
         )}
         <h1 className="scenario-detail-title">{scenario.title}</h1>
+        <FavoriteButton type="scenario" slug={slug} />
 
         {/* Goal quote */}
         {scenario.goal && (

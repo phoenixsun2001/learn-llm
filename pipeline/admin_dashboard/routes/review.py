@@ -14,6 +14,7 @@ from admin_dashboard.models import (
     update_review_status,
 )
 from config import config
+from content_taxonomy import DIFFICULTIES, LEARNING_CATEGORIES, normalize_category, normalize_difficulty
 
 logger = logging.getLogger(__name__)
 
@@ -21,9 +22,9 @@ router = APIRouter()
 
 
 def _check_auth(request: Request):
-    token = request.cookies.get("admin_token")
-    if token != config.admin_token:
-        raise HTTPException(status_code=401, detail="Unauthorized")
+    # Unified: accepts JWT(admin) from SPA login OR the legacy admin_token.
+    from auth_utils import check_admin_or_token
+    check_admin_or_token(request)
 
 
 @router.get("/review")
@@ -55,8 +56,8 @@ async def approve_item(item_id: int, request: Request):
         "material_id": material_id,
         "title": item["title"],
         "content": item["raw_content"] or "",
-        "category": item["ai_category"] or "uncategorized",
-        "difficulty": item["ai_difficulty"] or "beginner",
+        "category": normalize_category(item["ai_category"] or "practice"),
+        "difficulty": normalize_difficulty(item["ai_difficulty"] or "beginner"),
         "tags": [],
         "source_url": item["source_url"] or "",
         "status": "draft",
@@ -73,8 +74,8 @@ async def approve_item(item_id: int, request: Request):
             "source_type": item.get("source_type", "rss"),
             "summary": item.get("raw_content", ""),
             "ai_summary": item.get("ai_summary", ""),
-            "category": item.get("ai_category", "uncategorized"),
-            "difficulty": item.get("ai_difficulty", "beginner"),
+            "category": normalize_category(item.get("ai_category", "practice")),
+            "difficulty": normalize_difficulty(item.get("ai_difficulty", "beginner")),
             "tags": [],
         })
     except Exception as e:
@@ -109,6 +110,8 @@ async def edit_review_item_page(item_id: int, request: Request):
         "request": request,
         "item": item,
         "item_type": "review",
+        "categories": list(LEARNING_CATEGORIES),
+        "difficulty_options": list(DIFFICULTIES),
         "section": "review",
     })
 
@@ -122,8 +125,8 @@ async def update_review_item_route(item_id: int, request: Request):
         "title": form.get("title", ""),
         "raw_content": form.get("content", ""),
         "ai_summary": form.get("ai_summary", ""),
-        "ai_category": form.get("category", "uncategorized"),
-        "ai_difficulty": form.get("difficulty", "beginner"),
+        "ai_category": normalize_category(form.get("category", "practice")),
+        "ai_difficulty": normalize_difficulty(form.get("difficulty", "beginner")),
         "source_url": form.get("source_url", ""),
     }
     update_review_item(item_id, updates)

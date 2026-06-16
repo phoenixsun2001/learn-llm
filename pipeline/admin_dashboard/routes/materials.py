@@ -16,18 +16,19 @@ from admin_dashboard.models import (
     update_material,
 )
 from config import config
+from content_taxonomy import DIFFICULTIES, LEARNING_CATEGORIES, normalize_category, normalize_difficulty
 
 logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
-DIFFICULTY_OPTIONS = ["beginner", "intermediate", "advanced"]
+DIFFICULTY_OPTIONS = list(DIFFICULTIES)
 
 
 def _check_auth(request: Request):
-    token = request.cookies.get("admin_token")
-    if token != config.admin_token:
-        raise HTTPException(status_code=401, detail="Unauthorized")
+    # Unified: accepts JWT(admin) from SPA login OR the legacy admin_token.
+    from auth_utils import check_admin_or_token
+    check_admin_or_token(request)
 
 
 @router.get("/materials")
@@ -39,7 +40,7 @@ async def materials_page(request: Request, category: str = "", difficulty: str =
         search=search or None,
         limit=100,
     )
-    categories = get_categories()
+    categories = sorted(set(get_categories()) | set(LEARNING_CATEGORIES))
     difficulties = get_difficulties()
     return request.app.state.templates.TemplateResponse("materials.html", {
         "request": request,
@@ -61,7 +62,7 @@ async def material_detail_page(material_id: str, request: Request):
     if not item:
         raise HTTPException(status_code=404, detail="Material not found")
 
-    categories = get_categories()
+    categories = sorted(set(get_categories()) | set(LEARNING_CATEGORIES))
     return request.app.state.templates.TemplateResponse("material_edit.html", {
         "request": request,
         "item": item,
@@ -86,8 +87,8 @@ async def update_material_route(material_id: str, request: Request):
     updates = {
         "title": form.get("title", ""),
         "content": form.get("content", ""),
-        "category": form.get("category", "uncategorized"),
-        "difficulty": form.get("difficulty", "beginner"),
+        "category": normalize_category(form.get("category", "practice")),
+        "difficulty": normalize_difficulty(form.get("difficulty", "beginner")),
         "tags": tags,
         "source_url": form.get("source_url", ""),
         "status": form.get("status", "draft"),
@@ -107,7 +108,7 @@ async def delete_material_route(material_id: str, request: Request):
 @router.get("/materials/new")
 async def new_material_page(request: Request):
     _check_auth(request)
-    categories = get_categories()
+    categories = sorted(set(get_categories()) | set(LEARNING_CATEGORIES))
     return request.app.state.templates.TemplateResponse("material_edit.html", {
         "request": request,
         "item": None,
@@ -136,8 +137,8 @@ async def create_material_route(request: Request):
         "material_id": material_id,
         "title": form.get("title", "Untitled"),
         "content": form.get("content", ""),
-        "category": form.get("category", "uncategorized"),
-        "difficulty": form.get("difficulty", "beginner"),
+        "category": normalize_category(form.get("category", "practice")),
+        "difficulty": normalize_difficulty(form.get("difficulty", "beginner")),
         "tags": tags,
         "source_url": form.get("source_url", ""),
         "status": form.get("status", "draft"),

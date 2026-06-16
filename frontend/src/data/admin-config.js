@@ -41,7 +41,7 @@ export const TUTORIAL_STATUS_LABELS = {
 // Category options for dropdowns
 export const CATEGORY_OPTIONS = [
   { value: 'principle', label: '技术原理' },
-  { value: 'model', label: '模型产品' },
+  { value: 'model', label: '模型基础' },
   { value: 'harness', label: 'Harness 工具' },
   { value: 'workflow', label: 'Workflow 工具' },
   { value: 'development', label: '开发框架' },

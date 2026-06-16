@@ -1,19 +1,5 @@
 import React, { useState } from 'react'
-
-const CATEGORY_OPTIONS = [
-  { value: 'principle', label: '技术原理' },
-  { value: 'model', label: '模型产品' },
-  { value: 'harness', label: 'Harness工具' },
-  { value: 'workflow', label: 'Workflow工具' },
-  { value: 'development', label: '开发框架' },
-  { value: 'practice', label: '最佳实践' },
-]
-
-const DIFFICULTY_OPTIONS = [
-  { value: 'beginner', label: '入门' },
-  { value: 'intermediate', label: '进阶' },
-  { value: 'advanced', label: '精通' },
-]
+import { CATEGORY_OPTIONS, DIFFICULTY_OPTIONS } from '../../utils/constants'
 
 const StepEditMetadata = ({ materials, onNext, onBack }) => {
   const [edited, setEdited] = useState(() =>

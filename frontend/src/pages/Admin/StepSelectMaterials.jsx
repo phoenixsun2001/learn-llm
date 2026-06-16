@@ -1,12 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { fetchMaterials } from '../../services/pipelineApi'
+import { CATEGORY_LABELS, CATEGORY_OPTIONS, DIFFICULTY_LABELS } from '../../utils/constants'
 
-const CATEGORIES = ['', 'principle', 'model', 'harness', 'workflow', 'development', 'practice']
-const CATEGORY_LABELS = {
-  '': '所有分类', principle: '技术原理', model: '模型产品',
-  harness: 'Harness 工具', workflow: 'Workflow 工具',
-  development: '开发框架', practice: '最佳实践',
-}
+const FILTER_CATEGORIES = [{ value: '', label: '所有分类' }, ...CATEGORY_OPTIONS]
 
 const StepSelectMaterials = ({ onNext, onCancel }) => {
   const [materials, setMaterials] = useState([])
@@ -75,7 +71,7 @@ const StepSelectMaterials = ({ onNext, onCancel }) => {
           onChange={e => setSearch(e.target.value)}
         />
         <select className="import-select" value={category} onChange={e => setCategory(e.target.value)}>
-          {CATEGORIES.map(c => <option key={c} value={c}>{CATEGORY_LABELS[c]}</option>)}
+          {FILTER_CATEGORIES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
         </select>
       </div>
 
@@ -98,8 +94,8 @@ const StepSelectMaterials = ({ onNext, onCancel }) => {
               <div className="import-material-info" style={{ flex: 1, minWidth: 0 }}>
                 <span className="import-material-title">{m.title}</span>
                 <div className="import-material-meta">
-                  <span className="import-badge">{m.category}</span>
-                  <span className="import-badge">{m.difficulty}</span>
+                  <span className="import-badge">{CATEGORY_LABELS[m.category] || m.category}</span>
+                  <span className="import-badge">{DIFFICULTY_LABELS[m.difficulty] || m.difficulty}</span>
                   {m.status && (
                     <span className={`import-badge import-badge--${m.status === 'published' ? 'published' : ''}`}>
                       {m.status}

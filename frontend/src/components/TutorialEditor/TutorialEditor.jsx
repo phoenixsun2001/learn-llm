@@ -1,20 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { CATEGORY_OPTIONS, DIFFICULTY_OPTIONS } from '../../utils/constants'
+import { loadTutorialContent } from '../../services/contentLoader'
 import './TutorialEditor.css'
 
-const CATEGORIES = [
-  { v: 'harness', l: 'Harness 工具' },
-  { v: 'workflow', l: 'Workflow 工具' },
-  { v: 'development', l: '开发框架' },
-  { v: 'practice', l: '最佳实践' },
-  { v: 'model', l: '模型基础' },
-]
-const DIFFICULTIES = [
-  { v: 'beginner', l: '入门' },
-  { v: 'intermediate', l: '进阶' },
-  { v: 'advanced', l: '精通' },
-]
 const VIEW_MODES = [
   { k: 'edit', l: '编辑' },
   { k: 'split', l: '分屏' },
@@ -43,10 +33,14 @@ const TutorialEditor = ({ tutorial, pathwaySlug, stepOrder, onSave, onClose }) =
   const [content, setContent] = useState('')
   const [viewMode, setViewMode] = useState('split')
   const [saving, setSaving] = useState(false)
+  const [loadingContent, setLoadingContent] = useState(false)
+  const [saveError, setSaveError] = useState('')
   const [size, setSize] = useState({ w: 1100, h: 600 })
 
   // Init from tutorial prop
   useEffect(() => {
+    let cancelled = false
+
     if (tutorial) {
       setTitle(tutorial.title || '')
       setSlug(tutorial.slug || '')
@@ -54,8 +48,40 @@ const TutorialEditor = ({ tutorial, pathwaySlug, stepOrder, onSave, onClose }) =
       setDifficulty(tutorial.difficulty || 'beginner')
       setEstimatedTime(tutorial.estimatedTime || 15)
       setTags(Array.isArray(tutorial.tags) ? tutorial.tags.join(', ') : (tutorial.tags || ''))
-      setContent(tutorial.content || '')
+      setSaveError('')
+
+      if (tutorial.content) {
+        setContent(tutorial.content)
+        return () => { cancelled = true }
+      }
+
+      setContent('')
+      setLoadingContent(Boolean(tutorial.slug))
+      if (tutorial.slug) {
+        loadTutorialContent(tutorial.slug, { allowInvalidEdited: true })
+          .then((text) => {
+            if (!cancelled) setContent(text || '')
+          })
+          .catch(() => {
+            if (!cancelled) setSaveError('正文加载失败，请检查 Markdown 文件是否存在。')
+          })
+          .finally(() => {
+            if (!cancelled) setLoadingContent(false)
+          })
+      }
+    } else {
+      setTitle('')
+      setSlug('')
+      setCategory('harness')
+      setDifficulty('beginner')
+      setEstimatedTime(15)
+      setTags('')
+      setContent('')
+      setSaveError('')
+      setLoadingContent(false)
     }
+
+    return () => { cancelled = true }
   }, [tutorial])
 
   // Auto-generate slug from title
@@ -68,25 +94,34 @@ const TutorialEditor = ({ tutorial, pathwaySlug, stepOrder, onSave, onClose }) =
 
   const handleSave = useCallback(async (status) => {
     setSaving(true)
-    const tagArr = tags.split(',').map(t => t.trim()).filter(Boolean)
-    const result = {
-      title: title.trim(),
-      slug: slug.trim() || slugify(title) || ('tutorial-' + Date.now()),
-      category,
-      difficulty,
-      estimatedTime: parseInt(estimatedTime) || 15,
-      tags: tagArr,
-      keywords: tagArr,
-      content,
-      tutorialType: pathwaySlug ? 'pathway' : 'single',
-      pathwayId: pathwaySlug || null,
-      stepOrder: stepOrder || null,
+    setSaveError('')
+    try {
+      const tagArr = tags.split(',').map(t => t.trim()).filter(Boolean)
+      const result = {
+        title: title.trim(),
+        slug: slug.trim() || slugify(title) || ('tutorial-' + Date.now()),
+        category,
+        subcategory: category,
+        difficulty,
+        estimatedTime: parseInt(estimatedTime) || 15,
+        tags: tagArr,
+        keywords: tagArr,
+        content,
+        tutorialType: pathwaySlug ? 'pathway' : (tutorial?.tutorialType || 'single'),
+        pathwayId: pathwaySlug || tutorial?.pathwayId || null,
+        stepOrder: stepOrder || tutorial?.stepOrder || null,
+        prerequisites: tutorial?.prerequisites || [],
+        featured: Boolean(tutorial?.featured),
+      }
+      if (tutorial) {
+        result.id = tutorial.id
+      }
+      await onSave({ tutorial: result, status })
+    } catch (err) {
+      setSaveError(err?.message || '保存失败，请稍后重试。')
+    } finally {
+      setSaving(false)
     }
-    if (tutorial) {
-      result.id = tutorial.id
-    }
-    await onSave({ tutorial: result, status })
-    setSaving(false)
   }, [title, slug, category, difficulty, estimatedTime, tags, content, pathwaySlug, stepOrder, tutorial, onSave])
 
   // Resize handle
@@ -153,13 +188,13 @@ const TutorialEditor = ({ tutorial, pathwaySlug, stepOrder, onSave, onClose }) =
           <div className="tutorial-editor-field" style={{ width: 120 }}>
             <label>分类</label>
             <select value={category} onChange={e => setCategory(e.target.value)}>
-              {CATEGORIES.map(o => <option key={o.v} value={o.v}>{o.l}</option>)}
+              {CATEGORY_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
             </select>
           </div>
           <div className="tutorial-editor-field" style={{ width: 90 }}>
             <label>难度</label>
             <select value={difficulty} onChange={e => setDifficulty(e.target.value)}>
-              {DIFFICULTIES.map(o => <option key={o.v} value={o.v}>{o.l}</option>)}
+              {DIFFICULTY_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
             </select>
           </div>
           <div className="tutorial-editor-field" style={{ width: 70 }}>
@@ -198,7 +233,8 @@ const TutorialEditor = ({ tutorial, pathwaySlug, stepOrder, onSave, onClose }) =
               className="tutorial-editor-textarea"
               value={content}
               onChange={e => setContent(e.target.value)}
-              placeholder="Markdown 内容..."
+              placeholder={loadingContent ? '正在加载 Markdown 正文...' : 'Markdown 内容...'}
+              disabled={loadingContent}
             />
           )}
           {(viewMode === 'preview' || viewMode === 'split') && <MarkdownPreview />}
@@ -206,18 +242,19 @@ const TutorialEditor = ({ tutorial, pathwaySlug, stepOrder, onSave, onClose }) =
 
         {/* Actions */}
         <div className="tutorial-editor-actions">
+          {saveError && <span className="tutorial-editor-error">{saveError}</span>}
           <button className="admin-btn admin-btn--secondary" onClick={onClose} disabled={saving}>取消</button>
           <button
             className="admin-btn admin-btn--secondary"
             onClick={() => handleSave('draft')}
-            disabled={saving || !title.trim()}
+            disabled={saving || loadingContent || !title.trim()}
           >
             {saving ? '保存中...' : '保存草稿'}
           </button>
           <button
             className="admin-btn admin-btn--primary"
             onClick={() => handleSave('published')}
-            disabled={saving || !title.trim()}
+            disabled={saving || loadingContent || !title.trim()}
           >
             {saving ? '发布中...' : '发布'}
           </button>

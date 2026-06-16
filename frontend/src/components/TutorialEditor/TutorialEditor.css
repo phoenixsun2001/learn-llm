@@ -58,5 +58,12 @@
 }
 
 .tutorial-editor-actions {
-  display: flex; justify-content: flex-end; gap: 8px; padding: 14px 20px 18px;
+  display: flex; align-items: center; justify-content: flex-end; gap: 8px; padding: 14px 20px 18px;
+}
+
+.tutorial-editor-error {
+  margin-right: auto;
+  color: var(--error-color);
+  font-size: var(--font-size-xs);
+  line-height: 1.5;
 }

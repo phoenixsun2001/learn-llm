@@ -2,10 +2,13 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getToolBySlug, getTutorialBySlug } from '../../services/contentLoader';
 import { TOOL_CATEGORY_LABELS } from '../../utils/constants';
+import FavoriteButton from '../../components/FavoriteButton/FavoriteButton';
+import { useHistoryView } from '../../hooks/useHistoryView';
 import './ToolDetail.css';
 
 const ToolDetail = () => {
   const { slug } = useParams();
+  useHistoryView('tool', slug);
   const tool = getToolBySlug(slug);
 
   /* ---------- Tool Not Found ---------- */
@@ -48,6 +51,7 @@ const ToolDetail = () => {
       <header className="tool-detail-header">
         <div className="tool-detail-header-top">
           <span className="tool-detail-category-badge">{categoryLabel}</span>
+          <FavoriteButton type="tool" slug={slug} />
         </div>
         <h1 className="tool-detail-name">{tool.name}</h1>
         <p className="tool-detail-desc">{tool.description}</p>
