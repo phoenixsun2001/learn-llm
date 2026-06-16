@@ -10,12 +10,13 @@
   },
   "ai_processed": {
     "summary": "",
-    "category": "practice",
-    "subcategory": "",
-    "difficulty": "beginner",
+    "category": "model",
+    "subcategory": "openai",
+    "difficulty": "intermediate",
     "tags": [],
     "quality_score": null
   },
   "review_status": "pending",
-  "created_at": "2026-05-31T11:59:26.796283"
+  "created_at": "2026-05-31T11:59:26.796283",
+  "reprocessed_at": "2026-06-14T17:04:33.742243"
 }

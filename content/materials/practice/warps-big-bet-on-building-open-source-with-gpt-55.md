@@ -1,13 +1,13 @@
 ---
-title: "Warp’s big bet on building open source with GPT-5.5"
-source: "https://openai.com/index/warp"
-source_name: "rss"
-source_type: "rss"
-category: "practice"
-difficulty: "beginner"
-ai_summary: ""
+ai_summary: ''
+category: model
+difficulty: intermediate
+material_id: mat-2026-002
+source: https://openai.com/index/warp
+source_name: rss
+source_type: rss
 tags: []
-material_id: "mat-2026-002"
+title: Warp’s big bet on building open source with GPT-5.5
 ---
 
 # Warp’s big bet on building open source with GPT-5.5

@@ -1,13 +1,13 @@
 ---
-title: "Building self-improving tax agents with Codex"
-source: "https://openai.com/index/building-self-improving-tax-agents-with-codex"
-source_name: "rss"
-source_type: "rss"
-category: "practice"
-difficulty: "beginner"
-ai_summary: ""
+ai_summary: ''
+category: harness
+difficulty: intermediate
+material_id: mat-2026-011
+source: https://openai.com/index/building-self-improving-tax-agents-with-codex
+source_name: rss
+source_type: rss
 tags: []
-material_id: "mat-2026-011"
+title: Building self-improving tax agents with Codex
 ---
 
 # Building self-improving tax agents with Codex

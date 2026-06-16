@@ -1,13 +1,13 @@
 ---
-title: "OpenAI named a Leader in enterprise coding agents by Gartner"
-source: "https://openai.com/index/gartner-2026-agentic-coding-leader"
-source_name: "rss"
-source_type: "rss"
-category: "practice"
-difficulty: "beginner"
-ai_summary: ""
+ai_summary: ''
+category: harness
+difficulty: intermediate
+material_id: mat-2026-014
+source: https://openai.com/index/gartner-2026-agentic-coding-leader
+source_name: rss
+source_type: rss
 tags: []
-material_id: "mat-2026-014"
+title: OpenAI named a Leader in enterprise coding agents by Gartner
 ---
 
 # OpenAI named a Leader in enterprise coding agents by Gartner

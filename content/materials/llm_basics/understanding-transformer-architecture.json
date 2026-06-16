@@ -10,12 +10,13 @@
   },
   "ai_processed": {
     "summary": "Comprehensive guide to transformer models",
-    "category": "llm_basics",
+    "category": "principle",
     "subcategory": "",
     "difficulty": "intermediate",
     "tags": [],
     "quality_score": null
   },
   "review_status": "pending",
-  "created_at": "2026-05-30T22:21:16.640434"
+  "created_at": "2026-05-30T22:21:16.640434",
+  "reprocessed_at": "2026-06-14T17:04:16.816520"
 }

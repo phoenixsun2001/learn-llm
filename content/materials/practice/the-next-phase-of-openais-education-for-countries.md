@@ -1,13 +1,13 @@
 ---
-title: "The next phase of OpenAI’s Education for Countries"
-source: "https://openai.com/index/the-next-phase-of-education-for-countries"
-source_name: "rss"
-source_type: "rss"
-category: "practice"
-difficulty: "beginner"
-ai_summary: ""
+ai_summary: ''
+category: model
+difficulty: intermediate
+material_id: mat-2026-018
+source: https://openai.com/index/the-next-phase-of-education-for-countries
+source_name: rss
+source_type: rss
 tags: []
-material_id: "mat-2026-018"
+title: The next phase of OpenAI’s Education for Countries
 ---
 
 # The next phase of OpenAI’s Education for Countries

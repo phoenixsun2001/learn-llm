@@ -1,13 +1,13 @@
 ---
-title: "OpenAI’s Frontier Governance Framework"
-source: "https://openai.com/index/openai-frontier-governance-framework"
-source_name: "rss"
-source_type: "rss"
-category: "practice"
-difficulty: "beginner"
-ai_summary: ""
+ai_summary: ''
+category: model
+difficulty: intermediate
+material_id: mat-2026-008
+source: https://openai.com/index/openai-frontier-governance-framework
+source_name: rss
+source_type: rss
 tags: []
-material_id: "mat-2026-008"
+title: OpenAI’s Frontier Governance Framework
 ---
 
 # OpenAI’s Frontier Governance Framework

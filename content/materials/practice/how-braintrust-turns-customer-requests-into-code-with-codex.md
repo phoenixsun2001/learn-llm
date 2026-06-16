@@ -1,13 +1,13 @@
 ---
-title: "How Braintrust turns customer requests into code with Codex"
-source: "https://openai.com/index/braintrust"
-source_name: "rss"
-source_type: "rss"
-category: "practice"
-difficulty: "beginner"
-ai_summary: ""
+ai_summary: ''
+category: harness
+difficulty: intermediate
+material_id: mat-2026-004
+source: https://openai.com/index/braintrust
+source_name: rss
+source_type: rss
 tags: []
-material_id: "mat-2026-004"
+title: How Braintrust turns customer requests into code with Codex
 ---
 
 # How Braintrust turns customer requests into code with Codex

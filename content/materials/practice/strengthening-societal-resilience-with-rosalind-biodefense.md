@@ -1,13 +1,13 @@
 ---
-title: "Strengthening societal resilience with Rosalind Biodefense"
-source: "https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense"
-source_name: "rss"
-source_type: "rss"
-category: "practice"
-difficulty: "beginner"
-ai_summary: ""
+ai_summary: ''
+category: practice
+difficulty: intermediate
+material_id: mat-2026-005
+source: https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense
+source_name: rss
+source_type: rss
 tags: []
-material_id: "mat-2026-005"
+title: Strengthening societal resilience with Rosalind Biodefense
 ---
 
 # Strengthening societal resilience with Rosalind Biodefense

@@ -1,13 +1,13 @@
 ---
-title: "A shared playbook for trustworthy third party evaluations"
-source: "https://openai.com/index/trustworthy-third-party-evaluations-foundations"
-source_name: "rss"
-source_type: "rss"
-category: "practice"
-difficulty: "beginner"
-ai_summary: ""
+ai_summary: ''
+category: practice
+difficulty: intermediate
+material_id: mat-2026-006
+source: https://openai.com/index/trustworthy-third-party-evaluations-foundations
+source_name: rss
+source_type: rss
 tags: []
-material_id: "mat-2026-006"
+title: A shared playbook for trustworthy third party evaluations
 ---
 
 # A shared playbook for trustworthy third party evaluations

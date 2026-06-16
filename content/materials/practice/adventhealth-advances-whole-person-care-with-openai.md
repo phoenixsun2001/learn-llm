@@ -1,13 +1,13 @@
 ---
-title: "AdventHealth advances whole-person care with OpenAI"
-source: "https://openai.com/index/adventhealth"
-source_name: "rss"
-source_type: "rss"
-category: "practice"
-difficulty: "beginner"
-ai_summary: ""
+ai_summary: ''
+category: model
+difficulty: intermediate
+material_id: mat-2026-016
+source: https://openai.com/index/adventhealth
+source_name: rss
+source_type: rss
 tags: []
-material_id: "mat-2026-016"
+title: AdventHealth advances whole-person care with OpenAI
 ---
 
 # AdventHealth advances whole-person care with OpenAI

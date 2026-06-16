@@ -10,12 +10,13 @@
   },
   "ai_processed": {
     "summary": "",
-    "category": "practice",
-    "subcategory": "",
-    "difficulty": "beginner",
+    "category": "harness",
+    "subcategory": "codex",
+    "difficulty": "intermediate",
     "tags": [],
     "quality_score": null
   },
   "review_status": "pending",
-  "created_at": "2026-05-31T11:59:27.184089"
+  "created_at": "2026-05-31T11:59:27.184089",
+  "reprocessed_at": "2026-06-14T17:04:30.585725"
 }

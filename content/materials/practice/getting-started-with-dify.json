@@ -10,12 +10,13 @@
   },
   "ai_processed": {
     "summary": "Dify intro tutorial",
-    "category": "practice",
-    "subcategory": "",
+    "category": "workflow",
+    "subcategory": "dify",
     "difficulty": "beginner",
     "tags": [],
     "quality_score": null
   },
   "review_status": "pending",
-  "created_at": "2026-05-31T10:34:25.166391"
+  "created_at": "2026-05-31T10:34:25.166391",
+  "reprocessed_at": "2026-06-14T17:04:26.355409"
 }

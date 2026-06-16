@@ -1,13 +1,13 @@
 ---
-title: "RAG Best Practices 2026"
-source: "https://example.com/rag"
-source_name: "rss"
-source_type: "rss"
-category: "practice"
-difficulty: "advanced"
-ai_summary: "Production RAG patterns"
+ai_summary: Production RAG patterns
+category: development
+difficulty: advanced
+material_id: mat-2026-002
+source: https://example.com/rag
+source_name: rss
+source_type: rss
 tags: []
-material_id: "mat-2026-002"
+title: RAG Best Practices 2026
 ---
 
 # RAG Best Practices 2026

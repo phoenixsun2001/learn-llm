@@ -12,10 +12,11 @@
     "summary": "",
     "category": "practice",
     "subcategory": "",
-    "difficulty": "beginner",
+    "difficulty": "intermediate",
     "tags": [],
     "quality_score": null
   },
   "review_status": "pending",
-  "created_at": "2026-05-31T11:59:26.600379"
+  "created_at": "2026-05-31T11:59:26.600379",
+  "reprocessed_at": "2026-06-14T17:04:25.320912"
 }

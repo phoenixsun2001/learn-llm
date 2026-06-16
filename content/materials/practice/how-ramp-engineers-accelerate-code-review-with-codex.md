@@ -1,13 +1,13 @@
 ---
-title: "How Ramp engineers accelerate code review with Codex"
-source: "https://openai.com/index/ramp"
-source_name: "rss"
-source_type: "rss"
-category: "practice"
-difficulty: "beginner"
-ai_summary: ""
+ai_summary: ''
+category: harness
+difficulty: intermediate
+material_id: mat-2026-019
+source: https://openai.com/index/ramp
+source_name: rss
+source_type: rss
 tags: []
-material_id: "mat-2026-019"
+title: How Ramp engineers accelerate code review with Codex
 ---
 
 # How Ramp engineers accelerate code review with Codex

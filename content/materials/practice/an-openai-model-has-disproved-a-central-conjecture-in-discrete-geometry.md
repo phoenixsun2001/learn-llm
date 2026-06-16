@@ -1,13 +1,13 @@
 ---
-title: "An OpenAI model has disproved a central conjecture in discrete geometry"
-source: "https://openai.com/index/model-disproves-discrete-geometry-conjecture"
-source_name: "rss"
-source_type: "rss"
-category: "practice"
-difficulty: "beginner"
-ai_summary: ""
+ai_summary: ''
+category: model
+difficulty: intermediate
+material_id: mat-2026-017
+source: https://openai.com/index/model-disproves-discrete-geometry-conjecture
+source_name: rss
+source_type: rss
 tags: []
-material_id: "mat-2026-017"
+title: An OpenAI model has disproved a central conjecture in discrete geometry
 ---
 
 # An OpenAI model has disproved a central conjecture in discrete geometry

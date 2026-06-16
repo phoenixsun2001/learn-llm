@@ -10,12 +10,13 @@
   },
   "ai_processed": {
     "summary": "掌握RAG核心架构与2026年最新趋势：Agentic RAG、多模态检索、分块策略、嵌入选型、混合检索、重排序与评估体系",
-    "category": "practice",
-    "subcategory": "practice",
+    "category": "development",
+    "subcategory": "rag",
     "difficulty": "advanced",
-    "tags": ["RAG", "检索增强生成", "最佳实践", "向量检索", "嵌入模型"],
+    "tags": [],
     "quality_score": null
   },
   "review_status": "pending",
-  "created_at": "2026-05-30T22:21:33.374880"
+  "created_at": "2026-05-30T22:21:33.374880",
+  "reprocessed_at": "2026-06-14T17:04:40.062517"
 }

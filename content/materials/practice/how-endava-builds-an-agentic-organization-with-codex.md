@@ -1,13 +1,13 @@
 ---
-title: "How Endava builds an agentic organization with Codex"
-source: "https://openai.com/index/endava"
-source_name: "rss"
-source_type: "rss"
-category: "practice"
-difficulty: "beginner"
-ai_summary: ""
+ai_summary: ''
+category: harness
+difficulty: intermediate
+material_id: mat-2026-007
+source: https://openai.com/index/endava
+source_name: rss
+source_type: rss
 tags: []
-material_id: "mat-2026-007"
+title: How Endava builds an agentic organization with Codex
 ---
 
 # How Endava builds an agentic organization with Codex

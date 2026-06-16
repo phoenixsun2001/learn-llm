@@ -1,13 +1,13 @@
 ---
-title: "How Virgin Atlantic ships faster with Codex"
-source: "https://openai.com/index/virgin-atlantic"
-source_name: "rss"
-source_type: "rss"
-category: "practice"
-difficulty: "beginner"
-ai_summary: ""
+ai_summary: ''
+category: harness
+difficulty: intermediate
+material_id: mat-2026-015
+source: https://openai.com/index/virgin-atlantic
+source_name: rss
+source_type: rss
 tags: []
-material_id: "mat-2026-015"
+title: How Virgin Atlantic ships faster with Codex
 ---
 
 # How Virgin Atlantic ships faster with Codex

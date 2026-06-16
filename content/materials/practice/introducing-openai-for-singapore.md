@@ -1,13 +1,13 @@
 ---
-title: "Introducing OpenAI for Singapore"
-source: "https://openai.com/index/introducing-openai-for-singapore"
-source_name: "rss"
-source_type: "rss"
-category: "practice"
-difficulty: "beginner"
-ai_summary: ""
+ai_summary: ''
+category: model
+difficulty: intermediate
+material_id: mat-2026-020
+source: https://openai.com/index/introducing-openai-for-singapore
+source_name: rss
+source_type: rss
 tags: []
-material_id: "mat-2026-020"
+title: Introducing OpenAI for Singapore
 ---
 
 # Introducing OpenAI for Singapore

@@ -1,13 +1,13 @@
 ---
-title: "Understanding Transformer Architecture"
-source: "https://example.com/transformer"
-source_name: "rss"
-source_type: "rss"
-category: "llm_basics"
-difficulty: "intermediate"
-ai_summary: "Comprehensive guide to transformer models"
+ai_summary: Comprehensive guide to transformer models
+category: principle
+difficulty: intermediate
+material_id: mat-2026-001
+source: https://example.com/transformer
+source_name: rss
+source_type: rss
 tags: []
-material_id: "mat-2026-001"
+title: Understanding Transformer Architecture
 ---
 
 # Understanding Transformer Architecture

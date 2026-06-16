@@ -1,13 +1,13 @@
 ---
-title: "MUFG aims to become AI-native with OpenAI"
-source: "https://openai.com/index/mufg"
-source_name: "rss"
-source_type: "rss"
-category: "practice"
-difficulty: "beginner"
-ai_summary: ""
+ai_summary: ''
+category: model
+difficulty: intermediate
+material_id: mat-2026-009
+source: https://openai.com/index/mufg
+source_name: rss
+source_type: rss
 tags: []
-material_id: "mat-2026-009"
+title: MUFG aims to become AI-native with OpenAI
 ---
 
 # MUFG aims to become AI-native with OpenAI

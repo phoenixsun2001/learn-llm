@@ -1,13 +1,13 @@
 ---
-title: "Cisco and OpenAI redefine enterprise engineering with Codex"
-source: "https://openai.com/index/cisco"
-source_name: "rss"
-source_type: "rss"
-category: "practice"
-difficulty: "beginner"
-ai_summary: ""
+ai_summary: ''
+category: harness
+difficulty: intermediate
+material_id: mat-2026-010
+source: https://openai.com/index/cisco
+source_name: rss
+source_type: rss
 tags: []
-material_id: "mat-2026-010"
+title: Cisco and OpenAI redefine enterprise engineering with Codex
 ---
 
 # Cisco and OpenAI redefine enterprise engineering with Codex

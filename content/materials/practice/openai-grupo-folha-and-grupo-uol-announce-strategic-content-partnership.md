@@ -1,13 +1,13 @@
 ---
-title: "OpenAI, Grupo Folha and Grupo UOL announce strategic content partnership"
-source: "https://openai.com/index/grupo-folha-grupo-uol-partnership"
-source_name: "rss"
-source_type: "rss"
-category: "practice"
-difficulty: "beginner"
-ai_summary: ""
+ai_summary: ''
+category: model
+difficulty: intermediate
+material_id: mat-2026-013
+source: https://openai.com/index/grupo-folha-grupo-uol-partnership
+source_name: rss
+source_type: rss
 tags: []
-material_id: "mat-2026-013"
+title: OpenAI, Grupo Folha and Grupo UOL announce strategic content partnership
 ---
 
 # OpenAI, Grupo Folha and Grupo UOL announce strategic content partnership
