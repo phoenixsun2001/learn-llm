@@ -6,8 +6,12 @@
     "description": "自动化代码审查流程，提升代码质量和团队协作效率。",
     "goal": "我想自动化代码审查",
     "category": "coding",
-    "tools": ["claude-code"],
-    "tutorials": ["claude-code-daily"],
+    "tools": [
+      "claude-code"
+    ],
+    "tutorials": [
+      "claude-code-daily"
+    ],
     "workflow": "开发者提交 PR → Claude Code 自动审查 → 生成 Review 意见 → 开发者修改"
   },
   {
@@ -17,8 +21,13 @@
     "description": "利用 AI 工具自动生成和维护项目文档，保持文档与代码同步。",
     "goal": "我想自动生成项目文档",
     "category": "coding",
-    "tools": ["claude-code"],
-    "tutorials": ["claude-code-daily", "claude-code-hooks"],
+    "tools": [
+      "claude-code"
+    ],
+    "tutorials": [
+      "claude-code-daily",
+      "claude-code-hooks"
+    ],
     "workflow": "代码提交 → 触发 Hooks → AI 分析变更 → 更新对应文档"
   },
   {
@@ -28,8 +37,15 @@
     "description": "从需求澄清到代码交付，用 Superpowers 框架给 AI 编程套上工程纪律。涵盖 Codex/Claude Code 配置、TDD 开发、两阶段代码审查和验证收尾。",
     "goal": "我想让 AI 按照工程规范写代码，而不是随机生成",
     "category": "coding",
-    "tools": ["claude-code", "codex"],
-    "tutorials": ["superpowers-engineering-guide", "codex-install", "claude-code-first-use"],
+    "tools": [
+      "claude-code",
+      "codex"
+    ],
+    "tutorials": [
+      "superpowers-engineering-guide",
+      "codex-install",
+      "claude-code-first-use"
+    ],
     "workflow": "需求澄清 → 架构设计 → TDD 开发 → 两阶段审查 → 验证收尾"
   },
   {
@@ -174,5 +190,24 @@
     "tools": [],
     "tutorials": [],
     "workflow": "确定源文本和目标语言 → AI 初步翻译 → 术语和风格校验 → 人工审阅 → 定稿"
+  },
+  {
+    "id": "scn-multi-agent-parallel",
+    "slug": "multi-agent-parallel-development",
+    "title": "多智能体并行开发",
+    "description": "将大型复杂任务分解为多个子任务，由多个 AI Agent 并行执行，最后汇总合并结果。用空间换时间，显著缩短长程任务的交付周期，是处理大型重构、全栈功能开发等场景的高阶工作流。",
+    "goal": "我想用多个 AI Agent 并行处理一个大型复杂任务，缩短交付周期",
+    "category": "coding",
+    "tools": [
+      "zcode",
+      "claude-code",
+      "codex"
+    ],
+    "tutorials": [
+      "zcode-subagents",
+      "zcode-workflow",
+      "codex-advanced"
+    ],
+    "workflow": "任务分解 → 定义子任务边界与接口 → 多 Agent 并行执行子任务 → 结果汇总与冲突解决 → 集成测试与验收"
   }
 ]
