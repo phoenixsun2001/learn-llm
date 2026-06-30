@@ -6,9 +6,21 @@
     "description": "面向 AI 初学者，从基础概念到第一个 AI 工具实战。",
     "level": "beginner",
     "steps": [
-      {"tutorialId": "tut-claude-code-intro", "order": 1, "required": false},
-      {"tutorialId": "tut-claude-code-install", "order": 2, "required": false},
-      {"tutorialId": "tut-claude-code-first-use", "order": 3, "required": false}
+      {
+        "tutorialId": "tut-claude-code-intro",
+        "order": 1,
+        "required": false
+      },
+      {
+        "tutorialId": "tut-claude-code-install",
+        "order": 2,
+        "required": false
+      },
+      {
+        "tutorialId": "tut-claude-code-first-use",
+        "order": 3,
+        "required": false
+      }
     ],
     "icon": "🌱"
   },
@@ -19,9 +31,57 @@
     "description": "掌握 Claude Code 的日常使用技巧和 Hooks 机制。",
     "level": "intermediate",
     "steps": [
-      {"tutorialId": "tut-claude-code-daily", "order": 1, "required": false},
-      {"tutorialId": "tut-claude-code-hooks", "order": 2, "required": false}
+      {
+        "tutorialId": "tut-claude-code-daily",
+        "order": 1,
+        "required": false
+      },
+      {
+        "tutorialId": "tut-claude-code-hooks",
+        "order": 2,
+        "required": false
+      }
     ],
     "icon": "🌿"
+  },
+  {
+    "id": "pwy-zcode-mastery",
+    "slug": "zcode-mastery",
+    "title": "🚀 ZCode 精通之路",
+    "description": "从零认识 ZCode 到独立驾驭复杂任务。六步进阶——先建立认知，再动手实战，进而掌握目标模式与子智能体，最终融汇成完整的探索-执行工作流。适合希望用 AI Agent 真正提升长程任务效率的开发者。",
+    "level": "intermediate",
+    "icon": "🚀",
+    "steps": [
+      {
+        "tutorialId": "tut-zcode-intro",
+        "order": 1,
+        "required": true
+      },
+      {
+        "tutorialId": "tut-zcode-agent",
+        "order": 2,
+        "required": true
+      },
+      {
+        "tutorialId": "tut-zcode-hands-on",
+        "order": 3,
+        "required": true
+      },
+      {
+        "tutorialId": "tut-zcode-goal-task",
+        "order": 4,
+        "required": false
+      },
+      {
+        "tutorialId": "tut-zcode-subagents",
+        "order": 5,
+        "required": false
+      },
+      {
+        "tutorialId": "tut-zcode-workflow",
+        "order": 6,
+        "required": false
+      }
+    ]
   }
 ]

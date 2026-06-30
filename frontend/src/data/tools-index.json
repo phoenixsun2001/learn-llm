@@ -87,14 +87,49 @@
   {
     "id": "tool-trae",
     "slug": "trae",
-    "name": "Trae",
-    "description": "新一代 AI 编码助手，提供智能代码补全和项目管理功能。",
+    "name": "TRAE Work",
+    "description": "字节跳动出品的 AI 原生工作台，提供网页版、桌面版、移动版三端形态，设 Work（办公协作）与 Code（专业开发）双模式。SOLO 模式配备 TRAE ITA 智能体，支持百万级 token 超长上下文，覆盖从日常办公到复杂编程的全场景 AI 协作。",
     "category": "harness",
-    "officialUrl": "",
-    "wizardSteps": [],
+    "officialUrl": "https://docs.trae.cn/solo_what-is-trae-solo",
+    "wizardSteps": [
+      {
+        "step": 1,
+        "title": "认识 TRAE Work",
+        "tutorialSlug": "trae-guide",
+        "anchor": "什么是-trae-work"
+      },
+      {
+        "step": 2,
+        "title": "三端与双模式",
+        "tutorialSlug": "trae-guide",
+        "anchor": "双模式work-与-code"
+      },
+      {
+        "step": 3,
+        "title": "SOLO 与 ITA 智能体",
+        "tutorialSlug": "trae-guide",
+        "anchor": "solo-模式与-trae-ita-智能体"
+      },
+      {
+        "step": 4,
+        "title": "安装与快速上手",
+        "tutorialSlug": "trae-guide",
+        "anchor": "安装与快速上手"
+      },
+      {
+        "step": 5,
+        "title": "最佳实践",
+        "tutorialSlug": "trae-guide",
+        "anchor": "最佳实践"
+      }
+    ],
     "tags": [
-      "IDE",
-      "编码助手"
+      "字节跳动",
+      "AI 原生工作台",
+      "三端",
+      "双模式",
+      "SOLO",
+      "ITA"
     ]
   },
   {
@@ -164,27 +199,32 @@
       {
         "step": 1,
         "title": "了解 Kilo Code",
-        "tutorialSlug": "kilo-code-guide"
+        "tutorialSlug": "kilo-code-guide",
+        "anchor": "什么是-kilo-code"
       },
       {
         "step": 2,
         "title": "安装与配置",
-        "tutorialSlug": "kilo-code-guide"
+        "tutorialSlug": "kilo-code-guide",
+        "anchor": "安装指南"
       },
       {
         "step": 3,
         "title": "Agent 使用",
-        "tutorialSlug": "kilo-code-guide"
+        "tutorialSlug": "kilo-code-guide",
+        "anchor": "四种核心-agent"
       },
       {
         "step": 4,
         "title": "核心功能",
-        "tutorialSlug": "kilo-code-guide"
+        "tutorialSlug": "kilo-code-guide",
+        "anchor": "核心功能详解"
       },
       {
         "step": 5,
         "title": "最佳实践",
-        "tutorialSlug": "kilo-code-guide"
+        "tutorialSlug": "kilo-code-guide",
+        "anchor": "最佳实践"
       }
     ],
     "tags": [
@@ -277,6 +317,43 @@
       "插件",
       "Agent",
       "安全"
+    ]
+  },
+  {
+    "id": "tool-zcode",
+    "slug": "zcode",
+    "name": "ZCode",
+    "description": "Z.ai 出品的全功能 Agentic 开发环境，GLM-5.2 官方深度适配。面向长程任务，支持目标模式自动迭代、任务管理、子智能体委派，让 AI 自主把复杂任务推进到完成。",
+    "category": "harness",
+    "officialUrl": "https://zcode.z.ai/cn/docs/welcome",
+    "wizardSteps": [
+      {
+        "step": 1,
+        "title": "认识 ZCode 与安装连接",
+        "tutorialSlug": "zcode-intro"
+      },
+      {
+        "step": 2,
+        "title": "Agent 提问与上下文技巧",
+        "tutorialSlug": "zcode-agent"
+      },
+      {
+        "step": 3,
+        "title": "目标模式自动迭代",
+        "tutorialSlug": "zcode-goal-task"
+      },
+      {
+        "step": 4,
+        "title": "子智能体调研委派",
+        "tutorialSlug": "zcode-subagents"
+      }
+    ],
+    "tags": [
+      "Z.ai",
+      "GLM-5.2",
+      "智能体",
+      "长程任务",
+      "Agentic"
     ]
   }
 ]

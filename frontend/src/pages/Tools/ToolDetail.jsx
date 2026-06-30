@@ -89,11 +89,14 @@ const ToolDetail = () => {
           <div className="tool-detail-steps">
             {tool.wizardSteps.map((step) => {
               const tutorial = getTutorialBySlug(step.tutorialSlug);
+              const tutorialPath = step.anchor
+                ? `/tutorials/${step.tutorialSlug}#${step.anchor}`
+                : `/tutorials/${step.tutorialSlug}`;
 
               return (
                 <Link
                   key={step.step}
-                  to={`/tutorials/${step.tutorialSlug}`}
+                  to={tutorialPath}
                   className="tool-detail-step"
                 >
                   <div className="tool-detail-step-number">

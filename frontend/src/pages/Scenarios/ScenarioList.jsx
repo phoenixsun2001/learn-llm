@@ -12,7 +12,7 @@ const ScenarioList = () => {
     return getAllScenarios({
       category: activeCategory || undefined,
       search: search || undefined,
-    });
+    }).filter((scenario) => scenario.tutorials && scenario.tutorials.length > 0);
   }, [search, activeCategory]);
 
   return (

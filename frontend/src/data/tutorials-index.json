@@ -343,10 +343,232 @@
     "subcategory": "practice",
     "difficulty": "advanced",
     "estimatedTime": 30,
-    "tags": ["RAG", "检索增强生成", "最佳实践", "向量检索", "嵌入模型"],
-    "keywords": ["RAG", "检索增强生成", "向量数据库", "嵌入", "chunking", "reranking", "Agentic RAG"],
+    "tags": [
+      "RAG",
+      "检索增强生成",
+      "最佳实践",
+      "向量检索",
+      "嵌入模型"
+    ],
+    "keywords": [
+      "RAG",
+      "检索增强生成",
+      "向量数据库",
+      "嵌入",
+      "chunking",
+      "reranking",
+      "Agentic RAG"
+    ],
     "prerequisites": [],
     "featured": false,
     "file": "/content/tutorials/practice/rag-best-practices-2026.md"
+  },
+  {
+    "id": "tut-zcode-intro",
+    "slug": "zcode-intro",
+    "title": "ZCode 入门指南",
+    "description": "了解 ZCode——面向长程任务的全功能 Agentic 开发环境，完成安装连接并跑通第一个任务。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "beginner",
+    "estimatedTime": 20,
+    "tags": [
+      "zcode",
+      "入门",
+      "GLM-5.2"
+    ],
+    "keywords": [
+      "zcode",
+      "入门",
+      "智能体",
+      "Agent",
+      "长程任务",
+      "GLM-5.2",
+      "harness"
+    ],
+    "prerequisites": [],
+    "featured": true,
+    "file": "/content/tutorials/harness/zcode-intro.md"
+  },
+  {
+    "id": "tut-zcode-agent",
+    "slug": "zcode-agent",
+    "title": "ZCode Agent 核心用法",
+    "description": "掌握 ZCode Agent 的提问入口、上下文补充、执行模式与推理强度，让 Agent 一次做对。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "beginner",
+    "estimatedTime": 20,
+    "tags": [
+      "zcode",
+      "Agent",
+      "上下文",
+      "推理强度"
+    ],
+    "keywords": [
+      "zcode",
+      "agent",
+      "上下文",
+      "执行模式",
+      "推理强度",
+      "模型选择",
+      "harness"
+    ],
+    "prerequisites": [
+      "zcode-intro"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/harness/zcode-agent.md"
+  },
+  {
+    "id": "tut-zcode-goal-task",
+    "slug": "zcode-goal-task",
+    "title": "目标模式与任务管理",
+    "description": "用 /goal 设定可校验目标让 Agent 自动迭代，用分组、工作区、时间线视图高效管理任务。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "intermediate",
+    "estimatedTime": 25,
+    "tags": [
+      "zcode",
+      "目标模式",
+      "任务管理",
+      "/goal"
+    ],
+    "keywords": [
+      "zcode",
+      "goal",
+      "目标模式",
+      "任务管理",
+      "工作区",
+      "文件树",
+      "Git",
+      "harness"
+    ],
+    "prerequisites": [
+      "zcode-agent"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/harness/zcode-goal-task.md"
+  },
+  {
+    "id": "tut-zcode-subagents",
+    "slug": "zcode-subagents",
+    "title": "ZCode 子智能体",
+    "description": "理解子智能体的分工机制，用内置 Explore 子智能体完成只读代码库调研，构建探索-执行工作流。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "intermediate",
+    "estimatedTime": 20,
+    "tags": [
+      "zcode",
+      "子智能体",
+      "Explore",
+      "Subagent"
+    ],
+    "keywords": [
+      "zcode",
+      "subagent",
+      "子智能体",
+      "Explore",
+      "只读检索",
+      "代码调研",
+      "harness"
+    ],
+    "prerequisites": [
+      "zcode-goal-task"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/harness/zcode-subagents.md"
+  },
+  {
+    "id": "tut-zcode-hands-on",
+    "slug": "zcode-hands-on",
+    "title": "实战：第一个 Agent 任务",
+    "description": "用一个真实任务走通 Agent 协作闭环——组织提问、观察执行、验收迭代，把知识变成手感。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "beginner",
+    "estimatedTime": 25,
+    "tags": [
+      "zcode",
+      "实战",
+      "Agent"
+    ],
+    "keywords": [
+      "zcode",
+      "实战",
+      "Agent",
+      "协作闭环",
+      "验收",
+      "迭代",
+      "harness"
+    ],
+    "prerequisites": [
+      "zcode-agent"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/harness/zcode-hands-on.md"
+  },
+  {
+    "id": "tut-zcode-workflow",
+    "slug": "zcode-workflow",
+    "title": "综合：探索-执行工作流",
+    "description": "融会贯通所有能力，掌握「探索→规划→执行→校验」四阶段方法论，独立驾驭真实复杂任务。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "advanced",
+    "estimatedTime": 30,
+    "tags": [
+      "zcode",
+      "工作流",
+      "综合实战"
+    ],
+    "keywords": [
+      "zcode",
+      "工作流",
+      "探索",
+      "规划",
+      "执行",
+      "校验",
+      "综合",
+      "harness"
+    ],
+    "prerequisites": [
+      "zcode-subagents"
+    ],
+    "featured": true,
+    "file": "/content/tutorials/harness/zcode-workflow.md"
+  },
+  {
+    "id": "tut-trae-guide",
+    "slug": "trae-guide",
+    "title": "TRAE Work 全景指南",
+    "description": "了解 TRAE Work 这款 AI 原生工作台——三端形态、Work/Code 双模式、SOLO 模式与 TRAE ITA 智能体，完成安装配置与首次上手。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "beginner",
+    "estimatedTime": 25,
+    "tags": [
+      "trae",
+      "TRAE Work",
+      "工作台",
+      "AI 原生",
+      "ITA"
+    ],
+    "keywords": [
+      "trae",
+      "TRAE Work",
+      "AI 原生工作台",
+      "SOLO",
+      "ITA",
+      "Work 模式",
+      "Code 模式",
+      "三端",
+      "harness"
+    ],
+    "prerequisites": [],
+    "featured": false,
+    "file": "/content/tutorials/harness/trae-guide.md"
   }
 ]
