@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link, useSearchParams } from 'react-router-dom';
+import { useParams, Link, useSearchParams, useLocation } from 'react-router-dom';
 import { getTutorialBySlug, loadTutorialContent } from '../../services/contentLoader';
 import TutorialRenderer from '../../components/TutorialRenderer/TutorialRenderer';
 import FavoriteButton from '../../components/FavoriteButton/FavoriteButton';
@@ -10,12 +10,27 @@ const TutorialDetail = () => {
   const { slug } = useParams();
   const [searchParams] = useSearchParams();
   const isPreview = searchParams.get('preview') === '1';
+  const location = useLocation();
 
   const [tutorial, setTutorial] = useState(null);
   const [content, setContent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   useHistoryView('tutorial', slug);
+
+  // After content renders, scroll to the heading anchor (e.g. #安装指南)
+  // so deep-links from tool wizard steps land on the right section.
+  useEffect(() => {
+    if (!content) return;
+    const hash = location.hash ? decodeURIComponent(location.hash.slice(1)) : '';
+    if (!hash) return;
+    // Allow the DOM to paint the freshly rendered markdown before querying.
+    const timer = setTimeout(() => {
+      const el = document.getElementById(hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [content, location.hash]);
 
   useEffect(() => {
     let cancelled = false;

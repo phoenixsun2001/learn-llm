@@ -220,27 +220,32 @@
       {
         "step": 1,
         "title": "了解 Kilo Code",
-        "tutorialSlug": "kilo-code-guide"
+        "tutorialSlug": "kilo-code-guide",
+        "anchor": "什么是-kilo-code"
       },
       {
         "step": 2,
         "title": "安装与配置",
-        "tutorialSlug": "kilo-code-guide"
+        "tutorialSlug": "kilo-code-guide",
+        "anchor": "安装指南"
       },
       {
         "step": 3,
         "title": "Agent 使用",
-        "tutorialSlug": "kilo-code-guide"
+        "tutorialSlug": "kilo-code-guide",
+        "anchor": "四种核心-agent"
       },
       {
         "step": 4,
         "title": "核心功能",
-        "tutorialSlug": "kilo-code-guide"
+        "tutorialSlug": "kilo-code-guide",
+        "anchor": "核心功能详解"
       },
       {
         "step": 5,
         "title": "最佳实践",
-        "tutorialSlug": "kilo-code-guide"
+        "tutorialSlug": "kilo-code-guide",
+        "anchor": "最佳实践"
       }
     ],
     "tags": [
@@ -339,43 +344,37 @@
     "id": "tool-zcode",
     "slug": "zcode",
     "name": "ZCode",
-    "description": "智谱 Z.ai 推出的全功能 Agentic 开发环境（ADE），面向长跨度、多步骤的复杂开发任务，围绕 GLM-5.2 深度联调，让 Agent 从规划一路推进到验证收口。",
+    "description": "Z.ai 出品的全功能 Agentic 开发环境，GLM-5.2 官方深度适配。面向长程任务，支持目标模式自动迭代、任务管理、子智能体委派，让 AI 自主把复杂任务推进到完成。",
     "category": "harness",
     "officialUrl": "https://zcode.z.ai/cn/docs/welcome",
     "wizardSteps": [
       {
         "step": 1,
-        "title": "认识 ZCode",
-        "tutorialSlug": "zcode-guide"
+        "title": "认识 ZCode 与安装连接",
+        "tutorialSlug": "zcode-intro"
       },
       {
         "step": 2,
-        "title": "安装与接入模型",
-        "tutorialSlug": "zcode-guide"
+        "title": "Agent 提问与上下文技巧",
+        "tutorialSlug": "zcode-agent"
       },
       {
         "step": 3,
-        "title": "用 Agent 发起任务",
-        "tutorialSlug": "zcode-guide"
+        "title": "目标模式自动迭代",
+        "tutorialSlug": "zcode-goal-task"
       },
       {
         "step": 4,
-        "title": "执行模式与 Plan",
-        "tutorialSlug": "zcode-guide"
-      },
-      {
-        "step": 5,
-        "title": "从规划到收口",
-        "tutorialSlug": "zcode-guide"
+        "title": "子智能体调研委派",
+        "tutorialSlug": "zcode-subagents"
       }
     ],
     "tags": [
-      "ZCode",
+      "Z.ai",
       "GLM-5.2",
-      "ADE",
-      "Agent",
-      "智谱",
-      "长任务"
+      "智能体",
+      "长程任务",
+      "Agentic"
     ]
   }
 ]
