@@ -12,7 +12,7 @@ git remote set-url gitlab http://192.168.120.62/personal/phoenix/learnllm.git
 
 - 教程库：按分类、难度、发布状态管理 Markdown 教程内容。
 - 学习路径：把教程组织成连续课程，支持路径详情和章节化学习。
-- 工具向导：按工具提供分步学习入口，例如 Claude Code、Codex、Trae、Coze 等。
+- 工具向导：按工具提供分步学习入口，例如 Claude Code、Codex、Trae、Coze、ZCode、ECC 等，支持锚点深链跳转到教程的具体章节。
 - 场景检索：从真实工作目标出发，推荐相关工具链和教程。
 - 提示词库：沉淀可复用提示词模板。
 - 技能包：管理可组合的 AI 工作技能和技能集合。
@@ -53,7 +53,7 @@ git remote set-url gitlab http://192.168.120.62/personal/phoenix/learnllm.git
 
 - 前端：React 18、Vite 5、react-router-dom v6
 - UI：Ant Design 5、CSS custom properties、普通 CSS
-- Markdown：react-markdown、remark-gfm、react-syntax-highlighter
+- Markdown：react-markdown、remark-gfm、react-syntax-highlighter、rehype-slug（标题锚点/深链）
 - 认证：两种可选模式 —— GitHub OAuth（Supabase）或自托管 JWT（邮箱注册/登录）。未配置时前台仍可运行（学习数据退化为 localStorage）。
 - 后端：FastAPI、Jinja2、SQLite
 - 内容管道：RSS/GitHub/Web fetcher、去重、摘要、分类、写入器
