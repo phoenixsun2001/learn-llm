@@ -1,6 +1,6 @@
 "哪个大模型最好？"——这是最常见也最危险的问题。真实的答案是：**没有最好的模型，只有在你约束条件下最合适的模型**。约束来自能力需求、预算、上下文长度、延迟、许可证、合规与生态六个维度。
 
-这篇教程把"选型"从凭感觉升级成一套可复用的决策框架，并给出三类典型场景的推荐路径。
+这篇教程把"选型"从凭感觉升级成一套可复用的决策框架，并给出三类典型场景的推荐路径。（文中模型以 2026 年中主流版本为例。）
 
 ## 你将学到
 
@@ -15,9 +15,9 @@
 
 把能力拆成几个子项，按你的真实任务打分，而不是看综合排行榜：
 
-- **推理**：多步数学、逻辑、规划——强项家族有 GPT 系列、Claude Opus 系列、DeepSeek-R1。
-- **编码**：代码生成、重构、调试、Agent 编程——Claude 系列、GLM 系列领先。
-- **多模态**：图像/文档/音频理解——GPT 系列、Gemini、GLM、Qwen 的视觉档。
+- **推理**：多步数学、逻辑、规划——强项家族有 GPT-5 系列、Claude Opus 5、DeepSeek V4（及其推理档）。
+- **编码**：代码生成、重构、调试、Agent 编程——Claude Opus 5、GLM-5 系列领先。
+- **多模态**：图像/文档/音频/视频理解——Gemini（全模态原生）、GPT 系列、GLM-5V、Qwen 的视觉档。
 - **中文**：写作、摘要、领域问答——国产模型（GLM、Qwen、DeepSeek、Kimi）普遍更强。
 
 ### 2. 成本（token 单价 + 隐性成本）
@@ -38,7 +38,7 @@
 - 整库代码、长合同、书籍级文档：需要 128K–1M。
 - 超长上下文会增加成本和延迟，不要无脑选最大。
 
-目前百万级窗口已成主流（Claude、GPT 系列高阶档、Kimi 等），国产开源多在 128K–200K。
+目前百万级窗口已成主流（Claude、GPT 高阶档、Gemini 高阶档、Kimi 等），国产开源多在 128K–256K。
 
 ### 4. 延迟与吞吐
 
@@ -46,7 +46,7 @@
 - **生成速度（tokens/s）**：影响长输出吞吐，批量处理敏感。
 - **并发上限**：影响能否扛住高峰。
 
-闭源 API 通常首 token 快、但并发受配额限制；自部署可堆 GPU 提并发，但单次延迟取决于部署质量。轻量档（如 GLM-Flash、Claude Haiku 档、各家 Flash/Mini）专为低延迟设计。
+闭源 API 通常首 token 快、但并发受配额限制；自部署可堆 GPU 提并发，但单次延迟取决于部署质量。轻量档（如 GLM-Flash、DeepSeek-Flash、Claude Haiku 档、Gemini Flash 档）专为低延迟设计。
 
 ### 5. 许可证（开源 vs 闭源、商用条款）
 
@@ -55,8 +55,7 @@
 开源看**许可证**，这是最容易踩雷的地方：
 
 - **MIT / Apache 2.0**：商用友好，几乎无限制（GLM、DeepSeek 多采用）。
-- **Llama 社区许可**：有月活用户上限等条款，超大规模商用需单独授权。
-- **部分国产模型**：附带"可接受使用"条款，需确认是否覆盖你的行业。
+- **附带规模/使用条款**：部分开源模型附带"可接受使用"或月活上限条款，超大规模商用前需确认是否覆盖你的行业与体量。
 
 ### 6. 隐私、合规与生态
 
@@ -72,15 +71,15 @@
    - 否 → 国产开源本地部署（GLM / Qwen / DeepSeek）
    - 是 → 进入第 2 步
 2. **流量是否大且稳定（能摊薄 GPU 成本）？**
-   - 是 → 自部署开源（Llama / GLM / Qwen / DeepSeek）
+   - 是 → 自部署开源（GLM / Qwen / DeepSeek）
    - 否 → 走 API，进入第 3 步
-3. **首要任务是编码或长文档/Agent？**
-   - 编码/Agent → Claude 系列 或 GLM 系列
-   - 长文档 → Claude（长窗口）或 Kimi
-   - 通用/多模态 → GPT 系列
+3. **首要任务是编码、长文档、多模态还是 Agent？**
+   - 编码/Agent → Claude（Opus）或 GLM（Agentic Coding）
+   - 长文档/检索 → Claude（长上下文）、Gemini（全模态 + 深度检索）或 Kimi
+   - 通用/多模态 → GPT 系列 / Gemini
 4. **预算敏感，是否要极致性价比？**
-   - 是 → DeepSeek（推理/通用）或 GLM/Qwen 的高性价比档
-   - 否 → 直接上对应家族旗舰档
+   - 是 → DeepSeek（推理/通用）或 GLM / Qwen 的高性价比档
+   - 否 → 直接上对应家族旗舰档（GPT-5 / Claude Opus 5 / Gemini 高阶档）
 
 ## 三类场景推荐
 
@@ -88,7 +87,7 @@
 
 目标是用最低成本、最快速度跑通想法。
 
-- **首选**：闭源 API 的轻量/高性价比档（GLM-Flash、DeepSeek、Claude Sonnet 档）。
+- **首选**：闭源 API 的轻量/高性价比档（GLM-Flash、DeepSeek-Flash、Claude Sonnet 档、Gemini Flash 档）。
 - **理由**：无需运维，按量付费，原型阶段用量小，API 成本可忽略。
 - **避坑**：别一上来就上旗舰档，单价差距可能达数倍。
 
@@ -97,16 +96,16 @@
 目标是稳定、可控、可审计。
 
 - **国内合规**：GLM / Qwen 闭源 API 起步，敏感数据切本地部署开源版。
-- **全球业务**：GPT / Claude API 做主模型，搭配一家国产做灾备和降本。
+- **全球业务**：GPT / Claude / Gemini API 做主模型，搭配一家国产做灾备和降本。
 - **关键动作**：启用 prompt caching、做配额与限流、签数据处理协议（DPA）、预留多供应商抽象层以便切换。
 
 ### 场景 C：本地部署（私有化）
 
 目标是数据不出域、长期降本、可深度微调。
 
-- **首选底座**：GLM、Qwen、DeepSeek（MIT/Apache 友好、中文好）；英文/研究场景可用 Llama。
+- **首选底座**：GLM、Qwen、DeepSeek（开源商用友好、中文好）；英文/纯研究场景可再补充其他开源旗舰。
 - **规模匹配**：根据显存选档位（端侧 3B–14B，企业级 30B–70B 级 MoE，超大规模再上旗舰开源）。
-- **关键动作**：评估 GPU、选推理引擎（vLLM/TensorRT-LLM 等）、压测吞吐、规划微调数据。
+- **关键动作**：评估 GPU、选推理引擎（vLLM / TensorRT-LLM 等）、压测吞吐、规划微调数据。
 
 ## 维度对比速查表
 
@@ -132,5 +131,6 @@
 
 - [OpenAI 定价与模型](https://platform.openai.com/docs/pricing)
 - [Anthropic Claude 定价](https://www.anthropic.com/pricing)
+- [Google Gemini 模型文档](https://ai.google.dev/gemini-api/docs/models)
 - [智谱 AI 开放平台](https://open.bigmodel.cn/)
-- [Llama 许可证说明](https://www.llama.com/llama-downloads/)
+- [DeepSeek API 文档](https://api-docs.deepseek.com/)

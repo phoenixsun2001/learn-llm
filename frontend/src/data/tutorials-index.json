@@ -517,8 +517,8 @@
   {
     "id": "tut-llm-models-overview",
     "slug": "llm-models-overview",
-    "title": "主流大模型概览：GPT、Claude、GLM、Llama",
-    "description": "梳理 OpenAI、Anthropic、智谱、Meta 及国内主流大模型家族的定位、特色与适用场景，附对比表。",
+    "title": "主流大模型概览：GPT、Claude、Gemini、GLM、DeepSeek",
+    "description": "梳理 OpenAI、Anthropic、Google 及智谱、DeepSeek 等国内外主流大模型家族的定位、特色与适用场景，附对比表。",
     "category": "model",
     "subcategory": "model",
     "difficulty": "beginner",
@@ -530,14 +530,16 @@
     "keywords": [
       "GPT",
       "Claude",
+      "Gemini",
       "GLM",
-      "Llama",
       "Qwen",
       "DeepSeek",
       "Kimi",
       "模型对比",
       "开源",
-      "闭源"
+      "闭源",
+      "GPT-5",
+      "Gemini 3"
     ],
     "prerequisites": [],
     "featured": true,
