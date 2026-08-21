@@ -766,5 +766,42 @@
     "prerequisites": [],
     "featured": false,
     "file": "/content/tutorials/harness/trae-guide.md"
+  },
+  {
+    "id": "tut-deepseek-harness",
+    "slug": "deepseek-harness-guide",
+    "title": "DeepSeek Harness 完全指南",
+    "description": "理解 DeepSeek Harness（dsh）的一切皆插件架构：Cordis 内核、Profile/组合包、事件系统与轮次流程、能力 Seam，以及标准/PTC/极简/创造多种运行模式与安装上手。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "intermediate",
+    "estimatedTime": 35,
+    "tags": [
+      "deepseek",
+      "harness",
+      "Agent",
+      "Cordis",
+      "插件",
+      "开源"
+    ],
+    "keywords": [
+      "deepseek",
+      "harness",
+      "dsh",
+      "agent",
+      "cordis",
+      "插件",
+      "沙箱",
+      "会话日志",
+      "seam",
+      "profile",
+      "组合包",
+      "开源",
+      "长程任务",
+      "agent teams"
+    ],
+    "prerequisites": [],
+    "featured": true,
+    "file": "/content/tutorials/harness/deepseek-harness-guide.md"
   }
 ]

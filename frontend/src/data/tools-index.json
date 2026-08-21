@@ -341,6 +341,60 @@
     ]
   },
   {
+    "id": "tool-deepseek-harness",
+    "slug": "deepseek-harness",
+    "name": "DeepSeek Harness",
+    "description": "DeepSeek 开源的开发者预览版 Agent 基础设施，一切皆插件——模型、工具、会话、沙箱、循环、UI 等能力均可在配置层自由替换与组合。",
+    "category": "harness",
+    "officialUrl": "https://www.deepseek.com/harness/",
+    "wizardSteps": [
+      {
+        "step": 1,
+        "title": "认识 DeepSeek Harness",
+        "tutorialSlug": "deepseek-harness-guide",
+        "anchor": "deepseek-harness-是什么"
+      },
+      {
+        "step": 2,
+        "title": "一切皆插件的哲学",
+        "tutorialSlug": "deepseek-harness-guide",
+        "anchor": "一切皆插件的设计哲学"
+      },
+      {
+        "step": 3,
+        "title": "Cordis 内核与核心架构",
+        "tutorialSlug": "deepseek-harness-guide",
+        "anchor": "核心架构与-cordis-插件系统"
+      },
+      {
+        "step": 4,
+        "title": "事件系统与轮次流程",
+        "tutorialSlug": "deepseek-harness-guide",
+        "anchor": "事件系统与轮次流程"
+      },
+      {
+        "step": 5,
+        "title": "能力 Seam 与扩展点",
+        "tutorialSlug": "deepseek-harness-guide",
+        "anchor": "能力-seam-与扩展点"
+      },
+      {
+        "step": 6,
+        "title": "运行模式与安装上手",
+        "tutorialSlug": "deepseek-harness-guide",
+        "anchor": "多种运行模式"
+      }
+    ],
+    "tags": [
+      "DeepSeek",
+      "Harness",
+      "Agent",
+      "Cordis",
+      "插件",
+      "开源"
+    ]
+  },
+  {
     "id": "tool-zcode",
     "slug": "zcode",
     "name": "ZCode",

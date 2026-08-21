@@ -1258,5 +1258,30 @@
     ],
     "category": "workflow",
     "difficulty": "advanced"
+  },
+  {
+    "type": "tutorial",
+    "slug": "deepseek-harness-guide",
+    "title": "DeepSeek Harness 完全指南",
+    "keywords": [
+      "deepseek",
+      "harness",
+      "dsh",
+      "agent",
+      "cordis",
+      "插件",
+      "沙箱",
+      "会话日志",
+      "seam",
+      "profile",
+      "组合包",
+      "开源",
+      "长程任务",
+      "运行模式",
+      "ptc",
+      "极简模式"
+    ],
+    "category": "harness",
+    "difficulty": "intermediate"
   }
 ]
