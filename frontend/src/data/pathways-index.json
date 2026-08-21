@@ -1,5 +1,42 @@
 [
   {
+    "id": "pwy-llm-fundamentals",
+    "slug": "llm-fundamentals",
+    "title": "大模型基础知识",
+    "description": "打好大模型地基：先理解大语言模型的工作原理，再认识主流大模型格局，进而深入 Transformer 与注意力机制，最后掌握按场景选型的方法。",
+    "audience": "适合刚接触大模型、想系统打好「技术原理」与「模型基础」双基底的初学者。",
+    "outcome": "完成后，你将理解大语言模型是如何工作的、掌握 Transformer 注意力机制的核心思想，熟悉 GPT/Claude/GLM/Llama 等主流模型格局，并能按任务场景选择合适的模型。",
+    "level": "beginner",
+    "estimatedTime": 70,
+    "steps": [
+      {
+        "tutorialId": "tut-llm-how-it-works",
+        "order": 1,
+        "required": true,
+        "role": "LLM 原理"
+      },
+      {
+        "tutorialId": "tut-llm-models-overview",
+        "order": 2,
+        "required": true,
+        "role": "模型概览"
+      },
+      {
+        "tutorialId": "tut-transformer-attention",
+        "order": 3,
+        "required": true,
+        "role": "核心机制"
+      },
+      {
+        "tutorialId": "tut-choose-llm-model",
+        "order": 4,
+        "required": true,
+        "role": "选型决策"
+      }
+    ],
+    "icon": "🧠"
+  },
+  {
     "id": "pwy-ai-coding-starter",
     "slug": "ai-coding-starter",
     "title": "AI 编程工具入门",
