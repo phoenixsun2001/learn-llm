@@ -530,36 +530,6 @@
     "file": "/content/tutorials/development/prompt-engineering-basics.md"
   },
   {
-    "id": "tut-zcode-guide",
-    "slug": "zcode-guide",
-    "title": "ZCode 实战指南：面向长任务的 Agentic 开发环境",
-    "description": "学习智谱 ZCode ADE 的安装、模型接入、ZCode Agent 任务发起与 Plan 驱动的长任务推进，让 Agent 从规划一路到验证收口。",
-    "category": "harness",
-    "subcategory": "harness",
-    "difficulty": "beginner",
-    "estimatedTime": 40,
-    "tags": [
-      "ZCode",
-      "GLM-5.2",
-      "ADE",
-      "Agent",
-      "智谱"
-    ],
-    "keywords": [
-      "zcode",
-      "glm-5.2",
-      "ade",
-      "agent",
-      "智谱",
-      "长任务",
-      "agentic",
-      "z.ai"
-    ],
-    "prerequisites": [],
-    "featured": false,
-    "file": "/content/tutorials/harness/zcode-guide.md"
-  },
-  {
     "id": "tut-loop-engineering",
     "slug": "loop-engineering",
     "title": "Loop Engineering（循环工程）：用 AI 重塑软件工程范式",

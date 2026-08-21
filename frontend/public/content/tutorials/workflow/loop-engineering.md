@@ -165,5 +165,5 @@ Loop Engineering 是一个**更高层的范式**，本平台已有的实践都�
 
 - [循环工程理念（菜鸟教程）](https://www.runoob.com/ai-agent/loop-engineering.html)
 - [AI 工程化编程全流程实战（Superpowers）](/tutorials/superpowers-engineering-guide)
-- [ZCode 实战指南：面向长任务的 Agentic 开发环境](/tutorials/zcode-guide)
+- [ZCode 入门指南（系列教程）](/tutorials/zcode-intro)
 - [Everything Claude Code (ECC) 完全指南](/tutorials/ecc-guide)

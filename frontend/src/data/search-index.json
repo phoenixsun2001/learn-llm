@@ -1243,24 +1243,6 @@
   },
   {
     "type": "tutorial",
-    "slug": "zcode-guide",
-    "title": "ZCode 实战指南：面向长任务的 Agentic 开发环境",
-    "keywords": [
-      "ZCode",
-      "GLM-5.2",
-      "ADE",
-      "Agent",
-      "智谱",
-      "长任务",
-      "agentic",
-      "z.ai",
-      "harness"
-    ],
-    "category": "harness",
-    "difficulty": "beginner"
-  },
-  {
-    "type": "tutorial",
     "slug": "loop-engineering",
     "title": "Loop Engineering（循环工程）：用 AI 重塑软件工程范式",
     "keywords": [
