@@ -204,5 +204,103 @@
         "required": false
       }
     ]
+  },
+  {
+    "id": "pwy-gen-media-models",
+    "slug": "gen-media-models",
+    "title": "开源图片与视频生成模型",
+    "description": "系统掌握主流开源生成模型：生图从 Stable Diffusion 生态到 FLUX 旗舰再到国产三强，生视频覆盖 Wan、混元、CogVideoX、LTX-Video，最后用 ComfyUI/diffusers 落地成工作流。",
+    "audience": "适合想私有化部署生图/生视频能力、构建内容生产流水线的开发者和创作者。",
+    "outcome": "完成后，你将能按显存与场景选对开源模型，规避许可证商用红线，跑通生图与图生视频，并用 ComfyUI/diffusers 把模型变成可批量交付的工作流。",
+    "level": "intermediate",
+    "estimatedTime": 150,
+    "steps": [
+      {
+        "tutorialId": "tut-gen-media-overview",
+        "order": 1,
+        "required": true,
+        "role": "全景与选型"
+      },
+      {
+        "tutorialId": "tut-stable-diffusion-family",
+        "order": 2,
+        "required": false,
+        "role": "生态底座"
+      },
+      {
+        "tutorialId": "tut-flux-image-models",
+        "order": 3,
+        "required": true,
+        "role": "质量旗舰"
+      },
+      {
+        "tutorialId": "tut-chinese-image-models",
+        "order": 4,
+        "required": true,
+        "role": "国产生图"
+      },
+      {
+        "tutorialId": "tut-opensource-video-models",
+        "order": 5,
+        "required": true,
+        "role": "视频生成"
+      },
+      {
+        "tutorialId": "tut-comfyui-deployment",
+        "order": 6,
+        "required": false,
+        "role": "工作流落地"
+      }
+    ],
+    "icon": "🎨"
+  },
+  {
+    "id": "pwy-ai-devops-cycle",
+    "slug": "ai-devops-cycle",
+    "title": "AI编程全链路：从开发到部署再到持续迭代",
+    "description": "补齐 AI 开发新手最缺的工程课：构建打包、容器化、上线（Nginx/域名/HTTPS）、CI/CD、部署架构与持续迭代（灰度/回滚/监控），让 AI 做出来的东西具备生产可用性。",
+    "audience": "适合能用 AI 写出应用原型、但不熟悉打包部署上线、CI/CD 与部署架构的开发者。",
+    "outcome": "完成后，你将能把一个项目从「我电脑上能跑」改造为「可构建、可容器化、可上线、可自动化发布、可安全迭代」的生产形态，并掌握典型部署场景的决策方法。",
+    "level": "beginner",
+    "estimatedTime": 165,
+    "steps": [
+      {
+        "tutorialId": "tut-build-package-basics",
+        "order": 1,
+        "required": true,
+        "role": "构建打包"
+      },
+      {
+        "tutorialId": "tut-docker-fundamentals",
+        "order": 2,
+        "required": true,
+        "role": "容器化"
+      },
+      {
+        "tutorialId": "tut-deploy-server-basics",
+        "order": 3,
+        "required": true,
+        "role": "部署上线"
+      },
+      {
+        "tutorialId": "tut-cicd-basics",
+        "order": 4,
+        "required": true,
+        "role": "CI/CD"
+      },
+      {
+        "tutorialId": "tut-deploy-architecture",
+        "order": 5,
+        "required": true,
+        "role": "架构设计"
+      },
+      {
+        "tutorialId": "tut-continuous-iteration",
+        "order": 6,
+        "required": true,
+        "role": "持续迭代"
+      }
+    ],
+    "icon": "🚢"
   }
 ]

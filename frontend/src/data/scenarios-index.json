@@ -209,5 +209,23 @@
       "codex-advanced"
     ],
     "workflow": "任务分解 → 定义子任务边界与接口 → 多 Agent 并行执行子任务 → 结果汇总与冲突解决 → 集成测试与验收"
+  },
+  {
+    "id": "scn-ai-app-deploy",
+    "slug": "ai-app-deploy",
+    "title": "把 AI 应用部署上线并持续迭代",
+    "description": "从「我电脑上能跑」到生产可用：构建打包、容器化、Nginx 上线、CI/CD 自动化，再到灰度回滚与监控的完整链路。",
+    "goal": "我想把做好的 AI 应用部署上线，并保证后续能安全持续迭代",
+    "category": "coding",
+    "tools": [],
+    "tutorials": [
+      "build-package-basics",
+      "docker-fundamentals",
+      "deploy-server-basics",
+      "cicd-basics",
+      "deploy-architecture",
+      "continuous-iteration"
+    ],
+    "workflow": "构建打包 → 容器化（Dockerfile/compose）→ Nginx 反代 + 域名/HTTPS 上线 → CI/CD 自动构建镜像 → 灰度发布与回滚预案 → 监控告警持续迭代"
   }
 ]

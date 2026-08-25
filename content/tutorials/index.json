@@ -479,6 +479,397 @@
     "file": "/content/tutorials/model/choose-llm-model.md"
   },
   {
+    "id": "tut-gen-media-overview",
+    "slug": "gen-media-overview",
+    "title": "开源生图与生视频模型全景",
+    "description": "盘点主流开源生图与生视频模型阵营：Stable Diffusion、FLUX、国产三强与视频五强，含显存门槛、许可证红线与选型表。",
+    "category": "model",
+    "subcategory": "model",
+    "difficulty": "beginner",
+    "estimatedTime": 20,
+    "tags": [
+      "生图",
+      "生视频",
+      "开源模型",
+      "模型选型"
+    ],
+    "keywords": [
+      "生图",
+      "生视频",
+      "开源",
+      "Stable Diffusion",
+      "FLUX",
+      "Wan",
+      "HunyuanVideo",
+      "CogVideoX",
+      "ComfyUI",
+      "显存",
+      "选型"
+    ],
+    "prerequisites": [],
+    "featured": false,
+    "file": "/content/tutorials/model/gen-media-overview.md"
+  },
+  {
+    "id": "tut-stable-diffusion-family",
+    "slug": "stable-diffusion-family",
+    "title": "Stable Diffusion 家族：从 SD 到 SD3.5",
+    "description": "系统讲解 SD 家族三代演进（1.5→SDXL→SD3.5）、LoRA/ControlNet 等生态核心概念与 diffusers 上手实战。",
+    "category": "model",
+    "subcategory": "model",
+    "difficulty": "intermediate",
+    "estimatedTime": 25,
+    "tags": [
+      "Stable Diffusion",
+      "SDXL",
+      "LoRA",
+      "ControlNet"
+    ],
+    "keywords": [
+      "SD",
+      "SD1.5",
+      "SDXL",
+      "SD3.5",
+      "LoRA",
+      "ControlNet",
+      "diffusers",
+      "checkpoint",
+      "显存"
+    ],
+    "prerequisites": [
+      "gen-media-overview"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/model/stable-diffusion-family.md"
+  },
+  {
+    "id": "tut-flux-image-models",
+    "slug": "flux-image-models",
+    "title": "FLUX 系列：开源生图旗舰",
+    "description": "Black Forest Labs 的 FLUX.1/FLUX.2：变体许可证差异（dev 非商用）、提示词遵循与图内文字强项、量化部署与上手示例。",
+    "category": "model",
+    "subcategory": "model",
+    "difficulty": "intermediate",
+    "estimatedTime": 25,
+    "tags": [
+      "FLUX",
+      "生图",
+      "开源模型",
+      "文字渲染"
+    ],
+    "keywords": [
+      "FLUX",
+      "FLUX.1",
+      "FLUX.2",
+      "dev",
+      "schnell",
+      "BFL",
+      "文字渲染",
+      "多参考图",
+      "量化",
+      "diffusers"
+    ],
+    "prerequisites": [
+      "gen-media-overview"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/model/flux-image-models.md"
+  },
+  {
+    "id": "tut-chinese-image-models",
+    "slug": "chinese-image-models",
+    "title": "国产生图模型：Qwen-Image、Kolors 与混元图像",
+    "description": "面向中文内容的开源生图选型：Qwen-Image 的中文文字渲染与编辑、Kolors 人像审美、混元图像与图生视频衔接。",
+    "category": "model",
+    "subcategory": "model",
+    "difficulty": "intermediate",
+    "estimatedTime": 20,
+    "tags": [
+      "国产模型",
+      "生图",
+      "Qwen-Image",
+      "Kolors"
+    ],
+    "keywords": [
+      "Qwen-Image",
+      "Kolors",
+      "混元图像",
+      "HunyuanImage",
+      "中文生图",
+      "文字渲染",
+      "图像编辑",
+      "图生视频"
+    ],
+    "prerequisites": [
+      "gen-media-overview"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/model/chinese-image-models.md"
+  },
+  {
+    "id": "tut-opensource-video-models",
+    "slug": "opensource-video-models",
+    "title": "开源视频生成：Wan、混元、CogVideoX 与 LTX-Video",
+    "description": "开源视频生成全景：Wan 综合最强、混元写实、CogVideoX 亲民、LTX 最快；文生视频 vs 图生视频方法论与消费级显存现实。",
+    "category": "model",
+    "subcategory": "model",
+    "difficulty": "advanced",
+    "estimatedTime": 30,
+    "tags": [
+      "视频生成",
+      "Wan",
+      "HunyuanVideo",
+      "CogVideoX"
+    ],
+    "keywords": [
+      "视频生成",
+      "文生视频",
+      "图生视频",
+      "Wan2.2",
+      "HunyuanVideo",
+      "CogVideoX",
+      "LTX-Video",
+      "Mochi",
+      "显存",
+      "diffusers"
+    ],
+    "prerequisites": [
+      "gen-media-overview"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/model/opensource-video-models.md"
+  },
+  {
+    "id": "tut-comfyui-deployment",
+    "slug": "comfyui-deployment",
+    "title": "ComfyUI 与 diffusers：搭建生成工作流",
+    "description": "用 ComfyUI 节点工作流与 diffusers 代码管线把模型变成生产力：安装部署、典型工作流、API 化与生产化分工。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "intermediate",
+    "estimatedTime": 30,
+    "tags": [
+      "ComfyUI",
+      "diffusers",
+      "工作流",
+      "部署"
+    ],
+    "keywords": [
+      "ComfyUI",
+      "diffusers",
+      "节点工作流",
+      "LoRA",
+      "ControlNet",
+      "API",
+      "批量生成",
+      "云GPU",
+      "渲染引擎"
+    ],
+    "prerequisites": [
+      "gen-media-overview"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/harness/comfyui-deployment.md"
+  },
+  {
+    "id": "tut-build-package-basics",
+    "slug": "build-package-basics",
+    "title": "构建与打包：从源码到可部署产物",
+    "description": "产物思维入门：前端构建、后端依赖锁定、配置分离与可部署自查清单，解决「我电脑上能跑」的生产可用性问题。",
+    "category": "development",
+    "subcategory": "development",
+    "difficulty": "beginner",
+    "estimatedTime": 25,
+    "tags": [
+      "构建",
+      "打包",
+      "部署",
+      "产物"
+    ],
+    "keywords": [
+      "构建",
+      "打包",
+      "产物",
+      "npm build",
+      "requirements",
+      "锁文件",
+      "venv",
+      "环境变量",
+      ".env",
+      "12factor"
+    ],
+    "prerequisites": [],
+    "featured": false,
+    "file": "/content/tutorials/development/build-package-basics.md"
+  },
+  {
+    "id": "tut-docker-fundamentals",
+    "slug": "docker-fundamentals",
+    "title": "容器化实战：Dockerfile 与 docker compose",
+    "description": "容器化入门到实战：镜像/容器概念、多阶段构建、数据卷、compose 编排与四大新手误区，附本平台真实 Dockerfile 拆解。",
+    "category": "development",
+    "subcategory": "development",
+    "difficulty": "beginner",
+    "estimatedTime": 30,
+    "tags": [
+      "Docker",
+      "容器",
+      "Dockerfile",
+      "docker compose"
+    ],
+    "keywords": [
+      "Docker",
+      "容器",
+      "镜像",
+      "Dockerfile",
+      "多阶段构建",
+      "数据卷",
+      "volume",
+      "compose",
+      "dockerignore",
+      "部署"
+    ],
+    "prerequisites": [
+      "build-package-basics"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/development/docker-fundamentals.md"
+  },
+  {
+    "id": "tut-deploy-server-basics",
+    "slug": "deploy-server-basics",
+    "title": "部署上线：Nginx 反向代理、域名与 HTTPS",
+    "description": "上线全链路：服务器与端口、Nginx 反向代理配置、域名解析、Let’s Encrypt HTTPS 与上线验证清单。",
+    "category": "development",
+    "subcategory": "development",
+    "difficulty": "beginner",
+    "estimatedTime": 25,
+    "tags": [
+      "部署",
+      "Nginx",
+      "HTTPS",
+      "域名"
+    ],
+    "keywords": [
+      "上线",
+      "部署",
+      "Nginx",
+      "反向代理",
+      "proxy_pass",
+      "域名",
+      "DNS",
+      "HTTPS",
+      "certbot",
+      "防火墙"
+    ],
+    "prerequisites": [
+      "build-package-basics"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/development/deploy-server-basics.md"
+  },
+  {
+    "id": "tut-cicd-basics",
+    "slug": "cicd-basics",
+    "title": "CI/CD 入门：自动化构建、测试与发布",
+    "description": "用 GitHub Actions 与 GitLab CI 把发版流程写成代码：测试闸门、镜像双标签、密钥管理与触发策略，及部署最后一公里三档方案。",
+    "category": "development",
+    "subcategory": "development",
+    "difficulty": "intermediate",
+    "estimatedTime": 30,
+    "tags": [
+      "CI/CD",
+      "GitHub Actions",
+      "GitLab CI",
+      "自动化"
+    ],
+    "keywords": [
+      "CI",
+      "CD",
+      "GitHub Actions",
+      "GitLab CI",
+      "ghcr",
+      "镜像仓库",
+      "workflow",
+      "secrets",
+      "自动化部署",
+      "SSH部署"
+    ],
+    "prerequisites": [
+      "build-package-basics"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/development/cicd-basics.md"
+  },
+  {
+    "id": "tut-deploy-architecture",
+    "slug": "deploy-architecture",
+    "title": "部署架构设计：环境、负载与数据管理",
+    "description": "部署架构四要素：dev/staging/prod 环境纪律、单机到多实例演进、数据卷/备份/迁移规矩、AI 应用特有考量（GPU、长任务、模型版本）。",
+    "category": "development",
+    "subcategory": "development",
+    "difficulty": "intermediate",
+    "estimatedTime": 30,
+    "tags": [
+      "架构",
+      "负载均衡",
+      "环境划分",
+      "数据备份"
+    ],
+    "keywords": [
+      "部署架构",
+      "staging",
+      "无状态",
+      "负载均衡",
+      "upstream",
+      "数据卷",
+      "备份",
+      "迁移",
+      "GPU",
+      "任务队列",
+      "配置分层"
+    ],
+    "prerequisites": [
+      "build-package-basics"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/development/deploy-architecture.md"
+  },
+  {
+    "id": "tut-continuous-iteration",
+    "slug": "continuous-iteration",
+    "title": "持续迭代：灰度、回滚与监控告警",
+    "description": "可持续迭代闭环：语义化版本与不可变产物、灰度/蓝绿/全量发布、回滚预案演练、监控告警最小闭环与真实部署复盘。",
+    "category": "development",
+    "subcategory": "development",
+    "difficulty": "intermediate",
+    "estimatedTime": 25,
+    "tags": [
+      "灰度",
+      "回滚",
+      "监控",
+      "发布"
+    ],
+    "keywords": [
+      "持续迭代",
+      "灰度",
+      "金丝雀",
+      "蓝绿",
+      "回滚",
+      "监控",
+      "告警",
+      "healthcheck",
+      "日志",
+      "runbook",
+      "发布策略"
+    ],
+    "prerequisites": [
+      "build-package-basics"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/development/continuous-iteration.md"
+  },
+  {
     "id": "tut-llm-api-first-app",
     "slug": "llm-api-first-app",
     "title": "用 LLM API 构建第一个应用",
