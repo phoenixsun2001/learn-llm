@@ -965,6 +965,45 @@
     "file": "/content/tutorials/development/continuous-iteration.md"
   },
   {
+    "id": "tut-remote-docker-deploy",
+    "slug": "remote-docker-deploy",
+    "title": "AI 辅助远程 Docker 部署实战：只有 Daemon 权限也能发版",
+    "description": "真实部署复盘：仅通过 SSH 隧道指向远端 Docker daemon（无 SSH/无文件系统权限），完成镜像重建、save/load 传输、内容卷同步与容器滚动重建，含 docker cp 嵌套与 Windows 卷删除不生效两大坑的解法，以及 AI 辅助部署的人机分工。",
+    "category": "development",
+    "subcategory": "development",
+    "difficulty": "intermediate",
+    "estimatedTime": 30,
+    "tags": [
+      "Docker",
+      "远程部署",
+      "AI 辅助",
+      "实战复盘"
+    ],
+    "keywords": [
+      "远程部署",
+      "DOCKER_HOST",
+      "docker save",
+      "docker load",
+      "docker cp",
+      "bind mount",
+      "嵌套",
+      "Windows 挂载",
+      "ssh 隧道",
+      "2375",
+      "compose 重建",
+      "滚动更新",
+      "回滚",
+      "验证",
+      "AI 辅助部署"
+    ],
+    "prerequisites": [
+      "docker-fundamentals",
+      "deploy-server-basics"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/development/remote-docker-deploy.md"
+  },
+  {
     "id": "tut-llm-api-first-app",
     "slug": "llm-api-first-app",
     "title": "用 LLM API 构建第一个应用",

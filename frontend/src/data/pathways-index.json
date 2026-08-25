@@ -262,7 +262,7 @@
     "audience": "适合能用 AI 写出应用原型、但不熟悉打包部署上线、CI/CD 与部署架构的开发者。",
     "outcome": "完成后，你将能把一个项目从「我电脑上能跑」改造为「可构建、可容器化、可上线、可自动化发布、可安全迭代」的生产形态，并掌握典型部署场景的决策方法。",
     "level": "beginner",
-    "estimatedTime": 165,
+    "estimatedTime": 195,
     "steps": [
       {
         "tutorialId": "tut-build-package-basics",
@@ -299,6 +299,12 @@
         "order": 6,
         "required": true,
         "role": "持续迭代"
+      },
+      {
+        "tutorialId": "tut-remote-docker-deploy",
+        "order": 7,
+        "required": false,
+        "role": "实战复盘"
       }
     ],
     "icon": "🚢"

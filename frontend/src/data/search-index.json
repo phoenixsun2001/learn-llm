@@ -1558,5 +1558,33 @@
     ],
     "category": "development",
     "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "remote-docker-deploy",
+    "title": "AI 辅助远程 Docker 部署实战：只有 Daemon 权限也能发版",
+    "keywords": [
+      "远程部署",
+      "DOCKER_HOST",
+      "docker save",
+      "docker load",
+      "docker cp",
+      "bind mount",
+      "嵌套",
+      "Windows 挂载",
+      "ssh 隧道",
+      "2375",
+      "compose 重建",
+      "滚动更新",
+      "回滚",
+      "验证",
+      "AI 辅助部署",
+      "Docker",
+      "远程部署",
+      "AI 辅助",
+      "实战复盘"
+    ],
+    "category": "development",
+    "difficulty": "intermediate"
   }
 ]
