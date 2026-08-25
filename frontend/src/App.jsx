@@ -19,6 +19,8 @@ import SkillList from './pages/Skills/SkillList';
 import SkillPackage from './pages/Skills/SkillPackage';
 import SkillDetail from './pages/Skills/SkillDetail';
 import SearchResults from './pages/Search/SearchResults';
+import WikiList from './pages/Wiki/WikiList';
+import WikiDetail from './pages/Wiki/WikiDetail';
 import MyLearning from './pages/MyLearning/MyLearning';
 import AdminLayout from './pages/Admin/AdminLayout';
 import TutorialManager from './pages/Admin/TutorialManager';
@@ -69,6 +71,8 @@ const App = () => {
                 <Route path="/skills/:package" element={<SkillPackage />} />
                 <Route path="/skills/:package/:slug" element={<SkillDetail />} />
                 <Route path="/my-learning" element={<MyLearning />} />
+                <Route path="/wiki" element={<WikiList />} />
+                <Route path="/wiki/:slug" element={<WikiDetail />} />
                 <Route path="/search" element={<SearchResults />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

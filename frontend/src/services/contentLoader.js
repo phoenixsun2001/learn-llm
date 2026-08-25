@@ -6,6 +6,7 @@ import promptsIndex from '../data/prompts-index.json';
 import skillsIndex from '../data/skills-index.json';
 import skillsPackagesIndex from '../data/skills-packages-index.json';
 import searchIndex from '../data/search-index.json';
+import wikiIndex from '../data/wiki-index.json';
 
 // Runtime store for dynamically imported tutorials (persisted to localStorage)
 const IMPORTED_KEY = 'learn-llm-imported-tutorials'
@@ -482,6 +483,28 @@ export function deleteSkillPackage(slug) {
   saveJson(SKILL_PACKAGES_DELETED_KEY, _deletedSkillPackages)
 }
 
+/* ---------- 术语 Wiki ---------- */
+
+export function getWikiTermBySlug(slug) {
+  return wikiIndex.find((item) => item.slug === slug) || null;
+}
+
+export function getWikiTerms(filters = {}) {
+  let list = [...wikiIndex];
+  if (filters.category) list = list.filter((item) => item.category === filters.category);
+  if (filters.search) {
+    const q = String(filters.search).toLowerCase();
+    list = list.filter((item) =>
+      item.term.toLowerCase().includes(q) ||
+      (item.termEn || '').toLowerCase().includes(q) ||
+      (item.oneliner || '').toLowerCase().includes(q) ||
+      (item.aliases || []).some((a) => a.toLowerCase().includes(q))
+    );
+  }
+  const collator = new Intl.Collator('zh-Hans-CN');
+  return list.sort((a, b) => collator.compare(a.term, b.term));
+}
+
 /**
  * 全局搜索：在教程、工具、场景中按标题和关键词搜索
  * @param {string} query - 搜索关键词
@@ -534,6 +557,13 @@ export function searchAll(query) {
       keywords: [...(item.keywords || []), ...(item.tags || []), item.description || ''].filter(Boolean),
       category: item.category,
       difficulty: item.difficulty,
+    })),
+    ...wikiIndex.map((item) => ({
+      type: 'wiki',
+      slug: item.slug,
+      title: `${item.term}${item.termEn ? `（${item.termEn}）` : ''}`,
+      keywords: [...(item.aliases || []), item.termEn || '', item.oneliner || ''].filter(Boolean),
+      category: item.category,
     })),
   ]
   const byKey = new Map()

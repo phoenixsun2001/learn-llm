@@ -115,3 +115,15 @@ export const PROMPT_CATEGORY_LABELS = {
   [PROMPT_CATEGORIES.COMMUNICATION]: '沟通',
   [PROMPT_CATEGORIES.TRANSLATION]: '翻译',
 };
+
+// 术语 Wiki 分类（数据来源：vibe-hub.org 术语图鉴）
+export const WIKI_CATEGORY_LABELS = {
+  frontend: '前端',
+  backend: '后端',
+  product: '产品',
+  'tech-stack': '技术栈',
+  ai: 'AI',
+  git: 'Git',
+  design: '设计风格',
+};
+

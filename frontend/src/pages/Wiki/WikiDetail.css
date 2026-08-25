@@ -1,0 +1,260 @@
+/* ---------- 术语 Wiki 详情页 ---------- */
+
+.wiki-detail-page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 3rem;
+}
+
+.wiki-detail-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--font-size-sm);
+  color: var(--text-tertiary);
+  margin-bottom: 1.5rem;
+}
+
+.wiki-detail-breadcrumb-link {
+  color: var(--text-tertiary);
+  text-decoration: none;
+}
+
+.wiki-detail-breadcrumb-link:hover {
+  color: var(--accent-text);
+}
+
+.wiki-detail-breadcrumb-sep {
+  color: var(--text-tertiary);
+}
+
+.wiki-detail-breadcrumb-current {
+  color: var(--text-primary);
+}
+
+/* ----- 头部 ----- */
+
+.wiki-detail-header {
+  margin-bottom: 1.75rem;
+}
+
+.wiki-detail-title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.wiki-detail-title {
+  font-size: var(--font-size-xl);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.wiki-detail-en {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-md);
+  color: var(--text-tertiary);
+}
+
+.wiki-detail-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.wiki-detail-badge {
+  font-size: var(--font-size-xs);
+  color: var(--accent-text);
+  background: var(--accent-light);
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+}
+
+.wiki-detail-alias {
+  font-size: var(--font-size-sm);
+  color: var(--text-tertiary);
+}
+
+.wiki-detail-oneliner {
+  margin: 0.9rem 0 0;
+  font-size: var(--font-size-md);
+  line-height: 1.7;
+  color: var(--text-secondary);
+  border-left: 3px solid var(--accent-color);
+  padding-left: 0.9rem;
+}
+
+/* ----- 区块 ----- */
+
+.wiki-detail-section {
+  margin-bottom: 1.5rem;
+}
+
+.wiki-detail-section-title {
+  font-size: var(--font-size-md);
+  color: var(--text-primary);
+  margin: 0 0 0.6rem;
+}
+
+.wiki-detail-definition {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* 你可能会说 */
+
+.wiki-detail-say {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md, 12px);
+  padding: 1rem 1.2rem;
+}
+
+.wiki-detail-quote {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  line-height: 1.7;
+}
+
+.wiki-detail-say-note {
+  margin: 0.5rem 0 0;
+  color: var(--text-tertiary);
+  font-size: var(--font-size-xs);
+}
+
+/* 容易混淆 */
+
+.wiki-detail-confusion {
+  border-left: 3px solid var(--warning-color);
+  padding-left: 1rem;
+}
+
+/* AI 提示词 */
+
+.wiki-detail-prompt {
+  background: var(--bg-code);
+  border-radius: var(--radius-md, 12px);
+  padding: 1rem 1.2rem;
+}
+
+.wiki-detail-prompt .wiki-detail-section-title {
+  color: var(--text-primary);
+}
+
+.wiki-detail-prompt-body {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.wiki-detail-prompt-text {
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.wiki-detail-copy-btn {
+  flex-shrink: 0;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--accent-color);
+  border-radius: var(--radius-md, 8px);
+  background: var(--accent-color);
+  color: var(--accent-text);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.wiki-detail-copy-btn:hover {
+  opacity: 0.85;
+}
+
+.wiki-detail-copy-btn--done {
+  background: var(--success-color);
+  border-color: var(--success-color);
+}
+
+.wiki-detail-prompt-note {
+  margin: 0.6rem 0 0;
+  color: var(--text-tertiary);
+  font-size: var(--font-size-xs);
+}
+
+/* 相关术语 */
+
+.wiki-detail-related {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.wiki-detail-related-link {
+  padding: 0.35rem 0.9rem;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  color: var(--accent-text);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.wiki-detail-related-link:hover {
+  border-color: var(--accent-color);
+  background: var(--accent-light);
+}
+
+/* ----- 出处 / 错误态 ----- */
+
+.wiki-detail-footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-light);
+  color: var(--text-tertiary);
+  font-size: var(--font-size-xs);
+  line-height: 1.8;
+}
+
+.wiki-detail-source-link {
+  color: var(--accent-text);
+}
+
+.wiki-detail-error {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--text-secondary);
+}
+
+.wiki-detail-error-icon {
+  font-size: 2.4rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.wiki-detail-error-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  color: var(--accent-text);
+}
+
+@media (max-width: 640px) {
+  .wiki-detail-page {
+    padding: 1rem 1rem 2.5rem;
+  }
+
+  .wiki-detail-prompt-body {
+    flex-direction: column;
+  }
+
+  .wiki-detail-copy-btn {
+    align-self: flex-start;
+  }
+}

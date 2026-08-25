@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { to: "/tools",     emoji: "🛠️", label: "工具向导" },
   { to: "/skills",    emoji: "🧩", label: "技能库"   },
   { to: "/tutorials", emoji: "📖", label: "教程库"   },
+  { to: "/wiki",      emoji: "🔤", label: "术语Wiki" },
   { to: "/my-learning", emoji: "📚", label: "我的学习" },
 ];
 

@@ -1,0 +1,198 @@
+/* ---------- 术语 Wiki 列表页 ---------- */
+
+.wiki-list-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.wiki-list-header {
+  margin-bottom: 1.5rem;
+}
+
+.wiki-list-title {
+  font-size: var(--font-size-xl);
+  color: var(--text-primary);
+  margin: 0 0 0.5rem;
+}
+
+.wiki-list-desc {
+  color: var(--text-secondary);
+  max-width: 72ch;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ----- 筛选区 ----- */
+
+.wiki-list-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.wiki-list-search {
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md, 10px);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+}
+
+.wiki-list-search:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.wiki-list-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.wiki-list-chip {
+  padding: 0.35rem 0.9rem;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.wiki-list-chip:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-text);
+}
+
+.wiki-list-chip--active {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--accent-text);
+}
+
+.wiki-list-count {
+  color: var(--text-tertiary);
+  font-size: var(--font-size-sm);
+  margin: 0 0 1rem;
+}
+
+/* ----- 词条卡片 ----- */
+
+.wiki-list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.wiki-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 1.1rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md, 12px);
+  text-decoration: none;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.wiki-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-color);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.wiki-card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.wiki-card-term {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.wiki-card-en {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+}
+
+.wiki-card-desc {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.wiki-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.wiki-card-badge {
+  font-size: var(--font-size-xs);
+  color: var(--accent-text);
+  background: var(--accent-light);
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.wiki-card-alias {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ----- 空状态 / 出处 ----- */
+
+.wiki-list-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-secondary);
+}
+
+.wiki-list-empty-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.wiki-list-source {
+  margin-top: 2rem;
+  color: var(--text-tertiary);
+  font-size: var(--font-size-xs);
+  text-align: center;
+}
+
+.wiki-list-source-link {
+  color: var(--accent-text);
+}
+
+@media (max-width: 640px) {
+  .wiki-list-page {
+    padding: 1.5rem 1rem 2.5rem;
+  }
+
+  .wiki-list-grid {
+    grid-template-columns: 1fr;
+  }
+}

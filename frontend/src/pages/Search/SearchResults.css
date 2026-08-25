@@ -180,6 +180,12 @@
   color: #d97706;
 }
 
+/* Wiki term — violet (matches this file's per-type badge convention) */
+.search-badge--wiki {
+  background-color: #f5f3ff;
+  color: #7c3aed;
+}
+
 /* ---------- Result title ---------- */
 .search-result-title {
   font-size: var(--font-size-base);
