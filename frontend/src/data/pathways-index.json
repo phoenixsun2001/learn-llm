@@ -1,5 +1,78 @@
 [
   {
+    "id": "pwy-cs146s",
+    "slug": "cs146s-modern-software-developer",
+    "title": "CS146S：现代软件开发者（斯坦福）",
+    "description": "以斯坦福 CS146S 十周课程为蓝本的完整能力栈：从拆解 Agent Loop 机制，到上下文工程、Skills 与定制化，再到 Agent-Ready 代码库、审查与安全，最终抵达后台 Agent 集群、AI 原生团队平台与软件工厂。",
+    "audience": "适合已会用任一 AI 编程工具（Claude Code/Codex/ZCode），想把零散技巧升级为完整 AI 原生工程体系的开发者与团队负责人。",
+    "outcome": "完成后，你将理解 Agent 机制并能定制其上下文/工具/约束，能把代码库与评审流程改造为 Agent 友好形态，能搭建异步委派与 Issue→PR 流水线，并掌握组织级的工具治理、成本路由与软件工厂蓝图。",
+    "level": "intermediate",
+    "estimatedTime": 515,
+    "steps": [
+      {
+        "tutorialId": "tut-cs146s-agent-loop",
+        "order": 1,
+        "required": true,
+        "role": "第一层·理解 Agent"
+      },
+      {
+        "tutorialId": "tut-cs146s-context-engineering",
+        "order": 2,
+        "required": true,
+        "role": "第二层·上下文工程"
+      },
+      {
+        "tutorialId": "tut-cs146s-agent-skills",
+        "order": 3,
+        "required": true,
+        "role": "第二层·能力封装"
+      },
+      {
+        "tutorialId": "tut-cs146s-agent-customization",
+        "order": 4,
+        "required": true,
+        "role": "第二层·定制化"
+      },
+      {
+        "tutorialId": "tut-cs146s-agent-ready-codebase",
+        "order": 5,
+        "required": true,
+        "role": "第三层·环境改造"
+      },
+      {
+        "tutorialId": "tut-cs146s-agentic-code-review",
+        "order": 6,
+        "required": true,
+        "role": "第三层·审查"
+      },
+      {
+        "tutorialId": "tut-cs146s-agent-security",
+        "order": 7,
+        "required": true,
+        "role": "第三层·安全"
+      },
+      {
+        "tutorialId": "tut-cs146s-background-agents",
+        "order": 8,
+        "required": true,
+        "role": "第四层·规模化"
+      },
+      {
+        "tutorialId": "tut-cs146s-ai-native-team",
+        "order": 9,
+        "required": true,
+        "role": "第四层·组织化"
+      },
+      {
+        "tutorialId": "tut-cs146s-software-factory",
+        "order": 10,
+        "required": true,
+        "role": "第四层·软件工厂"
+      }
+    ],
+    "icon": "🎓"
+  },
+  {
     "id": "pwy-llm-fundamentals",
     "slug": "llm-fundamentals",
     "title": "大模型基础知识",

@@ -1586,5 +1586,454 @@
     ],
     "category": "development",
     "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "ai-native-sdlc-playbook",
+    "title": "AI 原生 SDLC 操作手册：用 Claude 重塑软件开发生命周期",
+    "keywords": [
+      "sdlc",
+      "ai 原生",
+      "ai-native",
+      "claude code",
+      "intent.md",
+      "spec.md",
+      "plan.md",
+      "claude.md",
+      "skills",
+      "hooks",
+      "评审",
+      "治理",
+      "闭环",
+      "工作流",
+      "anthropic"
+    ],
+    "category": "workflow",
+    "difficulty": "advanced"
+  },
+  {
+    "type": "tutorial",
+    "slug": "cs146s-agent-loop",
+    "title": "解剖 Agent：从 LLM 到 Agent Loop（CS146S Week 1）",
+    "keywords": [
+      "cs146s",
+      "agent",
+      "agent loop",
+      "循环",
+      "工具",
+      "read",
+      "write",
+      "edit",
+      "bash",
+      "系统提示词",
+      "stanford"
+    ],
+    "category": "harness",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "cs146s-context-engineering",
+    "title": "上下文工程与规格驱动开发（CS146S Week 2）",
+    "keywords": [
+      "cs146s",
+      "上下文工程",
+      "context engineering",
+      "reppit",
+      "规格驱动",
+      "spec driven",
+      "mcp",
+      "工具设计",
+      "提示词"
+    ],
+    "category": "harness",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "cs146s-agent-skills",
+    "title": "Agent Skills：把工作流编码为可复用能力（CS146S Week 3）",
+    "keywords": [
+      "cs146s",
+      "skill",
+      "skills",
+      "skill.md",
+      "cli",
+      "工作流",
+      "能力封装",
+      "渐进式披露"
+    ],
+    "category": "harness",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "cs146s-agent-customization",
+    "title": "定制你的 Agent：CLAUDE.md、Hooks 与子代理（CS146S Week 4）",
+    "keywords": [
+      "cs146s",
+      "claude.md",
+      "agents.md",
+      "hooks",
+      "子代理",
+      "subagent",
+      "定制",
+      "门禁",
+      "项目记忆"
+    ],
+    "category": "harness",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "cs146s-agent-ready-codebase",
+    "title": "Agent-Ready 代码库：让仓库对 AI 友好（CS146S Week 5）",
+    "keywords": [
+      "cs146s",
+      "agent ready",
+      "代码库",
+      "仓库",
+      "结构",
+      "文档",
+      "测试",
+      "就绪度",
+      "遗留系统"
+    ],
+    "category": "development",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "cs146s-agentic-code-review",
+    "title": "Agentic 代码审查：能力边界与落地架构（CS146S Week 6）",
+    "keywords": [
+      "cs146s",
+      "代码审查",
+      "code review",
+      "pr",
+      "评审",
+      "职责分离",
+      "review.md"
+    ],
+    "category": "practice",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "cs146s-agent-security",
+    "title": "Agent 时代的软件安全（CS146S Week 7）",
+    "keywords": [
+      "cs146s",
+      "安全",
+      "security",
+      "sast",
+      "sca",
+      "提示词注入",
+      "prompt injection",
+      "依赖投毒",
+      "密钥",
+      "沙箱"
+    ],
+    "category": "practice",
+    "difficulty": "advanced"
+  },
+  {
+    "type": "tutorial",
+    "slug": "cs146s-background-agents",
+    "title": "后台 Agent：异步委派与并行集群（CS146S Week 8）",
+    "keywords": [
+      "cs146s",
+      "后台",
+      "background agent",
+      "并行",
+      "worktree",
+      "issue",
+      "pr",
+      "流水线",
+      "异步",
+      "委派"
+    ],
+    "category": "workflow",
+    "difficulty": "advanced"
+  },
+  {
+    "type": "tutorial",
+    "slug": "cs146s-ai-native-team",
+    "title": "AI 原生团队：MCP Portals、LLM Gateway 与成本治理（CS146S Week 9）",
+    "keywords": [
+      "cs146s",
+      "组织",
+      "团队",
+      "mcp portal",
+      "gateway",
+      "网关",
+      "模型路由",
+      "成本",
+      "治理",
+      "平台"
+    ],
+    "category": "practice",
+    "difficulty": "advanced"
+  },
+  {
+    "type": "tutorial",
+    "slug": "cs146s-software-factory",
+    "title": "软件工厂：自运行、自改进的软件系统（CS146S Week 10）",
+    "keywords": [
+      "cs146s",
+      "软件工厂",
+      "software factory",
+      "自运行",
+      "闭环",
+      "治理",
+      "自改进"
+    ],
+    "category": "workflow",
+    "difficulty": "advanced"
+  },
+  {
+    "type": "tutorial",
+    "slug": "codex-intro",
+    "title": "Codex 核心概念与快速上手",
+    "keywords": [
+      "codex",
+      "intro",
+      "openai",
+      "入门"
+    ],
+    "category": "harness",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "tutorial",
+    "slug": "codex-install",
+    "title": "Codex 安装与认证完整指南",
+    "keywords": [
+      "codex",
+      "install",
+      "安装",
+      "认证"
+    ],
+    "category": "harness",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "tutorial",
+    "slug": "codex-commands",
+    "title": "Codex Commands 与工作流入门",
+    "keywords": [
+      "codex",
+      "commands",
+      "工作流"
+    ],
+    "category": "harness",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "codex-skills",
+    "title": "Codex Skills 与 MCP 集成",
+    "keywords": [
+      "codex",
+      "mcp",
+      "skills"
+    ],
+    "category": "harness",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "codex-advanced",
+    "title": "Codex 进阶：Subagents、Plugins 与企业实战",
+    "keywords": [
+      "advanced",
+      "codex",
+      "plugins",
+      "subagents",
+      "企业"
+    ],
+    "category": "harness",
+    "difficulty": "advanced"
+  },
+  {
+    "type": "tutorial",
+    "slug": "llm-how-it-works",
+    "title": "大语言模型是如何工作的",
+    "keywords": [
+      "how",
+      "it",
+      "llm",
+      "works",
+      "基础概念",
+      "大语言模型"
+    ],
+    "category": "principle",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "tutorial",
+    "slug": "transformer-attention-intro",
+    "title": "Transformer 与注意力机制入门",
+    "keywords": [
+      "attention",
+      "intro",
+      "transformer",
+      "注意力机制"
+    ],
+    "category": "principle",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "llm-models-overview",
+    "title": "主流大模型概览：GPT、Claude、Gemini、GLM、DeepSeek",
+    "keywords": [
+      "llm",
+      "models",
+      "overview",
+      "大模型",
+      "模型选型"
+    ],
+    "category": "model",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "tutorial",
+    "slug": "choose-llm-model",
+    "title": "如何选择适合的大模型",
+    "keywords": [
+      "choose",
+      "llm",
+      "model",
+      "决策框架",
+      "模型选型"
+    ],
+    "category": "model",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "llm-api-first-app",
+    "title": "用 LLM API 构建第一个应用",
+    "keywords": [
+      "api",
+      "app",
+      "first",
+      "llm",
+      "开发入门"
+    ],
+    "category": "development",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "tutorial",
+    "slug": "prompt-engineering-basics",
+    "title": "Prompt 工程入门",
+    "keywords": [
+      "basics",
+      "engineering",
+      "prompt",
+      "prompt 工程",
+      "开发入门"
+    ],
+    "category": "development",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "tutorial",
+    "slug": "zcode-intro",
+    "title": "ZCode 入门指南",
+    "keywords": [
+      "glm-5.2",
+      "intro",
+      "zcode",
+      "入门"
+    ],
+    "category": "harness",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "tutorial",
+    "slug": "zcode-agent",
+    "title": "ZCode Agent 核心用法",
+    "keywords": [
+      "agent",
+      "zcode",
+      "上下文",
+      "推理强度"
+    ],
+    "category": "harness",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "tutorial",
+    "slug": "zcode-goal-task",
+    "title": "目标模式与任务管理",
+    "keywords": [
+      "/goal",
+      "goal",
+      "task",
+      "zcode",
+      "任务管理",
+      "目标模式"
+    ],
+    "category": "harness",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "zcode-subagents",
+    "title": "ZCode 子智能体",
+    "keywords": [
+      "explore",
+      "subagent",
+      "subagents",
+      "zcode",
+      "子智能体"
+    ],
+    "category": "harness",
+    "difficulty": "intermediate"
+  },
+  {
+    "type": "tutorial",
+    "slug": "zcode-hands-on",
+    "title": "实战：第一个 Agent 任务",
+    "keywords": [
+      "agent",
+      "hands",
+      "on",
+      "zcode",
+      "实战"
+    ],
+    "category": "harness",
+    "difficulty": "beginner"
+  },
+  {
+    "type": "tutorial",
+    "slug": "zcode-workflow",
+    "title": "综合：探索-执行工作流",
+    "keywords": [
+      "workflow",
+      "zcode",
+      "工作流",
+      "综合实战"
+    ],
+    "category": "harness",
+    "difficulty": "advanced"
+  },
+  {
+    "type": "tutorial",
+    "slug": "trae-guide",
+    "title": "TRAE Work 全景指南",
+    "keywords": [
+      "ai 原生",
+      "guide",
+      "ita",
+      "trae",
+      "trae work",
+      "工作台"
+    ],
+    "category": "harness",
+    "difficulty": "beginner"
   }
 ]

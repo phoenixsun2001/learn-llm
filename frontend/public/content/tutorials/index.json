@@ -1235,5 +1235,377 @@
     "prerequisites": [],
     "featured": true,
     "file": "/content/tutorials/harness/deepseek-harness-guide.md"
+  },
+  {
+    "id": "tut-ai-native-sdlc-playbook",
+    "slug": "ai-native-sdlc-playbook",
+    "title": "AI 原生 SDLC 操作手册：用 Claude 重塑软件开发生命周期",
+    "description": "基于 Anthropic 官方 Playbook：以工件链（intent.md → spec.md → plan.md → PR）为主线，把计划、设计、构建、测试、部署、运维六阶段改造成 AI 深度参与的闭环，含 CLAUDE.md、Skills、Hooks、持续评测与治理的落地配置。",
+    "category": "workflow",
+    "subcategory": "workflow",
+    "difficulty": "advanced",
+    "estimatedTime": 50,
+    "tags": [
+      "SDLC",
+      "AI 原生",
+      "Claude Code",
+      "工程效能",
+      "治理"
+    ],
+    "keywords": [
+      "sdlc",
+      "ai 原生",
+      "ai-native",
+      "claude code",
+      "intent.md",
+      "spec.md",
+      "plan.md",
+      "claude.md",
+      "skills",
+      "hooks",
+      "评审",
+      "治理",
+      "闭环",
+      "工作流",
+      "anthropic"
+    ],
+    "prerequisites": [
+      "claude-code-intro"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/workflow/ai-native-sdlc-playbook.md"
+  },
+  {
+    "id": "tut-cs146s-agent-loop",
+    "slug": "cs146s-agent-loop",
+    "title": "解剖 Agent：从 LLM 到 Agent Loop（CS146S Week 1）",
+    "description": "CS146S 第 1 周：理解 LLM 与 Agent Loop 的机制本质，用 200 行代码实现迷你 Claude Code，并深读生产级系统提示词的五层结构。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "intermediate",
+    "estimatedTime": 55,
+    "tags": [
+      "Agent",
+      "Agent Loop",
+      "系统提示词",
+      "CS146S",
+      "Claude Code"
+    ],
+    "keywords": [
+      "cs146s",
+      "agent",
+      "agent loop",
+      "循环",
+      "工具",
+      "read",
+      "write",
+      "edit",
+      "bash",
+      "系统提示词",
+      "stanford"
+    ],
+    "prerequisites": [
+      "llm-how-it-works"
+    ],
+    "featured": true,
+    "file": "/content/tutorials/harness/cs146s-agent-loop.md"
+  },
+  {
+    "id": "tut-cs146s-context-engineering",
+    "slug": "cs146s-context-engineering",
+    "title": "上下文工程与规格驱动开发（CS146S Week 2）",
+    "description": "CS146S 第 2 周：上下文工程四原则、RePPIT 规格驱动框架、MCP 架构与三类原语，以及工具设计的 Agent 人机工学。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "intermediate",
+    "estimatedTime": 55,
+    "tags": [
+      "上下文工程",
+      "规格驱动开发",
+      "RePPIT",
+      "MCP",
+      "CS146S"
+    ],
+    "keywords": [
+      "cs146s",
+      "上下文工程",
+      "context engineering",
+      "reppit",
+      "规格驱动",
+      "spec driven",
+      "mcp",
+      "工具设计",
+      "提示词"
+    ],
+    "prerequisites": [
+      "cs146s-agent-loop",
+      "prompt-engineering-basics"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/harness/cs146s-context-engineering.md"
+  },
+  {
+    "id": "tut-cs146s-agent-skills",
+    "slug": "cs146s-agent-skills",
+    "title": "Agent Skills：把工作流编码为可复用能力（CS146S Week 3）",
+    "description": "CS146S 第 3 周：SKILL.md 结构与渐进式披露、脚本与判断规则的分工、CLI 工作方式，以及设计仓库级 Skill 的实战。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "intermediate",
+    "estimatedTime": 45,
+    "tags": [
+      "Agent Skills",
+      "SKILL.md",
+      "CLI",
+      "工作流复用",
+      "CS146S"
+    ],
+    "keywords": [
+      "cs146s",
+      "skill",
+      "skills",
+      "skill.md",
+      "cli",
+      "工作流",
+      "能力封装",
+      "渐进式披露"
+    ],
+    "prerequisites": [
+      "cs146s-context-engineering"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/harness/cs146s-agent-skills.md"
+  },
+  {
+    "id": "tut-cs146s-agent-customization",
+    "slug": "cs146s-agent-customization",
+    "title": "定制你的 Agent：CLAUDE.md、Hooks 与子代理（CS146S Week 4）",
+    "description": "CS146S 第 4 周：CLAUDE.md/AGENTS.md 该写什么、Hooks 做 lint/测试门禁与危险动作阻断、planner/implementer/reviewer 子代理分工。",
+    "category": "harness",
+    "subcategory": "harness",
+    "difficulty": "intermediate",
+    "estimatedTime": 55,
+    "tags": [
+      "CLAUDE.md",
+      "AGENTS.md",
+      "Hooks",
+      "Subagents",
+      "CS146S"
+    ],
+    "keywords": [
+      "cs146s",
+      "claude.md",
+      "agents.md",
+      "hooks",
+      "子代理",
+      "subagent",
+      "定制",
+      "门禁",
+      "项目记忆"
+    ],
+    "prerequisites": [
+      "cs146s-agent-skills"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/harness/cs146s-agent-customization.md"
+  },
+  {
+    "id": "tut-cs146s-agent-ready-codebase",
+    "slug": "cs146s-agent-ready-codebase",
+    "title": "Agent-Ready 代码库：让仓库对 AI 友好（CS146S Week 5）",
+    "description": "CS146S 第 5 周：结构、文档、测试、检查四支柱改造仓库，配可量化的就绪度打分表与遗留系统渐进改造路径。",
+    "category": "development",
+    "subcategory": "development",
+    "difficulty": "intermediate",
+    "estimatedTime": 50,
+    "tags": [
+      "Agent-Ready",
+      "代码库结构",
+      "就绪度评估",
+      "CS146S"
+    ],
+    "keywords": [
+      "cs146s",
+      "agent ready",
+      "代码库",
+      "仓库",
+      "结构",
+      "文档",
+      "测试",
+      "就绪度",
+      "遗留系统"
+    ],
+    "prerequisites": [
+      "cs146s-agent-customization"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/development/cs146s-agent-ready-codebase.md"
+  },
+  {
+    "id": "tut-cs146s-agentic-code-review",
+    "slug": "cs146s-agentic-code-review",
+    "title": "Agentic 代码审查：能力边界与落地架构（CS146S Week 6）",
+    "description": "CS146S 第 6 周：AI 审查擅长与遗漏的边界、多 pass+分级+降噪审查架构、REVIEW.md 政策即代码、嵌入团队 PR 流程与职责分离。",
+    "category": "practice",
+    "subcategory": "practice",
+    "difficulty": "intermediate",
+    "estimatedTime": 50,
+    "tags": [
+      "代码审查",
+      "Agentic Review",
+      "PR 流程",
+      "CS146S"
+    ],
+    "keywords": [
+      "cs146s",
+      "代码审查",
+      "code review",
+      "pr",
+      "评审",
+      "职责分离",
+      "review.md"
+    ],
+    "prerequisites": [
+      "cs146s-agent-ready-codebase"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/practice/cs146s-agentic-code-review.md"
+  },
+  {
+    "id": "tut-cs146s-agent-security",
+    "slug": "cs146s-agent-security",
+    "title": "Agent 时代的软件安全（CS146S Week 7）",
+    "description": "CS146S 第 7 周：SAST/SCA 与依赖密钥风险、间接提示词注入攻击面、最小权限与沙箱边界、Agent 辅助告警分诊与修复。",
+    "category": "practice",
+    "subcategory": "practice",
+    "difficulty": "advanced",
+    "estimatedTime": 55,
+    "tags": [
+      "安全",
+      "SAST",
+      "SCA",
+      "提示词注入",
+      "CS146S"
+    ],
+    "keywords": [
+      "cs146s",
+      "安全",
+      "security",
+      "sast",
+      "sca",
+      "提示词注入",
+      "prompt injection",
+      "依赖投毒",
+      "密钥",
+      "沙箱"
+    ],
+    "prerequisites": [
+      "cs146s-agentic-code-review"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/practice/cs146s-agent-security.md"
+  },
+  {
+    "id": "tut-cs146s-background-agents",
+    "slug": "cs146s-background-agents",
+    "title": "后台 Agent：异步委派与并行集群（CS146S Week 8）",
+    "description": "CS146S 第 8 周：从前台到后台的范式转变、worktree 隔离与评审带宽预算、Issue→PR 自动流水线（Slack/Linear/GitHub 触发）。",
+    "category": "workflow",
+    "subcategory": "workflow",
+    "difficulty": "advanced",
+    "estimatedTime": 50,
+    "tags": [
+      "后台 Agent",
+      "并行",
+      "Issue to PR",
+      "自动化流水线",
+      "CS146S"
+    ],
+    "keywords": [
+      "cs146s",
+      "后台",
+      "background agent",
+      "并行",
+      "worktree",
+      "issue",
+      "pr",
+      "流水线",
+      "异步",
+      "委派"
+    ],
+    "prerequisites": [
+      "cs146s-agent-customization",
+      "zcode-subagents"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/workflow/cs146s-background-agents.md"
+  },
+  {
+    "id": "tut-cs146s-ai-native-team",
+    "slug": "cs146s-ai-native-team",
+    "title": "AI 原生团队：MCP Portals、LLM Gateway 与成本治理（CS146S Week 9）",
+    "description": "CS146S 第 9 周：组织级 MCP portal 工具治理、LLM gateway 四职责、模型路由与单位产出成本度量、组织推广模式。",
+    "category": "practice",
+    "subcategory": "practice",
+    "difficulty": "advanced",
+    "estimatedTime": 50,
+    "tags": [
+      "AI 原生组织",
+      "MCP Portal",
+      "LLM Gateway",
+      "模型路由",
+      "成本优化",
+      "CS146S"
+    ],
+    "keywords": [
+      "cs146s",
+      "组织",
+      "团队",
+      "mcp portal",
+      "gateway",
+      "网关",
+      "模型路由",
+      "成本",
+      "治理",
+      "平台"
+    ],
+    "prerequisites": [
+      "cs146s-background-agents",
+      "choose-llm-model"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/practice/cs146s-ai-native-team.md"
+  },
+  {
+    "id": "tut-cs146s-software-factory",
+    "slug": "cs146s-software-factory",
+    "title": "软件工厂：自运行、自改进的软件系统（CS146S Week 10）",
+    "description": "CS146S 第 10 周：软件工厂四组成与部署后 Agent 治理、Loop Engineering 定位、现实校准与最小软件工厂实战。",
+    "category": "workflow",
+    "subcategory": "workflow",
+    "difficulty": "advanced",
+    "estimatedTime": 50,
+    "tags": [
+      "软件工厂",
+      "自主系统",
+      "闭环",
+      "治理",
+      "CS146S"
+    ],
+    "keywords": [
+      "cs146s",
+      "软件工厂",
+      "software factory",
+      "自运行",
+      "闭环",
+      "治理",
+      "自改进"
+    ],
+    "prerequisites": [
+      "cs146s-ai-native-team",
+      "loop-engineering"
+    ],
+    "featured": false,
+    "file": "/content/tutorials/workflow/cs146s-software-factory.md"
   }
 ]
