@@ -104,10 +104,13 @@
   .toc-sidebar {
     display: block;
     position: fixed;
-    top: calc(var(--navbar-height) + var(--spacing-xl));
+    /* Vertical centering: keeps the TOC around the middle of the viewport
+       regardless of list length; long lists scroll internally. */
+    top: 50%;
+    transform: translateY(-50%);
     left: calc((100% - var(--content-max-width)) / 2 - var(--toc-sidebar-width) - var(--toc-sidebar-gap));
     width: var(--toc-sidebar-width);
-    max-height: calc(100vh - var(--navbar-height) - 2 * var(--spacing-xl));
+    max-height: calc(100vh - 2 * var(--spacing-lg));
     overflow-y: auto;
     padding-right: var(--spacing-xs);
     z-index: 90;
