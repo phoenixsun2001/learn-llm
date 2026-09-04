@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getWikiTermBySlug } from '../../services/contentLoader';
 import { WIKI_CATEGORY_LABELS } from '../../utils/constants';
+import { copyTextToClipboard } from '../../utils/clipboard';
 import './WikiDetail.css';
 
 const WikiDetail = () => {
@@ -25,11 +26,11 @@ const WikiDetail = () => {
   const copyPrompt = async () => {
     if (!term.aiPrompt) return;
     try {
-      await navigator.clipboard.writeText(term.aiPrompt);
+      await copyTextToClipboard(term.aiPrompt);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      /* 剪贴板不可用时静默降级 */
+      /* Both copy paths failed — keep the button label unchanged */
     }
   };
 

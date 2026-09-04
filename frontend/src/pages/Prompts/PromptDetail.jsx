@@ -2,6 +2,7 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getPromptBySlug } from '../../services/contentLoader';
 import { PROMPT_CATEGORY_LABELS, DIFFICULTY_LABELS } from '../../utils/constants';
+import { copyTextToClipboard } from '../../utils/clipboard';
 import FavoriteButton from '../../components/FavoriteButton/FavoriteButton';
 import { useHistoryView } from '../../hooks/useHistoryView';
 import './PromptDetail.css';
@@ -70,21 +71,11 @@ const PromptDetail = () => {
 
   const handleCopy = useCallback(async () => {
     try {
-      await navigator.clipboard.writeText(copyText);
+      await copyTextToClipboard(copyText);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Fallback for non-HTTPS environments
-      const textarea = document.createElement('textarea');
-      textarea.value = copyText;
-      textarea.style.position = 'fixed';
-      textarea.style.opacity = '0';
-      document.body.appendChild(textarea);
-      textarea.select();
-      try { document.execCommand('copy'); } catch {}
-      document.body.removeChild(textarea);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      /* Both copy paths failed — keep the button label unchanged */
     }
   }, [copyText]);
 

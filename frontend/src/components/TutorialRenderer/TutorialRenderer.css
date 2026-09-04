@@ -226,6 +226,11 @@
   border-color: var(--success-color);
 }
 
+.code-block-copy-btn--failed {
+  color: var(--warning-color, #f59e0b);
+  border-color: var(--warning-color, #f59e0b);
+}
+
 /* Sandbox button */
 .code-block-sandbox-btn {
   display: inline-flex;

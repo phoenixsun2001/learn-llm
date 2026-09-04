@@ -7,6 +7,7 @@ import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import './TutorialRenderer.css';
 import TocSidebar from '../TocSidebar/TocSidebar';
 import { CATEGORY_LABELS, DIFFICULTY_LABELS } from '../../utils/constants';
+import { copyTextToClipboard } from '../../utils/clipboard';
 import { getTutorialBySlug } from '../../services/contentLoader';
 
 /* ================================================================
@@ -14,24 +15,28 @@ import { getTutorialBySlug } from '../../services/contentLoader';
    ================================================================ */
 const CopyButton = ({ code }) => {
   const [copied, setCopied] = useState(false);
+  const [failed, setFailed] = useState(false);
 
   const handleCopy = useCallback(async () => {
     try {
-      await navigator.clipboard.writeText(code);
+      await copyTextToClipboard(code);
       setCopied(true);
+      setFailed(false);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      /* Clipboard API unavailable — swallow */
+      /* Both copy paths unavailable — surface it instead of dying silently */
+      setFailed(true);
+      setTimeout(() => setFailed(false), 2000);
     }
   }, [code]);
 
   return (
     <button
-      className={`code-block-copy-btn${copied ? ' code-block-copy-btn--copied' : ''}`}
+      className={`code-block-copy-btn${copied ? ' code-block-copy-btn--copied' : ''}${failed ? ' code-block-copy-btn--failed' : ''}`}
       onClick={handleCopy}
-      aria-label={copied ? '已复制' : '复制代码'}
+      aria-label={failed ? '复制失败' : copied ? '已复制' : '复制代码'}
     >
-      {copied ? '✓ 已复制' : '复制'}
+      {failed ? '复制失败' : copied ? '✓ 已复制' : '复制'}
     </button>
   );
 };
