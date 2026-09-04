@@ -43,6 +43,17 @@
   font-weight: 500;
 }
 
+/* ---------- Actions (favorite button) ----------
+   Right-aligned inside the 800px content column so the floating
+   TOC sidebar (left margin) never overlaps it. */
+.tutorial-detail-actions {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 var(--spacing-md) var(--spacing-sm);
+}
+
 /* ---------- Error State ---------- */
 .tutorial-detail-error {
   display: flex;
