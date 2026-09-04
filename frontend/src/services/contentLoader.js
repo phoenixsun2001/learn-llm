@@ -251,7 +251,8 @@ export async function loadTutorialContent(slug, options = {}) {
     if (/^\s*<!doctype html/i.test(text) || /^\s*<html[\s>]/i.test(text)) {
       throw new Error('Markdown request returned the app shell HTML');
     }
-    return text;
+    // Strip YAML frontmatter — metadata already comes from the index entry
+    return text.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, '');
   } catch (error) {
     console.error(`Failed to load tutorial content for ${slug}:`, error);
     return null;
