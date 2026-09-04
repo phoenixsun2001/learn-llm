@@ -5,7 +5,7 @@ import rehypeSlug from 'rehype-slug';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import './TutorialRenderer.css';
-import StepProgress from '../StepProgress/StepProgress';
+import TocSidebar from '../TocSidebar/TocSidebar';
 import { CATEGORY_LABELS, DIFFICULTY_LABELS } from '../../utils/constants';
 import { getTutorialBySlug } from '../../services/contentLoader';
 
@@ -86,16 +86,10 @@ const SandboxButton = ({ code, language }) => {
  */
 const TutorialRenderer = ({ tutorial, content, loading }) => {
   const [currentStep, setCurrentStep] = useState(0);
+  const [sectionTitles, setSectionTitles] = useState([]);
   const contentRef = useRef(null);
 
-  /* ---------- Extract step count from h2 headings ---------- */
-  const totalSteps = useMemo(() => {
-    if (!content) return 0;
-    const matches = content.match(/^##\s+/gm);
-    return matches ? matches.length : 0;
-  }, [content]);
-
-  /* ---------- Scroll tracking: detect which h2 is in view ---------- */
+  /* ---------- Extract h2 sections & track which one is in view ---------- */
   useEffect(() => {
     if (loading || !contentRef.current) return;
 
@@ -105,6 +99,9 @@ const TutorialRenderer = ({ tutorial, content, loading }) => {
     /* Small delay so react-markdown nodes are in the DOM */
     const timeout = setTimeout(() => {
       const h2Elements = contentEl.querySelectorAll('h2');
+
+      /* Section titles feed the floating TOC sidebar */
+      setSectionTitles(Array.from(h2Elements).map((el) => el.textContent.trim()));
       if (h2Elements.length === 0) return;
 
       observer = new IntersectionObserver(
@@ -301,11 +298,11 @@ const TutorialRenderer = ({ tutorial, content, loading }) => {
         )}
       </header>
 
-      {/* Step Progress */}
-      {totalSteps > 0 && (
-        <StepProgress
+      {/* Floating Table of Contents */}
+      {sectionTitles.length > 0 && (
+        <TocSidebar
           tutorialSlug={tutorial.slug}
-          totalSteps={totalSteps}
+          sections={sectionTitles}
           currentStep={currentStep}
           onStepClick={handleStepClick}
         />
